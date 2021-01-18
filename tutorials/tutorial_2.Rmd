@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 1: SQL"
+title: "Tutorial 2: MS EXCEL"
 subtitle: "MT5000 - Data Analytics & Visualization"
 author: "Damien Dupré"
 date: "Dublin City University"
@@ -44,9 +44,7 @@ style_mono_light(
 
 # Objectives
 
-All the game of this tutorial will be to create new tables that can be downloaded for our analyses.
-
-With this tutorial, test basic SQL queries and explore additional functions
+All the game of this tutorial will be to use MS Excel to clean and to transform some data
 
 ```{r out.width='80%'}
 include_graphics("img/board_database.png")
