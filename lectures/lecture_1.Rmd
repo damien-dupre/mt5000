@@ -17,6 +17,7 @@ output:
 ```{r setup, include = FALSE}
 # general options --------------------------------------------------------------
 options(scipen = 999)
+options(htmltools.preserve.raw = FALSE)
 set.seed(42)
 # chunk options ----------------------------------------------------------------
 knitr::opts_chunk$set(
@@ -34,7 +35,8 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(knitr)
 library(nomnoml)
-
+library(DiagrammeR)
+library(widgetframe)
 ```
 
 # Big Data Everywhere!
@@ -168,7 +170,7 @@ Table Orders and table Order Details contain the same OrderID variable
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("http://www.databasedev.co.uk/image/northwind_relationships.gif")
+include_graphics("img/northwind_relationships.png")
 ```
 ]
 
@@ -233,6 +235,10 @@ Translation: **Show me the data from all the variables in the table 'table_name'
 2. Always indicates FROM after SELECT followed by the table name
 
 3. Always finishes with a Semicolon
+
+---
+
+# Basic Syntax of SQL Query
 
 ```{sql, eval=FALSE, echo=TRUE}
 SELECT variable_1, variable_2

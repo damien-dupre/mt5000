@@ -296,9 +296,4 @@ class: inverse, mline, left, middle
 
 <img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
 
-# Thanks for your attention, find me at...
-
-[`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
-[`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
-[`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
-[`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+# Thanks for your attention!
