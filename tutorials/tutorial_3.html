@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Tutorial 3: TABLEAU</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Damien Dupré" />
+    <script src="tutorial_3_files/header-attrs-2.6.6/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Tutorial 3: TABLEAU
+## MT5000 - Data Analytics &amp; Visualization
+### Damien Dupré
+### Dublin City University
+
+---
+
+
+
+
+# Objectives
+
+This tutorial is about how create basic visualisations with TABLEAU
+
+&lt;img src="https://www.tableau.com/sites/default/files/2020-11/05-HP-Leader-460X300%402x.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, mline, center, middle
+
+# 1. Around Tableau
+
+---
+
+# What is Tableau?
+
+Tableau is a set of different product which aims to create interactive data visualisation dashboard.
+
+Among these product, you will find:
+
+- **Tableau Prep** (dedicated to cleaning data - no use here)
+- **Tableau Desktop** (the main software - not free but can be access with a student license)
+- **Tableau Public** (exact same a Tableau Desktop but free and the only way to save your work is by publishing dashboard online)
+- **Tableau Server &amp; Tableau Online** (alternative to Tableau Desktop without local installation)
+
+---
+
+# How to Install Tableau Desktop?
+
+If you have a Windows, MacOs (except M1), or Linux:
+
+1. Go to https://www.tableau.com/products/desktop/download
+2. Fill you DCU email address
+3. Click Download Free Trial (A license will be provided to use it September)
+
+&lt;img src="https://data-flair.training/blogs/wp-content/uploads/sites/2/2019/11/enter-business-email-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+Note: [Tableau is currently not supporting Rosetta 2, the OS running the new M1 chip (26 Jan 2021)](https://kb.tableau.com/articles/issue/Tableau-Mac-Software-Does-Not-Yet-Support-Apple-Silicon-CPU). Users of Apple Silicon CPU With M1 Chip will have to use Tableau Online to do their assignment.
+
+---
+
+# How to Install Tableau Desktop?
+
+Once Tableau Desktop is downloaded, install it, then 
+
+1. Click Activate 
+2. On the form, enter your school email address for Business E-mail and enter the name of your school for Organization.
+3. Activate with your product key that you have received by email (valid until September)
+
+Already have a copy of Tableau Desktop installed? Update your license in the application: Help menu → Manage Product Keys
+
+.center[
+&lt;img src="https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2019/11/activation-1.png" width="40%" /&gt;&lt;img src="https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2019/11/registration-1.png" width="40%" /&gt;
+]
+
+---
+class: inverse, mline, center, middle
+
+# 2. Tableau Overview
+
+---
+
+# Tableau in a Nutshell
+
+Very similar to Excel but focused only on visualisation
+
+5 types of page:
+
+- Start Page
+- Data Source
+- Worksheet
+- Dashboard
+- Story
+
+---
+
+# Tableau Start Page
+
+&lt;img src="img/image86.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Tableau Data Source
+
+&lt;img src="img/image87.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Tableau Worksheet
+
+&lt;img src="img/image88.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Tableau Dashboard
+
+&lt;img src="img/image89.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Tableau Story 
+
+&lt;img src="img/image90.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Principles
+
+Tableau is only about:
+- Drag &amp; drop from variable list to plot 
+- Select the right data summary
+- Create independent figure and organising them on a page
+
+&lt;img src="https://i.redd.it/31zkb6zzn8f21.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, mline, center, middle
+
+# 3. Understand the Worksheet
+
+---
+
+# Variable List Tab
+
+.pull-left[
+&lt;img src="img/image91.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+Dimensions = Categorical Variables
+- Made of character string (most of the time)
+- Can be numeric if refers to an ID
+
+Measures = Continuous Variables
+- Made of numbers
+- Special cases of **Number of Records** and **Measure Values**
+
+]
+
+---
+
+# Analytics Tab
+
+.pull-left[
+&lt;img src="img/image92.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+Special features behind the Data Tab
+- Box Plot
+- Median and Quartiles
+- Average
+- Regression Line (Trend Line)
+]
+
+---
+
+# Plot Configuration
+
+.pull-left[
+&lt;img src="img/image93.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- Columns = X axis
+- Rows = Y axis
+- Pages = 1 plot per values (categories)
+- Filters = Keep specific values
+- Marks = Design of representation
+  - Colors
+  - Size
+  - Texts
+  - ...
+]
+
+---
+
+# Show Me: Additional Design
+
+.pull-left[
+&lt;img src="img/image94.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- Tables
+- Maps
+- Histograms
+- Pie charts
+- Line charts
+- Bar charts
+- Scatterplots
+- Box plots
+- ...
+]
+
+---
+
+# Aggregation Method
+
+.pull-left[
+- For Measures only (continuous variable)
+- Possibilities:
+  - Dimensions (raw data)
+  - Measure
+    - COUNT
+    - AVERAGE
+    - STD
+    - ...
+]
+
+.pull-right[
+&lt;img src="img/image95.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: inverse, mline, center, middle
+
+# 4. Master the Key Figures
+
+---
+
+# The Dataset: "titanic.csv"
+
+This data set provides information on the fate of the 1309 passengers on the fatal maiden voyage of the ocean liner ‘Titanic’ with their economic status (class), sex and age.
+
+Description of the dataset: 
+- **Survival:** Survival (0 = No, 1 = Yes) 
+- **Pclass:** Ticket class (1 = 1st, 2 = 2nd, 3 = 3rd) 
+- **Sex:** Male/Female
+- **Age:** Years 
+- **Sibsp:** # of siblings / spouses aboard the Titanic 
+- **Parch:** # of parents / children aboard the Titanic 
+- **Ticket:** Ticket number 
+- **Fare:** Passenger fare 
+- **Cabin:** Cabin number 
+- **Embarked:** Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton) 
+
+---
+
+# Ex 1: Pie Chart
+
+## Create a pie chart by counting the amount of passenger with the Survived variable
+
+
+---
+
+# Ex 2: Bar Chart
+
+## Create a bar chart by counting the amount of passenger of with the Survived variable by Gender
+
+
+---
+
+# Ex 3: Proportions
+
+## Create a bar chart or pie chart with the proportion of passenger from the Survived variable by Gender. 
+
+--
+
+Solution:
+
+- Click on Analysis
+- Percentage Of
+- Select which of Table/ Row / Column / Pane is the most relevant for you
+
+---
+
+# Ex 4: Histogram 
+
+## Create an histogram of the Fare variable
+
+## Change the bin size by clicking on the new dimension called "Fare(bin)" and Edit size of bins.
+
+---
+
+# Ex 5: Box Plot
+
+## Create a box plot of the Fare measure by clicking on the variable and selecting Dimension
+
+
+---
+
+# Ex 6: Histogram + Box Plot
+
+## Create an histogram plot of the Fare measure by Survived variable
+
+---
+
+# Ex 7: Scatterplot 
+
+## Create a scatterplot of Fare by Age and split using the Survived variable
+
+---
+class: inverse, mline, left, middle
+
+&lt;img class="circle" src="https://github.com/damien-dupre.png" width="250px"/&gt;
+
+# Thanks for your attention!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
