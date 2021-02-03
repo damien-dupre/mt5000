@@ -82,7 +82,7 @@ If you have a Windows, MacOs (except M1), or Linux:
 include_graphics("https://data-flair.training/blogs/wp-content/uploads/sites/2/2019/11/enter-business-email-1.png")
 ```
 
-Note: [Tableau is currently not supporting Rosetta 2, the OS running the new M1 chip (26 Jan 2021)](https://kb.tableau.com/articles/issue/Tableau-Mac-Software-Does-Not-Yet-Support-Apple-Silicon-CPU). Users of Apple Silicon CPU With M1 Chip will have to use Tableau Online to do their assignment.
+Note: Tableau is currently not supporting Apple Silicon CPU With M1 Chip or ChromeOS. Users of Apple Silicon CPU With M1 Chip or ChromeOS will have to use Tableau Online to do their assignment.
 
 ---
 
@@ -345,16 +345,15 @@ Solution:
 
 ---
 
-# Ex 5: Box Plot
+# Ex 5: Multiple Histogram 
 
-## Create a box plot of the Fare measure by clicking on the variable and selecting Dimension
-
+## Create an histogram plot of the Fare measure by Survived variable
 
 ---
 
-# Ex 6: Histogram + Box Plot
+# Ex 6: Box Plot
 
-## Create an histogram plot of the Fare measure by Survived variable
+## Create a box plot of the Fare measure by clicking on the variable and selecting Dimension
 
 ---
 
