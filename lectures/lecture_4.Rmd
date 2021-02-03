@@ -43,6 +43,40 @@ library(nomnoml)
 
 # Previoulsy ...
 
+We have seen how to create clear and efficient figures:
+
+- Pie Chart
+- Bar Plot
+- Density Plot
+- Histogram Plot
+- Dynamite Plot
+- Scatterplot
+
+Based on basic statistical calculations:
+- Count
+- Proportion
+- Median/Quartiles
+- Mean/Standard Deviation
+- Correlation
+
+---
+
+# Going Forward
+
+In general, through the lecture we have seen variables:
+- Made of character strings (usually interpreted as categorical but not always)
+- Made of numbers (usually interpreted as continuous but not always)
+
+But variables can be made of many more values. In Business Analytics 2 are particularly important: Space and Time variables. **How to manipulate Space and Time variables in Tableau?**
+
+--
+
+Tableau is well implanted in organisation because of the multiple data type that can be process, we will have a closer look at **how to access different data type in Tableau?**
+
+--
+
+Finally, the export or publication of Tableau dashboard can be tricky, we will see **how to share your dashboard for the assignment and in general?**
+
 
 ---
 class: inverse, mline, left, middle

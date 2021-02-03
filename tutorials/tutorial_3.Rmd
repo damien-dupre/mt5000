@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 3: TABLEAU"
+title: "Tutorial 3: TABLEAU Basics"
 subtitle: "MT5000 - Data Analytics & Visualization"
 author: "Damien Dupré"
 date: "Dublin City University"
