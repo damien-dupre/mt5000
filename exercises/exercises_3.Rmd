@@ -1,0 +1,14 @@
+---
+title: "Practice TABLEAU"
+output: pdf_document
+---
+
+# 1. Basic Dashboard
+
+Create a Dashboard with the titanic dataset using figures that are new and/or already created during the tutorial 3:
+
+1. It has to tell a story
+
+2. It has to be beautiful
+
+To obtain the corrections, email your answers to damien.dupre@dcu.ie.
