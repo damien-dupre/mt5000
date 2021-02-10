@@ -399,6 +399,26 @@ knitr::include_graphics("img/combination_img.png")
 - range_lookup: TRUE = approximate match / FALSE = exact match
 
 ---
+
+# What's Next
+
+More about MS EXCEL with free online learnings on Udemy.com (needs free registration):
+
+- Excel Quick Start Tutorial (36 min) https://www.udemy.com/course/excel_quickstart/
+- Ten Excel Features Every Analyst Should Know (30 min) https://www.udemy.com/course/ten-excel-features-every-analyst-should-know/
+- Excel Dashboards (60 min) https://www.udemy.com/course/excel-dashboards-in-an-hour/
+
+Tutorial 2 and Exercise 2: Practice data cleaning and data transformation with MS EXCEL
+
+--
+
+```{r out.width='80%'}
+include_graphics("https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png")
+```
+
+Lecture 3: Basic of data visualisations
+
+---
 class: inverse, mline, left, middle
 
 <img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>

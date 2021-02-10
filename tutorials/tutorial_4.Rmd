@@ -44,7 +44,36 @@ style_mono_light(
 
 # Objectives
 
-An important advantage of tableau is the ability to create interactive dashboards. We will see together **how to transform your basic plots into interactive visualisations?**
+An important advantage of tableau is the ability to create interactive dashboards. Together we will see:
+
+1. **How to customise your figures**
+2. **How to customise your dashboard**
+
+---
+class: inverse, mline, center, middle
+
+# 1. Customise your Figures
+
+---
+
+# Customise your Figures
+
+- Legend, axes and labels
+- Colours and shapes
+- Interactivity
+
+---
+class: inverse, mline, center, middle
+
+# 2. Customise your Dashboard
+
+---
+
+# Customise your Dashboard
+
+- Title, text and pictures
+- Background and theme
+- Interactivity
 
 ---
 class: inverse, mline, left, middle

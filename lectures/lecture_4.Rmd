@@ -61,13 +61,33 @@ Based on basic statistical calculations:
 
 ---
 
+# Mastering Tableau
+
+Tableau is much more than basic visualisations, very professional output can be obtained easily, see some examples online: https://public.tableau.com/gallery/
+
+- Use these existing dashboards as inspirations for your own dashboards. Don't reinvent the wheel, reproducing with your own data is challenging enough. 
+
+- Follow the steps of Mehmet, last year student in MT5000, selected among the top 10 of [2020 EDHEC DataViz Challenge](https://www.edhec.edu/en/edhec-dataviz-challenge)
+
+Past challenges are an excellent way to have an idea of outstanding dashboards:
+- [Google Data Viz Challenge (2012)]( https://public.tableau.com/en-us/s/big-data-viz-challenge-entries)
+- [Big Data Viz Challenge (2016)]( https://public.tableau.com/en-us/s/big-data-viz-challenge)
+- [Do Good Data Viz Challenge (2016)](https://www.tableau.com/tableau-foundation-challenge)
+- [Women in Analytics Data Viz Competition (2020)](https://womeninanalytics.com/data-viz-competition/)
+
+Coming Soon:
+- Iron Viz (2021) https://www.tableau.com/community/iron-viz
+- Data VizArt Student Challenge (2021) https://dvastudentchallenge.ca/
+
+---
+
 # Going Forward
 
 In general, through the lecture we have seen variables:
 - Made of character strings (usually interpreted as categorical but not always)
 - Made of numbers (usually interpreted as continuous but not always)
 
-But variables can be made of many more values. In Business Analytics 2 are particularly important: Space and Time variables. **How to manipulate Space and Time variables in Tableau?**
+But variables can be made of many more values. In Business Analytics are particularly important: Locations and Dates. **How to manipulate Location and Date type variables in Tableau?**
 
 --
 
@@ -75,8 +95,350 @@ Tableau is well implanted in organisation because of the multiple data type that
 
 --
 
+Tableau is not limited to data visualisations, some data transformations can also be done, let's see **why doing your transformations in Tableau and how?**
+
+--
+
 Finally, the export or publication of Tableau dashboard can be tricky, we will see **how to share your dashboard for the assignment and in general?**
 
+---
+
+class: inverse, mline, center, middle
+
+# 1. Location and Date types in Tableau
+
+---
+
+# Space and Time Variables
+
+For the moment we were only interested in two variable types:
+
+- Categorical (made of characters) also called "Dimension" in Tableau
+- Continuous (made of numbers) also called "Measures" in Tableau
+
+However, we have seen that sometimes...
+
+- A Categorical variable needs to be converted to Continuous (e.g., Opinion scales)
+- A Continuous variable needs to be converted to Categorical (e.g., Survived 0/1 in titanic)
+
+> In Tableau change the type of a variable by drag-drop in the list of variables "Dimensions" or "Measures"
+
+--
+
+.pull-left[
+In addition to Categorical and Continuous variables, Tableau has special features to handle **Location** type and **Date** type variable.
+]
+.pull-right[
+```{r out.width='70%'}
+include_graphics("https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2018/02/data-types-in-tableau.jpg")
+```
+]
+
+
+---
+
+# Location Type Variables
+
+Is a list of geographical localisation by:
+- Continents (Europe, Asia, Africa, Oceania, North America, South America)
+- Country (Ireland, France, Spain, Germany, ...)
+- States, Regions, Counties, Cities ... 
+
+By default, location variables should be properly encoded. A blue globe icon should appear before the variable.
+
+But if Locations are encoded as a Categorical (if made of characters) or Continuous variable (if made of numbers), you need to give this variable a **Geographic Role**
+
+```{r out.width='40%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/maps_getstarted6.gif")
+```
+
+---
+
+# Mapping with Tableau
+
+To create a data visualisation map:
+
+1. Drag and drop the **location variable in the row/column** of the main worksheet
+2. Use **Show Me** and select one of the Map type figure (Longitude/Latitude variables are automatically generated)
+  - Symbol map (data reduced to a point - good for cities)
+  - Maps (data fill the full shape of the location)
+3. Drag and drop in the **Color box of Marks** another variable to display changes in values according to location for this variable
+
+```{r out.width='60%'}
+include_graphics("https://tutorialgateway.b-cdn.net/wp-content/uploads/Maps-in-Tableau-5.png")
+```
+
+---
+
+# Mapping with Tableau
+
+More details about Tableau and maps with the following contents among others found online:
+
+- [Get Started Mapping with Tableau by Tableau](https://help.tableau.com/current/pro/desktop/en-us/buildexamples_maps.htm)
+- [Build a Simple Map by Tableau](https://help.tableau.com/current/pro/desktop/en-us/maps_howto_simple.htm)
+- [Tableau Map by Vizual Intelligence](https://vizualintelligenceconsulting.com/blog-tableau-maps/)
+- [Maps in Tableau by Tutorial Gateway](https://www.tutorialgateway.org/maps-in-tableau/)
+- [Create A Map with Multiple Layers in Tableau by Anthony B. Smoak](https://www.youtube.com/watch?v=bwUj2NZHTC4)
+
+```{r out.width='50%', fig.align='default'}
+include_graphics("https://www.edureka.co/community/?qa=blob&qa_blobid=15134316276860426432")
+include_graphics("https://static.packt-cdn.com/products/9781786465634/graphics/B05527_05_01.jpg")
+```
+
+---
+
+# Date Type Variables
+
+Is a variable referring to a specific time, it can be any combination and format including year, month, day, minute, second, ...
+
+For example, "March 23, 1984", "03/23/84", "23/03/1984", "1984-03-23" have different formats but refer to the date.
+
+In data science we use the ISO 8601 international standard format (%Y-%m-%d) which corresponds to "1984-03-23" (format allow to sort date easily)
+
+By default, date variables should be properly encoded. A blue calendar icon should appear before the variable.
+
+But if Dates are encoded as a Categorical (if made of characters) or Continuous variable (if made of numbers), you need to convert this variable as **Date** or as **Date & Time**
+
+---
+
+# Line and Area Charts
+
+Date variables are usually used as X axis (Column Field in Tableau) to display the evolution of another variable according the time.
+
+The resolution of the chart can be adjusted by clicking on the + symbol before the Date variable
+
+```{r out.width='60%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/datefunctions3.png")
+```
+
+---
+
+# Line and Area Charts
+
+While the Date variable is in one field, drag and drop the other variable in the other field.
+
+It uses a statistical aggregation for this second variable. By default it is the Sum (see SUM) but it can be changed to Count, Proportion, Median, Mean, ...
+
+To add a second line in the same plot using the original Date variable:
+1. Drag and drop this second variable in the row or column field next to the first one
+2. Then, drag and drop this second variable in actual axis to merge
+
+```{r out.width='60%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/line_8.png")
+```
+
+---
+
+# Line and Area Charts
+
+More details about Tableau and timeseries figures with the following contents among others found online:
+
+- [Tableau Date Functions and How to Use Them for Your Analysis by Data Crunch Corp](https://datacrunchcorp.com/tableau-date-functions/)
+- [Date Functions by Tableau](https://help.tableau.com/current/pro/desktop/en-us/functions_functions_date.htm)
+- [Building Line Charts by Tableau](https://help.tableau.com/current/pro/desktop/en-us/buildexamples_line.htm)
+- [Tableau Playbook - Line Chart by Pluralsight](https://www.pluralsight.com/guides/tableau-playbook-line-chart)
+
+```{r out.width='50%'}
+include_graphics("img/tableau_linecharts.png")
+```
+
+---
+class: title-slide, middle
+
+## Live Examples
+
+---
+class: inverse, mline, center, middle
+
+# 2. Connecting to Data in Tableau
+
+---
+
+# Stand Alone or Auto Update?
+
+Without being too complicated, there is two major ways to connect data in Tableau:
+- Stand alone is a single file which won't be modified
+- Auto update is a cloud hosted file or a database that can be modified. The dashboard will update its values automatically (e.g., [Covid Dashboards](https://public.tableau.com/en-us/s/covid-19-viz-gallery))
+
+.pull-left[
+**Stand Alone Connection** made with a file type .csv, .xls, .xlsx, .json, ...
+]
+.pull-right[
+```{r out.width='90%'}
+include_graphics("https://miro.medium.com/max/1400/1*HXXjA2dvTwg7DKL_TMXGHw.jpeg")
+```
+]
+.pull-left[
+**Auto Update Connection** made with a cloud hosted file type google sheet, dropbox, onedrive, ... or made with a database type SQL
+]
+.pull-right[
+```{r out.width='90%'}
+include_graphics("https://www.guru99.com/images/tableau/060818_0511_TableauConn1.jpg")
+```
+]
+
+---
+
+# Stand Alone or Auto Update?
+
+More details about Tableau data connection possibilities with the following contents among others found online:
+
+- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/guides/everybody-install/en-us/everybody_admin_data.htm)
+- [Tableau Data Connections to Databases and Multiple Sources by Guru 99](https://www.guru99.com/tableau-data-connections.html)
+- [Types of Tableau Data Sources with Connection Establishment Process by Data Flair](https://data-flair.training/blogs/tableau-data-sources/)
+
+```{r out.width='60%'}
+include_graphics("img/bobross_connection.jpg")
+```
+
+.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
+
+---
+class: title-slide, middle
+
+## Live Examples
+
+---
+
+class: inverse, mline, center, middle
+
+# 3. Data Transformation in Tableau
+
+---
+
+# Data Transformation in Tableau
+
+If your data is a Stand Alone File, prefer transformations with MS Excel...
+
+... Except for **pivoting your table** (long vs wide table) or **joining two or more tables**
+
+If your data is an Auto Update document (type cloud hosted spreadsheet or database) then transforming in Tableau is required
+
+Tableau has created a specific tool for data transformation called **Tableau Prep** but a lot can already be done with **Tableau Desktop**
+
+```{r out.width='35%'}
+include_graphics("https://memegenerator.net/img/instances/65548459/what-if-i-told-you-you-could-prep-your-data-for-tableau-in-minutes-not-hours.jpg")
+```
+
+---
+
+# Pivot in Tableau
+
+Pivot is the action to transform a table from wide (multiple variables) to long (one variable contains names and the second the values)
+
+```{r out.width='80%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/qs_pivot_example.png")
+```
+
+.pull-left[
+In Data Source page:
+
+1. Select the variables to pivot
+2. Click left/double and use "Pivot"
+]
+
+.pull-right[
+```{r out.width='80%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/qs_pivot_command.png")
+```
+]
+
+---
+
+# Join in Tableau
+
+Join is the action of merging two tables based on a common key variable
+
+.pull-left[
+
+1. Open a second table in Tableau's home page
+2. In Data Source page, drag and drop this second table next to the first table 
+]
+
+.pull-right[
+```{r out.width='80%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin3.gif")
+```
+]
+
+Click on the join logo to select which of Inner, Left, Right or Full join you want to do
+
+```{r out.width='80%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin4.gif")
+```
+
+---
+
+# Link to Data Transformation in Tableau
+
+Pivot
+
+- [Pivot Data from Columns to Rows by Tableau](https://help.tableau.com/current/pro/desktop/en-us/pivot.htm)
+- [How to Create Tableau Pivot by Data Flair](https://data-flair.training/blogs/pivot-in-tableau/)
+- [Pivot in Tableau by EDUCBA](https://www.educba.com/pivot-in-tableau/)
+
+.pull-left[
+Join
+- [Join Your Data - Part 1 by Tableau](https://help.tableau.com/current/pro/desktop/en-gb/joining_tables.htm)
+- [Join Your Data - Part 2 by Tableau](https://help.tableau.com/current/pro/desktop/en-us/joining_tables.htm)
+- [Learn the rules to join tables in Tableau by Data Flair](https://data-flair.training/blogs/tableau-joins/)
+- [Tableau - Data Joining by Tutorialspoint](https://www.tutorialspoint.com/tableau/tableau_data_joining.htm)
+]
+
+.pull-right[
+```{r out.width='70%'}
+include_graphics("http://www.quickmeme.com/img/c7/c702826a3aa55ac8a6f8cf52763a6205eec186242077b184bf162a1ccf3b30ce.jpg")
+```
+]
+
+---
+class: title-slide, middle
+
+## Live Examples
+
+---
+class: inverse, mline, center, middle
+
+# 4. Share your Tableau Dashboard
+
+---
+
+# Export vs. Share
+
+Exporting is the process of saving a dashboard in a file that can be read by someone else.
+
+- Export as PowerPoint: Useful to communicate your visualisation to people who doesn't have Tableau but loose the interactivity
+
+- Export as Packaged Workbook: Save the visualisation with the data (.twbx file extension). **Your assignment has to be Exported as Packaged Workbook and uploaded on Loop**
+
+Note if you save as a simple workbook (.twb file extension), it won't be accepted.
+
+--
+
+Sharing is the process of publishing a dashboard online for everyone to access it.
+
+- It is done with an additional account to Tableau Server or to Tableau Online which is quite complicated
+- It can be used in your CV as a portfolio of skills in data visualisation and storytelling
+
+---
+
+# Export vs. Share
+
+More details about how to save and share Tableau with the following contents among others found online:
+
+- [A Quick Guide to Tableau File Types](https://vizartpandey.com/a-quick-guide-to-tableau-file-types/)
+- [Learn all kinds of file extensions used in Tableau](https://data-flair.training/blogs/tableau-file-types/)
+- [TWB vs TWBX in Tableau](https://analyticscanvas.com/twb-vs-twbx-in-tableau/)
+- [Understanding Tableau File Extensions](https://interworks.com/blog/rcurtis/2016/04/14/alphabet-soup-understanding-tableau-file-extensions/)
+
+```{r out.width='70%'}
+include_graphics("https://interworks.com/wp-content/uploads/sites/default/files/blog-content/TableauFileExtensions.png")
+```
+
+---
+class: title-slide, middle
+
+## Live Examples
 
 ---
 class: inverse, mline, left, middle

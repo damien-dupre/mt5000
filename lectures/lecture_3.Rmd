@@ -39,6 +39,7 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(nomnoml)
+library(countdown)
 ```
 
 # Previously ...
@@ -114,6 +115,9 @@ class: title-slide, middle
   column_spec(3, width = "20em")
 ```
 
+```{r echo = FALSE}
+countdown(minutes = 3)
+```
 ---
 
 # Guess Variable Type - Solution (1)
@@ -159,6 +163,10 @@ include_graphics("img/media_lecture_3/image5.png")
   kable_styling(font_size = 14) %>%
   column_spec(1, width = "10em") %>%
   column_spec(2, width = "20em")
+```
+
+```{r echo = FALSE}
+countdown(minutes = 2)
 ```
 
 ---
