@@ -134,7 +134,6 @@ include_graphics("https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads
 ```
 ]
 
-
 ---
 
 # Location Type Variables
