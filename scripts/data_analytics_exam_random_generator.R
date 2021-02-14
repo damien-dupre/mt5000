@@ -4,27 +4,23 @@
 # libraries --------------------------------------------------------------------
 library(tidyverse)
 library(mailR)
+library(here)
 
-# AC579_AC584 <- "C:/Users/dupred/OneDrive/Damien/universities/DCU/2019-2020/module/AC579_AC584/AC584_AC579_2020.csv" %>% 
-#   readr::read_csv() %>% 
-#   na.omit()
-# test_student_db <- AC579_AC584
+# test emails ------------------------------------------------------------------
+test_student_db <- data.frame(
+  Firstname = c("Test 1", "Test 2"),
+  Email = c("test_1@gmail.com", "test_1@gmail.com"),
+  stringsAsFactors = FALSE
+) # check in email sent box if they have been successfully sent 
 
-# MT5000 <- "C:/Users/dupred/OneDrive/Damien/universities/DCU/2019-2020/module/MT5000/MT5000_2020.csv" %>% 
-#   readr::read_csv()
-# 
-# test_student_db <- MT5000
+# student emails ---------------------------------------------------------------
+list_email_students <- file.choose() %>% 
+  na.omit()
 
-MT5125 <- "C:/Users/dupred/OneDrive/Damien/universities/DCU/2019-2020/module/MT5125/MT5125_2020.csv" %>% 
-  readr::read_csv()
-
-test_student_db <- MT5125
-
-# test_student_db <- data.frame(
-#   Firstname = c("Dr Dupré", "Damien", "Dams"),
-#   Email = c("damien.dupre@dcu.ie", "damien.dupre.ac@gmail.com", "dams0738@hotmail.fr"),
-#   stringsAsFactors = FALSE
-# )
+# data -------------------------------------------------------------------------
+# https://mockaroo.com/
+df <- here("data/random_data.csv") %>% 
+  read_csv()
 
 gmail_dcu <- config::get("gmail_dcu")
 
@@ -32,10 +28,6 @@ email_text <- "<p>Dear {name}, <br><br>Please find here attached the instruction
 
 location <- c("Ireland", "France", "Australia")
 job_title <- c("Data Analyst", "Software Engineer", "Administrative Officer", "Web Developer", "Support Technician")
-
-# data -------------------------------------------------------------------------
-# https://mockaroo.com/
-df <- readr::read_csv("C:/Users/dupred/Desktop/random_data.csv")
 
 letter2number <- function(x) {utf8ToInt(x) - utf8ToInt("a") + 1L}
 
