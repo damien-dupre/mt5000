@@ -17,7 +17,7 @@ list_email_students <- data.frame(
 
 # student emails ---------------------------------------------------------------
 list_email_students <- file.choose() %>% 
-  na.omit()
+  read_csv()
 
 gmail_dcu <- config::get("gmail_dcu")
 
@@ -52,7 +52,7 @@ for(row_student in 1:nrow(list_email_students)){
   df %>% 
     filter(is.na(iso_code)) %>% 
     remove_empty(which = "cols")  %>% 
-    write_csv(here("assignments/temp/df_global.csv"))
+    write_csv(here("assignments/temp/df_global.csv"), na = "")
   
   list_random_location <- df %>% 
     drop_na(iso_code) %>% 
@@ -65,13 +65,13 @@ for(row_student in 1:nrow(list_email_students)){
   
   df_country %>% 
     select(!stringency_index:human_development_index) %>% 
-    write_csv(here("assignments/temp/df_country_data.csv"))
+    write_csv(here("assignments/temp/df_country_data.csv"), na = "")
   
   df_country_metadata <- df_country %>% 
     group_by(location) %>% 
     slice_head(n = 1) %>% 
     select(stringency_index:human_development_index)%>% 
-    write_csv(here("assignments/temp/df_country_metadata.csv"))
+    write_csv(here("assignments/temp/df_country_metadata.csv"), na = "")
   ################################
   
   print(email)
