@@ -580,8 +580,6 @@ DiagrammeR::grViz("
   }", height = 200)
 ```
 
---
-
 Hypothesis: **Math exam results** of **students who eat breakfast** will be *higher* than **math exam results** of **students who do not eat breakfast** 
 
 ---
@@ -602,8 +600,6 @@ DiagrammeR::grViz("
     'motorists talking on the phone' -> 'driving errors'
   }", height = 200)
 ```
-
---
 
 Hypothesis: **Driving errors** of **motorists who do not talk on the phone while driving** will be *less important* than **driving errors** of **motorists who do not talk on the phone while driving**
 
@@ -626,8 +622,6 @@ DiagrammeR::grViz("
     'students’ sleep time' -> 'math exam results'
   }", height = 200)
 ```
-
---
 
 Hypothesis: The **results on a math exam** *increases* when **students’ sleep time** **increases**
 
