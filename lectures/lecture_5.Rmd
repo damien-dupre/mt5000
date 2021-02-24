@@ -449,8 +449,8 @@ class: title-slide, middle
 
 ## Exercise: Inspecting an Academic Research Paper
 
-Open the academic research paper "Predicting student satisfaction and perceived
-learning within online learning environments" by Emtinan Alqurashi (2019) hosted on the module's Loop page and:
+
+On the module's Loop page, in the "Additional Content and Links" tile, open the academic research paper "Predicting student satisfaction and perceived learning within online learning environments" by Emtinan Alqurashi (2019) and:
 
 1. Identify the research questions
 2. Identify the predictor variables and the outcome variables
@@ -459,6 +459,27 @@ learning within online learning environments" by Emtinan Alqurashi (2019) hosted
 ```{r}
 countdown(minutes = 10, warn_when = 60)
 ```
+
+---
+
+# Solution
+
+Research questions: All 4 presented page 6 of the document (137 of the academic paper)
+
+Variables: 
+- Online Learning Self-Efficacy (OLSE) = Predictor
+- Learner–Content Interaction (LCI) = Predictor
+- Learner–Instructor Interaction (LII) = Predictor
+- Learner-Learner Interaction (LLI) = Predictor
+- Student satisfaction within online learning environments = Outcome
+- Perceived learning within online learning environments = Outcome
+
+Hypotheses:
+- Student satisfaction increases when Online Learning Self-Efficacy (OLSE) increases
+- Perceived learning increases when Online Learning Self-Efficacy (OLSE) increases
+- Student satisfaction increases when Learner–Content Interaction (LCI) increases
+- Perceived learning increases when Learner–Content Interaction (LCI) increases
+...
 
 ---
 class: inverse, mline, center, middle
