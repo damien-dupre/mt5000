@@ -49,6 +49,8 @@ library(patchwork)
 library(webshot2)
 library(VennDiagram)
 library(countdown)
+# data -------------------------------------------------------------------------
+dnd <- readr::read_csv(here::here("data/dnd.csv"))
 ```
 
 # Previoulsy ...
@@ -976,23 +978,14 @@ class: inverse, mline, center, middle
 
 # Structure of Models
 
-Models are graphical representations of theories that highlight hypotheses:
-- all the relations correspond to an hypothesis to be tested
-- all the tested hypotheses have to be in the model
+Are graphic representations of all variables investigated and their predicted relationships.
 
-Distinguish square and circles
-- **squares** are actual **measures/items**
-- **circles** are **latent variables** related to measures/items
+- All the relations correspond to an hypothesis to be tested
+- All the tested hypotheses have to be in the model
 
-Example:
-- *Actual Use* is directly measured (time spend in min) so it's a square.
-- *Perceived Usefulness* is a latent variable with several questions so it's a circle.
+Generally, models are built from scratch to match with the formulated hypotheses
 
-Items used for latent variables can be omitted in a model, variables are the most important.
-
-We can distinguish 2 types of relationship in a model:
-- Main effect relationship
-- Interaction effect relationship
+However, if the hypotheses are taken from previous academic research, a model can be copy-pasted as well by justifying its interest for the research
 
 ---
 
@@ -1011,14 +1004,14 @@ digraph rmarkdown {
   graph [rankdir = LR]
   
   node [shape = oval]
-  'Intention to Use'; 'Actual Use'
+  'Salary'; 'Job Satisfaction'
         
-  'Intention to Use' -> 'Actual Use'
+  'Salary' -> 'Job Satisfaction'
 }
 ", width = 400, height = 100)
 ```
 
-It can be read as "Intention to Use has an effect on Actual Use".
+It can be read as "Salary has an effect on Job Satisfaction".
 ]
 
 .pull-right[
@@ -1033,24 +1026,24 @@ DiagrammeR::grViz("
     graph [rankdir = LR]
   
     node []
-    'Intention to Use'; 'Actual Use'; 'Usefulness'
+    'Salary'; 'Job Satisfaction'; 'Experience'
     node [shape = point, width = 0, height = 0]
     ''
     
-    'Usefulness' -> ''
-    'Intention to Use' -> '' [arrowhead = none]
-    ''-> 'Actual Use'
+    'Experience' -> ''
+    'Salary' -> '' [arrowhead = none]
+    ''-> 'Job Satisfaction'
     
     subgraph {
-      rank = same; 'Usefulness'; '';
+      rank = same; 'Experience'; '';
     }
   }", width = 400, height = 100)
 ```
 
 It can be read as:
-- "Intention to Use has a main effect on Actual Use".
-- "Usefulness has a main effect on Actual Use".
-- "Intention to Use and Usefulness have an interaction effect on Actual Use".
+- "Salary has a main effect on Job Satisfaction".
+- "Usefulness has a main effect on Job Satisfaction".
+- "Salary and Experience have an interaction effect on Job Satisfaction".
 
 ]
 
@@ -1061,7 +1054,7 @@ It can be read as:
 .pull-left[
 The relation between one variable and another:
 
-```{r eval=TRUE, fig.align="left"}
+```{r fig.align="left"}
 DiagrammeR::grViz("
   digraph {
     graph [rankdir = LR]
@@ -1101,7 +1094,7 @@ The relation between two predictor variables and another outcome variable. An in
 
 .pull-left[
 classic representation:
-```{r eval=TRUE}
+```{r}
 DiagrammeR::grViz("
   digraph {
     graph [rankdir = LR]
@@ -1124,7 +1117,7 @@ DiagrammeR::grViz("
 
 .pull-right[
 is the same as:
-```{r eval=TRUE}
+```{r}
 DiagrammeR::grViz("
   digraph {
     graph [rankdir = LR]
@@ -1255,7 +1248,7 @@ digraph rmarkdown {
   }
 
 }
-", height = 400)
+", height = 500, width = 800)
 ```
 
 ---
@@ -1305,17 +1298,6 @@ Is it bad?
 ![](https://d3i71xaburhd42.cloudfront.net/2a3e4a3024bfc4df27db07a1d48f77a6f371b0c3/8-Figure1-1.png)
 
 ---
-class: title-slide, middle
-
-## Exercise: Draw the Model Used
-
-Draw the model that has been tested in the academic research paper "Predicting student satisfaction and perceived learning within online learning environments" by Emtinan Alqurashi (2019)
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
 class: inverse, mline, center, middle
 
 # 4. Understanding the Equation
@@ -1324,14 +1306,49 @@ class: inverse, mline, center, middle
 
 # What is a Correlation?
 
-A correlation indicate the strength and direction of a relationship:
+A correlation indicate the strength and direction of a relationship (slope):
 - Uses the letter $r$ without statistical tests
-- Uses the letter $\beta$ without statistical tests
+- Uses the letter $\beta$ with statistical tests
 
-It has a value between 1 and -1
-- 1 indicates a strong and positive relationship
-- -1 indicates a strong and negative relationship
-- 0 indicates no relationship
+It has a value between 1 (strong & positive relationship) and -1 (strong and negative relationship) where 0 indicates no relationship
+
+For each hypothesis, the statistical test will check if the $\beta$ correlation corresponding to the predicted effects under the $H_a$s are significantly different than 0 as expected under $H_0$s
+
+.pull-left[
+.center[Model with 1 main effect]
+```{r}
+DiagrammeR::grViz("
+  digraph {
+    graph [rankdir = LR]
+    node [shape = circle]
+    
+    Predictor -> Outcome [label= β1]
+  }", height = 200, width = 200)
+```
+]
+
+.pull-right[
+.center[Model with 2 main and 1 interaction effects]
+```{r}
+DiagrammeR::grViz("
+  digraph {
+    graph [rankdir = LR]
+  
+    node [shape = circle]
+    'Predictor 1'; Outcome; 'Predictor 2'
+    node [shape = point, width = 0, height = 0]
+    ''
+    
+    'Predictor 2' -> '' [label= β2]
+    'Predictor 1' -> '' [arrowhead = none] [label= β1]
+    ''-> Outcome [label= β3]
+    
+    subgraph {
+      rank = same; 'Predictor 2'; '';
+    }
+  }", height = 200, width = 300)
+```
+]
 
 ---
 
@@ -1450,17 +1467,38 @@ plotly::ggplotly(plot0)
 
 ---
 
-# Equations and Variable Types
+# Equations, Variables and Effect Types
 
-Except in special cases, an Outcome (or Dependent Variable) has to be Continuous
+Let's come back to our example, involving employee's job satisfaction
 
-A Predictor can be Continuous or Categorical 
+```{r}
+dnd %>% 
+  select(employee, location, salary, js_score) %>% 
+  kable(digits = 2)
+```
 
-Example:
+---
 
-$$Job\,Satisfaction = \beta_{0} + \beta_{1}.Salary + \beta_{2}.Origin + \beta_{3}.Salary*Origin + \epsilon$$
+# Equations, Variables and Effect Types
 
-In this equation Salary is continuous with a main effect, Origin is categorical with a main effect and Salary with Origin have an interaction effect
+Except in special cases:
+- An Outcome (or Dependent Variable) has to be Continuous
+- A Predictor can be Continuous or Categorical 
+
+Example: $Job\,Satisfaction = \beta_{0} + \beta_{1}.Salary + \beta_{2}.Location + \epsilon$
+
+In this equation:
+- $Salary$ is continuous with a main effect on $Job\,Satisfaction$ ( $\beta_{1}$)
+- $Location$ is categorical with a main effect on $Job\,Satisfaction$ ( $\beta_{2}$) 
+
+An interaction effect is represented by multiplying the 2 predictors involved:
+
+$$Job\,Satisfaction = \beta_{0} + \beta_{1}.Salary + \beta_{2}.Location + \beta_{3}.Salary*Location + \epsilon$$
+
+In this equation:
+- $Salary$ is continuous with a main effect on $Job\,Satisfaction$ ( $\beta_{1}$)
+- $Location$ is categorical with a main effect on $Job\,Satisfaction$ ( $\beta_{2}$)
+- $Salary$ and $Location$ have an interaction effect on $Job\,Satisfaction$ ( $\beta_{3}$)
 
 ---
 
@@ -1472,50 +1510,47 @@ The intercept is always included in an equation but its result is useless for hy
 
 Let's see why the intercept is always included but its results discarded.
 
-Imagine we want to test the relationship between GDP per Capita and Life Expectancy of countries in the world. Let's compare a model without and a model with intercept:
+Imagine we want to test the relationship between Salary and Job Satisfaction. Let's compare a model without and a model with intercept:
 
-- Without intercept: $Life\,Expectancy = \beta_{1}.GDP\,per\,Capita + \epsilon$
+- Without intercept: $Job\,Satisfaction = \beta_{1}.Salary + \epsilon$
 
-- With intercept: $Life\,Expectancy = \beta_{0} + \beta_{1}.GDP\,per\,Capita + \epsilon$
+- With intercept: $Job\,Satisfaction = \beta_{0} + \beta_{1}.Salary + \epsilon$
 
 ---
 
 # Relevance of the Intercept
 
 ```{r}
-p1 <- gapminder %>% 
-  filter(year == 2007) %>% 
-  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+p1 <- dnd %>% 
+  ggplot(aes(x = salary, y = js_score)) +
   geom_point() +
-  scale_y_continuous(limits = c(0, 90)) +
+  scale_y_continuous(limits = c(0, 10)) +
   labs(
     title = "A: Original Data",
-    x = "GDP per Capita ($)",
-    y = "Life Expectancy"
+    x = "Salary",
+    y = "Job Satisfaction"
   )
 
-p2 <- gapminder %>% 
-  filter(year == 2007) %>% 
-  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+p2 <- dnd %>% 
+  ggplot(aes(x = salary, y = js_score)) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE, fullrange = TRUE, formula = "y ~ x + 0 ") +
-  scale_y_continuous(limits = c(0, 90)) +
+  scale_y_continuous(limits = c(0, 10)) +
   labs(
     title = "B: Model without intercept",
-    x = "GDP per Capita ($)",
-    y = "Life Expectancy"
+    x = "Salary",
+    y = "Job Satisfaction"
   )
 
-p3 <- gapminder %>% 
-  filter(year == 2007) %>% 
-  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+p3 <- dnd %>% 
+  ggplot(aes(x = salary, y = js_score)) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE, fullrange = TRUE, formula = "y ~ x") +
-  scale_y_continuous(limits = c(0, 90)) +
+  scale_y_continuous(limits = c(0, 10)) +
   labs(
     title = "C: Model with intercept",
-    x = "GDP per Capita ($)",
-    y = "Life Expectancy"
+    x = "Salary",
+    y = "Job Satisfaction"
   )
 
 p1 / (p2 + p3)
@@ -1544,7 +1579,7 @@ Find variables, formulate hypotheses, draw model, and write equation correspondi
   data.frame(
     participant = c("ppt1", "ppt2", "ppt3", "ppt4", "ppt5", "ppt6"), 
     IQ = c(120, 103, 96, 87, 114, 95),
-    math_results = c(89, 64, 71, 77, 78, 69)
+    exam_mark = c(89, 64, 71, 77, 78, 69)
   ) %>% 
   kable()
 ```
@@ -1582,8 +1617,8 @@ Variables:
 - Predictor = IQ (from 0 to Inf.)
 
 Hypothesis:
-- $H_a$: The **exam_mark** *increases* when **IQ** *increases*
-- $H_0$: The **exam_mark** *stay the same* when **IQ** *increases*
+- $H_a$: The **exam_mark** *increases* when **IQ** increases
+- $H_0$: The **exam_mark** *stay the same* when **IQ** increases
 
 Model:
 ```{r eval=TRUE, fig.align="center"}
@@ -1651,11 +1686,11 @@ Variables:
 - Predictor 2 = age (from 0 to Inf. but categorised for visualisation)
 
 Hypotheses: 
-- $H_{a_{1}}$: The **exam_mark** *increases* when **IQ** *increases*
-- $H_{0_{1}}$: The **exam_mark** *stay the same* when **IQ** *increases*
+- $H_{a_{1}}$: The **exam_mark** *increases* when **IQ** increases
+- $H_{0_{1}}$: The **exam_mark** *stay the same* when **IQ** increases
 
-- $H_{a_{2}}$: The **exam_mark** *increases* when **age** *increases*
-- $H_{0_{2}}$: The **exam_mark** *stay the same* when **age** *increases*
+- $H_{a_{2}}$: The **exam_mark** *increases* when **age** increases
+- $H_{0_{2}}$: The **exam_mark** *stay the same* when **age** increases
 
 - $H_{a_{3}}$: The effect of **IQ** on **exam_mark** is *higher* for **beginner** than for **experienced students**
 - $H_{0_{3}}$: The effect of **IQ** on **exam_mark** is *the same* for **beginner** than for **experienced students**

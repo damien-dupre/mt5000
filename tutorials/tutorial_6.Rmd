@@ -1,0 +1,263 @@
+---
+title: "Tutorial 6: Understanding Jamovi's Linear Regression Outputs"
+subtitle: "MT5000 - Data Analytics & Visualization"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+knitr::opts_chunk$set(
+  cache.extra = knitr::rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  eval = TRUE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(ggrepel)
+library(papaja)
+library(knitr)
+library(kableExtra)
+
+# theme ------------------------------------------------------------------------
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#23395b",
+  code_inline_background_color ="#23395b"
+  )
+
+# data -------------------------------------------------------------------------
+dnd <- readr::read_csv(here::here("data/dnd.csv"))
+# analyses ---------------------------------------------------------------------
+m_js_high <- mean(dnd$js_score[dnd$salary_c == "high"])
+m_js_low <- mean(dnd$js_score[dnd$salary_c == "low"])
+lm_1 <- lm(js_score ~ salary, data = dnd) %>% apa_print
+lm_2 <- lm(js_score ~ salary*perf, data = dnd) %>% apa_print
+lm_c <- lm(js_score ~ salary_c, data = dnd) %>% apa_print
+lm_c2 <- dnd %>% 
+  dplyr::mutate(salary_c = factor(salary_c, level = c("low", "high"))) %>% 
+  lm(js_score ~ salary_c, data = .) %>% apa_print
+lm_c3 <- lm(js_score ~ location, data = dnd) %>% aov %>% apa_print
+```
+
+# Objectives
+
+In this tutorial we will explore how to understand the output of Linear Regression analyses by Jamovi, with a focus on:
+
+- Model Fit Table
+- Model Coefficient Table
+
+---
+
+# Main Effect Example
+
+.pull-left[
+#### Variables
+- DV = $js\_score$ (from 0 to 10)
+- IV = $salary$ (from 0 to Inf.)
+
+#### Hypothesis
+
+- $H_a$: $js\_score$ increases when $salary$ increases  (i.e., $\beta_1>0$)
+
+- $H_0$: $js\_score$ stay the same when $salary$ increases (i.e., $\beta_1=0$)
+
+#### Equation
+
+$$js\_score = \beta_{0} + \beta_{1} * salary + \epsilon$$
+]
+
+.pull-right[
+```{r}
+dnd %>% 
+  dplyr::select(employee, salary, js_score) %>% 
+  knitr::kable(digits = 2)  %>%
+  kable_styling(font_size = 16)
+```
+]
+
+---
+
+# Main Effect Example
+
+.pull-left[
+```{r fig.height=9}
+dnd %>% 
+  ggplot(aes(x = salary, y = js_score, label = employee)) +
+  geom_point(color = "red", size = 5) +
+  geom_text_repel(point.padding = 0.5, size = 14) +
+  scale_y_continuous(limits = c(0, 10)) +
+  theme_bw() +
+  theme(text = element_text(size = 20))
+```
+]
+.pull-right[
+```{r fig.height=9}
+dnd %>% 
+  ggplot(aes(x = salary, y = js_score, label = employee)) +
+  geom_point(color = "black", size = 5) +
+  geom_smooth(method = "lm", formula = "y ~ x", size = 2, fullrange = TRUE, se = FALSE) +
+  geom_hline(yintercept = mean(dnd$js_score), color = "red", size = 2) +
+  scale_y_continuous(limits = c(0, 10)) +
+  theme_bw() +
+  theme(text = element_text(size = 20)) +
+  annotate(
+    "text", 
+    x = 29000, 
+    y = 7.5, 
+    label = "H[0]:beta[1] == 0", 
+    color = "red", 
+    size = 6,
+    parse = TRUE
+  ) +
+  annotate(
+    "text", 
+    x = 30500, 
+    y = 10, 
+    label = "H[1]:beta[1] > 0", 
+    color = "blue", 
+    size = 6,
+    parse = TRUE
+  )
+```
+]
+
+---
+
+# Main Effect Example
+
+#### In JAMOVI
+
+1. Open your file
+2. Set variables as continuous
+3. **Analyses** > **Regression** > **Linear Regression**
+4. Set $js\_score$ as DV and $salary$ as Covariates
+
+```{r out.width = "100%"}
+knitr::include_graphics("img/jamovi_lm_main.png")
+```
+  
+---
+
+# Model Fit Measure Table
+
+Tests the prediction **accuracy of your overall model** (all predictors included)
+
+```{r out.width='40%'}
+knitr::include_graphics("img/jamovi_mfm.png")
+```
+
+- $R$ is the correlation between the outcome variable and your model (all predictors included)
+- $R^2$ is the accuracy of the model
+  - Multiply it by 100 to obtain the % of accuracy (e.g., $R^2 = 0.73$ means the model has an accuracy of 73% to predict the outcome variable)
+  - $R^2$ is also called **Coefficient of Determination**
+
+Note $R \neq r$: 
+- $R$ is for a model (can have multiple predictors) and $r$ is only for 1 predictor 
+
+---
+
+# Model Fit Measure Table
+
+With all options selected:
+
+```{r out.width='150%'}
+knitr::include_graphics("img/jamovi_mfm_full.png")
+```
+
+- $Adjusted\,R^2$ is a more conservative version of $R^2$, usually not reported
+- $AIC$, $BIC$, $RMSE$ are used to compare multiple models, the lower their the better but useless for only one model
+- **Overall Model Test** is the statistical test to show that your model have significantly better predictions than a model without any predictor.
+  - $F$ is the value of the statistical test checking the model significance
+  - $df1$ corresponds to the amount of predictor in your model
+  - $df2$ corresponds to the amount of observations minus number of predictors minus 1 (e.g., here 20 employee - 1 predictor - 1 = 18)
+  - $p$ is the p-value. **If $p > 0.05$ then the model null hypothesis is accepted**
+
+---
+
+# Communicate Results in Reports
+
+To communicate results about a model, APA style is a good guide. Report as follow:
+
+$R^2 = value_{R^2}$, $F(df1,df2) = value_{F}$, $p = value_{p}$
+
+From our example:
+
+> The predictions from the model with our predictors are significantly better than the predictions from a model without predictor ( `r lm_1$full_result$modelfit$r2`).
+
+--
+
+Note about p-values: 
+ - If p-value is higher than $0.001$, write $p = value$ (e.g., $p = 0.58$ )
+ - If p-value is lower than $0.001$, write $p < 0.001$
+ - But never $p = 0.000$
+
+---
+
+# Model Coefficients Table
+
+Tests the hypothesis related to each predictor (intercept included)
+
+```{r out.width='70%'}
+knitr::include_graphics("img/jamovi_mc.png")
+```
+
+- **Estimate** is how much the outcome increases/decreases when the predictor increases by 1 unit
+- **SE** (Standard Error) indicates how spread are the values around the estimate
+- $t$  is the value of the statistical test checking the predictor's significance
+- $p$ is the p-value. **If $p > 0.05$ then the predictor null hypothesis is accepted**
+
+---
+
+# Model Coefficients Table
+
+With all options selected:
+
+```{r out.width='150%'}
+knitr::include_graphics("img/jamovi_mc_full.png")
+```
+
+- **Omnibus ANOVA Test** is an alternative way to test model's coefficient but **use only for a categorical predictor with more than 2 modalities**
+- **95% Confidence Interval** defines the statistical limits where Estimate / Standardize Estimate are still plausible
+- **Standardize Estimate** indicates the correlation between the predictor and the outcome variable, it corresponds to $\beta$
+
+---
+
+# Communicate Results in Reports
+
+To conclude on the hypothesis about a predictor with the Model Coefficients Table, use the following:
+
+$b = value_b, 95\% CI [lower\,CI, upper\,CI], t(N - K - 1) = value_t, p = value_{p}$
+
+From our example:
+
+> The effect of $salary$ on $js\_score$ is statistically significant, therefore $H_0$ can be rejected ( `r lm_1$full_result$salary` ).
+
+---
+class: inverse, mline, center, middle
+
+# Live Demo with "employee_dd.xls"
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your attention!
