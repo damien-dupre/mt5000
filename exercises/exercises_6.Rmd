@@ -1,0 +1,12 @@
+---
+title: "Practice Communicating Statistical Analyses"
+output: pdf_document
+---
+
+# Task: Impove your Mini Statistical Report 
+
+Use the previous mini report involving the "titanic.csv" dataset and use the academic convention to communicate the results on whether **if passenger's gender and age had an influence on their the fares of their tickets**.
+
+Comment these results in term of acceptation/reject of the null hypotheses using the p-value. Conclude on your alternative hypotheses.
+
+To obtain the corrections, email your answers to damien.dupre@dcu.ie.
