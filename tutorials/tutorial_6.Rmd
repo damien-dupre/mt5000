@@ -85,12 +85,16 @@ $$js\_score = \beta_{0} + \beta_{1} * salary + \epsilon$$
 ]
 
 .pull-right[
+Example of the 5 first observations among the 20 employees:
+
 ```{r}
 dnd %>% 
   dplyr::select(employee, salary, js_score) %>% 
+  head() %>% 
   knitr::kable(digits = 2)  %>%
   kable_styling(font_size = 16)
 ```
+
 ]
 
 ---
