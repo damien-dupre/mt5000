@@ -1,0 +1,17 @@
+---
+title: "Practice Conditions to Apply Statistical Analyses"
+output: pdf_document
+---
+
+# Task: Check if your previous analyses were satisfying the conditions to apply linear models
+
+Investigate your previous analyses on whether **if passenger's gender and age had an influence on their the fares of their tickets** by checking if your previous analyses were satisfying the conditions to apply linear models:
+
+1. Linearity (of the effects)
+2. Normality (of the residuals)
+3. Homogeneity (of the residuals) 
+4. Independence (of observations)
+
+In addition, identify the collinearity of the predictors and potential anomalous data.
+
+To obtain the corrections, email your answers to damien.dupre@dcu.ie.

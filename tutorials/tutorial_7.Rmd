@@ -87,9 +87,9 @@ Linear Regression (as well as t-test and ANOVA) should be used **only if require
 
 #### 2. Normality (of the residuals).
 
-#### 3. Independence (of observations). 
+#### 4. Homogeneity (of the residuals)
 
-#### 4. Homoscedasticity (of the residuals) 
+#### 3. Independence (of observations)
 
 While the assumption of a Linear Model are never perfectly met in reality, we must check if there are reasonable enough assumption that we can work with them.
 

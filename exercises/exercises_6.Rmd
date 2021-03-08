@@ -1,5 +1,5 @@
 ---
-title: "Practice Communicating Statistical Analyses"
+title: "Practice Communication of Statistical Analyses"
 output: pdf_document
 ---
 
@@ -7,6 +7,6 @@ output: pdf_document
 
 Use the previous mini report involving the "titanic.csv" dataset and use the academic convention to communicate the results on whether **if passenger's gender and age had an influence on their the fares of their tickets**.
 
-Comment these results in term of acceptation/reject of the null hypotheses using the p-value. Conclude on your alternative hypotheses.
+Comment these results in term of acceptance/reject of the null hypotheses using the p-value. Conclude on your alternative hypotheses.
 
 To obtain the corrections, email your answers to damien.dupre@dcu.ie.
