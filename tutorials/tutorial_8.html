@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Tutorial 8: Starting with R Markdown Files</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Damien Dupré" />
+    <script src="tutorial_8_files/header-attrs-2.7/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Tutorial 8: Starting with R Markdown Files
+## MT5000 - Data Analytics &amp; Visualization
+### Damien Dupré
+### Dublin City University
+
+---
+
+
+
+
+# Objectives
+
+In this tutorial, with RStudio Cloud, we will see how to create:
+
+- **Markdown:** a simple text-only format for writing documents
+- **R markdown:** a tool for mixing R code with markdown 
+
+--
+
+#### What do I need to do before starting?
+
+- Sign up for a free RStudio cloud account
+- https://rstudio.cloud/
+
+--
+
+#### Where can I find the resources?
+
+- These slides: [slides.djnavarro.net/starting-rmarkdown](https://slides.djnavarro.net/starting-rmarkdown)
+- YouTube videos: [youtube.djnavarro.net/starting-rmarkdown](https://youtube.djnavarro.net/starting-rmarkdown)
+
+---
+
+# Two Sides of R Markdown Files
+
+.pull-left[
+&lt;br&gt;
+### On the input side...
+
+- Write text in markdown
+- Insert code using R
+- Write "metadata" with YAML
+- Insert equation with LaTeX
+]
+
+.pull-right[
+&lt;br&gt;
+### On the output side...
+
+- Output to HTML
+- Output to PDF
+- Output to Word
+- Many other variations too
+]
+
+---
+class: middle, inverse
+
+# Lots of little things to learn!&lt;br&gt;We'll start with markdown...
+
+---
+
+# What do we want?
+
+- Something that... you can write in **plain text**
+- Something that... is **human readable**
+- Something that... allows **formatting**
+- Something that... can **build** to something pretty 
+
+---
+
+# Markdown
+
+.pull-left[
+
+**Here's an example of a markdown document...**
+
+```
+## Introduction
+
+
+
+
+Welcome to my **awesome** class. You 
+will learn all kinds of useful things 
+about R Markdown.
+
+
+- Markdown is simple
+- You can add R code
+```
+]
+
+.pull-right[
+
+**Here's what the output looks like...**
+
+## Introduction
+
+Welcome to my **awesome** class. You will learn 
+all kinds of useful things about R Markdown. 
+
+- Markdown is simple
+- You can add R code
+
+]
+
+---
+class: middle, inverse
+
+# Everyone: Okaaaay, but this seems really boring?
+
+# Me: ... hm, yeah, but let me show you where it takes you later!
+
+---
+
+# Professional websites
+
+&lt;img src="img/example_professional_site.png" width="50%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Visual blogs
+
+&lt;img src="img/example_visual_blog.png" width="50%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Books
+
+&lt;img src="img/example_book.png" width="80%" height="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Academic papers
+
+&lt;img src="img/example_papers.png" width="60%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Slide decks
+
+&lt;img src="img/example_slides.png" width="80%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# CV
+
+&lt;img src="img/example_resume.png" width="80%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle, inverse
+
+# Everyone: Okay, let's dive into the details...
+
+---
+
+# Emphasising text
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+&lt;br&gt;
+
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+]
+
+---
+
+# Creating lists
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+&lt;br&gt;
+
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+]
+
+---
+
+# Creating headings
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+# Level 1 heading
+## Level 2 heading
+### Level 3 heading
+
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+&lt;br&gt;
+
+# Level 1 heading
+## Level 2 heading
+### Level 3 heading
+]
+
+---
+
+# Inserting hyperlinks
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+https://placekitten.com
+
+[Placekitten](https://placekitten.com)
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+&lt;br&gt;
+https://placekitten.com
+
+[Placekitten](https://placekitten.com)
+]
+
+---
+
+# Inserting local images
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+![](./img/rmarkdown.png)
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+&lt;br&gt;
+![](./img/rmarkdown.png)
+]
+
+---
+
+# Inserting images from the web
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+![](https://placekitten.com/200/300)
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+&lt;br&gt;
+![](https://placekitten.com/200/300)
+]
+
+---
+
+# Using blockquotes
+
+--
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+### What you type...
+&lt;br&gt;
+```
+This is normal text
+&gt; This is a block quote
+```
+]
+--
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+### What you get...
+This is normal text
+&gt; This is a block quote
+]
+
+---
+class: middle, inverse
+
+# Demonstration:&lt;br&gt;Write a markdown document
+
+---
+class: middle, inverse
+
+# Exercise
+
+In RStudio Cloud:
+- Create a new plain Markdown file
+- Save it as "my_first_markdown.md"
+- Write some markdown about your emotions (positive and negative) triggered by R and RStudio
+- Click "Preview" once finished
+
+---
+class: middle
+
+## What do we want?
+
+- Something that... lets you write text in **Markdown**
+- Something that... lets you include **R code** (e.g. for data vis)
+- Something that... can **build** to HTML, PDF, Word, etc
+
+---
+
+class: middle, inverse
+
+# Demonstration:&lt;br&gt;Write an R markdown document
+
+---
+
+class: middle
+
+## Let's dissect the document obtained!
+
+&lt;img src="img/my_first_rmd_plain.png" width="60%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The part inside --- is the "YAML"
+
+&lt;img src="img/my_first_rmd_yaml.png" width="60%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The part in grey is R code
+
+&lt;img src="img/my_first_rmd_r.png" width="60%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The rest is Markdown 
+
+&lt;img src="img/my_first_rmd_markdown.png" width="60%" height="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+## Wait... what's the YAML acronym?
+
+- Originally: "Yet Another Markup Language"
+- Later: "YAML Ain't Markup Language"
+- ... it really doesn't matter 🙄
+
+---
+
+# Output PDF
+
+### Simple
+
+```
+---
+title: "My First R Markdown Document"
+output: pdf_document
+---
+```
+
+### Complex
+
+```
+---
+title: "My First R Markdown Document"
+author: "Damien Dupre"
+date: "99/99/9999"
+output: pdf_document
+---
+```
+
+---
+
+class: middle, inverse
+
+# Demonstration:&lt;br&gt;R Markdown presenting the Titanic Data 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

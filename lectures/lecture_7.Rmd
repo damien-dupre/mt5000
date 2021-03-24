@@ -582,12 +582,9 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Open the dataset dnd.csv in JAMOVI and **reproduce the results obtained by testing**:
+Open the dataset dnd.csv in JAMOVI and **reproduce the results obtained by testing**:
 $$js\_score = \beta_{0} + \beta_{1}.salary + \epsilon$$
 $$js\_score = \beta_{0} + \beta_{1}.salary + \beta_{2}.perf + \beta_{3}.salary*perf + \epsilon$$
-
-2. **Test a model which contains**:
-$$js\_score = \beta_{0} + \beta_{1}.age + \beta_{2}.perf + \beta_{3}.age*perf + \epsilon$$
 
 ```{r}
 countdown(minutes = 10, warn_when = 60)
@@ -1082,6 +1079,8 @@ knitr::include_graphics("img/one_way_anova_basics.png")
 # ANOVA in our Example
 
 An hypothesis for a categorical predictor with 3 or more categories predicts that **at least one group among the 3 groups will have an average significantly different than the other averages**.
+
+Model: $js\_score = \beta_{0} + \beta_{1}.location + \epsilon$
 
 ### With $location$ the hypothesis is the following
 
