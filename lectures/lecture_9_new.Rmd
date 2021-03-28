@@ -52,22 +52,3 @@ colorize <- function(x, color) {
 }
 ```
 
-# R so far
-
-We have already seen how to:
-
-- Use RStudio Cloud
-- Install, load and use packages
-- Run R code in R Script or R Markdown files
-- Use keyboard shortcuts: `Ctrl` & `Enter` (Win) / `Command` & `Enter` (Mac)
-- Create object with the assignment arrow `<-` sign
-- Upload and read data in RStudio Cloud
-
-Now let's enter the {tidyverse}
-
-```{r out.width='30%'}
-include_graphics("https://tidyverse.tidyverse.org/articles/tidyverse-logo.png")
-```
-
----
-
