@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 9: Transformations and Visualisation in R with the {tidyverse}"
+subtitle: "Lecture 9: Transformations in R with the {tidyverse}"
 author: "Damien Dupré"
 date: "Dublin City University"
 output:
@@ -64,6 +64,24 @@ Now let's enter the {tidyverse}
 
 ```{r out.width='30%'}
 include_graphics("https://tidyverse.tidyverse.org/articles/tidyverse-logo.png")
+```
+
+---
+
+# Rstudio Cloud
+
+In your webrowser (Chrome, Firefox, ...):
+
+1. Open these same slides on a tab to copy-paste the examples
+  - From Loop: Lectures > Lecture 9
+  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_9
+
+2. In another tab, go to: https://rstudio.cloud/
+  - Sign in or Sign up (if not already done)
+  - In your workspace, Click "Untitled Project" or "New Project" (if not already done) 
+
+```{r out.width='100%'}
+knitr::include_graphics("https://miro.medium.com/max/1400/1*JBHNRwGr3ZiyBzYWpvH6zg.png")
 ```
 
 ---
@@ -637,6 +655,32 @@ gapminder_longer <- gapminder_wider %>%
 ```
 
 For `pivot_longer()` the new variables are in quotation marks because they are not present in the existing `gapminder_wider` table whereas `country` is and has no quotation mark.
+
+---
+
+class: inverse, mline, center, middle
+
+# 8. Save Your Data
+
+---
+
+# Save Your Data
+
+Usually, only R Script file (.R) or R Markdown file (.Rmd) have to be saved as they allow the full replicability of transformations and result.
+
+However if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
+
+The simpliest export is a .csv file with the function `write.csv()`. It as two main arguments:
+- `x` which is the name of the object to save
+- `file` which is the name of the output file
+
+Note: don't forget the file extension in the argument `file`
+
+Example:
+
+```{r eval=FALSE, echo=TRUE}
+write.csv(gapminder_wider, "data_gapminder_transformed.csv")
+```
 
 ---
 class: inverse, mline, left, middle

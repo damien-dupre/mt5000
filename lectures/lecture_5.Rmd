@@ -451,7 +451,6 @@ class: title-slide, middle
 
 ## Exercise: Inspecting an Academic Research Paper
 
-
 On the module's Loop page, in the "Additional Content and Links" tile, open the academic research paper "Predicting student satisfaction and perceived learning within online learning environments" by Emtinan Alqurashi (2019) and:
 
 1. Identify the research questions
