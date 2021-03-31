@@ -302,7 +302,7 @@ class: title-slide, middle
 
 ## Exercise
 
-1/ From the data frame object `gapminder`, select the columns `lifeExp` and `gdpPercap` and rename them as life_expenctancy and gdp_per_capita:
+1/ From the data frame object `gapminder`, select the columns `lifeExp` and `gdpPercap` and rename them as life_expectancy and gdp_per_capita:
 
 ```{r eval=FALSE, echo=TRUE}
 select(_ _ _, _ _ _ = _ _ _, _ _ _ = _ _ _)
