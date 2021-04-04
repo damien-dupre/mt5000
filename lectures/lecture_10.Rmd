@@ -1,0 +1,811 @@
+---
+title: "MT5000 - Data Analytics & Visualization"
+subtitle: "Lecture 10: Visualisation in R with {ggplot2} from the {tidyverse}"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "libs/cols_macro.js"
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(fontawesome)
+library(tweetrmd)
+library(countdown)
+library(gapminder)
+
+# general options --------------------------------------------------------------
+options(
+  scipen = 999,
+  htmltools.preserve.raw = FALSE
+)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+opts_chunk$set(
+  cache.extra = rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = TRUE,
+  cache = FALSE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+
+theme_update(
+  text = element_text(size=20)
+)
+
+# functions --------------------------------------------------------------------
+# https://bookdown.org/yihui/rmarkdown-cookbook/font-color.html#using-an-r-function-to-write-raw-html-or-latex-code
+
+colorize <- function(x, color) {
+  sprintf("<span style='color: %s;'>%s</span>", color, x)
+  }
+```
+
+# R so far
+
+We have already seen how to:
+
+- `filter()`
+- `select()`
+- `mutate()`
+- `summarise()` with `group_by()`
+
+More importantly we have seen how to use the pipe `%>%` sign to chain multiple transformations.
+
+Let's start to to make some fancy visualisations
+
+---
+
+# Rstudio Cloud
+
+In your webrowser (Chrome, Firefox, ...):
+
+1. Open these same slides on a tab to copy-paste the examples
+  - From Loop: Lectures > Lecture 10
+  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_10
+
+2. In another tab, go to: https://rstudio.cloud/
+  - Sign in or Sign up (if not already done)
+  - In your workspace, Click "Untitled Project" or "New Project" (if not already done) 
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics("https://miro.medium.com/max/1400/1*JBHNRwGr3ZiyBzYWpvH6zg.png")
+```
+
+---
+
+# The gapminder Dataset
+
+The dataset used today is stored in the {gapminder} package into an object called `gapminder`. 
+
+Each row in this table corresponds to a country at a specific year. For each row, we have 6 columns:
+
+- **country**: Name of country.
+- **year**: Year of the observation (between 1952 and 2007).
+- **pop**: Number of people living in the country.
+- **continent**: Which of the five continents the country is part of. 
+- **lifeExp**: Life expectancy in years.
+- **gdpPercap**: Gross domestic product (in US dollars).
+
+```{r eval=FALSE}
+#install.packages("gapminder")
+library(gapminder)
+str(gapminder)
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. Basic Visualistions with {ggplot2}
+
+---
+
+# Using {ggplot2} in the {tidyverse}
+
+The {ggplot2} package, as it provides an easy way to customise your plots.
+
+{ggplot2} is rooted in the data visualisation theory known as the grammar of graphics (Wilkinson 2005).
+
+As a part of the {tidyverse} package, {ggplot2} is loaded when {tidyverse} is loaded as well:
+
+```{r eval=FALSE}
+# install.packages("tidyverse") if not done already (check list of packages)
+library(tidyverse)
+```
+
+---
+
+# The grammar of graphics
+
+**“the grammar of graphics”** (the “gg” in ggplot) defines a set of rules for constructing statistical graphics by combining different types of layers. 
+
+From the last to the first, the layers are :
+
+```{r echo=FALSE}
+include_graphics("http://www.lucaliebi.ch/r_books/images/ggplot2.png")
+```
+
+---
+
+# Data
+
+In {ggplot2}, the **data** layer is the name of the object that contains the variables to plot.
+
+The visualisation is initiated with the function `ggplot()`
+
+```{r eval=FALSE}
+ggplot(data = my_dataframe)
+```
+
+Let's try to use the gapminder data:
+
+```{r fig.height=3}
+ggplot(data = gapminder)
+```
+
+Only a grey frame is displayed: we need to define the axes (aesthetic mapping) and their corresponding layers.
+
+**Then additional, layers are added with the symbol `+`.**
+
+---
+
+# Aesthetic mapping
+
+The **aesthetic mapping** refers to the frame of the plot, `x` for the variable in the x-axis and `y` for the variable in the y-axis. There are many more aesthetics such as `color`, `fill` and `group` but let's focus on the x and y axes for the moment. The mapping is performed by a function in {ggplot2} called `aes()` for aesthetics. 
+
+This is an essential concept to remember, the mapping of a plot (frame axes) is built from aesthetics.
+
+```{r eval=FALSE}
+ggplot(data = my_dataframe) +
+  aes(x = my_xaxis_variable, y = my_yaxis_variable)
+```
+
+--
+
+Again, the arguments names of the `ggplot()` function and layers can be omitted if filled in the right order:
+
+```{r eval=FALSE}
+ggplot(my_dataframe) +
+  aes(my_xaxis_variable, my_yaxis_variable)
+```
+
+Obviously, some type of layers are not suitable for all aesthetics, it depends on how many variables are included and their type (categorical or continuous). 
+
+---
+
+# Aesthetic mapping
+
+.pull-left[
+Aesthetic mapping represents not only the variables defined as x-axis and y-axis but also, colours of borders (colors), colours of shapes (fill), shapes ...
+]
+
+.pull-right[
+```{r eval=FALSE}
+ggplot(data = my_dataframe) +
+ aes(
+    x = my_xaxis_variable, 
+    y = my_yaxis_variable,
+    color = my_color_variable,
+    fill = my_fill_variable,
+    shape = my_shape_variable,
+    size = my_size_variable
+  )
+)
+```
+]
+
+
+---
+
+# Aesthetic mapping
+
+For example, the following code is adding not only a x- and y-axis to a scatter plot, but also colours to the points:
+
+```{r fig.height=4}
+ggplot(data = gapminder) +
+  aes(x = gdpPercap, y = lifeExp, color = continent)
+
+```
+
+---
+
+# Geometries
+
+**Geometries**, which are shapes we use to represent our data. There is a dedicated function for every type of shape to plot but all start with `geom_`
+
+|function          |shape    |
+|------------------|---------|
+|`geom_point()`    |point    |
+|`geom_line()`     |line     |
+|`geom_bar()`      |bar      |
+|`geom_histogram()`|histogram|
+|`geom_boxplot()`  |boxplot  |
+|...               |...      |
+
+The list is very long but here are the main ones. Multiple **geometries** can be added as layers by using the same `+` symbol. 
+
+---
+
+# Geometries
+
+Example for scatter plots:
+
+```{r eval=FALSE}
+ggplot(data = my_dataframe) +
+  aes(x = my_xaxis_variable, y = my_yaxis_variable) +
+  geom_point() 
+```
+
+Example for line graph:
+
+```{r eval=FALSE}
+ggplot(data = my_dataframe) +
+  aes(x = my_xaxis_variable, y = my_yaxis_variable) +
+  geom_line() 
+```
+
+Example for bar graph:
+
+```{r eval=FALSE}
+ggplot(data = my_dataframe) +
+  aes(x = my_xaxis_variable, y = my_yaxis_variable) +
+  geom_col() 
+```
+
+Note: Not all data is suitable for all types of geometries. It is to you to find the one that corresponds to your data
+
+---
+
+# Geometries Applied to gapminder
+
+Example for scatter plots:
+
+```{r fig.height=4}
+ggplot(data = gapminder) +
+  aes(x = gdpPercap, y = lifeExp, color = continent) +
+  geom_point() 
+```
+
+---
+
+# Geometries Applied to gapminder
+
+Example for line graph:
+
+```{r fig.height=4}
+ggplot(data = gapminder) +
+  aes(x = year, y = lifeExp, color = country) +
+  geom_line() +
+  guides(color = FALSE) # removes legend because too many countries
+```
+
+---
+
+# Geometries Applied to gapminder
+
+Example for bar graph:
+
+```{r fig.height=4}
+gapminder_avg_continent_2007 <- gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(m_lifeExp = mean(lifeExp, na.rm = TRUE))
+
+ggplot(data = gapminder_avg_continent_2007) +
+  aes(x = continent, y = m_lifeExp, fill = continent) +
+  geom_col() 
+```
+
+---
+
+# Themes
+
+Now, to make the plot more professional, let's remove that standard grey background using a different theme. 
+
+Many themes come built into the {ggplot2} package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up.
+
+```{r fig.height=4}
+ggplot(gapminder) +
+  geom_point(aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  theme_bw()
+```
+
+---
+
+# Themes
+
+Built-in ggplot2 themes includes:
+
+- `theme_bw()`
+- `theme_classic()`
+- `theme_minimal()`
+- `theme_dark()`
+- `theme_light()`
+- ... 
+
+Try them in the following exercises.
+
+---
+class: title-slide, middle
+
+## Live Demo
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Build a ggplot with the `gapminder` dataset and one `geom_boxplot()` layer
+which contains the x as `continent`, y as `lifeExp` and color as `continent` 
+in its `aes()`. Use a theme of your choice as well:
+
+```{r eval=FALSE}
+_ _ _(_ _ _) +
+  aes(x = _ _ _, y = _ _ _, color = _ _ _) +
+  _ _ _() +
+  _ _ _()
+```
+
+Build a ggplot with the `gapminder` dataset and one `geom_col()` layer which contains the x as `year`, y as `pop` and fill as `continent` in its `aes()`. Use a theme of your choice as well:
+
+```{r eval=FALSE}
+_ _ _(_ _ _) +
+  aes(x = _ _ _, y = _ _ _, fill = _ _ _)
+  _ _ _() +
+  _ _ _()
+```
+
+```{r echo=FALSE}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+class: inverse, mline, center, middle
+
+# 2. Advanced Visualistions with {ggplot2}
+
+---
+
+# Customising Plots
+
+Take a look at the ggplot2 [cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf), and think of ways you could improve the plot.
+
+<img src="https://d33wubrfki0l68.cloudfront.net/21d683072b0c21cbd9b41fc0e37a587ad26b9525/cbf41/wp-content/uploads/2018/08/data-visualization-2.1.png" width="75%">
+
+---
+
+# Inherited Propriety of Geometries
+
+You can add as many geometry layers as you want, however repeating the mapping for each geometry layer is very redundant. Thankfully, if all your geometry layers are using the same aesthetics mapping, it is possible to include this mapping inside the `ggplot()`, then all the geometry layers will have the same mapping:
+
+```{r fig.height=4, fig.width=12}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = country)) +
+  geom_point() +
+  geom_line() +
+  guides(color = FALSE)
+```
+
+---
+
+# Facets
+
+Faceting is used when we’d like to split a particular visualisation by the values of another variable. 
+
+This will create multiple copies of the same type of plot with matching x and y axes, but whose content will differ.
+
+For example, suppose we were interested in looking at the evolution of life expectancy by continent from 1952. We could “split” this figure for each continent. In other words, we would plot a scatter plot for each continent separately. 
+
+We do this by adding `facet_wrap(~ continent)` layer.
+
+---
+
+# Facets
+
+```{r fig.height=4}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+  geom_point() +
+  facet_wrap(~ continent) +
+  theme_classic()
+```
+
+The tilde is required and you’ll receive the error `Error in as.quoted(facets) : object 'continent' not found` if you don’t include it here.
+
+---
+
+# Facets
+
+We can also specify the number of rows and columns in the grid by using the `nrow` and `ncol` arguments inside of `facet_wrap()`. 
+
+For example, suppose we would like our faceted figure to have 1 rows instead of 2. We simply add an `nrow = 1` argument to `facet_wrap(~ continent)`:
+
+```{r fig.height=3, fig.width=12}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+  geom_point() +
+  facet_wrap(~ continent, nrow = 1) +
+  theme_classic()
+```
+
+---
+
+# Labels
+
+Now, let’s capitalise the x and y axis labels and add a main title to the figure. Ggplot has a layer called `labs()` in order to change the name of the axis labels very quickly. `labs()` has at least 3 arguments for us: x, y and title.
+
+```{r fig.height=3, fig.width=12}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+  geom_point() +
+  facet_wrap(~ continent, nrow = 1) +
+  labs(
+    x = "Year (from 1952 to 2007)",
+    y = "Life Expectancy",
+    title = "Evolution of life expectancy from 1952 to 2007 per continent."
+  ) +
+  theme_classic()
+```
+
+---
+
+# Statistics and Special Effects
+
+Instead of creating summaries inside the data frame object, ggplot has some function to calculate and display them automatically. One can say that they are for lazy people but they are so useful!
+
+The first special effect is the `geom_smooth()` layer. `geom_smooth()` is a classic geometry layer but which displays linear and non-linear trends.
+
+```{r fig.height=3, fig.width=12}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~ continent, nrow = 1) +
+  theme_classic()
+```
+
+---
+
+# Statistics and Special Effects
+
+`geom_smooth()` has one important extra argument called `method`. If method has the value "lm", a linear regression will be shown. If method has the value "loess" or "gam", a non-linear regression will be shown.
+
+```{r fig.height=4, fig.width=12}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(~ continent, nrow = 1) +
+  theme_classic()
+```
+
+---
+
+# Additional Options
+
+```{r fig.height=3, fig.width=12}
+ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(alpha = 0.2, size = 1) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~ continent, nrow = 1) +
+  scale_x_continuous(breaks = c(1960, 1980, 2000)) +
+  labs(
+    x = "Year (from 1952 to 2007)",
+    y = "Life Expectancy",
+    title = "Evolution of life expectancy from 1952 to 2007 per continent."
+  ) +
+  theme_classic() +
+  theme(text = element_text(size = 20)) +
+  guides(color = FALSE)
+```
+
+---
+class: title-slide, middle
+
+## Live Demo
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Build a ggplot with the `gapminder` dataset and one `geom_boxplot()` layer which contains the x as `continent`, y as `lifeExp` and color as `continent` in its `aes()`. Use `year` as a facet variable, use a theme of your choice as well and changes axises labels:
+
+```{r eval=FALSE}
+ggplot(_ _ _) +
+  geom_boxplot(...
+```
+
+Build a ggplot with the `gapminder` dataset and:
+
+- One `geom_line()` layer which contains the x as `year`, y as `lifeExp` and group as `country` in its `aes()`,
+- One `geom_smooth()` layer which contains the x as `year`, y as `lifeExp` and color as `continent` in its `aes()` ,
+- One `facet_wrap()` for each continent.
+
+```{r eval=FALSE}
+ggplot(_ _ _ , aes(x = _ _ _ , y = _ _ _)) +
+  geom_line(...
+```
+
+```{r echo=FALSE}
+countdown(minutes = 10, warn_when = 60)
+```
+
+---
+class: title-slide, middle
+
+## Include ggplot in pipes
+
+---
+
+# Include ggplot in pipes
+
+A very powerful way to create figures in R is to use a ggplot at the end of a data transformation pipe.
+
+Indeed, having a data frame object as first argument of the `ggplot()` function is similar to using a pipe operator and chaining it to the `ggplot()` function:
+
+```{r eval=FALSE}
+# this classic representation:
+ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point()
+
+# is the same as:
+gapminder %>% 
+  ggplot(aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point()
+```
+
+The layers are still added with the `+` symbol.
+
+In this last code, it is also possible to modify the data frame using `filter()`, `select()`, `mutate()`, and `summarise()`.
+
+---
+
+# Filter to ggplot()
+
+You can easily display only the data for a specific section of you interest. For example, let's filter the data only for Ireland:
+
+```{r fig.height=3, fig.width=12}
+gapminder %>% 
+  filter(country == "Ireland") %>% 
+  ggplot(aes(gdpPercap, lifeExp, color = country)) +
+  geom_line()
+```
+
+---
+
+# Mutate to ggplot()
+
+If you need to display a variable that has to be created beforehand, you can always include a mutate statement in the chain.
+
+For example, let's create the variable `gdpPercountry` which is the result of the multiplication between countries' population and countries' gdpPercap. Then let's display this information for Ireland and France:
+
+```{r fig.height=3, fig.width=12}
+gapminder %>% 
+  mutate(gdpPercountry = gdpPercap*pop) %>% 
+  filter(country == "Ireland") %>% 
+  ggplot(aes(gdpPercountry, lifeExp, color = country)) +
+  geom_line()
+```
+
+---
+
+# Summary to ggplot()
+
+Finally, one of the most useful possibilities will be to summarise variables per groups and to display this information in figures.
+
+For example, let's create the average population per continent and display how this average evolves with time:
+
+```{r fig.height=3, fig.width=12}
+gapminder %>% 
+  group_by(year, continent) %>% 
+  summarise(m_pop = mean(pop)) %>% 
+  ggplot(aes(year, m_pop, color = continent)) +
+  geom_line()
+```
+
+---
+
+# Summary to ggplot()
+
+We can also compare the sum of the population by continent for the year 2007:
+
+```{r fig.height=3, fig.width=12}
+gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(s_pop = sum(pop)) %>% 
+  ggplot(aes(continent, s_pop, fill = continent)) +
+  geom_col()
+```
+
+
+---
+
+class: inverse, mline, center, middle
+
+# The Extra Chapter: More Transformations
+
+---
+class: title-slide, middle
+
+## The left/right/full/inner_join() functions
+
+---
+
+# Join 2 Tables
+
+.pull-left[
+The principle is simple, two different tables are sharing a **key variable**. By joining these two table by this key variable, it is possible to merge them into one table and to keep all variables.
+
+However, there are different cases, imagine that your X table (on the left) has more observations on the key variable than the Y table (on the right)
+
+]
+
+.pull-right[
+```{r echo=FALSE, out.width='100%'}
+include_graphics("https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png")
+```
+]
+
+You might want to keep:
+- Only the observations included in the left table
+- Only the observations included in the right table
+- Only the observations included in both tables
+- All observations
+
+For more visualisation see [Tidy Animated Verbs](https://www.garrickadenbuie.com/project/tidyexplain/)
+
+---
+
+# Join 2 Tables
+
+```{r echo=FALSE, out.width='50%'}
+include_graphics("https://rafalab.github.io/dsbook/wrangling/img/joins.png")
+```
+
+---
+
+# Join 2 Tables
+
+Create 2 dataframe objects sharing 2 key variables: country and year
+
+```{r eval=FALSE}
+table_1 <- gapminder %>% 
+  select(country, year, pop)
+
+table_2 <- gapminder %>% 
+  select(country, year, lifeExp)
+```
+
+Different possibilities to automatically join the dataframe objects
+
+```{r eval=FALSE}
+table_right_joined <- right_join(table_1, table_2)
+table_left_joined <- left_join(table_1, table_2)
+table_inner_joined <- inner_join(table_1, table_2)
+table_full_joined <- full_join(table_1, table_2)
+```
+
+Set the argument `by` to manually choose the key variables, example:
+
+```{r eval=FALSE}
+manual_join <- full_join(table_1, table_2, by = c("country", "year"))
+```
+
+---
+class: title-slide, middle
+
+## Pivot Longer or Pivot Wider
+
+---
+
+# Pivot Longer or Pivot Wider
+
+Sometimes we need to reformat or reshape our data in order to analyse it or visualize it in a specific way. 
+
+Two tidyverse functions, `pivot_longer()` and `pivot_wider()`, help us to do this.
+
+![](https://thinkr.fr/wp-content/uploads/pivot.png?raw=true)
+
+---
+
+# Pivot Wider
+
+In the `gapminder` dataset, we currently have a column/variable year and the population for the same country is repeated according multiple rows. This is a "long" format, but sometimes it is handy to have a column per year for the same country: this is a "wide" format. 
+
+> Wide means that the value of a specific variable is spread on multiple columns.
+
+To obtain this wider version of the dataset, use the `pivot_wider()` function.
+
+![](https://d33wubrfki0l68.cloudfront.net/8350f0dda414629b9d6c354f87acf5c5f722be43/bcb84/images/tidy-8.png?raw=true)
+
+---
+
+# Pivot Wider
+
+`pivot_wider()` has 3 main arguments:
+1. The `data` to pivot (but it can be omitted if it follows a pipe operator)
+2. `names_from` which corresponds to the variable converted to column names
+3. `values_from` which corresponds to the values inside the new variables
+
+For example, the following code will spread the years as new columns displaying the population per country:
+
+```{r}
+gapminder_wider <- gapminder %>% 
+  select(country, year, pop) %>% 
+  pivot_wider(names_from = year, values_from = pop)
+
+head(gapminder_wider)
+```
+
+---
+
+# Pivot Longer
+
+Usually R is working with long tables, not wide. For this reason it is very useful to reorganise a dataset with the `pivot_longer()` function.
+
+![](https://i0.wp.com/cmdlinetips.com/wp-content/uploads/2020/02/pivot_longer_wide_to_long_tidy.jpg?raw=true)
+
+---
+
+# Pivot Longer
+
+`pivot_longer()` has 4 main arguments:
+1. The `data` to pivot (but it can be omitted if it follows a pipe operator)
+2. `cols` corresponds to the column names to be aggregated. We set this to `-country` indicating that we don’t want to “tidy” the country but all the other variables
+3. `names_to` which corresponds to the column names aggregated in a new variable
+4. `values_to` which corresponds to the values aggregated in a new variable
+
+```{r eval=FALSE}
+gapminder_longer <- gapminder_wider %>% 
+  pivot_longer(cols = -country, names_to = "year", values_to = "pop")
+```
+
+For `pivot_longer()` the new variables are in quotation marks because they are not present in the existing `gapminder_wider` table whereas `country` is and has no quotation mark.
+
+---
+class: title-slide, middle
+
+## Save Your Data
+
+---
+
+# Save Your Data
+
+Usually, only R Script file (.R) or R Markdown file (.Rmd) have to be saved as they allow the full replicability of transformations and result.
+
+However if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
+
+The simpliest export is a .csv file with the function `write.csv()`. It as two main arguments:
+- `x` which is the name of the object to save
+- `file` which is the name of the output file
+
+Note: don't forget the file extension in the argument `file`
+
+Example:
+
+```{r eval=FALSE}
+write.csv(gapminder_wider, "data_gapminder_wider.csv")
+```
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your attention and don't hesitate to ask any questions!
+
+[`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
+[`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
+[`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
