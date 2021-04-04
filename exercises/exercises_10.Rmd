@@ -1,0 +1,18 @@
+---
+title: "Practice Visualisations in R Markdown"
+output: pdf_document
+---
+
+# Task: Replicate the steps shown in the end of Tutorial 10 to obtain a report using the Titanic.csv data
+
+If possible, use the file created in the Tutorial 9. If not, in RStudio Cloud:
+
+1. Create a new R Markdown file
+2. Change the title, add the author and the date
+3. Load the packages needed in the first code chunk: tidyverse and knitr (install them if not already installed)
+4. Upload the titanic.csv file, import the file in the environment and copy-paste the code obtained in the first chunk
+5. In the second chunk, summarise the variable Fare according to the variable Sex according to mean and standard deviation. Then, display a table with the function `kbl()` from the package {kableExtra}
+6. In the third chunk, display a ggplot visualisation
+
+
+To obtain the corrections, email your answers to damien.dupre@dcu.ie.
