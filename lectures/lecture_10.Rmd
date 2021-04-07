@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 10: Visualisation in R with {ggplot2} from the {tidyverse}"
+subtitle: "Lecture 10: Visualisation in R with {ggplot2}"
 author: "Damien Dupré"
 date: "Dublin City University"
 output:

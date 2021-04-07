@@ -17,7 +17,7 @@
 class: center, middle, inverse, title-slide
 
 # MT5000 - Data Analytics &amp; Visualization
-## Lecture 10: Visualisation in R with {ggplot2} from the {tidyverse}
+## Lecture 10: Visualisation in R with {ggplot2}
 ### Damien Dupré
 ### Dublin City University
 
@@ -365,7 +365,7 @@ _ _ _(_ _ _) +
   _ _ _()
 ```
 
-<div class="countdown" id="timer_606968d5" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_606dbbe4" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -554,7 +554,7 @@ ggplot(_ _ _ , aes(x = _ _ _ , y = _ _ _)) +
   geom_line(...
 ```
 
-<div class="countdown" id="timer_606969de" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_606dbbd8" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -781,16 +781,15 @@ head(gapminder_wider)
 
 ```
 # A tibble: 6 x 13
-  country   `1952`  `1957`  `1962` `1967` `1972` `1977` `1982`
-  &lt;fct&gt;      &lt;int&gt;   &lt;int&gt;   &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-1 Afghani…  8.43e6  9.24e6  1.03e7 1.15e7 1.31e7 1.49e7 1.29e7
-2 Albania   1.28e6  1.48e6  1.73e6 1.98e6 2.26e6 2.51e6 2.78e6
-3 Algeria   9.28e6  1.03e7  1.10e7 1.28e7 1.48e7 1.72e7 2.00e7
-4 Angola    4.23e6  4.56e6  4.83e6 5.25e6 5.89e6 6.16e6 7.02e6
-5 Argenti…  1.79e7  1.96e7  2.13e7 2.29e7 2.48e7 2.70e7 2.93e7
-6 Austral…  8.69e6  9.71e6  1.08e7 1.19e7 1.32e7 1.41e7 1.52e7
-# … with 5 more variables: 1987 &lt;int&gt;, 1992 &lt;int&gt;,
-#   1997 &lt;int&gt;, 2002 &lt;int&gt;, 2007 &lt;int&gt;
+  country  `1952` `1957` `1962` `1967` `1972` `1977` `1982` `1987` `1992` `1997`
+  &lt;fct&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
+1 Afghani… 8.43e6 9.24e6 1.03e7 1.15e7 1.31e7 1.49e7 1.29e7 1.39e7 1.63e7 2.22e7
+2 Albania  1.28e6 1.48e6 1.73e6 1.98e6 2.26e6 2.51e6 2.78e6 3.08e6 3.33e6 3.43e6
+3 Algeria  9.28e6 1.03e7 1.10e7 1.28e7 1.48e7 1.72e7 2.00e7 2.33e7 2.63e7 2.91e7
+4 Angola   4.23e6 4.56e6 4.83e6 5.25e6 5.89e6 6.16e6 7.02e6 7.87e6 8.74e6 9.88e6
+5 Argenti… 1.79e7 1.96e7 2.13e7 2.29e7 2.48e7 2.70e7 2.93e7 3.16e7 3.40e7 3.62e7
+6 Austral… 8.69e6 9.71e6 1.08e7 1.19e7 1.32e7 1.41e7 1.52e7 1.63e7 1.75e7 1.86e7
+# … with 2 more variables: 2002 &lt;int&gt;, 2007 &lt;int&gt;
 ```
 
 ---
