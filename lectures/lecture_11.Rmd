@@ -1,0 +1,435 @@
+---
+title: "MT5000 - Data Analytics & Visualization"
+subtitle: "Lecture 11: Linear Regression in R"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "libs/cols_macro.js"
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(fontawesome)
+library(tweetrmd)
+library(countdown)
+library(gapminder)
+
+# general options --------------------------------------------------------------
+options(
+  scipen = 999,
+  htmltools.preserve.raw = FALSE
+)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+opts_chunk$set(
+  cache.extra = rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = TRUE,
+  cache = FALSE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+
+theme_update(
+  text = element_text(size=20)
+)
+
+# functions --------------------------------------------------------------------
+# https://bookdown.org/yihui/rmarkdown-cookbook/font-color.html#using-an-r-function-to-write-raw-html-or-latex-code
+
+colorize <- function(x, color) {
+  sprintf("<span style='color: %s;'>%s</span>", color, x)
+  }
+```
+
+# R so far
+
+We have already seen how to:
+
+1. Transform data with `filter()`, `select()`, `mutate()`, `summarise()`, and `group_by()`
+2. Visualise data with {ggplot2} from the {tidyverse}
+
+The last step with R is to perform statistical analyses.
+
+So far we have seen how to use R in RStudio Cloud but it has limits and it now time to use it on your own computer to deploy the full power of R
+
+---
+
+# Rstudio Cloud
+
+In your webrowser (Chrome, Firefox, ...):
+
+1. Open these same slides on a tab to copy-paste the examples
+  - From Loop: Lectures > Lecture 11
+  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_11
+
+2. In another tab, go to: https://rstudio.cloud/
+  - Sign in or Sign up (if not already done)
+  - In your workspace, Click "Untitled Project" or "New Project" (if not already done) 
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics("https://miro.medium.com/max/1400/1*JBHNRwGr3ZiyBzYWpvH6zg.png")
+```
+
+---
+
+# The gapminder Dataset
+
+The dataset used today is stored in the {gapminder} package into an object called `gapminder`. 
+
+Each row in this table corresponds to a country at a specific year. For each row, we have 6 columns:
+
+- **country**: Name of country.
+- **year**: Year of the observation (between 1952 and 2007).
+- **pop**: Number of people living in the country.
+- **continent**: Which of the five continents the country is part of. 
+- **lifeExp**: Life expectancy in years.
+- **gdpPercap**: Gross domestic product (in US dollars).
+
+```{r eval=FALSE}
+#install.packages("gapminder")
+library(gapminder)
+str(gapminder)
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. Linear Regression Models in R
+
+---
+
+# Variables and Hypotheses
+
+---
+
+# Variables and Hypotheses
+
+Remember, for each hypothesis, let's denote the:
+
+- **"variable being explained"** as Y (also called Dependent Variable (DV) or Outcome). This variable has to be unique and made of numeric values (i.e., continuous).
+- **"variables doing the explaining"** as X, Z, ... (also called Independent Variables (IV) or Predictors). An hypothesis contains only one variable if this hypothesis states a main effect, and it contains two or more variables if this hypothesis is an interaction. The variable(s) can be either made of character strings (i.e., categorical) or made of numeric values (i.e., continuous).
+
+Multiple hypotheses having the same Outcome variable have to be tested in the same time in a model:
+
+$$Outcome = Model + Error$$
+
+---
+
+# Model and Equations
+
+A model contains:
+
+- Only one Outcome/Dependent Variable
+- One or more Predictor/Independent Variables of any type (categorical or continuous)
+- Main and/or Interaction Effects
+
+To evaluate their relationship with the outcome, each effect hypothesis is related with a coefficient called **Estimate** and represented with $\beta$ as follow:
+
+$$Outcome = \beta_0 + \beta_1 Pred1 + \beta_2 Pred2 + \beta_3 Pred1 * Pred2 + \epsilon$$
+
+Testing for the significance of the effect means evaluating if this estimate $\beta$ value is significantly **different, higher or lower than 0** as hypothesised in $H_a$ by the scientist.
+
+---
+
+# Estimates and Linear Regression in R
+
+The `lm()` function calculate each estimate and test them against 0 for you.
+
+`lm()` has only two arguments that you should care about: `formula` and `data`. 
+
+- `formula` is the translation of the equation of the model
+
+- `data` is the name of the data frame object containing the variables.
+
+Here is a generic example:
+
+```{r eval=FALSE}
+lm(formula = Outcome ~ Pred1 + Pred2, data = my_data_object)
+```
+
+Here is an example with {gapminder}:
+
+```{r}
+lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+```
+
+---
+
+# Mastering the Formula
+
+`lm()` has only one difficulty, the `formula`. The `formula` is the direct translation of the equation tested but with its own representation:
+
+1. The = sign is replaced by `~` (read according to)
+2. Each predictor is added with the `+` sign
+3. An interaction effect uses the symbol `:` instead of *
+
+Here are some generic equations and their conversion in `formula`:
+
+$$Outcome = \beta_0 + \beta_1 Pred1 + \beta_2 Pred2 + \epsilon$$
+
+```{r eval=FALSE}
+lm(formula = Outcome ~ Pred1 + Pred2, data = my_data_object)
+```
+
+$$Outcome = \beta_0 + \beta_1 Pred1 + \beta_2 Pred2 + \beta_3 Pred3 + \epsilon$$
+
+```{r eval=FALSE}
+lm(formula = Outcome ~ Pred1 + Pred2 + Pred3, data = my_data_object)
+```
+
+$$Outcome = \beta_0 + \beta_1 Pred1 + \beta_2 Pred2 + \beta_3 Pred1*Pred2 + \epsilon$$
+
+```{r eval=FALSE}
+lm(formula = Outcome ~ Pred1 + Pred2 + Pred1 : Pred2, data = my_data_object)
+```
+
+---
+
+# Mastering the Formula
+
+Here are some equations from the gapminder dataset and their conversion in `formula`:
+
+$$lifeExp = \beta_0 + \beta_1 gdpPercap + \beta_2 year + \epsilon$$
+
+```{r}
+lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+```
+
+$$lifeExp = \beta_0 + \beta_1 gdpPercap + \beta_2 year + \beta_3 gdpPercap * year + \epsilon$$
+
+```{r}
+lm(formula = lifeExp ~ gdpPercap + year + gdpPercap : year , data = gapminder)
+```
+
+---
+class: title-slide, middle
+
+## Live Demo
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Test the following models in RStudio Cloud:
+
+$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \epsilon$$
+
+$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \beta_3 gdpPercap * lifeExp + \epsilon$$
+
+```{r echo=FALSE}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 2. Hypothesis Testing in R
+
+---
+
+# R Outputs
+
+The base R function (i.e., built-in) to display linear regression's results, including estimates for each of the beta values, is the `summary()` function:
+
+```
+my_data_frame <- data.frame(
+  outcome = rnorm(10),
+  predictor1 = rnorm(10),
+  predictor2 = rnorm(10)
+)
+
+linear_model <- lm(formula = outcome ~ predictor1 * predictor2, data = my_data_frame)
+
+summary(linear_model)
+```
+
+The output that this command produces is pretty dense, but we’ve already discussed everything of interest in it, so what I’ll do is go through it line by line. 
+
+---
+
+# R outputs
+
+The first line reminds us of what the actual regression model is:
+
+```
+Call:
+lm(formula = outcome ~ predictor1 * predictor2, data = my_data_frame)
+```
+
+You can see why this is handy, since it was a little while back when we actually created the `summary_model` model, and so it’s nice to be reminded of what it was we were doing. The next part provides a quick summary of the residuals (i.e., the &epsilon; values),
+
+```
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.60737 -0.36877 -0.05916  0.20591  0.83849
+```
+
+which can be convenient as a quick check that the model is okay. **Linear regression assumes that these residuals were normally distributed, with mean 0.** In particular it’s worth quickly checking to see if the median is close to zero, and to see if the first quartile is about the same size as the third quartile. If they look badly off, there’s a good chance that the assumptions of regression are violated. 
+
+---
+
+# R outputs
+
+The next part of the R output looks at the coefficients of the regression model:
+
+```
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)  
+(Intercept)            -0.2951     0.1911  -1.544   0.1735  
+predictor1             -0.2958     0.2152  -1.374   0.2185  
+predictor2              0.1344     0.1680   0.800   0.4540  
+predictor1:predictor2   0.4993     0.1764   2.831   0.0299 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Each row in this table refers to one of the coefficients in the regression model. The first row is the intercept term, and the later ones look at each of the predictors. The columns give you all of the relevant information. The first column is the actual estimate of b (e.g., -0.2951 for the intercept, and -0.2958 for the predictor1). The second column is the standard error estimate (SE). The third column gives you the t-statistic. Finally, the fourth column gives you the actual p value for each of these tests. 
+
+---
+
+# R outputs
+
+The only thing that the table itself doesn’t list is the degrees of freedom used in the t-test, which is always N−K−1 and is listed immediately below, in this line:
+
+```
+Residual standard error: 0.575 on 6 degrees of freedom
+```
+
+The value of df=6 is equal to N−K−1, so that’s what we use for our t-tests. In the final part of the output we have the F-test and the R<sup>2</sup> values which assess the performance of the model as a whole
+
+```
+Multiple R-squared:  0.6977,	Adjusted R-squared:  0.5465 
+F-statistic: 4.615 on 3 and 6 DF,  p-value: 0.05313
+```
+
+So in this case, the model did not perform significantly better than you’d expect by chance (F(3,6) = 4.615, p = 0.053), which isn’t all that surprising: the R<sup>2</sup> = 0.6977 value indicate that the regression model accounts for 69.7% of the variability in the outcome measure. However, when we look back up at the t-tests for each of the individual coefficients, we have pretty strong evidence that the predictor1 and predictor2 variables have no significant effect. However the results suggest as significant interaction between predictor1 and predictor2.
+
+---
+
+# Reporting clean results
+
+While it is the most used output to read the data in linear regression models, the output of the `summary()` function is not the cleanest ever. Thankfully, many additional packages are providing alternative functions to read linear regression models. Because there are too many packages, I will focus only on two additional packages: {broom} and {papaja}.
+
+---
+
+# Clean lm() with {broom}
+
+The {broom} package was created precisely for the purpose of cleaning output of the `lm()` function (https://cran.r-project.org/web/packages/broom/vignettes/broom.html).
+
+```
+#install.packages("broom")
+library(broom)
+```
+
+{broom} is very simple and has 3 functions to extract clean results:
+
+- `glance()` will produce a table with the test of the overall model
+- `tidy()` will produce a table of each individual predictor
+- `augment()` will produce a table of the prediction for each observation in the model
+
+```
+glance(linear_model)
+```
+
+```
+tidy(linear_model)
+```
+
+```
+augment(linear_model)
+```
+
+---
+
+# Clean lm() with {papaja}
+
+All the previous packages installed so far were hosted on the CRAN website (Comprehensive R Archive Network). However some very good packages are also hosted on GitHub.com and this is the case of {papaja}. To install {papaja}, the {remote} package has to be installed as well as follow:
+
+```
+install.packages("remotes")
+
+remotes::install_github("crsh/papaja")
+```
+
+{papaja} is a package providing support and templates of Research publications using the APA style (https://crsh.github.io/papaja_man/). The APA style is not only for references citation styling but also for all the publications' content including linear regression outputs. For this purpose, {papaja} has one main function called `apa_print()` which is formatting the output of linear regressions.
+
+```
+library(papaja)
+
+papaja_model <- apa_print(linear_model)
+
+```
+
+---
+
+# Clean lm() with {papaja}
+
+When applied, `apa_print()` has 4 type of results:
+
+1. estimate: provides results without statistical tests
+
+```{r echo=TRUE}
+papaja_model$estimate
+
+```
+
+2. statistic: provides only statistical tests
+
+```{r echo=TRUE}
+papaja_model$statistic
+
+```
+
+3. full_result: provides all results including statistical tests
+
+```{r echo=TRUE}
+papaja_model$full_result
+
+```
+
+4. table: summarises all results including statistical test in a table
+
+```{r echo=TRUE}
+papaja_model$table
+
+```
+
+---
+
+# Clean lm() with {papaja}
+
+These outputs are particularly useful, especially in the case of a Rmarkdown report (introduced in future tutorials). By using these inputs directly in the text with an inline code chunk, the result of the analysis appears directly formatted.
+
+Here is a sentence as it can appear in a Rmarkdown document:
+```
+"The hypothesis that there is a significant link between the predictor1 and the outcome variable is rejected (`r papaja_model$full_result$predictor1`)."
+```
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your attention and don't hesitate to ask any questions!
+
+[`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
+[`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
+[`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
