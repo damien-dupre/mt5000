@@ -204,11 +204,15 @@ lm(formula = Outcome ~ Pred1 + Pred2 + Pred1 : Pred2, data = my_data_object)
 
 Here are some equations from the gapminder dataset and their conversion in `formula`:
 
+--
+
 $$lifeExp = \beta_0 + \beta_1 gdpPercap + \beta_2 year + \epsilon$$
 
 ```{r}
 lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
 ```
+
+--
 
 $$lifeExp = \beta_0 + \beta_1 gdpPercap + \beta_2 year + \beta_3 gdpPercap * year + \epsilon$$
 
@@ -244,182 +248,182 @@ class: inverse, mline, center, middle
 
 ---
 
-# R Outputs
+# LM Summary
 
-The base R function (i.e., built-in) to display linear regression's results, including estimates for each of the beta values, is the `summary()` function:
+While the function `lm()` computes the model, the function `summary()` display the results
 
+```{r}
+model_gapminder <- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+summary(model_gapminder)
 ```
-my_data_frame <- data.frame(
-  outcome = rnorm(10),
-  predictor1 = rnorm(10),
-  predictor2 = rnorm(10)
-)
-
-linear_model <- lm(formula = outcome ~ predictor1 * predictor2, data = my_data_frame)
-
-summary(linear_model)
-```
-
-The output that this command produces is pretty dense, but we’ve already discussed everything of interest in it, so what I’ll do is go through it line by line. 
 
 ---
 
-# R outputs
+# LM Summary
+
+The output of the `summary()` function is pretty dense, but let's analyse it line by line. 
 
 The first line reminds us of what the actual regression model is:
 
 ```
 Call:
-lm(formula = outcome ~ predictor1 * predictor2, data = my_data_frame)
+lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
 ```
 
-You can see why this is handy, since it was a little while back when we actually created the `summary_model` model, and so it’s nice to be reminded of what it was we were doing. The next part provides a quick summary of the residuals (i.e., the &epsilon; values),
+The next part provides a quick summary of the residuals (i.e., the &epsilon; values),
 
 ```
 Residuals:
-     Min       1Q   Median       3Q      Max 
--0.60737 -0.36877 -0.05916  0.20591  0.83849
+    Min      1Q  Median      3Q     Max 
+-67.262  -6.954   1.219   7.759  19.553 
 ```
 
-which can be convenient as a quick check that the model is okay. **Linear regression assumes that these residuals were normally distributed, with mean 0.** In particular it’s worth quickly checking to see if the median is close to zero, and to see if the first quartile is about the same size as the third quartile. If they look badly off, there’s a good chance that the assumptions of regression are violated. 
+This can be convenient as a quick check that the model is okay. **Linear regression assumes that these residuals were normally distributed, with mean 0.** In particular it’s worth quickly checking to see if the median is close to zero, and to see if the first quartile is about the same size as the third quartile. If they look badly off, there’s a good chance that the assumptions of regression are violated. 
 
 ---
 
-# R outputs
+# LM Summary
 
 The next part of the R output looks at the coefficients of the regression model:
 
 ```
 Coefficients:
-                      Estimate Std. Error t value Pr(>|t|)  
-(Intercept)            -0.2951     0.1911  -1.544   0.1735  
-predictor1             -0.2958     0.2152  -1.374   0.2185  
-predictor2              0.1344     0.1680   0.800   0.4540  
-predictor1:predictor2   0.4993     0.1764   2.831   0.0299 *
+                 Estimate    Std. Error t value            Pr(>|t|)    
+(Intercept) -418.42425945   27.61713769  -15.15 <0.0000000000000002 ***
+gdpPercap      0.00066973    0.00002447   27.37 <0.0000000000000002 ***
+year           0.23898275    0.01397107   17.11 <0.0000000000000002 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-Each row in this table refers to one of the coefficients in the regression model. The first row is the intercept term, and the later ones look at each of the predictors. The columns give you all of the relevant information. The first column is the actual estimate of b (e.g., -0.2951 for the intercept, and -0.2958 for the predictor1). The second column is the standard error estimate (SE). The third column gives you the t-statistic. Finally, the fourth column gives you the actual p value for each of these tests. 
+Each row in this table refers to one of the coefficient estimated in the regression model. 
+
+The first row is the intercept term, and the later ones look at each of the predictors. The columns give you all of the relevant information:
+- The first column is the actual estimate of b (e.g., -418.42425945 for the intercept, 0.00066973 for gdpPercap and 0.23898275 for year). 
+- The second column is the standard error estimate (SE). 
+- The third column gives you the t-statistic. 
+- Finally, the fourth column gives you the actual p value for each of these tests. 
 
 ---
 
-# R outputs
+# LM Summary
 
-The only thing that the table itself doesn’t list is the degrees of freedom used in the t-test, which is always N−K−1 and is listed immediately below, in this line:
-
-```
-Residual standard error: 0.575 on 6 degrees of freedom
-```
-
-The value of df=6 is equal to N−K−1, so that’s what we use for our t-tests. In the final part of the output we have the F-test and the R<sup>2</sup> values which assess the performance of the model as a whole
+The only thing that the previous table doesn’t list is the degrees of freedom used in the t-test, which is always N−K−1 and is listed immediately below, in this line:
 
 ```
-Multiple R-squared:  0.6977,	Adjusted R-squared:  0.5465 
-F-statistic: 4.615 on 3 and 6 DF,  p-value: 0.05313
+Residual standard error: 9.694 on 1701 degrees of freedom
 ```
 
-So in this case, the model did not perform significantly better than you’d expect by chance (F(3,6) = 4.615, p = 0.053), which isn’t all that surprising: the R<sup>2</sup> = 0.6977 value indicate that the regression model accounts for 69.7% of the variability in the outcome measure. However, when we look back up at the t-tests for each of the individual coefficients, we have pretty strong evidence that the predictor1 and predictor2 variables have no significant effect. However the results suggest as significant interaction between predictor1 and predictor2.
+The value of df=1701 is equal to N−K−1, so that’s what we use for our t-tests. In the final part of the output we have the F-test and the R<sup>2</sup> values which assess the performance of the model as a whole
+
+```
+Multiple R-squared:  0.4375,	Adjusted R-squared:  0.4368 
+F-statistic: 661.4 on 2 and 1701 DF,  p-value: < 0.00000000000000022
+```
+
+So in this case, the model did not perform significantly better than you’d expect by chance (F(2,1701) = 661.4, p < 0.001), which isn’t all that surprising: the R<sup>2</sup> = 0.4375 value indicate that the regression model accounts for 43.7% of the variability in the outcome measure. 
+
+When we look back up at the t-tests for each of the individual coefficients, we have pretty strong evidence that gdpPercap and year have a significant effect. 
 
 ---
 
-# Reporting clean results
+# Reporting Clean Results
 
-While it is the most used output to read the data in linear regression models, the output of the `summary()` function is not the cleanest ever. Thankfully, many additional packages are providing alternative functions to read linear regression models. Because there are too many packages, I will focus only on two additional packages: {broom} and {papaja}.
+To communicate about your statistical analyses in an academic report, the simplest method is to find the values in the `summary()` output and to copy-paste them in the text according to the format expected that we have seen in the previous lectures.
 
----
+However, this task can be long, difficult and lead to human errors. Thankfully, R has additional packages that are providing alternative functions to read linear regression models and communicate results. Because there are too many packages, I will focus only on one additional packages: {report}.
 
-# Clean lm() with {broom}
-
-The {broom} package was created precisely for the purpose of cleaning output of the `lm()` function (https://cran.r-project.org/web/packages/broom/vignettes/broom.html).
-
-```
-#install.packages("broom")
-library(broom)
-```
-
-{broom} is very simple and has 3 functions to extract clean results:
-
-- `glance()` will produce a table with the test of the overall model
-- `tidy()` will produce a table of each individual predictor
-- `augment()` will produce a table of the prediction for each observation in the model
-
-```
-glance(linear_model)
-```
-
-```
-tidy(linear_model)
-```
-
-```
-augment(linear_model)
+```{r echo=FALSE}
+include_graphics("https://memegenerator.net/img/instances/73408711/whoa-i-know-linear-regression.jpg")
 ```
 
 ---
 
-# Clean lm() with {papaja}
+# Automatic Results with {report}
 
-All the previous packages installed so far were hosted on the CRAN website (Comprehensive R Archive Network). However some very good packages are also hosted on GitHub.com and this is the case of {papaja}. To install {papaja}, the {remote} package has to be installed as well as follow:
+All the previous packages installed so far were hosted on the CRAN website (Comprehensive R Archive Network). However some very good packages are also hosted on GitHub.com and this is the case of {report}. To install {report}, the {remote} package has to be installed as well as follow:
 
-```
+```{r eval=FALSE}
 install.packages("remotes")
 
-remotes::install_github("crsh/papaja")
+remotes::install_github("easystats/report")
 ```
 
-{papaja} is a package providing support and templates of Research publications using the APA style (https://crsh.github.io/papaja_man/). The APA style is not only for references citation styling but also for all the publications' content including linear regression outputs. For this purpose, {papaja} has one main function called `apa_print()` which is formatting the output of linear regressions.
+The package {report} will print a text containing all the statistics already in sentences ready to be interpreted (see https://easystats.github.io/report/).
 
+To print the statistical analyses:
+
+1. Load the package {report}
+2. Create an object containing the output of the function `lm()`
+3. Use this object as input of the function `report()` from the {report} package
+
+**Note: If used in a RMarkdown document, the chunk containing `report()` has to include the chunk option `results='asis'`**
+
+---
+
+# Automatic Results with {report}
+
+````markdown
+`r ''````{r results='asis'}
+library(report)
+
+model_gapminder <- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+report(model_gapminder)
 ```
-library(papaja)
+````
 
-papaja_model <- apa_print(linear_model)
+```{r echo=FALSE, results='asis'}
+library(report)
 
+model_gapminder <- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+report(model_gapminder)
 ```
 
 ---
 
-# Clean lm() with {papaja}
+# Automatic Results with {report}
 
-When applied, `apa_print()` has 4 type of results:
+Output of `report()` if `results='asis'` is missing:
 
-1. estimate: provides results without statistical tests
+````markdown
+`r ''````{r}
+library(report)
 
-```{r echo=TRUE}
-papaja_model$estimate
+model_gapminder <- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
 
+report(model_gapminder)
 ```
+````
 
-2. statistic: provides only statistical tests
+```{r echo=FALSE}
+library(report)
 
-```{r echo=TRUE}
-papaja_model$statistic
+model_gapminder <- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
 
-```
-
-3. full_result: provides all results including statistical tests
-
-```{r echo=TRUE}
-papaja_model$full_result
-
-```
-
-4. table: summarises all results including statistical test in a table
-
-```{r echo=TRUE}
-papaja_model$table
-
+report(model_gapminder)
 ```
 
 ---
+class: title-slide, middle
 
-# Clean lm() with {papaja}
+## Live Demo
 
-These outputs are particularly useful, especially in the case of a Rmarkdown report (introduced in future tutorials). By using these inputs directly in the text with an inline code chunk, the result of the analysis appears directly formatted.
+---
+class: title-slide, middle
 
-Here is a sentence as it can appear in a Rmarkdown document:
-```
-"The hypothesis that there is a significant link between the predictor1 and the outcome variable is rejected (`r papaja_model$full_result$predictor1`)."
+## Exercise
+
+In RStudio Cloud, check the `report()` output from the `lm()` function testing the following models:
+
+$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \epsilon$$
+
+$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \beta_3 gdpPercap * lifeExp + \epsilon$$
+
+```{r echo=FALSE}
+countdown(minutes = 5, warn_when = 60)
 ```
 
 ---

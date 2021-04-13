@@ -8,6 +8,8 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
@@ -15,7 +17,7 @@
 class: center, middle, inverse, title-slide
 
 # MT5000 - Data Analytics &amp; Visualization
-## Lecture 11: Linear Regression in R + R in the real world
+## Lecture 11: Linear Regression in R
 ### Damien Dupré
 ### Dublin City University
 
@@ -187,6 +189,8 @@ lm(formula = Outcome ~ Pred1 + Pred2 + Pred1 : Pred2, data = my_data_object)
 
 Here are some equations from the gapminder dataset and their conversion in `formula`:
 
+--
+
 `$$lifeExp = \beta_0 + \beta_1 gdpPercap + \beta_2 year + \epsilon$$`
 
 
@@ -203,6 +207,8 @@ Coefficients:
  (Intercept)     gdpPercap          year  
 -418.4242594     0.0006697     0.2389828  
 ```
+
+--
 
 `$$lifeExp = \beta_0 + \beta_1 gdpPercap + \beta_2 year + \beta_3 gdpPercap * year + \epsilon$$`
 
@@ -221,6 +227,214 @@ Coefficients:
 -353.222539884    -0.008754192     0.206000927     0.000004754  
 ```
 
+---
+class: title-slide, middle
+
+## Live Demo
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Test the following models in RStudio Cloud:
+
+`$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \epsilon$$`
+
+`$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \beta_3 gdpPercap * lifeExp + \epsilon$$`
+
+<div class="countdown" id="timer_60760e58" style="right:0;bottom:0;" data-warnwhen="60">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, mline, center, middle
+
+# 2. Hypothesis Testing in R
+
+---
+
+# LM Summary
+
+While the function `lm()` computes the model, the function `summary()` display the results
+
+
+```r
+model_gapminder &lt;- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+summary(model_gapminder)
+```
+
+```
+
+Call:
+lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-67.262  -6.954   1.219   7.759  19.553 
+
+Coefficients:
+                 Estimate    Std. Error t value            Pr(&gt;|t|)    
+(Intercept) -418.42425945   27.61713769  -15.15 &lt;0.0000000000000002 ***
+gdpPercap      0.00066973    0.00002447   27.37 &lt;0.0000000000000002 ***
+year           0.23898275    0.01397107   17.11 &lt;0.0000000000000002 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9.694 on 1701 degrees of freedom
+Multiple R-squared:  0.4375,	Adjusted R-squared:  0.4368 
+F-statistic: 661.4 on 2 and 1701 DF,  p-value: &lt; 0.00000000000000022
+```
+
+---
+
+# LM Summary
+
+The output of the `summary()` function is pretty dense, but let's analyse it line by line. 
+
+The first line reminds us of what the actual regression model is:
+
+```
+Call:
+lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+```
+
+The next part provides a quick summary of the residuals (i.e., the &amp;epsilon; values),
+
+```
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-67.262  -6.954   1.219   7.759  19.553 
+```
+
+This can be convenient as a quick check that the model is okay. **Linear regression assumes that these residuals were normally distributed, with mean 0.** In particular it’s worth quickly checking to see if the median is close to zero, and to see if the first quartile is about the same size as the third quartile. If they look badly off, there’s a good chance that the assumptions of regression are violated. 
+
+---
+
+# LM Summary
+
+The next part of the R output looks at the coefficients of the regression model:
+
+```
+Coefficients:
+                 Estimate    Std. Error t value            Pr(&gt;|t|)    
+(Intercept) -418.42425945   27.61713769  -15.15 &lt;0.0000000000000002 ***
+gdpPercap      0.00066973    0.00002447   27.37 &lt;0.0000000000000002 ***
+year           0.23898275    0.01397107   17.11 &lt;0.0000000000000002 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Each row in this table refers to one of the coefficient estimated in the regression model. 
+
+The first row is the intercept term, and the later ones look at each of the predictors. The columns give you all of the relevant information:
+- The first column is the actual estimate of b (e.g., -418.42425945 for the intercept, 0.00066973 for gdpPercap and 0.23898275 for year). 
+- The second column is the standard error estimate (SE). 
+- The third column gives you the t-statistic. 
+- Finally, the fourth column gives you the actual p value for each of these tests. 
+
+---
+
+# LM Summary
+
+The only thing that the previous table doesn’t list is the degrees of freedom used in the t-test, which is always N−K−1 and is listed immediately below, in this line:
+
+```
+Residual standard error: 9.694 on 1701 degrees of freedom
+```
+
+The value of df=1701 is equal to N−K−1, so that’s what we use for our t-tests. In the final part of the output we have the F-test and the R&lt;sup&gt;2&lt;/sup&gt; values which assess the performance of the model as a whole
+
+```
+Multiple R-squared:  0.4375,	Adjusted R-squared:  0.4368 
+F-statistic: 661.4 on 2 and 1701 DF,  p-value: &lt; 0.00000000000000022
+```
+
+So in this case, the model did not perform significantly better than you’d expect by chance (F(2,1701) = 661.4, p &lt; 0.001), which isn’t all that surprising: the R&lt;sup&gt;2&lt;/sup&gt; = 0.4375 value indicate that the regression model accounts for 43.7% of the variability in the outcome measure. 
+
+When we look back up at the t-tests for each of the individual coefficients, we have pretty strong evidence that gdpPercap and year have a significant effect. 
+
+---
+
+# Reporting Clean Results
+
+To communicate about your statistical analyses in an academic report, the simplest method is to find the values in the `summary()` output and to copy-paste them in the text according to the format expected that we have seen in the previous lectures.
+
+However, this task can be long, difficult and lead to human errors. Thankfully, R has additional packages that are providing alternative functions to read linear regression models and communicate results. Because there are too many packages, I will focus only on one additional packages: {report}.
+
+&lt;img src="https://memegenerator.net/img/instances/73408711/whoa-i-know-linear-regression.jpg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Automatic Results with {report}
+
+All the previous packages installed so far were hosted on the CRAN website (Comprehensive R Archive Network). However some very good packages are also hosted on GitHub.com and this is the case of {report}. To install {report}, the {remote} package has to be installed as well as follow:
+
+
+```r
+install.packages("remotes")
+
+remotes::install_github("easystats/report")
+```
+
+The package {report} will print a text containing all the statistics already in sentences ready to be interpreted (see https://easystats.github.io/report/).
+
+To print the statistical analyses:
+
+1. Load the package {report}
+2. Create an object containing the output of the function `lm()`
+3. Use this object as input of the function `report()` from the {report} package
+
+**Note: If used in a RMarkdown document, the chunk containing `report()` has to include the chunk option `results='asis'`**
+
+---
+
+# Automatic Results with {report}
+
+````markdown
+```{r results='asis'}
+library(report)
+
+model_gapminder &lt;- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+report(model_gapminder)
+```
+````
+
+We fitted a linear model (estimated using OLS) to predict lifeExp with gdpPercap and year (formula: lifeExp ~ gdpPercap + year). The model explains a statistically significant and substantial proportion of variance (R2 = 0.44, F(2, 1701) = 661.44, p &lt; .001, adj. R2 = 0.44). The model's intercept, corresponding to gdpPercap = 0 and year = 0, is at -418.42 (95% CI [-472.59, -364.26], t(1701) = -15.15, p &lt; .001). Within this model:
+
+  - The effect of gdpPercap is statistically significant and positive (beta = 6.70e-04, 95% CI [6.22e-04, 7.18e-04], t(1701) = 27.37, p &lt; .001; Std. beta = 0.51, 95% CI [0.47, 0.55])
+  - The effect of year is statistically significant and positive (beta = 0.24, 95% CI [0.21, 0.27], t(1701) = 17.11, p &lt; .001; Std. beta = 0.32, 95% CI [0.28, 0.36])
+
+Standardized parameters were obtained by fitting the model on a standardized version of the dataset.
+
+---
+
+# Automatic Results with {report}
+
+Output of `report()` if `results='asis'` is missing:
+
+````markdown
+```{r}
+library(report)
+
+model_gapminder &lt;- lm(formula = lifeExp ~ gdpPercap + year, data = gapminder)
+
+report(model_gapminder)
+```
+````
+
+
+```
+We fitted a linear model (estimated using OLS) to predict lifeExp with gdpPercap and year (formula: lifeExp ~ gdpPercap + year). The model explains a statistically significant and substantial proportion of variance (R2 = 0.44, F(2, 1701) = 661.44, p &lt; .001, adj. R2 = 0.44). The model's intercept, corresponding to gdpPercap = 0 and year = 0, is at -418.42 (95% CI [-472.59, -364.26], t(1701) = -15.15, p &lt; .001). Within this model:
+
+  - The effect of gdpPercap is statistically significant and positive (beta = 6.70e-04, 95% CI [6.22e-04, 7.18e-04], t(1701) = 27.37, p &lt; .001; Std. beta = 0.51, 95% CI [0.47, 0.55])
+  - The effect of year is statistically significant and positive (beta = 0.24, 95% CI [0.21, 0.27], t(1701) = 17.11, p &lt; .001; Std. beta = 0.32, 95% CI [0.28, 0.36])
+
+Standardized parameters were obtained by fitting the model on a standardized version of the dataset.
+```
 
 ---
 class: title-slide, middle
@@ -232,8 +446,15 @@ class: title-slide, middle
 
 ## Exercise
 
-Run the following models in RStudio Cloud:
+In RStudio Cloud, check the `report()` output from the `lm()` function testing the following models:
 
+`$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \epsilon$$`
+
+`$$pop = \beta_0 + \beta_1 gdpPercap + \beta_2 lifeExp + \beta_3 gdpPercap * lifeExp + \epsilon$$`
+
+<div class="countdown" id="timer_60760c7f" style="right:0;bottom:0;" data-warnwhen="60">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 class: inverse, mline, left, middle
