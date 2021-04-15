@@ -1,0 +1,110 @@
+---
+title: "Tutorial 11: R Markdown for Academic Reports from A to Z"
+subtitle: "MT5000 - Data Analytics & Visualization"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+knitr::opts_chunk$set(
+  cache.extra = knitr::rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  eval = TRUE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(countdown)
+
+# theme ------------------------------------------------------------------------
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#23395b",
+  code_inline_background_color ="#23395b"
+  )
+
+# data -------------------------------------------------------------------------
+titanic <- read_csv(here::here("data/titanic.csv"))
+```
+
+# Requeriements
+
+Before starting, we need to check that:
+
+- You have created an account on RStudio cloud
+- You have installed the required packages
+- You have created a default R Markdown file
+- An output document is created without errors we you press "knit" in the R Markdown file
+
+---
+
+# Objectives
+
+In this tutorial, we will see how to convert a classic Word document to a R Markdown report in 10 steps:
+
+##### 1. Setup your RStudio Desktop or RStudio Cloud with:
+  - Installing the packages you will need (e.g., {tidyverse} and {kableExtra}, possibly {remotes} and {report})
+  - Importing your data in the working directory
+  - Creating a default Rmarkdown file and accept all the additional packages to install if necessary
+
+##### 2. Display RStudio Cloud with the default Rmarkdown file on the left side of your screen and your word document on the right side of the screen
+
+##### 3. Remove everything from the R Markdown document except the YAML and the first code chunk
+
+##### 4. Modify the YAML with the document's title and your name
+
+---
+
+# Objectives
+
+##### 5. Copy-Paste the text of your Word document in the R Markdown
+
+##### 6. Modify the style of the text output by adding:
+  - \#, ##, ### to represent the titles (big title, sub-title, sub-sub-title)
+  - \* at each side of a word or sentence to make it italic
+  - \** at each side of a word or sentence to make it bold
+
+##### 7. In the Setup chunk:
+  - Change global chunk options
+  - Load libraries
+  - Create data object
+  
+---
+
+# Objectives
+
+##### 8. Add (at least) one chunk printing a table
+
+##### 9. Add (at least) one chunk printing a figure
+
+##### 10. Add (at least) one chunk testing a linear model and either:
+
+  - Manually communicate the results using the summary() function
+  - Automatically communicate the results using the report() function from the {report} package
+  
+**Important: Click Knit at the end of each step to check that no error happen**
+
+---
+
+class: middle, inverse
+
+# Demonstration

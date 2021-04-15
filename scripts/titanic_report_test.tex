@@ -1,0 +1,182 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={The Titanic - A disaster reflecting social inequality},
+  pdfauthor={Damien Dupré},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{The Titanic - A disaster reflecting social inequality}
+\author{Damien Dupré}
+\date{}
+
+\begin{document}
+\maketitle
+
+Abstract This document is an example of what can be done using Rmarkdown
+file to produce an academic/professional report. It focuses on the
+titanic dataset which is one of the most classic dataset to practice
+data analytic and data science. Indeed the catastrophe of the titanic is
+not only interesting from a data point of view but also from an human
+point of view. While the James Cameron movie did not focus too much on
+the influence of classes on the final outcome, it appears that
+passengers were not equals in age and gender. For these reasons, this
+report will investigate what are the influence of age and gender on
+passengers' ticket fare. Literature Review According to Saidatunnisa,
+Sili and Nasrullah (2019), the inequality issues towards women existed
+in one of the most outstanding movies of all times, Titanic. Titanic
+movie began with the 84 years old woman named Rose DeWitt Bukater who
+told about Titanic's tragic story on its first and last voyage April
+1912. Rose DeWitt Bukater was regardless of her status as the upper
+class, also a woman who experienced the inequality issues. Rose as a
+woman had to be obedient towards the male supremacy society she lived
+in. In addition, Researchers interested in inequalities in healthcare
+wont to quote data from the Titanic disaster'' (Marmot 1999, p.~16).
+This ritual stems from Antonovsky (1967), who opened his classic paper
+with an illustration based on data from the Titanic, highlighting the
+higher survival rate of the first- and second-class passengers, versus
+the second- and third-class passengers, to demonstrate that social class
+influences mortality (Pearson, 2008). Hypothesis 1: The average tickets
+fare of female passengers is higher than the average ticket fare of male
+passengers. Hypothesis 2: Passengers' tickets fare increases when their
+age increases. Method The method section usually describes the
+participants where the data was collected, the material and the
+procedure used to collect the data, and the analysis performed to test
+the hypotheses. Participants The data were collected from 1309
+passengers known for having embarked on the Titanic. The average age of
+passengers was 29.9 years old (SD = 14.4) but the age from 263
+passengers is unknown (Table 1). n missing m\_age sd\_age 1309 263
+29.88114 14.41349 Table 1. Passengers' demographics. From them, 466
+where female passengers and 843 were male passengers (Table 2). Sex n
+female 466 male 843 Table 2. Distribution of passenger gender. Material
+Little is know over how these data were collected but it lists the
+passengers name, age, gender, ticket class, number of siblings / spouses
+aboard the Titanic, number of parents / children aboard the Titanic,
+ticket number, passenger fare, cabin number, port of Embarkation (C =
+Cherbourg, Q = Queenstown, S = Southampton) and ultimately their
+survival (0 = No, 1 = Yes). Procedure This section usually describes how
+the data were collected but here they were found online on the Kaggle
+website \url{https://www.kaggle.com/c/titanic/data}. Data Analyses To
+test these hypotheses, the following linear regression model will be
+used: Fare=\textbackslash β\_0+\textbackslash β\_1
+Gender+\textbackslash β\_2 Age+\textbackslash ϵ This model uses Fare as
+a continuous outcome variable. Age is a continuous predictor and Gender
+a categorical predictor with two categories (i.e., female and male). Age
+and Gender are tested in the model as a main effect as indicated in
+Figure 1.
+
+Figure 1. Representation of the model tested. Results The average fare
+for female passengers is slightly higher than the average fare for male
+passengers (£46.2 for female passengers vs.~£26.2 for male passengers)
+as show by the Figure 2.
+
+Figure 2. Average ticket fare for female and for male passengers. It
+also appears that the ticket fare increases when age increases as well
+as shown in Figure 3.
+
+Figure 3. Relationship between passenger's age and ticket fare. The
+model tested is statistically significant in term of prediction of
+passengers fare (R2 = 0.07, F(2, 1042) = 40.26, p \textless{} .001). The
+effect of Age is statistically significant (b = 0.74, 95\% CI {[}0.51,
+0.97{]}, t(1042) = 6.39, p \textless{} .001). The effect of Sex is
+statistically significant as well (b = -23.04, 95\% CI {[}-29.81,
+-16.27{]}, t(1042) = -6.68, p \textless{} .001). Discussion and
+Conclusion An obvious reason why age of passengers influenced their
+ticket fare is due to negotiated rates for children being cheaper than
+adults. There is also the fact that older passengers prefer more
+comfortable cabins and therefore will pay a higher price. However, the
+reason why female passengers paid a higher price on average is still a
+mystery. Probably, male passengers were satisfied with more simple
+cabins. However, female passengers were usually travelling with their
+children and therefore required a larger cabin. This explanation provide
+supports for a latent gender inequality in western society. Female have
+much more side expenses than males, this phenomenon is known as pink tax
+(Lafferty, 2019) or tampon tax (Bennett, 2017). References Antonovsky,
+A. (1967). Social class, life expectancy, and overall mortality. Milbank
+Quarterly, 45(2), 31--73. Bennett, J. (2017). The tampon tax: Sales tax,
+menstrual hygiene products, and necessity exemptions. Business
+Entrepreneurship \& Tax Law Review, 1, 183. Lafferty, M. (2019). The
+pink tax: The persistence of gender price disparity. Midwest Journal of
+Undergrad Research, 11, 56-72. Marmot, M. G. (1999). Epidemiology of
+socioeconomic status and health: Are determinants within countries the
+same as between countries? Annals of the New York Academy of Sciences,
+896, 16--29. Pearson, J. A. (2008). Can't buy me whiteness: New lessons
+from the Titanic on race, ethnicity, and health. Du Bois Review: Social
+Science Research on Race, 5(1), 27-47. Saidatunnisa, N. E., Sili, S., \&
+Nasrullah, N. (2019). The inequality issues of male supremacy towards
+rose character in titanic movie. Ilmu Budaya: Jurnal Bahasa, Sastra,
+Seni dan Budaya, 3(4), 393-403.
+
+\end{document}

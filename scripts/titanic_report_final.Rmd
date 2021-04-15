@@ -1,8 +1,7 @@
 ---
 title: "The Titanic - A disaster reflecting social inequality"
 author: "Damien Dupré"
-output: word_document
-always_allow_html: true
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -132,14 +131,9 @@ titanic %>%
   theme_bw()
 ```
 
-```{r results='asis'}
-library(report)
-
-titanic_model <- lm(formula = Fare ~ Age + Sex, data = titanic)
-
-report(titanic_model)
+```{r}
+lm(Fare ~ Sex + Age, titanic)
 ```
-
 
 # Discussion and Conclusion
 
