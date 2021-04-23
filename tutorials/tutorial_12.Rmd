@@ -1,0 +1,211 @@
+---
+title: "Tutorial 12: R and Beyond"
+subtitle: "MT5000 - Data Analytics & Visualization"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+knitr::opts_chunk$set(
+  cache.extra = knitr::rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  eval = TRUE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(countdown)
+
+# theme ------------------------------------------------------------------------
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#23395b",
+  code_inline_background_color ="#23395b"
+  )
+```
+
+# So Far in MT5000
+
+#### We have seen the basics of SQL queries (Lecture/Tutorial 1)
+
+While mastering the basics of SQL is important to have the mandatory requirement of most business analytics positions...
+
+... Don't spend too much time in knowing advanced SQL functions because R (and Python) can do it better
+
+`r anicon::faa("hand-point-right", animate="horizontal")` Advice: Use free learning content to practice SQL ([check here for list of 25 websites offering free SQL tutorials `r fontawesome::fa("link")`](https://skillcrush.com/blog/learn-sql-online/ ))
+
+
+---
+
+# So Far in MT5000
+
+#### We have seen advanced functions in MS Excel (Lecture/Tutorial 2)
+
+As much as I hate Excel, it is and will remain an essential tool in low/med tech organisations.
+
+It wouldn't be considered as a faux pas in CVs for business analytics positions, using "Advanced Excel" instead of only "Excel" would be advised.
+
+`r anicon::faa("hand-point-right", animate="horizontal")` Advice: Value the use of Pivot Tables and VLOOKUP functions which are the most efficient tools in some organisations. To increase your knowledge even more, practising Excel VBA Macros would be the next step.
+
+---
+
+# So Far in MT5000
+
+#### We have seen how to create dashboards with Tableau (Lecture/Tutorial 3 & 4)
+
+Tableau is one of the highlight of the Module and should shine on your CV:
+- In addition to SQL
+- Showcase your work with Tableau Online (and use the links in your CV)
+- Participate to visualisation challenges for "fortune and glory":
+  - https://www.edhec.edu/en/edhec-dataviz-challenge-2021
+  - https://womeninanalytics.com/data-viz-competition/
+  - https://dvastudentchallenge.ca/
+  - https://www.tableau.com/academic/student-Iron-Viz
+
+`r anicon::faa("hand-point-right", animate="horizontal")` Advice: Don't underestimate the power of data story telling as well, [see the MBA’s Guide to Breaking Into Data Science `r fontawesome::fa("link")`](https://opendatascience.com/an-mbas-guide-to-breaking-into-data-science/)
+
+---
+
+# So Far in MT5000
+
+#### We have seen how to create academic/scientific reports with Jamovi (Lecture/Tutorial 5, 6 & 7)
+
+Technically, there is low chance that you would use that in the future ... 
+
+... But knowing what is a linear regression and how to do it was very important in term of statistics applied to analytics (basics of economics and machine learning)
+
+`r anicon::faa("hand-point-right", animate="horizontal")` Advice: Don't consider adding Jamovi in your CV but instead your proficiency in Statistics and Multivariate Linear Regressions.
+
+---
+# So Far in MT5000
+
+#### We have seen R, RStudio and RMarkdown for academic/scientific reports (Lecture/Tutorial 8, 9, 10 & 11)
+
+Basically, R replaces all the tools we have seen so far (free and more powerful).
+
+.pull-left[
+`r anicon::faa("hand-point-right", animate="horizontal")` Advice: The more you know R, the nicest your life will be:
+
+- Not spending hours in manual transformations
+- Higher salary
+- Satisfaction of being a kind of hacker
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://www.memecreator.org/static/images/memes/4726167.jpg")
+```
+]
+
+---
+
+class: inverse, mline, center, middle
+
+# More with R
+
+---
+
+# R and RStudio Desktop
+
+RStudio cloud is limited and will ask you to pay soon, but R and RStudio Desktop are free forever
+
+- Step 1: [Install R from CRAN `r fontawesome::fa("link")`](cran.r-project.org/)
+- Step 2: [Install RStudio from RStudio website `r fontawesome::fa("link")`](https://www.rstudio.com/)
+- Step 3: Open RStudio and change the theme to "Vibrant Ink" (Global Option > Appearance)
+
+```{r}
+include_graphics("https://bcrf.biochem.wisc.edu/wp-content/uploads/sites/850/2018/12/featured-2.png")
+```
+
+---
+
+# Practice R
+
+* Book tutorials, see for example:
+  - [R for Data Science `r fontawesome::fa("link")`](https://r4ds.had.co.nz/) by Wickham & Grolemund (2017)
+  - [A ModernDive into R and the tidyverse `r fontawesome::fa("link")`](https://moderndive.com/) by Ismay & Kim (2019)
+  - [Getting Used to R, RStudio, and R Markdown `r fontawesome::fa("link")`](https://rbasics.netlify.com/) by Kennedy (2019)
+  - [Introduction to Open Data Science `r fontawesome::fa("link")`](https://ohi-science.org/data-science-training/) by the Ocean Health Index Team (2019)
+  
+See the list of all 150 main free books in [The Big Book of R `r fontawesome::fa("link")`](https://www.bigbookofr.com/) by Baruffa (2021)
+  
+* Interactive tutorials, see for example:
+  - [RStudio Primers `r fontawesome::fa("link")`](https://rstudio.cloud/learn/primers)
+  - [R-Bootcamp `r fontawesome::fa("link")`](https://r-bootcamp.netlify.com)
+  - [Introduction to R `r fontawesome::fa("link")`](https://www.quantargo.com/courses/course-r-introduction) (use free courses only)
+  - [Learn R for Free `r fontawesome::fa("link")`](https://www.dataquest.io/blog/learn-r-free/) (use free courses only)
+  - [Teacups, Giraffes and Statistics `r fontawesome::fa("link")`](https://tinystats.github.io/teacups-giraffes-and-statistics)
+  
+---
+
+# Join the R Community
+
+.pull-left[
+`r anicon::faa("star", animate="tada")` Follow Twitter Accounts: @rstatstweet, @hadleywickam, @dataandme ...
+
+`r anicon::faa("star", animate="tada")` Join Meetups: [Dublin R `r fontawesome::fa("link")`](https://www.meetup.com/DublinR/), [R Ladies Dublin`r fontawesome::fa("link")`](https://www.meetup.com/rladies-dublin/)...
+
+`r anicon::faa("star", animate="tada")` [Subscribe to R-bloggers newsletter `r fontawesome::fa("link")`](https://www.r-bloggers.com/)
+
+`r anicon::faa("star", animate="tada")` Create your own website with {distill} and publish it for free with Netlify. [Instructions and video link here `r fontawesome::fa("link")`](https://github.com/laderast/distill_website)
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://pbs.twimg.com/media/DAsjfPjXkAIBoET.jpg")
+```
+
+]
+
+---
+
+class: inverse, mline, center, middle
+
+# What we haven't seen
+
+---
+
+# What we haven't seen
+
+#### `r anicon::faa("question-circle", animate="float")` Git + GitHub or GitLab
+
+[Click here to read "Happy Git and GitHub for the useR" `r fontawesome::fa("link")`](https://happygitwithr.com/)
+
+#### `r anicon::faa("question-circle", animate="float")` Cloud Infrastructure (AWS, Microsoft Azure, Google Cloud)
+
+[Click here to participate to AWS Educate Challenge in October 2021 `r fontawesome::fa("link")`](https://aws.amazon.com/education/awseducate/university-challenge/)
+
+#### `r anicon::faa("question-circle", animate="float")` Machine Leaning Statistics
+
+[Click here to learn more about Tidy Modeling in R `r fontawesome::fa("link")`](https://www.tmwr.org/)
+
+#### `r anicon::faa("question-circle", animate="float")` Python
+
+[Click here to learn Python with free interactive tutorials `r fontawesome::fa("link")`](https://www.learnpython.org/)
+
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your work in MT5000!

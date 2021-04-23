@@ -118,6 +118,7 @@ class: title-slide, middle
 ```{r echo = FALSE}
 countdown(minutes = 3)
 ```
+
 ---
 
 # Guess Variable Type - Solution (1)
