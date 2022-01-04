@@ -7,7 +7,7 @@ library(mailR)
 library(here)
 
 # test emails ------------------------------------------------------------------
-test_student_db <- data.frame(
+list_email_students <- data.frame(
   Firstname = c("Test 1", "Test 2"),
   Email = c("test_1@gmail.com", "test_1@gmail.com"),
   stringsAsFactors = FALSE
@@ -32,9 +32,9 @@ job_title <- c("Data Analyst", "Software Engineer", "Administrative Officer", "W
 letter2number <- function(x) {utf8ToInt(x) - utf8ToInt("a") + 1L}
 
 ################################################################################
-for(row_student in 1:nrow(test_student_db)){
+for(row_student in 1:nrow(list_email_students)){
   
-  student_db <- test_student_db[row_student, ]
+  student_db <- list_email_students[row_student, ]
   email <- student_db[["Email"]]
   name <- student_db[["Firstname"]]
   
@@ -137,29 +137,29 @@ for(row_student in 1:nrow(test_student_db)){
   print(email)
   
   ################################
-  # mailR::send.mail(
-  #   from = gmail_dcu$email,
-  #   to = email,
-  #   subject = "MT5125 - Data Analytics Individual Assessment - Instructions and Data",
-  #   body = glue::glue(email_text),
-  #   attach.files = c(
-  #     "C:/Users/dupred/OneDrive/Projects/employee_details.csv", 
-  #     "C:/Users/dupred/OneDrive/Projects/employee_salary_2019.csv", 
-  #     "C:/Users/dupred/OneDrive/Projects/employee_salary_2018.csv", 
-  #     "C:/Users/dupred/OneDrive/Projects/employee_salary_2017.csv", 
-  #     "C:/Users/dupred/OneDrive/Projects/employee_satisfaction.csv",
-  #     "C:/Users/dupred/OneDrive/Projects/Individual Assessment Instructions.pdf"
-  #   ),
-  #   smtp = list(
-  #     host.name = "smtp.gmail.com", port = 465, 
-  #     user.name = gmail_dcu$email,            
-  #     passwd = gmail_dcu$passwd, 
-  #     ssl = TRUE
-  #     ),
-  #   authenticate = TRUE,
-  #   send = TRUE,
-  #   html = TRUE
-  #   )
+  mailR::send.mail(
+    from = gmail_dcu$email,
+    to = email,
+    subject = "MT5125 - Data Analytics Individual Assessment - Instructions and Data",
+    body = glue::glue(email_text),
+    attach.files = c(
+      "C:/Users/dupred/OneDrive/Projects/employee_details.csv",
+      "C:/Users/dupred/OneDrive/Projects/employee_salary_2019.csv",
+      "C:/Users/dupred/OneDrive/Projects/employee_salary_2018.csv",
+      "C:/Users/dupred/OneDrive/Projects/employee_salary_2017.csv",
+      "C:/Users/dupred/OneDrive/Projects/employee_satisfaction.csv",
+      "C:/Users/dupred/OneDrive/Projects/Individual Assessment Instructions.pdf"
+    ),
+    smtp = list(
+      host.name = "smtp.gmail.com", port = 465,
+      user.name = gmail_dcu$email,
+      passwd = gmail_dcu$passwd,
+      ssl = TRUE
+      ),
+    authenticate = TRUE,
+    send = TRUE,
+    html = TRUE
+    )
 }
 ################################################################################
 
