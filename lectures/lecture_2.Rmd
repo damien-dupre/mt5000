@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 2: Data Storage and Access"
+subtitle: "Lecture 2: Data Collection, Storage and Access"
 author: "Damien Dupré"
 date: "Dublin City University"
 output:
@@ -38,9 +38,243 @@ opts_chunk$set(
   )
 ```
 
+---
 class: inverse, mline, center, middle
 
-# 1. Data Storage
+# 1. Data Collection
+
+---
+
+# Collecting Data
+
+A tool is required to collect data, but there are tools to measure anything:
+  
+- Naturalistic Objects
+- Economic Status
+- Online Interactions
+- Social Events
+- Psychological States
+- ...
+
+```{r out.width = "70%"}
+knitr::include_graphics("https://i.imgflip.com/3jtxnx.jpg")
+```
+
+---
+
+# Focus on Psychometric Scales
+
+.center[**A psychometric scale is a series of questions (items) used to measure a latent variable**]
+
+--
+
+**A score has to be calculated** from all the items to produce the variable to analyse:
+
+- Average of all items (equal contribution to the latent variable score)
+- Factor analysis (unequal contribution to the latent variable score)
+
+--
+
+**A scale should have been validated** by its authors: 
+
+- Don't change the items except when possible
+- Don't change items' range of possibilities
+
+--
+
+To be analysed, **a scale has some requirements**:
+- All the items must have the same range of possibilities/modalities
+- All the items must be analysed in the same direction
+- All the items must correlate together (scale reliability)
+- A unique theoretical construct score has to be calculated from all the items
+
+---
+
+# Focus on Psychometric Scales
+
+Online Survey Software are replacing the paper-pencil method. Here is a list of some:
+
+- Google Form (from your google drive, DCU hosted)
+- Qualtrics (https://dcubusinessschool.eu.qualtrics.com, DCU Business School account)
+- Survey Monkey (https://www.surveymonkey.com/, freemium)
+- LimeSurvey (https://www.limesurvey.org/, freemium)
+- Gorilla Experiment (https://gorilla.sc, pay per participants)
+
+--
+  
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Remember: 
+
+- Always ask for age and gender in a survey
+- Participant recruitment by list of contact/email has between 15% and 10% of answer rate
+
+--
+
+Platforms to find and reward participants:
+- Amazon MTurk (https://www.mturk.com/ mainly US and India)
+- Prolific Academic (https://www.prolific.co/ world wide)
+- Qualtrics
+- Survey Monkey
+
+# Latent Variables
+
+Scale to measure the **"Perceived Ease-of-use" of MS EXCEL** in 4 items were measured from 1 "totally disagree" to 7 "totally agree":
+
+.pull-left[
+- **q1.** I think learning MS EXCEL is easy
+- **q2.** Understanding MS EXCEL is easy
+- **q3.** I am good at using MS EXCEL
+- **q4.** I think using MS EXCEL is easy
+]
+
+.pull-right[
+```{r}
+DiagrammeR::grViz("
+digraph rmarkdown {
+  graph [rankdir = RL]
+  
+  node [shape = oval]
+  'Perceived Ease-of-use
+  of MS EXCEL'
+  
+  node [shape = box]
+  q1; q2; q3; q4
+  
+  'Perceived Ease-of-use
+  of MS EXCEL'-> {q1 q2 q3 q4}   
+
+}
+", height = 200)
+```
+]
+
+--
+
+Here are the results with 3 students. The score of the "Perceived Ease-of-use of MS EXCEL" latent variable is calculated using the average of all items.
+
+```{r}
+tribble(
+  ~employee, ~q1, ~q2, ~q3, ~q4,
+  "Sinead",   7,  5,   7,   7,
+  "Patrick",   5,  4,   6,   6, 
+  "Damien",   3,  1,   2,   3
+) %>% 
+  rowwise() %>% 
+  mutate(peo_score = mean(c(q1, q2, q3, q4))) %>% 
+  kable()
+```
+
+---
+
+# Validity and Reliability
+
+**Validity = is my variable measuring the construct that I think I am measuring?**
+- Does the measurement make sense? 
+- Would the results be reproduced with another scale measuring the same latent variable?
+- Are the results correlated to latent variables that are related?
+
+Validity test is only performed when a scale is created (no need for existing scales)
+
+**Reliability = consistency of items inside a measurement**
+- Test-retest reliability
+- Inter-rater reliability
+- Correlation inter-item (Cronbach's alpha)
+
+Reliability test is performed every time a scale is used but only using Cronbach's alpha
+
+---
+
+# Validity and Reliability
+
+```{r out.width = "50%"}
+knitr::include_graphics("https://www.publichealthnotes.com/wp-content/uploads/2018/08/560px-Reliability_and_validity.svg_.png")
+```
+
+---
+
+# Survey Example
+
+**Perceived Usefulness:**
+- *(PU1)* Using MS EXCEL would improve my performance in statistical analysis 
+- *(PU2)* Using MS EXCEL would increase my productivity in statistical analysis
+- *(PU3)* Using MS EXCEL would enhance my effectiveness in statistical analysis
+- *(PU4)* Using MS EXCELR would make it easier for me to engage in statistical analysis 
+- *(PU5)* I think using MS EXCEL is very useful for me to engage in statistical analysis 
+
+**Perceived Ease-Of-Use:**
+- *(PEOU1)* I think learning to use MS EXCEL is easy 
+- *(PEOU2)* I think doing what I want via MS EXCEL is easy 
+- *(PEOU3)* I think becoming skilful at using MS EXCEL is easy 
+- *(PEOU4)* I think using MS EXCEL is easy 
+
+**Behavioural Intention:**
+- *(BI1)* Assuming I had access to MS EXCEL, I intend to use it 
+- *(BI2)* Given that I had access to MS EXCEL, I predict that I would use it 
+
+---
+
+# Survey Example
+
+```{r eval=TRUE}
+DiagrammeR::grViz("
+digraph rmarkdown {
+  graph [rankdir = LR]
+  
+  node [shape = oval]
+  'Perceived Ease-of-use'; 'Perceived Usefulness'; 'Intention to Use'; 'Actual Use'
+  
+  node [shape = box]
+  PU1; PU2; PU3; PU4; PU5; PEOU1; PEOU2; PEOU3; PEOU4; BI1; BI2; AU
+  
+  {PU1 PU2 PU3 PU4 PU5} -> 'Perceived Usefulness' [arrowhead = none]
+  {PEOU1 PEOU2 PEOU3 PEOU4} -> 'Perceived Ease-of-use' [arrowhead = none]
+  {BI1 BI2} -> 'Intention to Use' [arrowhead = none]
+  {AU} -> 'Actual Use' [arrowhead = none]
+  
+  'Perceived Usefulness' -> 'Intention to Use'
+  'Perceived Ease-of-use' -> {'Perceived Usefulness' 'Intention to Use'}
+  'Intention to Use' -> 'Actual Use'
+  
+  subgraph {
+      rank = same; 'Perceived Usefulness'; 'Perceived Ease-of-use';
+  }
+  
+  subgraph {
+      rank = same; PU1; PU2; PU3; PU4; PU5; PEOU1; PEOU2; PEOU3; PEOU4; BI1; BI2;
+  }
+
+}
+", height = 400)
+```
+
+Google form: https://forms.gle/epRj45iR1jL7r3wV7
+
+Qualtrics: https://dcubusinessschool.eu.qualtrics.com/jfe/form/SV_0JSAjOvXVxzJvgh
+
+---
+
+# Accessing your Data
+
+From a Google Form
+1. Login Google Account (be sure to use the DCU account)
+2. Go to Drive
+3. Click on your Survey form
+4. Click on Response
+5. Download Response Spreadsheet as .csv
+
+From a Qualtrics survey
+1. Login Qualtrics (DCU login/pwd) https://dcubusinessschool.eu.qualtrics.com
+2. Click on Data & Analysis
+3. Click on Export & Import > Export Data...> CSV (Use numeric values)
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Remember: 
+
+- Always save the unmodified raw version of your data on the cloud (e.g., google drive, dropbox, one drive, ...)
+- Make sure you can download them as a .csv file.
+
+---
+class: inverse, mline, center, middle
+
+# 2. Data Storage
 
 ---
 
@@ -115,7 +349,7 @@ include_graphics("https://external-preview.redd.it/eWJ9RiTdWLJAyW8R7AuX0HGijt10i
 ---
 class: inverse, mline, center, middle
 
-# 2. Data Access
+# 3. Data Access
 
 ---
 
@@ -242,7 +476,7 @@ However, in organisations it is usual to use data that are directly stored in MS
 ---
 class: inverse, mline, center, middle
 
-# 3. SQL Tutorial
+# 4. SQL Tutorial
 
 ---
 
