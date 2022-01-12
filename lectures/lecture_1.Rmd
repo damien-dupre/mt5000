@@ -145,13 +145,13 @@ The lecture will alternate between **theory sessions**, **practice sessions** an
 
 ### Assignment 1. Tableau Dashboard (50%)
 
-> Deadline 23/03/2021
+> Deadline 23/03/2022
 
 > Design a professional looking data dashboard aiming to communicate a narrative (also called storytelling)
 
 ### Assignment 2. Rmarkdown Dashboard (50%)
 
-> Deadline 13/04/2021 (`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Only 3 weeks after Assignment 1)
+> Deadline 13/04/2022 (`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Only 3 weeks after Assignment 1)
 
 > Using R and RStudio, reproduce the results presented in the tableau dashboard with a Rmarkdown Dashboard
 

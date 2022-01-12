@@ -38,7 +38,6 @@ opts_chunk$set(
   )
 ```
 
----
 class: inverse, mline, center, middle
 
 # 1. Data Collection
