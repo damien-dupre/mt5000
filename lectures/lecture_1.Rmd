@@ -121,6 +121,14 @@ The lecture will alternate between **theory sessions**, **practice sessions** an
 
 ---
 
+# Module Content
+
+```{r out.width='100%'}
+include_graphics("https://c.tenor.com/DIWxMkR9kyUAAAAC/fortune-and-glory-indiana-jones.gif")
+```
+
+---
+
 # Module Organisation
 
 ### Lecture Every Week
