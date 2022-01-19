@@ -741,7 +741,7 @@ WHERE Country = 'Ireland';
 
 # What's Next?
 
-- `r faa("star", animate="burst", speed="slow", color="orange")` Challenge yourself with SQL exercises on Loop
+- `r faa("star", animate="burst", speed="slow", color="orange")` Challenge yourself with SQL exercises on Loop. To solve these exercises, you can find some help online in websites like https://www.w3schools.com/sql which provides easy tutorials and interactive examples by clicking "Try it Yourself"
 
 - `r faa("star", animate="burst", speed="slow", color="orange")` SQL is not part of any assignment for the module but is essential to add to your CV. Improve your knowledge with the following free online training: https://www.udemy.com/course/introduction-to-databases-and-sql-querying/
 
