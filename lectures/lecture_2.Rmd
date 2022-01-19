@@ -325,7 +325,7 @@ include_graphics("img/northwind_relationships.png")
 # Relational Database
 
 ```{r out.width='90%'}
-include_graphics("https://www.databasejournal.com/img/2010/08/04fig09.jpg")
+include_graphics("https://ras-blogdb.restdb.io/media/594a33ce72b4cf350000130d")
 ```
 
 .center[Structure, also called schema, of the Northwind Company database]
@@ -540,7 +540,7 @@ include_graphics("img/tut_1_4.png")
 
 # Configure the Database (4)
 
-#### Copy-Paste the text of the file “northwind_onlinedemo.txt” (3556 lines) and press Run on the top menu bar (you should see the 15 table appears on the left box).
+#### Select (CTRL + A or Cmd + A), Copy (CTRL + C or Cmd + C) and Paste (CTRL + V or Cmd + V) the text of the file “northwind_onlinedemo.txt” (3556 lines) and press Run on the top menu bar (you should see the 15 table appears on the left box).
 
 ```{r out.width='100%'}
 include_graphics("img/tut_1_5.png")

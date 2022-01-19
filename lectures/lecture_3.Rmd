@@ -421,8 +421,6 @@ More about MS EXCEL with free online learnings on Udemy.com (needs free registra
 - Ten Excel Features Every Analyst Should Know (30 min) https://www.udemy.com/course/ten-excel-features-every-analyst-should-know/
 - Excel Dashboards (60 min) https://www.udemy.com/course/excel-dashboards-in-an-hour/
 
-Tutorial and Exercise: Practice data cleaning and data transformation with MS EXCEL
-
 ---
 class: inverse, mline, left, middle
 
