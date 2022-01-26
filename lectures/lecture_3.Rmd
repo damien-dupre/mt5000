@@ -136,9 +136,13 @@ class: title-slide, mline, center, middle
 
 # Exercise: Clean unicef.xlsx
 
-### On the module Loop page, got to "Data Analytics Supplementary Documents" and download the document called "unicef.xlsx"
+Unicef collects a lot of data but they don't know either how to process them or how to visualise them. The following file is coming from their official website and is the topic of a European Data Visualisation Challenge: https://www.edhec.edu/en/student-dataviz-challenge-2022 (DL May 2022)
 
-### Open and clean the 1st sheet of this file
+[Follow the steps of the DCU student who finsihed in the top 10 of the challenge in 2020](https://www.edhec.edu/en/student-dataviz-challenge-2022)
+
+### `r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` On the module Loop page, got to "Lecture Data" and download the document called "unicef.xlsx"
+
+### `r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` Open and clean the 1st sheet of this file
 
 ```{r}
 countdown(minutes = 15, warn_when = 60)
@@ -413,9 +417,9 @@ Recording a Macro:
 
 ---
 
-# What's Next
+# Optional Free Trainings
 
-More about MS EXCEL with free online learnings on Udemy.com (needs free registration):
+More about MS EXCEL with free online learning on Udemy.com (needs free registration):
 
 - Excel Quick Start Tutorial (36 min) https://www.udemy.com/course/excel_quickstart/
 - Ten Excel Features Every Analyst Should Know (30 min) https://www.udemy.com/course/ten-excel-features-every-analyst-should-know/
