@@ -16,19 +16,20 @@ output:
 
 ```{r setup, include = FALSE}
 # libraries --------------------------------------------------------------------
-library(xaringan)
-library(tidyverse)
-library(knitr)
-library(fontawesome)
-library(DiagrammeR)
+
 library(countdown)
-library(anicon)
+library(DiagrammeR)
+library(fontawesome)
+library(knitr)
+library(tidyverse)
+library(xaringan)
+
 # general options --------------------------------------------------------------
 options(scipen = 999)
 set.seed(123)
 # chunk options ----------------------------------------------------------------
-knitr::opts_chunk$set(
-  cache.extra = knitr::rand_seed, 
+opts_chunk$set(
+  cache.extra = rand_seed, 
   message = FALSE, 
   warning = FALSE, 
   error = FALSE, 
@@ -64,7 +65,7 @@ class: inverse, mline, center, middle
 - If you don't have big data... then use Microsoft Excel! 
 
 ```{r out.width = "50%"}
-knitr::include_graphics("https://miro.medium.com/max/624/1*FAzumPnvzKUDolMG7SNcHw.png")
+include_graphics("https://miro.medium.com/max/624/1*FAzumPnvzKUDolMG7SNcHw.png")
 ```
 
 - If you do have big data, then use R or Python.
@@ -74,7 +75,7 @@ knitr::include_graphics("https://miro.medium.com/max/624/1*FAzumPnvzKUDolMG7SNcH
 # Question from Kareem
 
 ```{r out.width = "100%"}
-knitr::include_graphics("img/clean_tweet.png")
+include_graphics("img/clean_tweet.png")
 ```
 
 ---
@@ -84,7 +85,7 @@ knitr::include_graphics("img/clean_tweet.png")
 ## Find what is going wrong with this table
 
 ```{r out.width = "100%"}
-knitr::include_graphics("img/clean_zoom.jpg")
+include_graphics("img/clean_zoom.jpg")
 ```
 
 ---
@@ -92,7 +93,7 @@ knitr::include_graphics("img/clean_zoom.jpg")
 # Answer from Michael
 
 ```{r out.width = "100%"}
-knitr::include_graphics("img/clean_answer.png")
+include_graphics("img/clean_answer.png")
 ```
 
 ---
@@ -104,7 +105,7 @@ An addition to Michael's list would be to transform headers with a proper naming
 My suggestion is **snake_case**: all small letter and words separated by "_"
 
 ```{r out.width = "70%"}
-knitr::include_graphics("img/name_convention.jpg")
+include_graphics("img/name_convention.jpg")
 ```
 
 ---
@@ -176,7 +177,7 @@ Most important work is to tidy your data:
 
 .pull-right[
 ```{r out.width = "70%"}
-knitr::include_graphics("img/key_movements.png")
+include_graphics("img/key_movements.png")
 ```
 ]
 
@@ -187,7 +188,7 @@ knitr::include_graphics("img/key_movements.png")
 .center[**Extension = Create a new column**]
 
 ```{r out.width = "50%"}
-knitr::include_graphics("img/extension_img.png")
+include_graphics("img/extension_img.png")
 ```
 
 In MS Excel:
@@ -218,7 +219,7 @@ In MS Excel:
 .center[**Reduction = Keep only certain values**]
 
 ```{r out.width = "50%"}
-knitr::include_graphics("img/reduction_img.png")
+include_graphics("img/reduction_img.png")
 ```
 
 In MS Excel:
@@ -238,7 +239,7 @@ In MS Excel:
 
 ```{r out.width = "50%"}
 #| fig.cap: "Example of data filtered buy the column Country to keep only values corresponding to USA"
-knitr::include_graphics("https://www.excel-easy.com/data-analysis/images/filter/filter-result.png")
+include_graphics("https://www.excel-easy.com/data-analysis/images/filter/filter-result.png")
 ```
 
 ---
@@ -253,7 +254,7 @@ knitr::include_graphics("https://www.excel-easy.com/data-analysis/images/filter/
   - Choose column to sort and how to sort
 
 ```{r out.width = "40%"}
-knitr::include_graphics("img/direction_img.png")
+include_graphics("img/direction_img.png")
 ```
 
 Be careful of taking into account all the table (all rows & all columns)
@@ -271,7 +272,7 @@ Double check if all columns changed!
   - Complex = use pivot table
   
 ```{r out.width = "50%"}
-knitr::include_graphics("img/aggregation_img.png")
+include_graphics("img/aggregation_img.png")
 ```
 
 ---
@@ -300,7 +301,7 @@ If you want to use the Pivot Table for further analysis:
   - Multiple Columns = Power Query (Windows only)
   
 ```{r out.width = "50%"}
-knitr::include_graphics("img/combination_img.png")
+include_graphics("img/combination_img.png")
 ```
 
 --
@@ -325,12 +326,12 @@ class: title-slide, mline, center, middle
 On the module Loop page, got to "Data Analytics Supplementary Documents" and download the document called "organisation_alpha.xls"
 
 1. **Extension**: Create a new variable/column which is the average response to all the questions from the survey for each employee (q1 to q9)
-2. **Reduction**: Filter employee’s 2019 salary to keep only employees with a salary higher than 30k
+2. **Reduction**: Filter employee’s 2019 salary to keep only employees with a salary higher than 30k and revert back to the full dataset
 3. **Aggregation**: Calculate the average salary by gender and by location
 4. **Combination**: Using the VLOOKUP function, add to the table a column corresponding to the  2017 salary located in the 2nd sheet
 
 ```{r}
-countdown(minutes = 15, warn_when = 60)
+countdown(minutes = 10, warn_when = 60)
 ```
 
 ---
@@ -348,7 +349,7 @@ class: inverse, mline, center, middle
 - Each value is placed in its own cell
 
 ```{r out.width = "100%"}
-knitr::include_graphics("img/tidy_full.png")
+include_graphics("img/tidy_full.png")
 ```
 
 ---
@@ -358,13 +359,13 @@ knitr::include_graphics("img/tidy_full.png")
 ## Long Format
 
 ```{r out.width = "80%"}
-knitr::include_graphics("img/long_table.png")
+include_graphics("img/long_table.png")
 ```
 
 ## Wide Format
 
 ```{r out.width = "80%"}
-knitr::include_graphics("img/wide_table.png")
+include_graphics("img/wide_table.png")
 ```
 
 ---
@@ -372,13 +373,13 @@ knitr::include_graphics("img/wide_table.png")
 # Long or Wide?
 
 ```{r out.width = "100%"}
-knitr::include_graphics("img/long_or_wide.png")
+include_graphics("img/long_or_wide.png")
 ```
 
 --
 
 ```{r out.width = "100%"}
-knitr::include_graphics("img/long_and_wide.png")
+include_graphics("img/long_and_wide.png")
 ```
 
 ---
@@ -395,7 +396,7 @@ In Data tab:
   - Unpivot Columns: from wide to long table
   
 ```{r out.width = "50%"}
-knitr::include_graphics("img/reshape_excel.gif")
+include_graphics("img/reshape_excel.gif")
 ```
 
 ---
