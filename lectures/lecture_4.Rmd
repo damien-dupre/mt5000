@@ -609,81 +609,100 @@ class: title-slide, middle
 
 # What’s Wrong Here?
 
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image46.png")
-```
-
----
-
-# What’s Wrong Here?
-
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image47.jpeg")
-```
-
----
-
-# What’s Wrong Here?
-
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image48.png")
-```
-
----
-
-# What’s Wrong Here?
-
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image49.jpeg")
-```
-
----
-
-# What’s Wrong Here?
-
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image50.jpeg")
-```
-
----
-
-# What’s Wrong Here?
-
 ```{r out.width='70%'}
-include_graphics("img/media_lecture_3/image51.png")
+include_graphics("img/dataviz_exercise_1.png")
 ```
-
----
-
-# What’s Wrong Here?
-
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image52.jpeg")
-```
-
----
-
-# What’s Wrong Here?
-
-```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image53.jpeg")
-```
+.center.tiny[Source: Official Twitter Account of The White House [`r emo::ji("link")`](https://twitter.com/WhiteHouse/status/1486709480351952901)]
 
 ---
 
 # What’s Wrong Here?
 
 ```{r out.width='80%'}
-include_graphics("img/media_lecture_3/image54.jpeg")
+include_graphics("img/dataviz_exercise_2.png")
 ```
+.center.tiny[Source: Misleading Graphs in Real Life: Overview [`r emo::ji("link")`](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/misleading-graphs/)]
 
 ---
 
-# Land don't Vote, People do
+# What’s Wrong Here?
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image55.gif")
+include_graphics("img/dataviz_exercise_3.jpeg")
 ```
+.center.tiny[Source: The statisticians at Fox News use classic and novel graphical techniques to lead with data [`r emo::ji("link")`](https://simplystatistics.org/posts/2012-11-26-the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='80%'}
+include_graphics("img/dataviz_exercise_4.png")
+```
+.center.tiny[Source: The statisticians at Fox News use classic and novel graphical techniques to lead with data [`r emo::ji("link")`](https://simplystatistics.org/posts/2012-11-26-the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='100%'}
+include_graphics("img/dataviz_exercise_5.jpeg")
+```
+.center.tiny[Source: 5 Ways Writers Use Misleading Graphs To Manipulate You [`r emo::ji("link")`](https://venngage.com/blog/misleading-graphs/)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='80%'}
+include_graphics("img/dataviz_exercise_6.jpeg")
+```
+.center.tiny[Source: The Worst Covid-19 Misleading Graphs [`r emo::ji("link")`](https://www.datasciencecentral.com/the-worst-covid-19-misleading-graphs/)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='60%'}
+include_graphics("img/dataviz_exercise_7.png")
+```
+.center.tiny[Source: Misleading Graphs in Real Life: Overview [`r emo::ji("link")`](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/misleading-graphs/)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='80%'}
+include_graphics("img/dataviz_exercise_8.jpeg")
+```
+.center.tiny[Source: Health Care in Crisis: 14,000 Losing Coverage Each Day [`r emo::ji("link")`](https://www.americanprogressaction.org/issues/healthcare/reports/2009/02/19/5635/health-care-in-crisis-14000-losing-coverage-each-day/)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='100%'}
+include_graphics("img/dataviz_exercise_9.jpeg")
+```
+.center.tiny[Source: Nick Cage Movies Vs. Drownings, and More Strange (but Spurious) Correlations [`r emo::ji("link")`](https://www.nationalgeographic.com/science/article/nick-cage-movies-vs-drownings-and-more-strange-but-spurious-correlations)]
+
+---
+
+# What’s Wrong Here?
+
+```{r out.width='70%'}
+include_graphics("img/dataviz_exercise_10.jpeg")
+```
+.center.tiny[Source: Fact checking Trump's 'Impeach this' map [`r emo::ji("link")`](https://edition.cnn.com/2019/10/01/politics/trump-impeach-this-map-fact-check/index.html)]
+
+---
+
+# Land Doesn’t Vote, People Do
+
+```{r out.width='100%'}
+include_graphics("img/dataviz_exercise_11.gif")
+```
+.center.tiny[Source: Land Doesn’t Vote, People Do: This Electoral Map Tells the Real Story [`r emo::ji("link")`](https://demcastusa.com/2019/11/11/land-doesnt-vote-people-do-this-electoral-map-tells-the-real-story/)]
 
 ---
 
@@ -1027,14 +1046,12 @@ Visualisations with Tableau:
 - [Tableau in Two Minutes - Tableau Basics for Beginners](https://www.youtube.com/watch?v=jEgVto5QME8)
 - [Tableau for Data Science and Data Visualization - Crash Course Tutorial](https://www.youtube.com/watch?v=TPMlZxRRaBQ)
 
-
-
 ---
 class: inverse, mline, left, middle
 
 <img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
 
-# Thanks for your attention and don't hesitate if you have any question!
+# Thanks for your attention and don't hesitate to ask if you have any question!
 
 [`r fontawesome::fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
 [`r fontawesome::fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
