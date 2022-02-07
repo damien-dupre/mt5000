@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>MT5000 - Data Analytics &amp; Visualization</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Damien Dupré" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# MT5000 - Data Analytics &amp; Visualization
+## Lecture 5: Introduction to Power BI
+### Damien Dupré
+### Dublin City University
+
+---
+
+
+
+
+# Previously ...
+
+We have seen how important data visualisations are to convince an audience when included in a story/narrative.
+
+We have also seen that data visualisations can contain mistakes or,  even worst, can lie and have to be displayed with ethics and professionalism.
+
+Finally, we have seen that data visualisations have a certain meaning according to the type of figure used (i.e., Composition, Distribution, Comparison, and Relationship) and they have to be created following basic visualisation principles.
+
+### <span>&lt;i class="fas  fa-arrow-circle-right faa-horizontal animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> Now it's time to practice with Power BI
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. Power BI Context
+
+---
+
+# Context
+
+Power BI is a suite of Data Visualisation Software/Cloud-based Service: 
+
+- Developed and licensed by Microsoft
+- Appeared in 2011
+
+Power BI is said to be focusing on Business Intelligence but it really only is a **no-code** tool to create better visualisation than MS Excel does.
+
+Now part of the Microsoft **Azure** ecosystem made of cloud computing services (equivalent to AWS and Google Cloud).
+
+&lt;img src="https://media.makeameme.org/created/brace-yourself-power-597838.jpg" width="38%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: makeameme.org [🔗](https://media.makeameme.org/created/brace-yourself-power-597838.jpg)]
+
+---
+
+# Different Versions
+
+- Power BI Desktop 
+
+The **Windows OS** only software, primarily for designing and publishing reports to the Service.
+
+- Power BI Service
+
+The **SaaS-based** (software as a service) online service can be used from any web browser.
+
+- Power BI Premium
+
+Capacity-based offering that includes flexibility to publish reports broadly across an enterprise, without requiring recipients to be licensed individually per user. Greater scale and performance than shared capacity in the Power BI Service
+
+- Other Components
+
+Power BI Mobile Apps, Power BI Gateway, Power BI Embedded, Power BI Report Server, Power BI Visuals Marketplace
+
+---
+
+# DCU Access
+
+Student subscription to Microsoft 365 comes with Power BI Service
+
+.pull-left[
+To access it:
+
+1. Go to https://powerbi.microsoft.com
+3. Click on **Have an account? Sign in**
+2. Sign in with your DCU login and password
+]
+
+.pull-right[
+&lt;img src="img/powerbi_signin.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+You should land on the following welcome page.
+
+&lt;img src="img/powerbi_welcome.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Live Demo
+
+---
+
+class: inverse, mline, center, middle
+
+# 2. Power BI Basic Features
+
+---
+
+# Canvas Area
+
+Because we've opened a dashboard, the canvas area displays visualization tiles. If for example, we had opened the report editor, the canvas area would display a report page.
+
+Power BI is super polite and will welcome you in your organisation.
+
+It will also offer you a button **+ Report** which is a shortcut for the **+ Create** option from the menu. Both are the starting point for new visualisations
+
+&lt;img src="img/powerbi_create_shortcut.png" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Thank you for your greetings Power BI]
+---
+
+# Recommended and Recent
+
+You will also have a quick access to your previous work and to default official tutorials in case you are discovering the tool.
+
+These tutorials are strongly recommended if you want to progress with Power BI.
+
+&lt;img src="img/powerbi_recommended.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+The recent tab box allows you to have another quick access to your previous work.
+
+&lt;img src="img/powerbi_recent.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Naviagation Pane
+
+Always on the left side, it can be minimised with the hamburger menu button
+
+.left-column[
+&lt;img src="img/powerbi_menu.png" width="110%" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;br&gt;
+
+--
+
+- Will bring you back to the welcome page
+--
+
+- Shortcut to pinned Power BI activities
+--
+
+- Shortcut to your most recent Power BI activities
+--
+
+- The main access to create visualisations and dashboards
+--
+
+- List of the data you previously used with their settings
+--
+
+- Create and access "scorecards" (mini dashboards to track data)
+--
+
+- Connection to your organisation database and web services 
+--
+
+- Power BI activities that you haven't created but shared with you
+--
+
+- Shortcut to the [Microsoft learning platform for Power BI tutorials](https://docs.microsoft.com/en-us/learn/powerplatform/power-bi)
+--
+
+- Collaborative environment to design dashboard (Pro version only)
+--
+
+- List of created documents (dashboards, reports, workbooks, and datasets)
+
+---
+
+# Vocabulary
+
+- **Workspaces** are distinct servers (personal or shared) hosting dashboards, reports, workbooks, datasets, and dataflows.
+
+- **Dataflows** represent data prepared and staged for use by datasets to facilitate reporting
+
+- **Datasets** are collection of data that you import or connect to. Each listed dataset is a source of data available for one or more reports, and the dataset may contain data that comes from one or more sources. 
+
+- **Reports** are one or more pages of visualizations such as line charts, maps, and treemaps. All of the visualizations in a report come from a single dataset. By default, the report opens in Reading view. Just select Edit report to open it in Editing view (if you have the necessary permissions).
+
+- **Dashboards** are single canvas (i.e., screens)  that contains zero or more tiles and widgets. Each tile pinned from a report displays a single visualization that was created from a dataset. Entire report pages can also be pinned to a dashboard as a single tile. 
+
+- **Workbooks** are a special type of dataset when you use Get data. However, You can't edit your workbook in Power BI, you need to do it with MS Excel.
+
+---
+
+# Vocabulary
+
+&lt;img src="https://v1.nitrocdn.com/MmRYricBGnwFelNvIykEOHWwZuUwjnwj/assets/static/optimized/rev-169dd29/wp-content/uploads/2019/11/powerbi-diagram.png" width="80%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: How to Create Your First Power BI Dashboard (Step-by-Step) [🔗](https://spreadsheeto.com/power-bi-dashboard/)]
+
+---
+class: title-slide, middle
+
+## Live Demo
+
+### Go to: Get Data (Nav. Pane) -&gt; Sample -&gt; "Customer Profitability Sample" 
+
+### Go to: Learn (Nav. Pane) -&gt; "Artificial Intelligence Sample"
+
+---
+
+class: inverse, mline, center, middle
+
+# 3. Create New Visualisations
+
+---
+
+# Step 1: Manually Import Data
+
+.pull-left[
+In the module's Loop page:
+
+- Go to the **Lecture Data** tile and open the **organisation_alpha** file with MS Excel
+- Select the first table and copy it (Ctrl+C or Cmd+C)
+]
+
+.pull-right[
+&lt;img src="img/powerbi_excel_data.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left[
+In Power BI Service:
+
+- Click **Create** and **Paste or manually enter data**
+- Click in the empty table (except in the Cell 1 Column 1) and paste the table (Ctrl+V or Cmd+V)
+- Click on **Use first row as headers** only once
+]
+
+.pull-right[
+&lt;img src="img/powerbi_enter_data.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Step 1: Manually Import Data
+
+&lt;img src="img/powerbi_data_input.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+Then choose between:
+
+- Auto create report
+- Create a blank report
+- Create a dataset only
+
+Note: In Power BI, if you click directly in the empty cell, all the data will be pasted in this cell.
+
+---
+
+# Step 2: Create a Report
+
+&lt;img src="img/powerbi_create.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+In Power BI canvas: 
+
+1. Choose the visualisation (i.e., composition, distribution, comparison, relationship)
+
+2. Choose the variable(s) by unfolding the list ( `\(\Sigma\)` indicates continuous variables)
+
+3. Drag and drop the variables in the relevant fields and customise the features
+
+---
+
+# Variable Type and Visualisations
+
+&lt;img src="img/powerbi_visualisations.png" width="20%" style="display: block; margin: auto;" /&gt;
+
+Remember, there is a type of visualisation for each type of variables:
+
+- **Composition** (i.e. bar/column and pie charts) for **1 categorical variable**
+
+- **Distribution** (i.e. histogram, density, box plot and dynamite charts) for **1 continuous variable**
+
+- **Comparison** for **2 categorical variables** or for **1 categorical variable and 1 continuous variable**
+
+- **Relationship** (i.e. scatterplot with regression line) for **2 continuous variables**
+
+---
+class: title-slide, middle
+
+## Composition
+
+---
+
+# Composition in Power BI
+
+&lt;img src="img/powerbi_composition_1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Composition in Power BI
+
+&lt;img src="img/powerbi_composition_2.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Composition in Power BI
+
+&lt;img src="img/powerbi_composition_3.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Distribution and Comparison
+
+---
+
+# Distribution and Comparison in Power BI
+
+Distribution visualisation are based on specific calculations to aggregate the data in order to obtain:
+
+- Histograms
+- Density plots
+- Box plots
+- Dynamite plots
+
+Unfortunately, Power BI is extremely limited for those.
+
+- Density plots are unavailable
+- Histograms and box plots are available only with add-on visuals (most of them are free)
+- Dynamite plots are partly available (average bar without SD whiskers)
+
+---
+
+# Distribution and Comparison in Power BI
+
+&lt;img src="img/powerbi_distribution_1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Distribution and Comparison in Power BI
+
+&lt;img src="img/powerbi_distribution_2.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Relationship
+
+---
+
+# Relationship in Power BI
+
+The scatterplot is the best way to display the relationship between 2 continuous variables ( `\(\Sigma\)`  variables in the list of fields)
+
+However, it is essential to use **Don't summarize** for both axes instead of the default Sum for aggregation
+
+A trend line can be added from the **Analytics** option.
+
+---
+
+# Relationship in Power BI
+
+&lt;img src="img/powerbi_relationship.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Additional Visualisations: Timeseries and Maps
+
+---
+# Timeseries and Maps in Power BI
+
+While Categorical and Continuous are the two most common types of variable, they are not the only ones.
+
+Timeseries and Maps require each a new type of variable:
+
+- Dates for timeseries
+- Geographic information for maps (locations or longitude/latitude)
+
+Multiple additional types of visualisation are available in Power BI. Their added value can vary but the if you are able to explain them then don't hesitate to use them.
+
+&lt;img src="https://powerbicdn.azureedge.net/cvt-9394a7615e76e3565238e1688022efbee201671e2cbb78c8d1b1df694b985908/pictures/pages/index/blade2/powerbi-001.jpg" width="60%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Microsoft Corp. [🔗](https://powerbi.microsoft.com)]
+
+---
+# Timeseries and Maps in Power BI
+
+&lt;img src="img/powerbi_map.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, mline, center, middle
+
+# 4. Dashboards with Power BI
+
+---
+
+# Dashboards with Power BI
+
+Dashboards are obtained by **Pinning specific visualisations from one or multiple reports**
+
+&lt;img src="https://zebrabi.com/wp-content/uploads/2020/04/2020-04-22_13-53-06.jpg.webp" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: The Most Effective Power BI Dashboard Tips and Tricks [🔗](https://zebrabi.com/top-power-bi-dashboard-tips-and-tricks/)]
+
+---
+
+class: inverse, mline, center, middle
+
+# 5. Power BI Practice
+
+---
+
+# Titanic Dataset
+
+&lt;img src="http://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,f_auto,h_2000,q_90,w_1200/107158/Screen_Shot_2015-08-03_at_1.57.45_AM_ibp1u8.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+Variables:
+- Survival (0 = No; 1 = Yes)
+- Passenger Class (1st; 2nd; 3rd)
+- Name, Sex, Age, Cabin
+- sibsp - Nb of Siblings/Spouses Aboard
+- parch - Nb of Parents/Children Aboard
+- ticket - Ticket Number
+- fare - Passenger Fare
+- embarked - Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)
+
+---
+class: title-slide, middle
+
+## From the loop page, use the data in the Titanic.csv file to create a report in Power BI
+
+Remember to use texts and titles to convey your narrative.
+
+<div class="countdown" id="timer_620194e0" style="right:0;bottom:0;" data-warnwhen="60">
+<code class="countdown-time"><span class="countdown-digits minutes">20</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+class: inverse, mline, left, middle
+
+&lt;img class="circle" src="https://github.com/damien-dupre.png" width="250px"/&gt;
+
+# Thanks for your attention and don't hesitate to ask if you have any question!
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/cols_macro.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "zenburn",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
