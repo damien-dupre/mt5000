@@ -299,8 +299,6 @@ Then choose between:
 - Create a blank report
 - Create a dataset only
 
-Note: In Power BI, if you click directly in the empty cell, all the data will be pasted in this cell.
-
 ---
 
 # Step 2: Create a Report
@@ -338,11 +336,11 @@ Remember, there is a type of visualisation for each type of variables:
 ---
 class: title-slide, middle
 
-## Composition
+## Composition Figures
 
 ---
 
-# Composition in Power BI
+# Composition Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_composition_1.png")
@@ -350,7 +348,7 @@ include_graphics("img/powerbi_composition_1.png")
 
 ---
 
-# Composition in Power BI
+# Composition Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_composition_2.png")
@@ -358,7 +356,7 @@ include_graphics("img/powerbi_composition_2.png")
 
 ---
 
-# Composition in Power BI
+# Composition Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_composition_3.png")
@@ -367,11 +365,11 @@ include_graphics("img/powerbi_composition_3.png")
 ---
 class: title-slide, middle
 
-## Distribution and Comparison
+## Distribution and Comparison Figures
 
 ---
 
-# Distribution and Comparison in Power BI
+# Distribution and Comparison Figures
 
 Distribution visualisation are based on specific calculations to aggregate the data in order to obtain:
 
@@ -388,7 +386,7 @@ Unfortunately, Power BI is extremely limited for those.
 
 ---
 
-# Distribution and Comparison in Power BI
+# Distribution and Comparison Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_distribution_1.png")
@@ -396,7 +394,7 @@ include_graphics("img/powerbi_distribution_1.png")
 
 ---
 
-# Distribution and Comparison in Power BI
+# Distribution and Comparison Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_distribution_2.png")
@@ -405,11 +403,11 @@ include_graphics("img/powerbi_distribution_2.png")
 ---
 class: title-slide, middle
 
-## Relationship
+## Relationship Figures
 
 ---
 
-# Relationship in Power BI
+# Relationship Figures
 
 The scatterplot is the best way to display the relationship between 2 continuous variables ( $\Sigma$  variables in the list of fields)
 
@@ -419,7 +417,7 @@ A trend line can be added from the **Analytics** option.
 
 ---
 
-# Relationship in Power BI
+# Relationship Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_relationship.png")
@@ -431,7 +429,7 @@ class: title-slide, middle
 ## Additional Visualisations: Timeseries and Maps
 
 ---
-# Timeseries and Maps in Power BI
+# Timeseries and Maps Figures
 
 While Categorical and Continuous are the two most common types of variable, they are not the only ones.
 
@@ -448,7 +446,7 @@ include_graphics("https://powerbicdn.azureedge.net/cvt-9394a7615e76e3565238e1688
 .center.tiny[Source: Microsoft Corp. [`r emo::ji("link")`](https://powerbi.microsoft.com)]
 
 ---
-# Timeseries and Maps in Power BI
+# Timeseries and Maps Figures
 
 ```{r out.width='100%'}
 include_graphics("img/powerbi_map.png")
@@ -498,9 +496,11 @@ Variables:
 ---
 class: title-slide, middle
 
-## From the loop page, use the data in the Titanic.csv file to create a report in Power BI
+## From the loop page, use **titanic.csv** to create a report in Power BI
 
-Remember to use texts and titles to convey your narrative.
+Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
+
+Remember to **use titles**, to **customise them** and to **add a text** to convey your narrative
 
 ```{r}
 countdown(minutes = 20, warn_when = 60)
