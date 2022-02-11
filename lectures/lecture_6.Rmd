@@ -1,0 +1,576 @@
+---
+title: "MT5000 - Data Analytics & Visualization"
+subtitle: "Lecture 6: Introduction to Tableau"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "libs/cols_macro.js"
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# libraries --------------------------------------------------------------------
+library(countdown)
+library(knitr)
+
+# general options --------------------------------------------------------------
+options(
+  scipen = 999,
+  htmltools.preserve.raw = FALSE,
+  knitr.kable.NA = " - "
+  )
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+opts_chunk$set(
+  cache.extra = rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+```
+
+# Previoulsy ...
+
+We have seen how to use Power BI for basic Reports and Dashboards
+
+Now is the time to learn a much **more powerful** and much **more complicated** tool... 
+
+```{r out.width='40%'}
+include_graphics("https://unilytics.com/wp-content/uploads/2017/02/challenge-accepted.png")
+```
+
+...Welcome to **Tableau**!
+
+---
+class: inverse, mline, center, middle
+
+# 1. Around Tableau
+
+---
+
+# What is Tableau?
+
+Tableau Software is an interactive data visualization software company focused on business intelligence:
+
+- Created in 2003
+- Acquired by Salesforce 2019
+
+Tableau is a set of different product which aims to create interactive data visualisation dashboard.
+
+Among these product, you will find:
+
+- **Tableau Prep** (dedicated to cleaning data - no use here)
+- **Tableau Desktop** (the main software - not free but can be access with a student license)
+- **Tableau Public** (exact same a Tableau Desktop but free and the only way to save your work is by publishing dashboard online)
+- **Tableau Server & Tableau Online** (alternative to Tableau Desktop without local installation)
+
+---
+
+# How to Install Tableau Desktop?
+
+If you have a Windows, MacOs, or Linux:
+
+1. Go to https://www.tableau.com/products/desktop/download
+2. Fill the form with your DCU email address
+3. Click Download Free Trial (A license will be provided to use it September)
+
+```{r out.width='60%'}
+include_graphics("https://data-flair.training/blogs/wp-content/uploads/sites/2/2019/11/enter-business-email-1.png")
+```
+
+Note: Tableau is currently not supporting Chromebooks. Users of Chromebooks will have to use Tableau on the DCU computer labs or Tableau Online to do their assignment.
+
+---
+
+# How to Install Tableau Desktop?
+
+Once Tableau Desktop is downloaded, install it, then:
+
+1. Click **Activate**
+2. On the form, enter your **school email address** for Business E-mail and enter the **name of your school** for Organization.
+3. Activate with your **product key that you have received by email** (valid until September)
+
+.center[
+```{r out.width='60%'}
+include_graphics("https://cdns.tblsft.com/sites/default/files/blog/pasted_image_0_14.png")
+```
+]
+
+Already have a copy of Tableau Desktop installed? Update your license in the application: Help menu → Manage Product Keys
+
+---
+class: inverse, mline, center, middle
+
+# 2. Tableau Overview
+
+---
+
+# Tableau in a Nutshell
+
+Tableau is very similar to Power BI but it actually simpler in its structure (but the visualisation capabilities are more complex):
+
+There are 5 types of areas:
+
+- **Start Page** is where you connect your data
+- **Data Source** is where you check the type of variables and where you can do basic transformations
+- **Worksheet** is where you build each individual visualisation (1 worksheet per visualisation)
+- **Dashboard** is where you combine all the visualisations in 1 interactive page
+- **Story** is where you create interactive presentation with multiple slides (no use here)
+
+---
+
+# Tableau Start Page
+
+```{r out.width='100%'}
+include_graphics("img/image86.png")
+```
+
+---
+
+# Tableau Data Source
+
+```{r out.width='100%'}
+include_graphics("img/image87.png")
+```
+
+---
+
+# Tableau Worksheet
+
+```{r out.width='100%'}
+include_graphics("img/image88.png")
+```
+
+---
+
+# Tableau Dashboard
+
+```{r out.width='100%'}
+include_graphics("img/image89.png")
+```
+
+---
+
+# Tableau Story 
+
+```{r out.width='100%'}
+include_graphics("img/image90.png")
+```
+
+---
+
+# Principles
+
+Tableau is only about:
+- Dragging & dropping from variable list to plot (no-code software)
+- Selecting the right data summary
+- Creating independent figures and organising them on a page
+
+```{r out.width='40%'}
+include_graphics("https://i.redd.it/31zkb6zzn8f21.jpg")
+```
+
+---
+class: inverse, mline, center, middle
+
+# 3. Connect Data in Tableau
+
+---
+
+# Stand Alone or Auto Update?
+
+Without being too complicated, there is two major ways to connect data in Tableau:
+- Stand alone is a single file which won't be modified
+- Auto update is a cloud hosted file or a database that can be modified. The dashboard will update its values automatically (e.g., [Covid Dashboards](https://public.tableau.com/en-us/s/covid-19-viz-gallery))
+
+.pull-left[
+**Stand Alone Connection** made with a file type .csv, .xls, .xlsx, .json, ...
+]
+.pull-right[
+```{r out.width='90%'}
+include_graphics("https://miro.medium.com/max/1400/1*HXXjA2dvTwg7DKL_TMXGHw.jpeg")
+```
+]
+.pull-left[
+**Auto Update Connection** made with a cloud hosted file type google sheet, dropbox, onedrive, ... or made with a database type SQL
+]
+.pull-right[
+```{r out.width='90%'}
+include_graphics("https://www.guru99.com/images/tableau/060818_0511_TableauConn1.jpg")
+```
+]
+
+---
+
+# Stand Alone or Auto Update?
+
+More details about Tableau data connection possibilities with the following contents among others found online:
+
+- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/guides/everybody-install/en-us/everybody_admin_data.htm)
+- [Tableau Data Connections to Databases and Multiple Sources by Guru 99](https://www.guru99.com/tableau-data-connections.html)
+- [Types of Tableau Data Sources with Connection Establishment Process by Data Flair](https://data-flair.training/blogs/tableau-data-sources/)
+
+```{r out.width='60%'}
+include_graphics("img/bobross_connection.jpg")
+```
+
+.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
+
+---
+class: title-slide, middle
+
+## Live Examples
+
+
+---
+class: inverse, mline, center, middle
+
+# 4. Understand the Worksheet
+
+---
+
+# Variable List Tab
+
+.pull-left[
+```{r out.width='50%'}
+include_graphics("img/image91.png")
+```
+]
+
+.pull-right[
+**Dimensions = Categorical Variables**
+
+- Made of character string (most of the time)
+- Can be numeric if refers to an ID
+
+**Measures = Continuous Variables**
+
+- Made of numbers
+- Special cases of **Measure Names**, **Measure Values**, and *tablename(Count)*
+]
+
+---
+
+# Analytics Tab
+
+.pull-left[
+```{r out.width='50%'}
+include_graphics("img/image92.png")
+```
+]
+
+.pull-right[
+Special features behind the Data Tab:
+
+- Box Plot
+- Median and Quartiles
+- Average
+- Regression Line (Trend Line)
+]
+
+---
+
+# Plot Configuration
+
+.pull-left[
+```{r out.width='100%'}
+include_graphics("img/image93.png")
+```
+]
+
+.pull-right[
+Equivalent to Excel Pivot Table but for visualisations
+
+- **Columns** = X axis
+- **Rows** = Y axis
+- **Pages** = 1 plot per values (categories)
+- **Filters** = Keep specific values
+- **Marks** = Design of representation
+  - Colors
+  - Size
+  - Texts
+  - ...
+]
+
+---
+
+# Show Me: Additional Design
+
+.pull-left[
+```{r out.width='50%'}
+include_graphics("img/image94.png")
+```
+]
+
+.pull-right[
+- Tables
+- Maps
+- Histograms
+- Pie charts
+- Line charts
+- Bar charts
+- Scatterplots
+- Box plots
+- ...
+]
+
+---
+
+# Aggregation Method
+
+.pull-left[
+- For Measures only (continuous variable)
+- Possibilities:
+  - Dimensions (raw data)
+  - Measure
+    - COUNT
+    - AVERAGE
+    - STD
+    - ...
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/image95.png")
+```
+]
+
+---
+class: inverse, mline, center, middle
+
+# 5. Master the Key Figures
+
+---
+
+# Variable Type and Visualisations
+
+.left-column[
+```{r out.width='100%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/showme3.png")
+```
+]
+
+.right-column[
+Remember, there is a type of visualisation for each type of variables:
+
+- **Composition** (i.e. bar/column and pie charts) for **1 Dimension** (i.e., categorical variable)
+
+- **Distribution** (i.e. histogram, density, box plot and dynamite charts) for **1 Measure** (i.e., continuous variable)
+
+- **Comparison** for **2 Dimensions** or for **1 Dimension** and **1 Measure**
+
+- **Relationship** (i.e. scatterplot with regression line) for **2 Measures**
+]
+
+
+---
+class: title-slide, middle
+
+## Composition Figures
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_composition_1.png")
+```
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_composition_2.png")
+```
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_composition_3.png")
+```
+
+---
+class: title-slide, middle
+
+## Distribution Figures
+
+---
+
+# Distribution Figures
+
+Like for Power BI, Tableau is lacking some distribution figures:
+
+- Histograms are fully implemented by default
+- Density plots are not possible
+- Box plots are fully implemented by default
+- Dynamite plots can be done with average bar chart but without error bars
+
+```{r out.width='100%'}
+include_graphics("https://preview.redd.it/0esbxbu1tpg61.jpg?width=640&crop=smart&auto=webp&s=9340f0f2c8d9a8a6286bceaa88314b6ae5bbebb4")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_distribution_1.png")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_distribution_2.png")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_distribution_3.png")
+```
+
+---
+class: title-slide, middle
+
+## Comparison Figures
+
+---
+
+# Comparison Figures
+
+Comparison Figures can be easily done by adding "Dimension" as colour, column or row variable to any of the previous figures:
+
+- Bar/Pie charts using CNT aggregation
+- Histograms
+- Box plots
+- Bar charts with AVG aggregation
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_1.png")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_2.png")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_3.png")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_4.png")
+```
+
+---
+class: title-slide, middle
+
+## Relationship Figures
+
+---
+
+# Relationship Figures
+
+The scatterplot is the best way to display the relationship between 2 **Measure** variables
+
+However, it is essential to use the **Dimension** option from both axes menu instead of the default Sum for aggregation
+
+A trend line can be added from the **Analytics** option.
+
+---
+
+# Relationship Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_relationship_1.png")
+```
+
+---
+
+# Relationship Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_relationship_2.png")
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 6. Tableau Practice
+
+---
+
+# Titanic Dataset
+
+```{r out.width='100%'}
+include_graphics("http://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,f_auto,h_2000,q_90,w_1200/107158/Screen_Shot_2015-08-03_at_1.57.45_AM_ibp1u8.png")
+```
+
+Variables:
+- Survival (0 = No; 1 = Yes)
+- Passenger Class (1st; 2nd; 3rd)
+- Name, Sex, Age, Cabin
+- sibsp - Nb of Siblings/Spouses Aboard
+- parch - Nb of Parents/Children Aboard
+- ticket - Ticket Number
+- fare - Passenger Fare
+- embarked - Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)
+
+---
+class: title-slide, middle
+
+## From the loop page, use **titanic.csv** to create a report in Tableau
+
+Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
+
+Remember to **use titles**, to **customise them** and to **add a text** to convey your narrative
+
+```{r}
+countdown(minutes = 20, warn_when = 60)
+```
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your attention and don't hesitate to ask if you have any question!
+
+[`r fontawesome::fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
+[`r fontawesome::fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
+[`r fontawesome::fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[`r fontawesome::fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
