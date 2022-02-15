@@ -16,6 +16,7 @@ output:
 
 ```{r setup, include = FALSE}
 # libraries --------------------------------------------------------------------
+library(anicon)
 library(countdown)
 library(knitr)
 
@@ -89,7 +90,7 @@ If you have a Windows, MacOs, or Linux:
 include_graphics("https://data-flair.training/blogs/wp-content/uploads/sites/2/2019/11/enter-business-email-1.png")
 ```
 
-Note: Tableau is currently not supporting Chromebooks. Users of Chromebooks will have to use Tableau on the DCU computer labs or Tableau Online to do their assignment.
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Tableau Desktop is currently **not supporting Chromebooks**. Users of Chromebooks will have to use **Tableau Public** (free online) or even **Tableau Online** (free 14 days trial) or to use **Tableau Desktop at the DCU computer labs** to do their assignment.
 
 ---
 
@@ -108,6 +109,19 @@ include_graphics("https://cdns.tblsft.com/sites/default/files/blog/pasted_image_
 ]
 
 Already have a copy of Tableau Desktop installed? Update your license in the application: Help menu → Manage Product Keys
+
+---
+
+# How to Use Tableau Public
+
+1. Go to https://public.tableau.com
+2. Sign in
+3. Enjoy full features of Tableau Desktop (except saving file, only public publication online)
+
+```{r out.width='50%'}
+include_graphics("https://images.squarespace-cdn.com/content/v1/56fd706140261df95349d4bd/1491286584380-1EJ0MIIAE8Q2OO2UK04M/image-asset.jpeg?format=1500w")
+```
+.center.tiny[Source: How I Came to Choose One out of Sixty Two Data Visualizations [`r emo::ji("link")`](https://www.doingdata.org/)]
 
 ---
 class: inverse, mline, center, middle
@@ -553,7 +567,7 @@ Variables:
 ---
 class: title-slide, middle
 
-## From the loop page, use **titanic.csv** to create a report in Tableau
+## From the loop page, use **titanic.csv** to create a Tableau Dashboard
 
 Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
 
