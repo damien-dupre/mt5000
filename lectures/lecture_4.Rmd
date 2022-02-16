@@ -43,6 +43,16 @@ opts_chunk$set(
   fig.align = "center", 
   fig.retina = 3
   )
+# functions --------------------------------------------------------------------
+integer_breaks <- function(n = 5, ...) {
+  fxn <- function(x) {
+    breaks <- floor(pretty(x, n, ...))
+    names(breaks) <- attr(breaks, "labels")
+    breaks
+  }
+  return(fxn)
+}
+
 # data -------------------------------------------------------------------------
 organisation_alpha <- readxl::read_xlsx(here("data/organisation_alpha.xlsx"))
 ```
@@ -80,7 +90,11 @@ It is time to look at your Data!
 
 `r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Variables can be converted to either Categorical and Continuous but it is always better to keep them in their correct scale.
 
-> Example, Likert item (Opinion question from disagree to agree) are Categorical Ordinal but are analysed as Continuous.
+Example:
+
+> Likert items (opinion question from disagree to agree) are Categorical Ordinal but are analysed as Continuous.
+
+> Gender item (male vs. female) is Categorical Nominal but can be recoded as 1 and 2 to be analysed with Continuous calculations.
 
 ---
 class: title-slide, middle
@@ -142,7 +156,7 @@ countdown(minutes = 3)
 # Guess Variable Type - Exercise (2)
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image5.png")
+include_graphics("img/viz_exercise_1.png")
 ```
 
 ```{r}
@@ -170,7 +184,7 @@ countdown(minutes = 2)
 # Guess Variable Type - Solution (2)
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image5.png")
+include_graphics("img/viz_exercise_1.png")
 ```
 
 ```{r}
@@ -215,7 +229,7 @@ include_graphics("https://i0.wp.com/flowingdata.com/wp-content/uploads/2017/09/F
 # Master the Key Figures
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image6.jpeg")
+include_graphics("img/viz_key_figures_1.jpeg")
 ```
 
 ---
@@ -249,6 +263,9 @@ The main interest of Figure is their ability to ... aggregate data to meaningful
 This **aggregation**, is done with basic statistical calculations:
 
 .pull-left[
+
+<br>
+
 ```{r}
   tribble(
     ~`Student Number`, ~Group, ~Mark,
@@ -263,6 +280,7 @@ This **aggregation**, is done with basic statistical calculations:
   kable()
 ```
 ]
+
 .pull-right[
 - **Count**
   - Group A = 4 students
@@ -284,7 +302,7 @@ This **aggregation**, is done with basic statistical calculations:
 # Zoom on Median/Quartiles
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image17.png")
+include_graphics("img/viz_med_quartiles_1.png")
 ```
 
 ---
@@ -292,11 +310,11 @@ include_graphics("img/media_lecture_3/image17.png")
 # Zoom on Median/Quartiles
 
 ```{r out.width='50%'}
-include_graphics("img/media_lecture_3/image18.png")
+include_graphics("img/viz_med_quartiles_2.png")
 ```
 
 ```{r out.width='50%'}
-include_graphics("img/media_lecture_3/image19.png")
+include_graphics("img/viz_med_quartiles_3.png")
 ```
 
 ---
@@ -321,7 +339,7 @@ $$Y = b0 + b1\,X + e$$
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image42.png")
+include_graphics("img/viz_correlation_1.png")
 ```
 ]
 .pull-right[
@@ -345,7 +363,7 @@ Correlation is a value **from -1 to +1** which indicate the strength and directi
 Examples:
 
 ```{r out.width='70%'}
-include_graphics("img/media_lecture_3/image43.png")
+include_graphics("img/viz_correlation_2.png")
 ```
 
 ---
@@ -383,14 +401,19 @@ class: title-slide, middle
 ```{r fig.height=3.5, out.width='100%'}
 ggplot(organisation_alpha, aes(gender)) +
   geom_bar(stat = "count") +
-  theme_bw()
+  scale_y_continuous(breaks = integer_breaks()) +
+  theme_bw() + 
+  theme(text = element_text(size = 20))  
 ```
 ]
+
 .pull-right[
 ```{r fig.height=3.5, out.width='100%'}
 ggplot(organisation_alpha, aes(location)) +
   geom_bar(stat = "count") +
-  theme_bw()
+  scale_y_continuous(breaks = integer_breaks()) +
+  theme_bw() + 
+  theme(text = element_text(size = 20))  
 ```
 ]
 
@@ -403,7 +426,8 @@ organisation_alpha |>
   ggplot(aes(x = "", y = n , fill = gender)) +
   geom_bar(stat = "identity") +
   coord_polar("y") +
-  theme_void()
+  theme_void() + 
+  theme(text = element_text(size = 20))
 ```
 ]
 .pull-right[
@@ -412,7 +436,10 @@ ggplot(organisation_alpha, aes(x = location, fill = location)) +
   geom_bar(stat = "count", aes(y = (..count..)/sum(..count..))) +
   scale_y_continuous("proportion", labels = scales::percent) +
   theme_bw() +
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none",
+    text = element_text(size = 20)
+  )
 ```
 ]
 
@@ -423,13 +450,13 @@ ggplot(organisation_alpha, aes(x = location, fill = location)) +
 Use pie charts when the variable has only to categories:
 
 ```{r out.width='50%'}
-include_graphics("img/media_lecture_3/image11.jpeg")
+include_graphics("img/viz_piechart_1.jpeg")
 ```
 
 If your variable has more than 2 categories then use bar chart:
 
 ```{r out.width='50%'}
-include_graphics("img/media_lecture_3/image12.jpeg")
+include_graphics("img/viz_piechart_2.jpeg")
 ```
 
 See: https://depictdatastudio.com/when-pie-charts-are-okay-seriously-guidelines-for-using-pie-and-donut-charts/
@@ -448,32 +475,37 @@ class: title-slide, middle
 ```{r fig.width=2.7, fig.align='default'}
 ggplot(organisation_alpha, aes(salary_2019)) +
   geom_histogram(bins = 10) +
-  theme_bw() +
   labs(x = "Salary", y = "Count by Bin Range") +
-  coord_flip()
+  coord_flip() + 
+  theme_bw() +
+  theme(text = element_text(size = 20))  
 
 ggplot(organisation_alpha, aes(salary_2019)) +
   geom_density() +
-  theme_bw() +
   labs(x = "Salary", y = "Proportion by Bin Range") +
-  coord_flip()
+  coord_flip() + 
+  theme_bw() +
+  theme(text = element_text(size = 20))  
 
 ggplot(organisation_alpha, aes(salary_2019)) +
   geom_boxplot() +
-  theme_bw() +
   labs(x = "Salary", y = NULL) +
+  coord_flip() + 
+  theme_bw() +
   theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
-    axis.ticks.x = element_blank()
-  ) +
-  coord_flip()
+    axis.ticks.x = element_blank(),
+    text = element_text(size = 20)
+  )
 
 ggplot(organisation_alpha, aes(x = "", y = salary_2019)) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar") + 
   stat_summary(fun = "mean", geom = "bar") +
+  scale_y_continuous(limits = c(0, 50000)) +
+  labs(x = NULL, y = "Salary") + 
   theme_bw() +
-  labs(x = NULL, y = "Salary")
+  theme(text = element_text(size = 20))  
 ```
 
 ---
@@ -490,11 +522,15 @@ Count of different values
 ```{r fig.height=3, fig.width=5, fig.align='default'}
 ggplot(organisation_alpha, aes(location, fill = gender)) +
   geom_bar(stat = "count") +
-  theme_bw()
+  labs(title = "Stacked Position Barplot") +
+  theme_bw() + 
+  theme(text = element_text(size = 20))  
 
 ggplot(organisation_alpha, aes(location, fill = gender)) +
   geom_bar(position = "dodge", stat = "count") +
-  theme_bw()
+  labs(title = "Dodged Position Barplot") +
+  theme_bw() + 
+  theme(text = element_text(size = 20))  
 ```
 ]
 
@@ -502,9 +538,10 @@ Proportion of different values
 .center[
 ```{r fig.height=3, fig.width=5, fig.align='default'}
 ggplot(organisation_alpha, aes(location, fill = gender)) +
-  geom_bar(position="fill", stat="count") +
+  geom_bar(position = "fill", stat = "count") +
   scale_y_continuous("proportion", labels = scales::percent) +
-  theme_bw()
+  theme_bw() + 
+  theme(text = element_text(size = 20))  
 ```
 ]
 
@@ -517,16 +554,26 @@ Count of different values according Categories
 ```{r out.width='50%', fig.align='default'}
 ggplot(organisation_alpha, aes(salary_2019, fill = gender)) +
   geom_histogram(bins = 10) +
+  labs(
+    title = "Stacked Position Histogram",
+    x = "Salary", 
+    y = "Count by Bin Range"
+  ) +
+  coord_flip() + 
   theme_bw() +
-  labs(x = "Salary", y = "Count by Bin Range") +
-  coord_flip()
+  theme(text = element_text(size = 20))  
 
 ggplot(organisation_alpha, aes(salary_2019, fill = gender)) +
   geom_histogram(bins = 10) +
-  theme_bw() +
   facet_wrap(gender ~ .) +
-  labs(x = "Salary", y = "Count by Bin Range") +
-  coord_flip()
+  labs(
+    title = "Dodged Position Histogram",
+    x = "Salary", 
+    y = "Count by Bin Range"
+  ) +
+  coord_flip() + 
+  theme_bw() +
+  theme(text = element_text(size = 20))  
 ```
 
 ---
@@ -538,16 +585,26 @@ Density of different values according Categories
 ```{r out.width='50%', fig.align='default'}
 ggplot(organisation_alpha, aes(salary_2019, fill = gender, color = gender)) +
   geom_density() +
+  labs(
+    title = "Stacked Position Density Plot",
+    x = "Salary", 
+    y = "Proportion by Bin Range"
+  ) +
+  coord_flip() + 
   theme_bw() +
-  labs(x = "Salary", y = "Proportion by Bin Range") +
-  coord_flip()
+  theme(text = element_text(size = 20))  
 
 ggplot(organisation_alpha, aes(salary_2019, fill = gender, color = gender)) +
   geom_density() +
-  theme_bw() + 
   facet_wrap(gender ~ .) +
-  labs(x = "Salary", y = "Proportion by Bin Range") +
-  coord_flip()
+  labs(
+    title = "Dodged Position Density Plot",
+    x = "Salary", 
+    y = "Proportion by Bin Range"
+  ) +
+  coord_flip() + 
+  theme_bw() + 
+  theme(text = element_text(size = 20))  
 ```
 
 ---
@@ -559,25 +616,27 @@ Median/Quartiles according Categories
 ```{r out.width='50%', fig.align='default'}
 ggplot(organisation_alpha, aes(salary_2019, color = gender)) +
   geom_boxplot() +
-  theme_bw() +
   labs(x = "Salary", y = NULL) +
+  coord_flip() +
+  theme_bw() +
   theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
-    axis.ticks.x = element_blank()
-  ) +
-  coord_flip()
+    axis.ticks.x = element_blank(),
+    text = element_text(size = 20)
+  )
 
 ggplot(organisation_alpha, aes(salary_2019, "", color = gender)) +
   geom_violin() +
   theme_bw() +
   labs(x = "Salary", y = NULL) +
+  coord_flip() + 
   theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
-    axis.ticks.x = element_blank()
-  ) +
-  coord_flip()
+    axis.ticks.x = element_blank(),
+    text = element_text(size = 20)
+  )
 ```
 
 ---
@@ -590,8 +649,9 @@ Mean/Standard Deviation according Categories
 ggplot(organisation_alpha, aes(x = gender, y = salary_2019, fill = gender)) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar") + 
   stat_summary(fun = "mean", geom = "bar") +
+  labs(x = NULL, y = "Salary") + 
   theme_bw() +
-  labs(x = NULL, y = "Salary")
+  theme(text = element_text(size = 20))  
 ```
 
 ---
@@ -603,16 +663,41 @@ class: title-slide, middle
 
 # RELATIONSHIP - Continuous/Continuous
 
-```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image38.png")
-include_graphics("img/media_lecture_3/image39.png")
+```{r fig.height=3, fig.width=5, fig.align='default'}
+ggplot(organisation_alpha, aes(age, salary_2019)) +
+  geom_point() +
+  labs(x = "Age", y = "Salary") +
+  theme_bw() +
+  theme(text = element_text(size = 20)) 
+
+ggplot(organisation_alpha, aes(age, salary_2019)) +
+  geom_smooth(method = "lm") +
+  geom_point() +
+  labs(x = "Age", y = "Salary") +
+  theme_bw() +
+  theme(text = element_text(size = 20)) 
 ```
 
 Continuous X Continuous X Categorical
 
-```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image40.png")
-include_graphics("img/media_lecture_3/image41.png")
+```{r fig.height=3, fig.width=5, fig.align='default'}
+ggplot(organisation_alpha, aes(age, salary_2019, color = gender)) +
+  geom_smooth(method = "lm") +
+  geom_point() +
+  labs(x = "Age", y = "Salary") +
+  theme_bw() +
+  theme(text = element_text(size = 20)) 
+
+ggplot(organisation_alpha, aes(age, salary_2019, color = gender)) +
+  geom_smooth(method = "lm") +
+  geom_point() +
+  facet_wrap(~ gender) +
+  labs(x = "Age", y = "Salary") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 20)
+  ) 
 ```
 
 ---
@@ -626,7 +711,7 @@ class: inverse, mline, center, middle
 # Master the Key Figures
 
 ```{r out.width='70%'}
-include_graphics("img/media_lecture_3/image44.jpeg")
+include_graphics("img/viz_key_figures_2.jpeg")
 ```
 
 ---
@@ -645,7 +730,7 @@ include_graphics("img/media_lecture_3/image44.jpeg")
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image45.png")
+include_graphics("img/viz_custom.png")
 ```
 ]
 
@@ -811,7 +896,7 @@ Provides basic principles for data visualisation
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image56.png")
+include_graphics("img/dataviz_principle_1.png")
 ```
 ]
 
@@ -823,13 +908,13 @@ include_graphics("img/media_lecture_3/image56.png")
 
 .center[
 ```{r out.width='45%', fig.align='default'}
-include_graphics("img/media_lecture_3/image57.png")
-include_graphics("img/media_lecture_3/image58.png")
+include_graphics("img/dataviz_principle_2.png")
+include_graphics("img/dataviz_principle_3.png")
 ```
 
 ```{r out.width='45%', fig.align='default'}
-include_graphics("img/media_lecture_3/image59.png")
-include_graphics("img/media_lecture_3/image60.png")
+include_graphics("img/dataviz_principle_4.png")
+include_graphics("img/dataviz_principle_5.png")
 ```
 ]
 
@@ -841,8 +926,8 @@ include_graphics("img/media_lecture_3/image60.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image61.png")
-include_graphics("img/media_lecture_3/image62.png")
+include_graphics("img/dataviz_principle_6.png")
+include_graphics("img/dataviz_principle_7.png")
 ```
 ]
 
@@ -854,8 +939,8 @@ include_graphics("img/media_lecture_3/image62.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image63.png")
-include_graphics("img/media_lecture_3/image64.png")
+include_graphics("img/dataviz_principle_8.png")
+include_graphics("img/dataviz_principle_9.png")
 ```
 ]
 
@@ -867,8 +952,8 @@ include_graphics("img/media_lecture_3/image64.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image65.png")
-include_graphics("img/media_lecture_3/image66.png")
+include_graphics("img/dataviz_principle_10.png")
+include_graphics("img/dataviz_principle_11.png")
 ```
 ]
 
@@ -880,8 +965,8 @@ include_graphics("img/media_lecture_3/image66.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image67.png")
-include_graphics("img/media_lecture_3/image68.png")
+include_graphics("img/dataviz_principle_12.png")
+include_graphics("img/dataviz_principle_13.png")
 ```
 ]
 
@@ -893,12 +978,12 @@ include_graphics("img/media_lecture_3/image68.png")
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image69.png")
+include_graphics("img/dataviz_principle_14.png")
 ```
 ]
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image70.png")
+include_graphics("img/dataviz_principle_15.png")
 ```
 ]
 
@@ -910,8 +995,8 @@ include_graphics("img/media_lecture_3/image70.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image71.png")
-include_graphics("img/media_lecture_3/image72.png")
+include_graphics("img/dataviz_principle_16.png")
+include_graphics("img/dataviz_principle_17.png")
 ```
 ]
 
@@ -923,10 +1008,11 @@ include_graphics("img/media_lecture_3/image72.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/media_lecture_3/image73.png")
-include_graphics("img/media_lecture_3/image74.png")
+include_graphics("img/dataviz_principle_18.png")
+include_graphics("img/dataviz_principle_19.png")
 ```
 ]
+
 
 ---
 
@@ -935,7 +1021,7 @@ include_graphics("img/media_lecture_3/image74.png")
 ### .center[Be precise and use captions, axes, and titles to do it]
 
 ```{r out.width='70%'}
-include_graphics("img/media_lecture_3/image75.png")
+include_graphics("img/dataviz_principle_20.png")
 ```
 
 ---
@@ -950,7 +1036,7 @@ class: inverse, mline, center, middle
 Pie chart for Categorical variable
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image76.gif")
+include_graphics("img/dataviz_excel_1.gif")
 ```
 
 ---
@@ -960,7 +1046,7 @@ include_graphics("img/media_lecture_3/image76.gif")
 Bar chart for Categorical variable
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image77.gif")
+include_graphics("img/dataviz_excel_2.gif")
 ```
 
 ---
@@ -970,7 +1056,7 @@ include_graphics("img/media_lecture_3/image77.gif")
 Histogram for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image78.gif")
+include_graphics("img/dataviz_excel_3.gif")
 ```
 
 ---
@@ -980,7 +1066,7 @@ include_graphics("img/media_lecture_3/image78.gif")
 Density plot for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image79.gif")
+include_graphics("img/dataviz_excel_4.gif")
 ```
 
 ---
@@ -990,7 +1076,7 @@ include_graphics("img/media_lecture_3/image79.gif")
 Box plot for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image80.gif")
+include_graphics("img/dataviz_excel_5.gif")
 ```
 
 ---
@@ -1000,7 +1086,7 @@ include_graphics("img/media_lecture_3/image80.gif")
 Dynamite plot for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image81.gif")
+include_graphics("img/dataviz_excel_6.gif")
 ```
 
 ---
@@ -1010,7 +1096,7 @@ include_graphics("img/media_lecture_3/image81.gif")
 Multiple histograms?
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image82.gif")
+include_graphics("img/dataviz_excel_7.gif")
 ```
 
 ---
@@ -1020,7 +1106,7 @@ include_graphics("img/media_lecture_3/image82.gif")
 Multiple box plot?
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image83.gif")
+include_graphics("img/dataviz_excel_8.gif")
 ```
 
 ---
@@ -1030,7 +1116,7 @@ include_graphics("img/media_lecture_3/image83.gif")
 Multiple dynamite plot?
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image84.gif")
+include_graphics("img/dataviz_excel_9.gif")
 ```
 
 ---
@@ -1040,7 +1126,7 @@ include_graphics("img/media_lecture_3/image84.gif")
 Linear regression?
 
 ```{r out.width='100%'}
-include_graphics("img/media_lecture_3/image85.gif")
+include_graphics("img/dataviz_excel_10.gif")
 ```
 
 ---
