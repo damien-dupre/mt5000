@@ -147,7 +147,7 @@ There are 5 types of areas:
 # Tableau Start Page
 
 ```{r out.width='100%'}
-include_graphics("img/image86.png")
+include_graphics("img/tableau_start.png")
 ```
 
 ---
@@ -155,7 +155,7 @@ include_graphics("img/image86.png")
 # Tableau Data Source
 
 ```{r out.width='100%'}
-include_graphics("img/image87.png")
+include_graphics("img/tableau_data.png")
 ```
 
 ---
@@ -163,7 +163,7 @@ include_graphics("img/image87.png")
 # Tableau Worksheet
 
 ```{r out.width='100%'}
-include_graphics("img/image88.png")
+include_graphics("img/tableau_worksheet.png")
 ```
 
 ---
@@ -171,7 +171,7 @@ include_graphics("img/image88.png")
 # Tableau Dashboard
 
 ```{r out.width='100%'}
-include_graphics("img/image89.png")
+include_graphics("img/tableau_dashboard.png")
 ```
 
 ---
@@ -179,7 +179,7 @@ include_graphics("img/image89.png")
 # Tableau Story 
 
 ```{r out.width='100%'}
-include_graphics("img/image90.png")
+include_graphics("img/tableau_story.png")
 ```
 
 ---
@@ -258,7 +258,7 @@ class: inverse, mline, center, middle
 
 .pull-left[
 ```{r out.width='50%'}
-include_graphics("img/image91.png")
+include_graphics("img/tableau_variables.png")
 ```
 ]
 
@@ -280,7 +280,7 @@ include_graphics("img/image91.png")
 
 .pull-left[
 ```{r out.width='50%'}
-include_graphics("img/image92.png")
+include_graphics("img/tableau_analytics.png")
 ```
 ]
 
@@ -299,7 +299,7 @@ Special features behind the Data Tab:
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/image93.png")
+include_graphics("img/tableau_configuration.png")
 ```
 ]
 
@@ -323,7 +323,7 @@ Equivalent to Excel Pivot Table but for visualisations
 
 .pull-left[
 ```{r out.width='50%'}
-include_graphics("img/image94.png")
+include_graphics("img/tableau_showme.png")
 ```
 ]
 
@@ -356,7 +356,7 @@ include_graphics("img/image94.png")
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/image95.png")
+include_graphics("img/tableau_aggregation.png")
 ```
 ]
 
