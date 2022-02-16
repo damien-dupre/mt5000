@@ -1,8 +1,7 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 6: Introduction to Tableau"
-author: "Damien Dupré"
-date: "Dublin City University"
+subtitle: "Lecture 5: Introduction to Power BI"
+author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
     css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
