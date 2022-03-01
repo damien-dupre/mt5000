@@ -101,11 +101,9 @@ Once Tableau Desktop is downloaded, install it, then:
 2. On the form, enter your **school email address** for Business E-mail and enter the **name of your school** for Organization.
 3. Activate with your **product key that you have received by email** (valid until September)
 
-.center[
 ```{r out.width='60%'}
 include_graphics("https://cdns.tblsft.com/sites/default/files/blog/pasted_image_0_14.png")
 ```
-]
 
 Already have a copy of Tableau Desktop installed? Update your license in the application: Help menu → Manage Product Keys
 

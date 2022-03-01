@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 7: Advanced Introduction to Tableau"
+subtitle: "Lecture 7: Advanced Features in Tableau"
 author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
@@ -13,31 +13,15 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include = FALSE}
-# general options --------------------------------------------------------------
-options(
-  scipen = 999,
-  htmltools.preserve.raw = FALSE,
-  knitr.kable.NA = " - "
-  )
-set.seed(42)
-# chunk options ----------------------------------------------------------------
-knitr::opts_chunk$set(
-  cache.extra = knitr::rand_seed, 
-  message = FALSE, 
-  warning = FALSE, 
-  error = FALSE, 
-  echo = FALSE,
-  cache = FALSE,
-  comment = "", 
-  fig.align = "center", 
-  fig.retina = 3
-  )
+```{r setup, include=FALSE}
 # libraries --------------------------------------------------------------------
+library(anicon)
 library(tidyverse)
 library(knitr)
-library(kableExtra)
-library(nomnoml)
+
+# options ----------------------------------------------------------------------
+options(scipen = 999)
+opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE, fig.retina = 3, fig.align = "center")
 ```
 
 # Previoulsy ...
@@ -60,29 +44,32 @@ Based on basic statistical calculations:
 
 ---
 
-# Mastering Tableau
+# Design Strategy
 
-Tableau is much more than basic visualisations, very professional output can be obtained easily, see some examples online: https://public.tableau.com/gallery/
+Creating an prefect Tableau dashboard is easy if you follow these steps:
 
-- Use these existing dashboards as inspirations for your own dashboards. Don't reinvent the wheel, reproducing with your own data is challenging enough. 
+#### Step 1: Basic Figures
 
-- Follow the steps of Mehmet, student of MT5000 in 2020, selected among the top 10 of [EDHEC DataViz Challenge](https://www.edhec.edu/en/edhec-dataviz-challenge)
+Create many figures that can be used to support your story but leave them with all default parameters
 
-Past challenges are an excellent way to have an idea of outstanding dashboards:
-- [Google Data Viz Challenge (2012)]( https://public.tableau.com/en-us/s/big-data-viz-challenge-entries)
-- [Big Data Viz Challenge (2016)]( https://public.tableau.com/en-us/s/big-data-viz-challenge)
-- [Do Good Data Viz Challenge (2016)](https://www.tableau.com/tableau-foundation-challenge)
-- [Women in Analytics Data Viz Competition (2020)](https://womeninanalytics.com/data-viz-competition/)
+#### Step 2: Basic Dashboard
 
-Coming Soon:
-- Iron Viz (2021) https://www.tableau.com/community/iron-viz
-- Data VizArt Student Challenge (2021) https://dvastudentchallenge.ca/
+Use the most relevant figures in a basic dashboard without taking care of its design but including all the relevant elements (title, text, pictures)
+
+#### Step 3: Figure Improvement
+
+Go back to the worksheet each figure included in the dashboard and customise them: Colour, size, shapes, title, captions, axes, and interactions
+
+#### Step 4: Dashboard Improvement
+
+Go back to the dashboard and customise it: Background, colours, fonts, layout and actions
 
 ---
 
 # Going Forward
 
 In general, through the lecture we have seen variables:
+
 - Made of character strings (usually interpreted as categorical but not always)
 - Made of numbers (usually interpreted as continuous but not always)
 
@@ -90,7 +77,7 @@ But variables can be made of many more values. In Business Analytics are particu
 
 --
 
-Tableau is well implanted in organisation because of the multiple data type that can be process, we will have a closer look at **how to access different data type in Tableau?**
+Tableau is particularly interesting because it creates interactive dashboards, **how to create smart Tableau dashboards by customising their interactivity?**
 
 --
 
@@ -104,7 +91,7 @@ Finally, the export or publication of Tableau dashboard can be tricky, we will s
 
 class: inverse, mline, center, middle
 
-# 1. Location and Date types in Tableau
+# 1. Location and Date Types in Tableau
 
 ---
 
@@ -128,8 +115,8 @@ However, we have seen that sometimes...
 In addition to Categorical and Continuous variables, Tableau has special features to handle **Location** type and **Date** type variable.
 ]
 .pull-right[
-```{r out.width='70%'}
-include_graphics("https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2018/02/data-types-in-tableau.jpg")
+```{r out.width='100%'}
+include_graphics("https://yodalearning.com/wp-content/uploads/Tableau-Data-types.png")
 ```
 ]
 
@@ -163,7 +150,7 @@ To create a data visualisation map:
 3. Drag and drop in the **Color box of Marks** another variable to display changes in values according to location for this variable
 
 ```{r out.width='60%'}
-include_graphics("https://tutorialgateway.b-cdn.net/wp-content/uploads/Maps-in-Tableau-5.png")
+include_graphics("https://i0.wp.com/datadent.org/wp-content/uploads/2020/03/Map-change-colors.gif")
 ```
 
 ---
@@ -189,11 +176,11 @@ include_graphics("https://static.packt-cdn.com/products/9781786465634/graphics/B
 
 Is a variable referring to a specific time, it can be any combination and format including year, month, day, minute, second, ...
 
-For example, "March 23, 1984", "03/23/84", "23/03/1984", "1984-03-23" have different formats but refer to the date.
+For example, "March 23, 1984", "03/23/84", "23/03/1984", "1984-03-23" have **different formats but refer to the date**.
 
 In data science we use the ISO 8601 international standard format (%Y-%m-%d) which corresponds to "1984-03-23" (format allow to sort date easily)
 
-By default, date variables should be properly encoded. A blue calendar icon should appear before the variable.
+By default, date variables should be properly encoded. A **blue calendar icon** should appear before the variable.
 
 But if Dates are encoded as a Categorical (if made of characters) or Continuous variable (if made of numbers), you need to convert this variable as **Date** or as **Date & Time**
 
@@ -201,11 +188,11 @@ But if Dates are encoded as a Categorical (if made of characters) or Continuous 
 
 # Line and Area Charts
 
-Date variables are usually used as X axis (Column Field in Tableau) to display the evolution of another variable according the time.
+Date variables are usually used as **X axis** (Column Field in Tableau) to display the evolution of another variable according the time.
 
-The resolution of the chart can be adjusted by clicking on the + symbol before the Date variable
+The resolution of the chart can be adjusted by clicking on the **+ symbol** before the Date variable
 
-```{r out.width='60%'}
+```{r out.width='80%'}
 include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/datefunctions3.png")
 ```
 
@@ -215,9 +202,10 @@ include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/datefun
 
 While the Date variable is in one field, drag and drop the other variable in the other field.
 
-It uses a statistical aggregation for this second variable. By default it is the Sum (see SUM) but it can be changed to Count, Proportion, Median, Mean, ...
+It uses a **statistical aggregation** for this second variable. By default it is the Sum (see SUM) but it can be changed to Count, Proportion, Median, Mean, ...
 
-To add a second line in the same plot using the original Date variable:
+To add a **second line in the same plot** using the original Date variable:
+
 1. Drag and drop this second variable in the row or column field next to the first one
 2. Then, drag and drop this second variable in actual axis to merge
 
@@ -231,25 +219,285 @@ include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/line_8.
 
 More details about Tableau and timeseries figures with the following contents among others found online:
 
+.pull-left[
 - [Tableau Date Functions and How to Use Them for Your Analysis by Data Crunch Corp](https://datacrunchcorp.com/tableau-date-functions/)
 - [Date Functions by Tableau](https://help.tableau.com/current/pro/desktop/en-us/functions_functions_date.htm)
 - [Building Line Charts by Tableau](https://help.tableau.com/current/pro/desktop/en-us/buildexamples_line.htm)
 - [Tableau Playbook - Line Chart by Pluralsight](https://www.pluralsight.com/guides/tableau-playbook-line-chart)
+]
 
-```{r out.width='50%'}
+.pull-right[
+```{r out.width='100%'}
 include_graphics("img/tableau_linecharts.png")
 ```
+]
 
 ---
 class: title-slide, middle
 
-## Live Examples
+## Live Example: Covid-19 Data Sample
 
 ---
 
 class: inverse, mline, center, middle
 
-# 2. Data Transformation in Tableau
+# 2. Interactive Customisations in Tableau
+
+---
+class: title-slide, middle
+
+## Variable Alias
+
+---
+
+# Variable Alias
+
+Aliasing a Variable is not an interactive feature per se but it is a simple tip that can be very useful.
+
+Creating an Alias means renaming the categories displayed by a variable (but the original names are kept for the calculations).
+
+```{r out.width='90%'}
+include_graphics("img/tableau_alias_1.png")
+```
+
+```{r out.width='90%'}
+include_graphics("img/tableau_alias_2.png")
+```
+
+.center[Figure without Alias (Top) versus figure with Alias (Bottom)]
+
+---
+class: title-slide, middle
+
+## Hoover Tooltip
+
+---
+
+# Marks Card
+
+The design of the **default visualisation is created automatically** according to what Tableau consider as the most relevant, but this choice **can be modified**:
+
+.pull-left[
+1. By manually selecting the type of Mark displayed
+2. By manually selecting the design of Mark displayed (i.e., Color, Size, Label, Detail, and Tooltip)
+  
+`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` Note: Each can be customised globally but they can also be customised according to the values of variables (already used or additional)
+]
+
+.pull-right[
+```{r out.width='80%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/build_manual_shelves_marks1.png")
+```
+]
+
+---
+
+# Tooltip Principle
+
+.pull-left[
+The tooltip is a series of information (numeric or graphic) that are displayed in a temporary box when the user's cursor goes over or clicks on a visualisation element.
+]
+
+.pull-right[
+```{r out.width='80%'}
+include_graphics("https://interworks.com/wp-content/uploads/sites/default/files/wp-content/uploads/2010/08/TTDefault.png")
+```
+]
+
+It is used to precise actual numbers behind the figures and to tell a short story about what is currently seen.
+
+.pull-left[
+```{r out.width='100%'}
+include_graphics("https://interworks.com/wp-content/uploads/sites/default/files/wp-content/uploads/2010/08/CondFormatMore.png")
+```
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://cdns.tblsft.com/sites/default/files/blog/vit-gif-for-blog_leave-for-work.gif")
+```
+]
+
+---
+
+# Tooltip Principle
+
+By default, the tooltip display all the **variables included in Rows and Columns** of the figure.
+
+By clicking on the tooltip option from the marks cards, it is possible to **modify how the information is displayed**.
+
+**Variables between `<>` symbols** are changing values according to the cursor position.
+
+.pull-left[
+For example:
+```
+Sex:                  <Sex>
+Survived:             <Survived>
+Count of titanic.csv: <CNT(titanic.csv)>
+```
+]
+
+.pull-right[
+Will show:
+```
+Sex:                  female
+Survived:             survived
+Count of titanic.csv: 734
+```
+]
+
+However,  we can reorganise how the information is displayed, which helps to tell a story.
+
+For example:
+```
+After the catastrophe, <CNT(titanic.csv)> <Sex> passengers <Survived>!
+```
+
+Will show:
+```
+After the catastrophe, 734 female passengers survived!
+```
+
+---
+
+# Tooltip Advanced
+
+It is possible to **add more variables** in the tooltip with drag-and-drop to the marks card.
+
+However, instead of adding another value, you can also **add a full visualisation** in the tooltip. When configuring the tooltip, click `Insert` and select `Sheets` with the name of the visualisation to add.
+
+```{r out.width='100%'}
+include_graphics("https://b6d1pk1fu4-flywheel.netdna-ssl.com/wp-content/uploads/2018/10/Adding-a-Sheet-to-a-Tableau-Tooltip-300x188@2x.png")
+```
+
+---
+class: title-slide, middle
+
+## Filters and Highlighters
+
+---
+
+# Filters
+
+You can display **only specific data** by using the "Filters Card" and selecting how to filter the data that are displayed (i.e., which categories for categorical variables and which values for continuous variables).
+
+```{r out.width='100%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/filtering-drag.gif")
+```
+
+---
+
+# Filters
+
+Filters also refers to addition of a **filtering menu** for the users to perform their own selection.
+
+.pull-left[
+To add a Filter menu to a visualisation:
+
+1. Click `Analysis` from the top toolbar and click `Filters`
+2. Select the variable that the user can choose values from
+3. From the drop down arrow of the new filter menu, customise its design
+
+`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` Note: The same result can be achieved with the `Filters` card by selecting `Show Filter`.
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/show_filter2.gif")
+```
+]
+
+---
+
+# Highlighters
+
+Highlighters also add a **highlighters menu** for the users to focus the visualisations on some categories of data.
+
+When added to a dashboard, the highlighters menu will apply to all visualisations involving the variable highlighted.
+
+.pull-left[
+To add a Filter menu to a visualisation:
+
+1. Click `Analysis` from the top toolbar and click `Highlighters`
+2. Select the variable that the user can highlight values from
+3. From the drop down arrow of the new highlighter menu, customise its design but it is much more limited that the customisation of the filter menu
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://cdnl.tblsft.com/sites/default/files/blog/third_highlighter.gif")
+```
+]
+
+---
+class: title-slide, middle
+
+## Time Animation Player
+
+---
+
+# Time Animation Player
+
+To visualise change according to time in a figure, a time variable can be added to the "Page Card".
+
+The possibility to play the changes will be offered to the user from additional controls.
+
+```{r out.width='80%'}
+include_graphics("https://miro.medium.com/max/1400/1*9wAYT7RHcaZOCNs0suDcmg.gif")
+```
+
+---
+class: title-slide, middle
+
+## Actions
+
+---
+
+# Basic Actions
+
+While Filters and Highlighters are set-up at each figure level, Actions are **set-up at the dashboard** level and affects all figures included in the dashboard.
+
+.pull-left[
+```{r out.width='100%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/Actions_dialog.png")
+```
+]
+
+.pull-right[
+Click `Dashboard` from the top toolbar and click `Actions`. Then you have to choose:
+
+1. How to trigger the action (when the cursor moves on a figure, when it clicks on a figure, from an added menu)
+2. From which figure it comes from
+3. Which figures it impacts
+]
+
+**Filter and Highlight actions are the easiest** to implement as they are behaving like Filters and Highlighters but for the full dashboard.
+
+Some other actions can be trick to implement but could be essential when adding buttons for instance.
+
+---
+
+# Filter and Highlight Actions
+
+If all the set-up fields are left as with default values, all the figure will be modified if a user hovers, clicks, or select a variable from a menu
+
+.pull-left[
+- Adding Highlight Actions to a dashboard is **the easiest way to make it smart**. By choosing "hoover" as interaction mode, the figures will react to the users simultaneously.
+
+- Filter Actions are interesting too but they can be **confusing when hoover or click are chosen** to trigger. Prefer triggering Filter Actions from menus instead.
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://interworks.com/wp-content/uploads/2019/02/GIF1.gif")
+```
+]
+
+---
+
+class: inverse, mline, center, middle
+
+# 3. Data Transformation in Tableau
 
 ---
 
@@ -294,21 +542,20 @@ include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/qs_pivo
 
 # Join in Tableau
 
-Join is the action of merging two tables based on a common key variable
-
 .pull-left[
+Join is the action of **merging two tables** based on a common key variable
 
 1. Open a second table in Tableau's home page
 2. In Data Source page, drag and drop this second table next to the first table 
 ]
 
 .pull-right[
-```{r out.width='80%'}
+```{r out.width='100%'}
 include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin3.gif")
 ```
 ]
 
-Click on the join logo to select which of Inner, Left, Right or Full join you want to do
+Click on the join logo to select which of Inner, Left, Right or Full join you want to do.
 
 ```{r out.width='80%'}
 include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin4.gif")
@@ -318,14 +565,17 @@ include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_mo
 
 # Link to Data Transformation in Tableau
 
-Pivot
+
+
+.pull-left[
+### Pivot Tutorials
 
 - [Pivot Data from Columns to Rows by Tableau](https://help.tableau.com/current/pro/desktop/en-us/pivot.htm)
 - [How to Create Tableau Pivot by Data Flair](https://data-flair.training/blogs/pivot-in-tableau/)
 - [Pivot in Tableau by EDUCBA](https://www.educba.com/pivot-in-tableau/)
 
-.pull-left[
-Join
+### Join Tutorials
+
 - [Join Your Data - Part 1 by Tableau](https://help.tableau.com/current/pro/desktop/en-gb/joining_tables.htm)
 - [Join Your Data - Part 2 by Tableau](https://help.tableau.com/current/pro/desktop/en-us/joining_tables.htm)
 - [Learn the rules to join tables in Tableau by Data Flair](https://data-flair.training/blogs/tableau-joins/)
@@ -333,7 +583,7 @@ Join
 ]
 
 .pull-right[
-```{r out.width='70%'}
+```{r out.width='100%'}
 include_graphics("http://www.quickmeme.com/img/c7/c702826a3aa55ac8a6f8cf52763a6205eec186242077b184bf162a1ccf3b30ce.jpg")
 ```
 ]
@@ -346,26 +596,28 @@ class: title-slide, middle
 ---
 class: inverse, mline, center, middle
 
-# 3. Share your Tableau Dashboard
+# 4. Share your Tableau Dashboard
 
 ---
 
 # Export vs. Share
 
-Exporting is the process of saving a dashboard in a file that can be read by someone else.
+#### Exporting is the process of saving a dashboard in a file that can be read by someone else.
 
 - Export as PowerPoint: Useful to communicate your visualisation to people who doesn't have Tableau but loose the interactivity
 
 - Export as Packaged Workbook: Save the visualisation with the data (.twbx file extension). **Your assignment has to be Exported as Packaged Workbook and uploaded on Loop**
 
-Note if you save as a simple workbook (.twb file extension), it won't be accepted.
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: If you save as a simple workbook (.twb file extension), it won't be accepted.
 
 --
 
-Sharing is the process of publishing a dashboard online for everyone to access it.
+#### Sharing is the process of publishing a dashboard online for everyone to access it.
 
-- It is done with an additional account to Tableau Server or to Tableau Online which is quite complicated
+- It is done with an account to **Tableau Online** 
 - It can be used in your CV as a portfolio of skills in data visualisation and storytelling
+
+`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` Note: Sharing your assignment dashboard with **Tableau Online** is an alternative option to submit your assignment
 
 ---
 
@@ -378,14 +630,60 @@ More details about how to save and share Tableau with the following contents amo
 - [TWB vs TWBX in Tableau](https://analyticscanvas.com/twb-vs-twbx-in-tableau/)
 - [Understanding Tableau File Extensions](https://interworks.com/blog/rcurtis/2016/04/14/alphabet-soup-understanding-tableau-file-extensions/)
 
-```{r out.width='70%'}
+```{r out.width='60%'}
 include_graphics("https://interworks.com/wp-content/uploads/sites/default/files/blog-content/TableauFileExtensions.png")
 ```
+
+.center[Different types of Tableau export files. TWBX has to be used for the assignment because it includes the dashboard and the data (contrary to TWB files which only include dashboards)]
 
 ---
 class: title-slide, middle
 
 ## Live Examples
+
+---
+class: inverse, mline, center, middle
+
+# 5. Assignment 1 Brief
+
+---
+
+# Assignment Instructions
+
+### Context
+
+You are Data Analyst for the UNICEF organisation, an you have been asked to design a Tableau Dashboard to raise awareness of the public on a specific world issue.
+
+### Task
+
+Two data files will be emailed to you, focus your dashboard on the file called **unicef_data.csv** and use the file **unicef_metadata.csv** to help developing your story.
+
+**Tell a "story" (i.e., narrative) behind the data in ONE Tableau Dashboard.** The dashboard has to include 3 figures: 1 Distribution, 1 Comparison, and 1 Relationship figure. Maps and timeseries figures can be used to support 1 or more of the 3 requested figures.
+
+### Assessment Criteria
+
+- Creativity (25%)
+- Analytical Depth (25%)
+- Beauty/Design (25%)
+- Overall Story (25%)
+
+---
+
+# Tableau Challenge
+
+Tableau is much more than basic visualisations, very professional output can be obtained easily, see some examples online: https://public.tableau.com/gallery/
+
+- Use these existing dashboards as inspirations for your own dashboards. Don't reinvent the wheel, reproducing with your own data is challenging enough. 
+- Follow the steps of Mehmet, student of MT5000 in 2020, selected among the top 10 of [EDHEC DataViz Challenge](https://www.edhec.edu/en/edhec-dataviz-challenge)
+
+### Coming Soon: EDHEC DataViz Challenge (2022) https://www.edhec.edu/en/student-dataviz-challenge-2022
+
+Past challenges are an excellent way to have an idea of outstanding dashboards:
+- [Google Data Viz Challenge (2012)]( https://public.tableau.com/en-us/s/big-data-viz-challenge-entries)
+- [Big Data Viz Challenge (2016)]( https://public.tableau.com/en-us/s/big-data-viz-challenge)
+- [Do Good Data Viz Challenge (2016)](https://www.tableau.com/tableau-foundation-challenge)
+- [Women in Analytics Data Viz Competition (2020)](https://womeninanalytics.com/data-viz-competition/)
+- [DataConnect Data Viz Competition (2022)](https://www.dataconnectconf.com/dataviz-competition)
 
 ---
 class: inverse, mline, left, middle
