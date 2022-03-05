@@ -26,7 +26,7 @@ email_text <- "<p>Dear {name}, <br><br>Please, find here attached the data that 
 letter2number <- function(x) {utf8ToInt(x) - utf8ToInt("a") + 1L}
 
 ################################################################################
-for(row_student in 1:nrow(list_email_students)){
+for (row_student in 1:nrow(list_email_students)) {
   
   student_db <- list_email_students[row_student, ]
   email <- student_db[["Email"]]
@@ -70,7 +70,7 @@ for(row_student in 1:nrow(list_email_students)){
   df_country_metadata <- df_country %>% 
     group_by(location) %>% 
     slice_head(n = 1) %>% 
-    select(stringency_index:human_development_index)%>% 
+    select(stringency_index:human_development_index) %>% 
     write_csv(here("assignments/temp/df_country_metadata.csv"), na = "")
   ################################
   

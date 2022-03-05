@@ -1,0 +1,824 @@
+---
+title: "MT5000 - Data Analytics & Visualization"
+subtitle: "Lecture 9: Introduction to Rmarkdown"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "libs/cols_macro.js"
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# libraries --------------------------------------------------------------------
+library(countdown)
+library(kableExtra)
+library(knitr)
+library(tidyverse)
+library(ymlthis)
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+opts_chunk$set(
+  cache.extra = rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  eval = TRUE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+
+
+```
+
+# Objectives
+
+In this tutorial, with RStudio Cloud, we will see how to create:
+
+- **Markdown:** a simple text-only format for writing documents
+- **R markdown:** a tool for mixing R code with markdown 
+
+--
+
+#### What do I need to do before starting?
+
+- Sign up for a free RStudio cloud account
+- https://rstudio.cloud/
+
+--
+
+#### Where can I find the resources?
+
+- These slides: [slides.djnavarro.net/starting-rmarkdown](https://slides.djnavarro.net/starting-rmarkdown)
+- YouTube videos: [youtube.djnavarro.net/starting-rmarkdown](https://youtube.djnavarro.net/starting-rmarkdown)
+
+---
+
+# Two Sides of R Markdown Files
+
+.pull-left[
+<br>
+### On the input side...
+
+- Write text in markdown
+- Insert code using R
+- Write "metadata" with YAML
+- Insert equation with LaTeX
+]
+
+.pull-right[
+<br>
+### On the output side...
+
+- Output to HTML
+- Output to PDF
+- Output to Word
+- Many other variations too
+]
+
+---
+class: middle, inverse
+
+# Lots of little things to learn!<br>We'll start with markdown...
+
+---
+
+# What do we want?
+
+- Something that... you can write in **plain text**
+- Something that... is **human readable**
+- Something that... allows **formatting**
+- Something that... can **build** to something pretty 
+
+---
+
+# Markdown
+
+.pull-left[
+
+**Here's an example of a markdown document...**
+
+```
+## Introduction
+
+
+
+
+Welcome to my **awesome** class. You 
+will learn all kinds of useful things 
+about R Markdown.
+
+
+- Markdown is simple
+- You can add R code
+```
+]
+
+.pull-right[
+
+**Here's what the output looks like...**
+
+## Introduction
+
+Welcome to my **awesome** class. You will learn 
+all kinds of useful things about R Markdown. 
+
+- Markdown is simple
+- You can add R code
+
+]
+
+---
+class: middle, inverse
+
+# Everyone: Okaaaay, but this seems really boring?
+
+# Me: ... hm, yeah, but let me show you where it takes you later!
+
+---
+
+# Professional websites
+
+```{r, echo=FALSE, out.height='70%', out.width='50%'}
+include_graphics("img/example_professional_site.png")
+```
+
+---
+
+# Visual blogs
+
+```{r, echo=FALSE, out.height='70%', out.width='50%'}
+include_graphics("img/example_visual_blog.png")
+```
+
+---
+
+# Books
+
+```{r, echo=FALSE, out.height='70%', out.width='80%'}
+include_graphics("img/example_book.png")
+```
+
+
+---
+
+# Academic papers
+
+```{r, echo=FALSE, out.height='70%', out.width='60%'}
+include_graphics("img/example_papers.png")
+```
+
+---
+
+# Slide decks
+
+```{r, echo=FALSE, out.height='70%', out.width='80%'}
+include_graphics("img/example_slides.png")
+```
+
+---
+
+# CV
+
+```{r, echo=FALSE, out.height='70%', out.width='80%'}
+include_graphics("img/example_resume.png")
+```
+
+---
+class: middle, inverse
+
+# Everyone: Okay, let's dive into the details...
+
+---
+
+# Emphasising text
+
+--
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+]
+
+---
+
+# Creating lists
+
+--
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+]
+
+---
+
+# Creating headings
+
+--
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+# Level 1 heading
+## Level 2 heading
+### Level 3 heading
+
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+# Level 1 heading
+## Level 2 heading
+### Level 3 heading
+]
+
+---
+class: middle, inverse
+
+# Demonstration:<br>Write a markdown document
+
+---
+class: middle, inverse
+
+# Exercise
+
+In RStudio Cloud:
+- Create a new plain Markdown file
+- Save it as "my_first_markdown.md"
+- Write some markdown about your emotions (positive and negative) triggered by R and RStudio
+- Click "Preview" once finished
+
+---
+class: middle
+
+## What do we want?
+
+- Something that... lets you write text in **Markdown**
+- Something that... lets you include **R code** (e.g. for data vis)
+- Something that... can **build** to HTML, PDF, Word, etc
+
+---
+
+class: middle, inverse
+
+# Demonstration:<br>Write an R markdown document
+
+---
+
+class: middle
+
+## Let's dissect the document obtained!
+
+```{r, echo=FALSE, out.height='70%', out.width='60%'}
+include_graphics("img/my_first_rmd_plain.png", dpi = 200)
+
+```
+
+---
+
+# The part inside --- is the "YAML"
+
+```{r, echo=FALSE, out.height='70%', out.width='60%'}
+include_graphics("img/my_first_rmd_yaml.png", dpi = 200)
+```
+
+---
+
+# The part in grey is R code
+
+```{r, echo=FALSE, out.height='70%', out.width='60%'}
+include_graphics("img/my_first_rmd_r.png", dpi = 200)
+```
+
+---
+
+# The rest is Markdown 
+
+```{r, echo=FALSE, out.height='70%', out.width='60%'}
+include_graphics("img/my_first_rmd_markdown.png", dpi = 200)
+```
+
+---
+
+class: middle
+
+## Wait... what's the YAML acronym?
+
+- Originally: "Yet Another Markup Language"
+- Later: "YAML Ain't Markup Language"
+- ... it really doesn't matter `r emo::ji("face_with_rolling_eyes")`
+
+---
+
+# Output PDF
+
+### Simple
+
+```
+---
+title: "My First R Markdown Document"
+output: pdf_document
+---
+```
+
+### Complex
+
+```
+---
+title: "My First R Markdown Document"
+author: "Damien Dupre"
+date: "99/99/9999"
+output: pdf_document
+---
+```
+
+---
+
+class: middle, inverse
+
+# Demonstration:<br>R Markdown presenting the Titanic Data 
+
+
+```{r setup, include = FALSE}
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+knitr::opts_chunk$set(
+  cache.extra = knitr::rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  eval = TRUE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(countdown)
+
+# theme ------------------------------------------------------------------------
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#23395b",
+  code_inline_background_color = "#23395b"
+  )
+
+# data -------------------------------------------------------------------------
+titanic <- read_csv(here::here("data/titanic.csv"))
+```
+
+# Objectives
+
+In this tutorial, with RStudio Cloud, we will see how to:
+
+- Includes Transformation steps and include descriptive statistics in R Markdown files
+- Present these descriptive statistics in a table in R Markdown files
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. Transformations and Tables in R Markdown files
+
+---
+
+# Requeriements
+
+Before starting, we need to check that:
+
+- You have created an account on RStudio cloud
+- You have installed the required packages
+- You have created a default R Markdown file
+- An output document is created without errors we you press "knit" in the R Markdown file
+
+---
+
+# R Markdown Structure
+
+We have seen last time that R Markdown files have 3 different types of content:
+
+#### 1. The YAML
+
+Corresponds to the metadata shown in the header of the ouput file (e.g., title, author, date, ...) and the type of output (e.g., pdf, html, doc, ...)
+
+#### 2. The Text
+
+Written in Markdown style (i.e., text without formatting), it is used as core description in the output document
+
+#### 3. The Code
+
+Inserted in the R Markdown inside "chunks", the code is processed when creating the output and can display figures and tables
+
+---
+
+# First Code Chunk
+
+In the first code chunk, will be added all the actions that will be applied to the other chunks (e.g., code option, library used, data downloaded).
+
+````markdown
+
+`r ''````{r setup, include=FALSE}
+# libraries -----------------------------------------------------------
+library(tidyverse)
+library(kableExtra)
+
+# options -------------------------------------------------------------
+opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE
+  )
+  
+# data ----------------------------------------------------------------
+titanic <- read.csv("/cloud/project/titanic.csv")
+```
+
+````
+
+---
+
+# Code Chunk Options
+
+Chunk output can be customized with knitr options, arguments set in the {} of a chunk header. Above, we use five arguments:
+
+- include = FALSE prevents code and results from appearing in the finished file. R Markdown still runs the code in the chunk, and the results can be used by other chunks.
+- echo = FALSE prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.
+- message = FALSE prevents messages that are generated by code from appearing in the finished file.
+- warning = FALSE prevents warnings that are generated by code from appearing in the finished.
+- fig.cap = "..." adds a caption to graphical results.
+
+See the **[R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)** for a complete list of knitr chunk options.
+
+---
+
+# Following Code Chunks
+
+Once all the global actions have been defined in the first chunk, each of the following chunks have a specific target:
+- Display a table
+- Display a figure
+- Creating an object to use its results (e.g., statistical model)
+
+---
+
+# Table Code Chunks
+
+In R, creating a table is amongst the most difficult actions:
+- There is no easy click and drop solution, everything is coded
+- It involves not only the transformation leading to the table but also the table design
+
+Example, to create descriptive statistics of the mean and standard deviation of the variable "fare" by "gender", it involves: 
+
+```{r echo=TRUE}
+titanic %>% 
+  group_by(Sex) %>% 
+  summarise(
+    mean = mean(Fare),
+    sd = sd(Fare)
+  )
+```
+
+---
+
+# Table Code Chunks
+
+Many more possibilites to summarise the data are possible, for example:
+
+```{r echo=TRUE}
+titanic %>% 
+  group_by(Sex) %>% 
+  summarise(
+    n = n(),
+    mean = mean(Fare, na.rm = TRUE),
+    sd = sd(Fare, na.rm = TRUE),
+    min = min(Fare, na.rm = TRUE),
+    max = max(Fare, na.rm = TRUE)
+  )
+```
+
+Note the na.rm argument set to TRUE, it indicates that missing values are not taken into account
+
+---
+
+# Table Code Chunks
+
+Once the transformation leading to the data constituting the table content is done, we have to define the table's design.
+
+Table design depends on the type of output but, with the right packages, it shouldn't shouldn't influence your code.
+
+Two set of packages are currently the most used: {kableExtra} or {gt}
+
+- {kableExtra} contains a set of function to make a kbl() table beautiful (**[see the package's vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)**)
+
+- {gt} stands for Grammar of Tables and appears to be the new thing in table design (**[see the package's vignette](https://gt.rstudio.com/)**)
+
+---
+
+# Using kbl() from {kableExtra}
+
+To convert your raw data into a basic table, add the function kbl() at the end of the pipe chain as follow:
+
+```{r echo=TRUE}
+titanic %>% 
+  group_by(Sex) %>% 
+  summarise(
+    mean = mean(Fare, na.rm = TRUE),
+    sd = sd(Fare, na.rm = TRUE)
+  ) %>% 
+  kbl()
+```
+
+---
+
+# Using kbl() from {kableExtra}
+
+To have a nicer a pdf had TRUE to the argument booktabs as follow:
+
+```{r echo=TRUE}
+titanic %>% 
+  group_by(Sex) %>% 
+  summarise(
+    mean = mean(Fare, na.rm = TRUE),
+    sd = sd(Fare, na.rm = TRUE)
+  ) %>% 
+  kbl(booktabs = TRUE)
+```
+
+It doesn't impact html slides but it does on pdf_document output.
+
+See **[more customisation possibilities for pdf_document here](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf)**
+---
+
+class: middle, inverse
+
+# Demonstration
+
+```{r setup, include = FALSE}
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(42)
+# chunk options ----------------------------------------------------------------
+knitr::opts_chunk$set(
+  cache.extra = knitr::rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  eval = TRUE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+# libraries --------------------------------------------------------------------
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(countdown)
+
+# theme ------------------------------------------------------------------------
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#23395b",
+  code_inline_background_color ="#23395b"
+  )
+
+# data -------------------------------------------------------------------------
+titanic <- read_csv(here::here("data/titanic.csv"))
+```
+
+# Objectives
+
+In this tutorial, with RStudio Cloud, we will see how to:
+
+- Includes visualisations in R Markdown files
+- Use chunck options for changing the size of the visualisations
+
+---
+
+# Requeriements
+
+Before starting, we need to check that:
+
+- You have created an account on RStudio cloud
+- You have installed the required packages
+- You have created a default R Markdown file
+- An output document is created without errors we you press "knit" in the R Markdown file
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. Visualisations in R Markdown files
+
+---
+
+# Figures in the Output Document
+
+As long as the package {tidyverse} is loaded and the data object created in the first setup chunk, then a ggplot visualisation can be used in a separated chunk:
+
+````markdown
+---
+title: "Untitled"
+output: pdf_document
+---
+
+`r ''````{r setup, include=FALSE}
+library(tidyverse)
+
+titanic <- read.csv("/cloud/project/titanic.csv")
+```
+
+# My Section Title
+
+My text followed by my figure.
+
+`r ''````{r}
+ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+```
+````
+
+---
+
+# Figures in the Output Document
+
+Warning, if the code results in the creation of an object, then the output will not be displayed:
+
+```{r echo=TRUE, eval=FALSE}
+plot_titanic <- ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+```
+
+To be displayed there are 2 solutions:
+
+#### 1. The content has to be printed by ending the code with the object name
+
+```{r echo=TRUE, eval=FALSE}
+plot_titanic <- ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+
+plot_titanic
+```
+
+#### 2. The code is ran without creating an object
+
+```{r echo=TRUE, eval=FALSE}
+ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 2. Chunk Options for Visualisations
+
+---
+
+# Code Chunk Options
+
+Chunk output can be customized with arguments set in the {} of a chunk header. Above, we use five arguments:
+
+- include = FALSE prevents code and results from appearing in the finished file. R Markdown still runs the code in the chunk, and the results can be used by other chunks.
+- echo = FALSE prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.
+- message = FALSE prevents messages that are generated by code from appearing in the finished file.
+- warning = FALSE prevents warnings that are generated by code from appearing in the finished.
+
+See the **[R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)** for a complete list of knitr chunk options.
+
+---
+
+# Example of Chunk Options
+
+In this following example, when the output document is created:
+
+- echo = TRUE indicates that not only the output of the code is shown but also the code itself
+- warning = FALSE indicates that no R warning will be displayed
+- message = FALSE indicates that no R message will be displayed
+
+````markdown
+
+`r ''````{r, echo = TRUE, warning = FALSE, message = FALSE}
+ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+```
+
+````
+
+---
+
+# Set General Chunk Options
+
+In the first setup chunk, define your chunk options for all document:
+
+````markdown
+
+`r ''````{r setup, include=FALSE}
+# libraries -----------------------------------------------------------
+library(tidyverse)
+
+# options -------------------------------------------------------------
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE
+  )
+  
+# data ----------------------------------------------------------------
+titanic <- read.csv("/cloud/project/titanic.csv")
+```
+
+````
+
+---
+
+# Visualisation Specific Options
+
+Some chunk options are specific to visualisations outputs:
+
+- fig.cap="caption of the figure"
+- fig.height=5
+- fig.width=5
+
+Note, the default unit for height and width is inches.
+
+````markdown
+`r ''````{r, fig.cap="Example Caption", fig.height=2, fig.width=12}
+ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+```
+````
+
+```{r, fig.cap="Example Caption", fig.height=2, fig.width=12, echo=FALSE}
+ggplot(titanic, aes(Fare, Age)) +
+  geom_point()
+```
+
+---
+
+class: middle, inverse
+
+# Demonstration
