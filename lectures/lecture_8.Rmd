@@ -1,8 +1,7 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
 subtitle: "Lecture 8: Introduction to R"
-author: "Damien Dupré"
-date: "Dublin City University"
+author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
     css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
@@ -18,43 +17,18 @@ output:
 # libraries --------------------------------------------------------------------
 library(countdown)
 library(fontawesome)
-library(kableExtra)
+library(gapminder)
 library(knitr)
-library(norris)
 library(tidyverse)
 library(tweetrmd)
 
-# general options --------------------------------------------------------------
-options(
-  scipen = 999,
-  htmltools.preserve.raw = FALSE
-)
-set.seed(42)
-# chunk options ----------------------------------------------------------------
-opts_chunk$set(
-  cache.extra = rand_seed, 
-  message = FALSE, 
-  warning = FALSE, 
-  error = FALSE, 
-  echo = FALSE,
-  cache = FALSE,
-  comment = "", 
-  fig.align = "center", 
-  fig.retina = 3
-  )
+# functions --------------------------------------------------------------------
+# https://bookdown.org/yihui/rmarkdown-cookbook/font-color.html#using-an-r-function-to-write-raw-html-or-latex-code
+colorize <- function(x, color) {sprintf("<span style='color: %s;'>%s</span>", color, x)}
 
-# environment ------------------------------------------------------------------
-leinster_county <- c("Carlow", "Dublin", "Kildare", "Kilkenny", "Laois", "Longford", "Louth", "Meath", "Offaly", "Westmeath", "Wexford", "Wicklow")
-
-leinster_county_size <- c(896, 921, 1693, 2061, 1719, 1091, 820, 2342, 2000, 1838, 2352, 2024)
-
-leinster_county_population <- c(56932, 1347359, 222504, 99232, 84697, 40873, 128884, 195044, 77961, 88770, 149722, 142425)
-
-leinster_df <- data.frame(
-  name = leinster_county, 
-  size = leinster_county_size, 
-  population = leinster_county_population
-)
+# options ----------------------------------------------------------------------
+options(scipen = 999, htmltools.preserve.raw = FALSE)
+opts_chunk$set(echo = FALSE, fig.align = "center", fig.retina = 3)
 ```
 
 # Brief Introduction
@@ -66,14 +40,17 @@ Modern data science uses free and open-source computer languages:
 
 While Python is the most used language by computer engineers for web and app development, R has some advantages:
 
+.pull-left[
 1. **Easy to write**, to read and to use
 2. Focused on **reports and journal papers** with reproducibility
 3. Advanced **statistical packages**
 4. **Friendly and open** community
 
-So let's useR!
+### So let's useR!
+]
 
-```{r out.width='50%'}
+.pull-right[
+```{r out.width='100%'}
 tweet_screenshot(
   tweet_url("Pop_Watson", "1280351422953840640"),
   maxwidth = 300,
@@ -81,6 +58,7 @@ tweet_screenshot(
   theme = "dark"
   )
 ```
+]
 
 ---
 
@@ -115,11 +93,12 @@ include_graphics("img/car_dashboard.jpeg")
 
 ---
 class: clear
-<p style='text-align:center;">**Time to enter ...**
+
+## .center[**Time to enter ...**]
 
 --
 
-```{r}
+```{r out.width='150%'}
 include_graphics("img/the_matrix.gif")
 ```
 
@@ -127,13 +106,7 @@ include_graphics("img/the_matrix.gif")
 
 # Rstudio Cloud
 
-In your webrowser (Chrome, Firefox, ...):
-
-1. Open these slides on a tab
-  - From Loop: Lectures > Lecture 8
-  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_8
-
-2. In another tab, go to: https://rstudio.cloud/
+In your webrowser (Chrome, Firefox, ...), go to: https://rstudio.cloud/
   - Sign up
   - In your workspace, Click "new project"
 
@@ -142,23 +115,135 @@ include_graphics("https://miro.medium.com/max/1400/1*JBHNRwGr3ZiyBzYWpvH6zg.png"
 ```
 
 ---
+
+# Code in Rstudio
+
+Most of the R code displayed in this lecture is included in these slides. Rather than typing it manually, open these slides in another tab to copy-paste the code
+
+Two ways to access these slides:
+
+  - From Loop: Lectures Slides > Lecture 8
+  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_8
+  
+  
+```{r out.width='50%'}
+include_graphics("https://c.tenor.com/0heitU7-tg4AAAAC/copy-paste-paste.gif")
+```
+
+---
 class: inverse, mline, center, middle
 
-# 2. The Basics of R Codes
+# 2. Coding in RStudio
+
+---
+
+# RStudio IDE
+
+When you open RStudio, you’ll see the following 3 windows (also called panes):
+
+* **Console**: where the results are printed
+* **Workspace**: where the objects are stored
+* **Files, Plots, Package, Help and Viewer**: where data science materials are
+
+```{r out.width='70%'}
+include_graphics("img/rstudio_panes.png")
+```
+
+The last window **Code Editor** opens when creating a new R Script or R Markdown file
+
+---
+
+# Console: R’s Heart
+
+The console displays 1. What has been ran, 2. The results (or some parts) of has been ran, and 3. The status of the R process.
+
+.pull-left[
+The Status of R is indicated by the symbol in the console prompt:
+
+* `>` means ready to process code 
+* `+` means incomplete command (escape with `ESC`)
+* &#128721; at the top right corner means the console is busy processing your code
+]
+
+.pull-right[
+```{r out.width = '100%'}
+include_graphics("img/r_console.png")
+```
+]
+
+You can execute code by typing it directly into the Console. However, it won’t be saved. And if you make a mistake you will have to re-type everything all over again. 
+
+Instead, it’s better to write all your code in a document called the **Code Editor**.
+
+---
+
+# Environment: R’s Brain
+
+The Environment tab of this pane shows you the names of all the data objects (like vectors, matrices, and data frames) that you have defined in your current R session. 
+
+You can also see information like the number of observations and rows in data objects. 
+
+```{r out.width='100%'}
+include_graphics("https://www.statology.org/wp-content/uploads/2021/10/envir1.png")
+```
+
+---
+
+# Files / Plots / Packages / Help
+
+* The **Files** panel gives you access to the file directory on your hard drive.
+
+* The **Plots** panel shows all your plots. There are buttons for opening the plot in a separate window and exporting the plot as a pdf or jpeg.
+
+* The **Packages** shows a list of all the R packages installed on the local or remote machine and indicates whether or not they are currently loaded.
+
+* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling `F1` with the cursor on the function or by typing `?` followed by the function name such as:
+
+```{r echo=TRUE, eval=FALSE}
+?seq
+?lm
+```
+
+---
+
+# Code Editor: R's Nervous System
+
+- It makes the link between all the previous pane and allows to reproduce actions and behaviours.
+
+- You can open as many R Script / R Markdown as you want.
+
+- These documents are the only documents that have to be saved. No need to save you data, figures and calculations as you can reproduce them every time instantaneously with the code.
+
+- Save your eyes and look like a nerd by changing the code's appearance
+
+```{r out.width='60%'}
+include_graphics("https://miro.medium.com/max/1600/1*eLjON45R_kHIfg_IgL8FIg.jpeg")
+```
+.center.tiny[Credit: towardsdatascience.com [`r emo::ji("link")`](https://towardsdatascience.com/customize-your-rstudio-theme-914cca8b04b1)]
+
+---
+class: inverse, mline, center, middle
+
+# 3. The Basics of R Code
 
 ---
 
 # What are .R and .Rmd files?
 
-.R is the extension for a R script: 
+**.R** is the extension for a R script (document including only R code): 
 - Click **File > New File > R Script** in RStudio
 - Includes only code which can be active or inactive (line starts with `#`)
 - Used for code testing
 
-Example
+Example of non-active code
 
 ```{r echo=TRUE}
 # non active code
+```
+
+Example of active code
+
+```{r echo=TRUE}
 paste("active", "code")
 1 + 1 # everything after `#` is non active and is used for comments
 ```
@@ -167,12 +252,12 @@ paste("active", "code")
 
 # What are .R and .Rmd files?
 
-.Rmd is the extension for a R Markdown file: 
+**.Rmd** is the extension for a R Markdown file: 
 - Click **File > New File > R Markdown...** in RStudio
 - Refers to a document that includes code and text
 - Generates a specific type of output
-  - .html (web page and slides)
-  - .pdf (Academic LaTex papers + additional outputs)
+  - .html (web page, slides, books, and dashboards)
+  - .pdf (Academic LaTex papers and reports)
   - .doc (MS Word documents)
   
 ```{r out.width='80%'}
@@ -184,17 +269,22 @@ include_graphics("https://d33wubrfki0l68.cloudfront.net/59f29676ef5e4d74685e14f8
 # How to Run R Code?
 
 In a R Script, place your cursor anywhere on the line you want to run and either:
-- Press `Ctrl` & `Enter` (Win) / `Command` & `Enter` (Mac)
+
+.pull-left[
+- Press `Ctrl` & `Enter` (Win)
+- Press `Command` & `Enter` (Mac)
 - Click the `Run` button on RStudio's interface
+]
 
-In a R Markdown:
-- Use the above to run a specific line
-- Use the **green** arrow to run the current chunk of code
-- Use the `Knit` button on RStudio's interface to create the output file
-
-```{r out.width='50%'}
+.pull-right[
+```{r out.width='100%'}
 include_graphics("https://appsilon.com/wp-content/uploads/2020/05/4_blog_code_execution_optimized.gif")
 ```
+]
+
+In a R Markdown:
+- Use the **green** arrow to run the current chunk of code
+- Use the `Knit` button on RStudio's interface to create the output file
 
 ---
 
@@ -204,11 +294,19 @@ R packages extend the functionality of R. They are written by a worldwide commun
 
 A good analogy for **R packages are like apps you can download onto a mobile phone**.
 
-```{r, fig.show='hold", out.width='50%', fig.align='default", fig.cap='R: A new phone (left); R Packages: Apps you can download (right)"}
-
+.pull-left[
+.center[R: A new phone]
+```{r out.width='100%'}
 include_graphics("img/phone_design.jpeg")
+```
+]
+
+.pull-right[
+.center[R Packages: Apps you can download]
+```{r out.width='100%'}
 include_graphics("img/phone_apps.jpeg")
 ```
+]
 
 ---
 
@@ -277,27 +375,33 @@ seq(from = 1, to = 10)
 
 ---
 
-# Type of Values and Objects in R
+# Assign Values to Objects in R
 
-It is very important to distinguish values and objects in R:
-
-```{r}
-tibble::tribble(
-                  ~Type,            ~Class,                        ~Example, 
-               "Number",   "Numeric Value",                     "1, 2, ...",
-     "Word with quotes", "Character Value",             '"one", "two", ...',
-  "Word without quotes",     "Object Name", "function name, data name, ..."
-  ) %>%
-  kable(format = "html")
-```
+Usually the arguments of functions expects an Object name to access the data.
 
 An object is a box that **can include anything** (e.g., values, dataframes, figures, models, functions, ...) and **has a name** that you have to choose. 
+
+--
 
 To create an object, you need to **assign something** to a name using the `<-` operator. If you type the name of the object, R will print out its content.
 
 ```{r echo=TRUE, eval=FALSE}
 x <- 4
 x
+```
+
+--
+
+It is very important to distinguish values and objects in R:
+
+```{r}
+tribble(
+                  ~Type,            ~Class,                        ~Example, 
+               "Number",   "Numeric Value",                     "1, 2, ...",
+     "Word with quotes", "Character Value",             '"one", "two", ...',
+  "Word without quotes",     "Object Name", "function name, data name, ..."
+  ) %>%
+  kable(format = "html")
 ```
 
 ---
@@ -342,25 +446,14 @@ class: title-slide, middle
 In the same R Script in RStudio, **Copy and Paste** the following code and **display the content** of each object by typing and running the name of the object on separate lines:
 
 ```
-power_values <- c(0.5, 99.5)
+my_power <- c(0.5, 99.5)
 
-cases_values <- c("without R", "with R")
+my_knowledge <- c("without R", "with R")
 
-my_data <- data.frame(power = power_values, cases = cases_values)
+my_data <- data.frame(power = my_power, cases = my_knowledge)
 
-easy_viz <- barplot(height = power_values, names.arg = cases_values)
+easy_viz <- barplot(height = my_power, names.arg = my_knowledge)
 ```
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-class: title-slide, middle
-
-## Exercise  
-
-Install the package "tidyverse"
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -369,128 +462,7 @@ countdown(minutes = 5, warn_when = 60)
 ---
 class: inverse, mline, center, middle
 
-# 3. Coding in RStudio
-
----
-
-# RStudio IDE
-
-When you open RStudio, you’ll see the following 3 windows (also called panes):
-
-* **Console**: where the results are printed
-* **Workspace**: where the objects are stored
-* **Files, Plots, Package, Help and Viewer**: where data science materials are
-
-```{r out.width='70%'}
-include_graphics("img/rstudio_panes.png")
-```
-
-The last window **Code Editor** opens when creating a new R Script or R Markdown file
-
----
-
-# Console: R’s Heart
-
-Where R actually evaluates code:
-
-* Ready to process code if the prompt is `>` . 
-* If a command is incomplete at the end of a line, the prompt `+` is displayed
-* If the console shows a red icon in the top right corner, the console is currently processing your script
-
-```{r out.width = '30%'}
-include_graphics("img/r_console.png")
-```
-
-You can execute code by typing it directly into the Console. However, it won’t be saved. And if you make a mistake you will have to re-type everything all over again. 
-
-Instead, it’s better to write all your code in a document called the **Code Editor**.
-
----
-
-# Environment: R’s Brain
-
-The Environment tab of this panel shows you the names of all the data objects (like vectors, matrices, and data frames) that you have defined in your current R session. 
-
-You can also see information like the number of observations and rows in data objects. 
-
-```{r out.width='50%'}
-include_graphics("img/r_environment.png")
-```
-
----
-
-# Files / Plots / Packages / Help
-
-* The **Files** panel gives you access to the file directory on your hard drive.
-
-* The **Plots** panel shows all your plots. There are buttons for opening the plot in a separate window and exporting the plot as a pdf or jpeg.
-
-* The **Packages** shows a list of all the R packages installed on the local or remote machine and indicates whether or not they are currently loaded.
-
-* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typing `?` followed by the function name such as:
-
-```{r echo=TRUE, eval=FALSE}
-?seq
-?lm
-```
-
----
-
-# Code Editor: R's Nervous System
-
-- It makes the link between all the previous pane and allows to reproduce actions and behaviours.
-
-- You can open as many R Script / R Markdown as you want.
-
-- These documents are the only documents that have to be saved. No need to save you data, figures and calculations as you can reproduce them every time instantaneously with the code.
-
-- Save your eyes and look like a nerd by changing the code's appearance
-
-```{r out.width='60%'}
-include_graphics("https://miro.medium.com/max/1600/1*eLjON45R_kHIfg_IgL8FIg.jpeg")
-```
-.center.tiny[Credit: towardsdatascience.com [`r emo::ji("link")`](https://towardsdatascience.com/customize-your-rstudio-theme-914cca8b04b1)]
-
----
-
-# Become Expert in R
-
-Because R is free, plenty of free learning materials are available online:
-
-* Video tutorials
-
-* Book tutorials, see for example:
-  - [R for Data Science](https://r4ds.had.co.nz/) by Wickham & Grolemund (2017)
-  - [A ModernDive into R and the tidyverse](https://moderndive.com/) by Ismay & Kim (2019)
-  - [Getting Used to R, RStudio, and R Markdown](https://rbasics.netlify.com/) by Kennedy (2019)
-  - [Introduction to Open Data Science](https://ohi-science.org/data-science-training/) by the Ocean Health Index Team (2019)
-  
-* Interactive tutorials, see for example:
-  - [RStudio Primers](https://rstudio.cloud/learn/primers)
-  - [R-Bootcamp](https://r-bootcamp.netlify.com)
-  - [Introduction to R](https://www.quantargo.com/courses/course-r-introduction)
-  - [DCU R tutorials](https://dcu-r-tutorials.netlify.app)
-
----
-
-# How to solve your pRoblems
-
-1. Look at your error
-  * If it's obvious, solve it by yourself
-  * If it's not obvious, copy paste the error in google
-  
-2. Look at your object (`str(ObjectName)`)
-
-3. Look at the function (documentation)
-
-4. Look at the web
-  * Google "R how to ..."
-  * Stack Overflow
-
----
-class: inverse, mline, center, middle
-
-# 4. Data Processing with R
+# 4. Access Data in RStudio Cloud
 
 ---
 
@@ -501,26 +473,20 @@ RStudio Cloud is a free remote computer, the computing is not run on your comput
 To open Data on RStudio cloud, you first need to `Upload` your file on this computer and to `Import` the data in R.
 
 .pull-left[
-
 .center[Step 1: Upload your File]
-
 ```{r out.width='100%'}
 include_graphics("https://community-cdn.rstudio.com/uploads/default/original/2X/9/91a128299a9d910f84279be9ecd89b60aa15f20b.png")
 ```
-
 ]
 
 .pull-right[
-
 .center[Step 2: Import your Data]
-
 ```{r out.width='100%'}
 include_graphics("img/rstudio_import.png")
 ```
-
 ]
 
-Remember that .csv files are basically text files.
+Remember that **.csv files are basically text files**
 
 ---
 
@@ -543,8 +509,21 @@ To ensure code reproducibility, open data with the appropriate function (e.g., `
 The main argument of these functions is `file` which corresponds to the path to a file, followed by the name of the file and it extension:
 
 ```{r echo=TRUE, eval=FALSE}
-my_file_object <- read.csv("C:/path/to/my/file.csv")
+my_file_object <- read.csv("C:/path/to/my/file.csv") # Windows
+my_file_object <- read.csv("/Users/path/to/my/file.csv") # Macos
 ```
+
+The following codes will generate an error:
+
+```{r echo=TRUE, eval=FALSE}
+# Incomplete path
+my_file_object <- read.csv("/path/to/my/file.csv")
+# Missing file extension
+my_file_object <- read.csv("C:/path/to/my/file")
+# Use of backward slash
+my_file_object <- read.csv("C:\path\to\my\file.csv")
+```
+
 
 ---
 class: title-slide, middle
@@ -556,7 +535,7 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Click on `Upload` to upload your "df_country_data.csv" file on your RStudio Cloud
+1. Click on `Upload` to upload your "unicef_metadata.csv" file on your RStudio Cloud
 
 2. Click on `Import` to import these data in R
 
@@ -565,771 +544,9 @@ countdown(minutes = 5, warn_when = 60)
 ```
 
 ---
-
-# Data Transformation
-
-In R, different style of coding can obtain the same result. The style that I'm using is called **tidyverse** and is much easier to read than other styles:
-
-```{r echo=TRUE, eval=FALSE}
-# Once install.packages("tidyverse") has been done, run:
-library(tidyverse) # Every time a new session starts
-```
-
-There are five functions that you will use to do the vast majority of data manipulations:
-
-- `filter()`: Subset observations (pick observations by their values)
-
-- `select()`: Subset variables (pick variables by their names)
-
-- `mutate()`: Make new variables (create new variables using functions to modify them)
-
-- `summarise()`: Summarise data (collapse many values down to a single summary)
-
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group.
-
----
-
-# The Pipe Operator %>% (1)
-
-We have see how to create a sequence of numbers from 1 to 10 using the function `seq()`:
-
-```{r echo=TRUE, eval=FALSE}
-seq(1, 10)
-#  [1]  1  2  3  4  5  6  7  8  9 10
-```
-
-If you want to know the sum of the numbers from 1 to 10, you might write some code like:
-
-```{r echo=TRUE, eval=FALSE}
-sum(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-```
-
-To make the code shorter you could do instead:
-
-```{r echo=TRUE, eval=FALSE}
-sum(seq(1, 10))
-```
-
-The **tidyverse** makes heavy use of the pipe operator (`%>%`), which takes whatever is on the left-hand-side of the pipe and makes it the first argument of whatever function is on the right-hand-side of the pipe. 
-
-Therefore `seq(1, 10) %>% sum()` is equivalent to `sum(seq(1, 10))`.
-
-```{r echo=TRUE, eval=FALSE}
-seq(1, 10) %>% sum()
-```
-
----
-
-# The Pipe Operator %>% (2)
-
-Imagine you have a dataset made of 2 columns and you want to create a 3rd column which is the result of the addition of column 1 and column 2. Then you want to keep only the observations lower than 10, you might write code like this:
-
-```{r echo=TRUE, eval=FALSE}
-data_with_third_column <- mutate(data, column_3 = column_1 + column_2)
-
-data_filter_third_column <- filter(data_with_third_column, column_3 < 10)
-```
-
-There’s another way to tackle the same problem with the pipe, `%>%`:
-
-```{r echo=TRUE, eval=FALSE}
-data_filter_third_column <- data %>% 
-  mutate(column_3 = column_1 + column_2) %>% 
-  filter(column_3 < 10)
-```
-
-You can read it as a series of imperative statements: 
-
-> Create a new object call `data_filter_third_column` which takes the object `data`, **then** create a new column called `column_3`, **then** filter this column by keeping only the values lower than 10.
-
-A good way to pronounce the pipe `%>%` when reading code is **“then”**.
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1. If it hasn't been done already, load the tidyverse package
-
-2. Execute the following code:
-
-```
-starwars %>%
- select(name, height, mass, homeworld) %>%
- mutate(
-  mass = NULL,
-  height = height * 0.0328084 # convert to feet
-)
-```
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-class: inverse, mline, left, middle
-
-<img class='circle" src='https://github.com/damien-dupre.png" width='250px"/>
-
-# Thanks for your attention and don't hesitate to ask any questions!
-
-[`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
-[`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
-[`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
-[`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
-
-```{r setup, include = FALSE}
-# general options --------------------------------------------------------------
-options(
-  scipen = 999,
-  htmltools.preserve.raw = FALSE
-)
-set.seed(42)
-# chunk options ----------------------------------------------------------------
-knitr::opts_chunk$set(
-  cache.extra = knitr::rand_seed, 
-  message = FALSE, 
-  warning = FALSE, 
-  error = FALSE, 
-  echo = FALSE,
-  cache = FALSE,
-  comment = "", 
-  fig.align = "center", 
-  fig.retina = 3
-  )
-# libraries --------------------------------------------------------------------
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(fontawesome)
-library(tweetrmd)
-library(countdown)
-library(gapminder)
-# functions --------------------------------------------------------------------
-# https://bookdown.org/yihui/rmarkdown-cookbook/font-color.html#using-an-r-function-to-write-raw-html-or-latex-code
-
-colorize <- function(x, color) {
-  sprintf("<span style='color: %s;'>%s</span>", color, x)
-  }
-```
-
-# R so far
-
-We have already seen how to:
-
-- Use RStudio Cloud
-- Install, load and use packages
-- Run R code in R Script or R Markdown files
-- Use keyboard shortcuts: `Ctrl` & `Enter` (Win) / `Command` & `Enter` (Mac)
-- Create object with the assignment arrow `<-` sign
-- Upload and read data in RStudio Cloud
-
-Now let's enter the {tidyverse}
-
-```{r out.width='30%'}
-include_graphics("https://tidyverse.tidyverse.org/articles/tidyverse-logo.png")
-```
-
----
-
-# Rstudio Cloud
-
-In your webrowser (Chrome, Firefox, ...):
-
-1. Open these same slides on a tab to copy-paste the examples
-  - From Loop: Lectures > Lecture 9
-  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_9
-
-2. In another tab, go to: https://rstudio.cloud/
-  - Sign in or Sign up (if not already done)
-  - In your workspace, Click "Untitled Project" or "New Project" (if not already done) 
-
-```{r out.width='100%'}
-knitr::include_graphics("https://miro.medium.com/max/1400/1*JBHNRwGr3ZiyBzYWpvH6zg.png")
-```
-
----
-
-# Entering the {tidyverse}
-
-The {tidyverse} package is primarily made up of a set of super useful R packages ({ggplot2}, {dplyr}, {purrr}, {tidyr}, {readr}, {tibble}).
-
-It is also a new way of thinking about implementing “tidy” data analysis. 
-
-If you combine tidy thinking with the {tidyverse} packages, you will inevitably become a master of tidy analysis. 
-
-The tidyverse has a very detailed website for more information: https://www.tidyverse.org/.
-
-```{r eval=FALSE, echo=TRUE}
-install.packages("tidyverse")
-library(tidyverse)
-```
-
----
-
-# {dplyr}'s main functions
-
-There are five **{dplyr}** functions that you will use to do the vast majority of data manipulations:
-
-- `filter()`: Subset observations (pick observations by their values)
-
-- `select()`: Subset variables (pick variables by their names)
-
-- `mutate()`: Make new variables (create new variables with functions of existing variables)
-
-- `summarise()`: Summarise data (collapse many values down to a single summary)
-
-These can all be used in conjunction with `group_by()` which changes the scope of each function from operating on the entire dataset to operating on it group-by-group.
-
-These five functions provide the verbs for a language of data manipulation.
-
----
-
-# {dplyr}'s main functions
-
-All verbs work similarly:
-
-- `r colorize("The first argument is a dataframe object name", "red")` 
-- `r colorize("The subsequent arguments describe how the dataframe is transformed", "green")` 
-- `r colorize("The result is a new dataframe", "blue")`
-
-Here is a generic example:
-
-.center[**`r colorize("dataframe_transformed", "blue")` `<-` function_name(`r colorize("dataframe_name", "red")`, `r colorize("transformation", "green")`)**
-]
-
----
-
-# The gapminder dataset
-
-The dataset used today is stored in the {gapminder} package into an object called `gapminder`. 
-
-Each row in this table corresponds to a country at a specific year. For each row, we have 6 columns:
-
-- **country**: Name of country.
-- **year**: Year of the observation (between 1952 and 2007).
-- **pop**: Number of people living in the country.
-- **continent**: Which of the five continents the country is part of. 
-- **lifeExp**: Life expectancy in years.
-- **gdpPercap**: Gross domestic product (in US dollars).
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1. Install the package {gapminder} which contains the data gapminder
-2. Load the package {gapminder} to access the data
-3. Use the function `str()` on the gapminder data 
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
 class: inverse, mline, center, middle
 
-# 1. The filter() function
-
----
-
-# The filter() function
-
-You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting and `filter()` allows you to subset observations based on their values.
-
-`filter()`'s transformation is a conditional statement, only observations TRUE to the condition are kept.
-
-For example
-
-```{r eval=FALSE, echo=TRUE}
-filter(gapminder, country == "Ireland")
-```
-
-Importantly, Column/Variable names are not between quotation marks in the Tidyverse whereas the value to filter is
-- A Column/Variable is an object containing multiple values inside the data frame object.
-- The string "Ireland" does not exist in our environment and will not be saved. It is here just as a value, which explains the quotation marks.
-
----
-
-# Comparisons
-
-To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (exactly equal).
-
-When you’re starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality. When this happens you’ll get an informative error:
-
-```{r eval=FALSE, echo=TRUE}
-filter(gapminder, country = "Ireland")
-```
-
-```out
-Error: Problem with `filter()` input `..1`.
-x Input `..1` is named.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `country == "Ireland"`?
-```
-
----
-
-# Multiple filters
-
-Whereas the `filter()` can include as many conditions as possible, it is also possible to store the result of the `filter()` function in a new object and then to apply a new filter on this new object.
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_ireland <- filter(gapminder, country == "Ireland")
-
-gapminder_ireland_2007 <- filter(gapminder_ireland, year == 2007)
-```
-
-A choice is offered to you, you can either overwrite the original object by using the same object name or to use a different object name.
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1. Be sure that the packages {tidyverse} and {gapminder} are loaded
-2. Create a new object that only contains data for France
-3. Create a new object using the previous object that only contains data for France in 1982
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
-class: inverse, mline, center, middle
-
-# 2. The select() function
-
----
-
-# The select() function
-
-It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. 
-
-`select()` allows you to rapidly zoom in on a useful subset using operations based on the names of the variables. 
-
-Again the first argument is the name of the data frame object to process and the following arguments are the name of the columns to keep.
-
-```{r eval=FALSE, echo=TRUE}
-select(gapminder, country, year, pop)
-```
-
----
-
-# Keep and remove variables
-
-The `select()` function can not only be used to keep specific variables but it can also be used to remove them from the data frame object. 
-
-To do so, just add the `-` sign in front of the variable name to be removed. For example:
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_keep <- select(gapminder, country, year, pop)
-
-gapminder_remove <- select(gapminder, -continent, -lifeExp, -gdpPercap)
-```
-
-In the previous example the objects `gapminder_keep` and `gapminder_remove` should have the same number of variable and therefore be equal.
-
----
-
-# Select and rename variables
-
-While you are keeping only specify variables with `select()`, these variables can also be renamed on the same time. 
-
-The new name has to be first, followed by the `=` sign, and the old name.
-
-Example:
-
-```{r eval=FALSE, echo=TRUE}
-select(gapminder, country, population = pop, measure_year = year)
-```
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1/ From the data frame object `gapminder`, select the columns `lifeExp` and `gdpPercap` and rename them as life_expectancy and gdp_per_capita:
-
-```{r eval=FALSE, echo=TRUE}
-select(_ _ _, _ _ _ = _ _ _, _ _ _ = _ _ _)
-```
-
-2/ From the data frame object `gapminder`, remove the columns `pop` and `year` and assign the result in a new object. The display the value of this object:
-
-```{r eval=FALSE, echo=TRUE}
-new_data <- select(_ _ _, -_ _ _, -_ _ _)
-
-new_data
-```
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
-class: inverse, mline, center, middle
-
-# 3. The mutate() function
-
----
-
-# The mutate() function
-
-Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. That’s the job of `mutate()`. 
-
-Once again the first argument is the name of the data frame object to modify, then the second argument is the name of the column to create followed by the `=` sign and the condition creating the new values.
-
-For example we can create a new column called `gdp_total` which contains the values resulting from the multiplication between `pop` and `gdpPercap`:
-
-```{r eval=FALSE, echo=TRUE}
-mutate(gapminder, gdp_total = pop * gdpPercap)
-```
-
-`mutate()` can also create multiple columns in the same statement, they just have to be separated by a comma `,`.
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1/ From the data frame object `gapminder`, create a new column called `country_upper` with the function `toupper()` using the column `country`:
-
-```{r eval=FALSE, echo=TRUE}
-mutate(_ _ _, _ _ _ = _ _ _(_ _ _))
-```
-
-2/ From the data frame object `gapminder`, filter the countries in Europe and their values for 2007. Assign the result to an new object called `europe_2007`. 
-Then create a new column called `europe_prop` corresponding to the value of the column `pop` divided by the total population in Europe in 2007.
-
-```{r eval=FALSE, echo=TRUE}
-europe_2007 <- filter(_ _ _, _ _ _ == _ _ _ & _ _ _ == _ _ _)
-
-mutate(_ _ _, _ _ _ = _ _ _/_ _ _(_ _ _))
-```
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
-class: inverse, mline, center, middle
-
-# 4. The summarise() function
-
----
-
-# The summarise() function
-
-The last key verb is `summarise()`. It collapses a data frame to a single row:
-
-```{r eval=FALSE, echo=TRUE}
-summarise(gapminder, mean(pop))
-summarise(gapminder, sd(pop))
-```
-
-The result of `summarise()` is a dataframe, the default header of the summary is the calculation but a new header can be defined by using the `=` sign when summarising the data:
-
-```{r eval=FALSE, echo=TRUE}
-summarise(gapminder, m_pop = mean(pop))
-summarise(gapminder, sd_pop = sd(pop))
-```
-
-Finally, more than one summary can be done inside a `summarise()`:
-
-```{r eval=FALSE, echo=TRUE}
-summarise(gapminder, m_pop = mean(pop), sd_pop = sd(pop))
-```
-
----
-
-# The summarise() function
-
-`summarise()` is not terribly useful unless we pair it with `group_by()`. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. 
-
-For example, if we applied exactly the same code to a data frame grouped by year, we get the average world population per year:
-
-```{r echo=TRUE}
-gapminder_by_year <- group_by(gapminder, year)
-
-summarise(gapminder_by_year, mean_pop = mean(pop))
-```
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1/ From the data frame object `gapminder`, summarise the population average with the `mean()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them):
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_group <- group_by(_ _ _, _ _ _, _ _ _)
-
-summarise(_ _ _, _ _ _ = _ _ _(_ _ _))
-```
-
-2/ From the data frame object `gapminder`, summarise the population standard deviation with the `sd()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them):
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_group <- group_by(_ _ _, _ _ _, _ _ _)
-
-summarise(_ _ _, _ _ _ = _ _ _(_ _ _))
-```
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
-class: inverse, mline, center, middle
-
-# 5. The pipe operator %>%
-
----
-
-# The pipe operator %>%
-
-Imagine that we want to summarise the population average and standard deviation only of Europe. Using what you know about {dplyr}, you might write code like this:
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_europe <- filter(gapminder, continent == "Europe")
-
-gapminder_summary_europe <- summarise(gapminder_europe, 
-  m_pop = mean(pop),
-  sd_pop = sd(pop)
-)
-```
-
-This code is a little frustrating to write because we have to give each intermediate data frame a name, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
-
----
-
-# The pipe operator %>% 
-
-There’s another way to tackle the same problem with the pipe, `%>%`:
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_summary_europe <- gapminder %>% 
-  filter(continent == "Europe") %>% 
-  summarise(m_pop = mean(pop), sd_pop = sd(pop))
-```
-
----
-
-# The pipe operator %>%
-
-You can read it as a series of imperative statements: group, then summarise, then filter in the first example and: filter, then summarise in the second example. As suggested by this reading, a good way to pronounce `%>%` when reading code is **“then”**.
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_summary_europe <- gapminder %>% 
-  filter(continent == "Europe") %>% 
-  summarise(m_pop = mean(pop), sd_pop = sd(pop))
-```
-
-Becomes
-
-> Create the object "gapminder_summary_europe" from the object "gapminder", then
-
-> Filter all the values exactly equals to "Europe" in the continent variable, then
-
-> Summarise the average population as "m_pop" and the standard deviation as "sd_pop".
-
----
-
-# The pipe operator %>%
-
-Behind the scenes, `x %>% f()` turns into `f(x)`, and `x %>% f() %>% g()` turns into `g(f(x))` and so on.
-
-The following sequence can be read as:
-1. Take `x` then
-2. Use it as the input to the function `f()` then
-3. Use `f(x)` as the input to the function `g()` then
-4. Use `g(f(x))` as the input to the function `h()`
-
-```{r eval=FALSE, echo=TRUE}
-x %>% 
-  f() %>% 
-  g() %>% 
-  h()
-```
-
-Working with the pipe is one of the key criteria for belonging to the tidyverse. The only exception is {ggplot2}.
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-class: title-slide, middle
-
-## Exercise
-
-1/ From the data frame object `gapminder`, summarise the population average with the `mean()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
-
-```{r eval=FALSE, echo=TRUE}
-_ _ _ %>% 
-  group_by(_ _ _, _ _ _) %>% 
-  summarise(_ _ _ = _ _ _(_ _ _))
-```
-
-2/ From the data frame object `gapminder`, summarise the population standard deviation with the `sd()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
-
-```{r eval=FALSE, echo=TRUE}
-_ _ _ %>% 
-  group_by(_ _ _, _ _ _) %>% 
-  summarise(_ _ _ = _ _ _(_ _ _))
-```
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
-class: inverse, mline, center, middle
-
-# 6. The left/right/full/inner_join() functions
-
----
-
-# Join 2 Tables
-
-.pull-left[
-The principle is simple, two different tables are sharing a key variable. By joining these two table by this key variable, it is possible to merge them into one table and to keep all variables.
-
-However, there are different cases, imagine that your X table (on the left) has more observations on the key variable than the Y table (on the right)
-
-]
-
-.pull-right[
-```{r out.width='100%'}
-include_graphics("https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png")
-```
-]
-
-You might want to keep:
-- Only the observations included in the left table
-- Only the observations included in the right table
-- Only the observations included in both tables
-- All observations
-
-For more visualisation see [Tidy Animated Verbs](https://www.garrickadenbuie.com/project/tidyexplain/)
-
----
-
-# Join 2 Tables
-
-```{r out.width='50%'}
-include_graphics("https://rafalab.github.io/dsbook/wrangling/img/joins.png")
-```
-
----
-
-class: inverse, mline, center, middle
-
-# 7. Pivot Longer or Pivot Wider
-
----
-
-# Pivot Longer or Pivot Wider
-
-Sometimes we need to reformat or reshape our data in order to analyse it or visualize it in a specific way. Two tidyverse functions, `pivot_longer()` and `pivot_wider()`, help us to do this.
-
-![](https://thinkr.fr/wp-content/uploads/pivot.png?raw=true)
-
----
-
-# Pivot Wider
-
-In the `gapminder` dataset, we currently have a column/variable year and the population for the same country is repeated according multiple rows. This is a "Tidy" format, but sometimes it is handy to have a column per year for the same country: this is a "wide" format. Wide means that the value of a specific variable is spread on multiple columns.
-
-To obtain this wider version of the dataset, it is possible to use the `pivot_wider()` function from the {tidyr} package.
-
-![](https://d33wubrfki0l68.cloudfront.net/8350f0dda414629b9d6c354f87acf5c5f722be43/bcb84/images/tidy-8.png?raw=true)
-
----
-
-# Pivot Wider
-
-`pivot_wider()` has 3 main arguments:
-1. The dataset to pivot (but it can be omitted if it follows a pipe operator)
-2. `names_from` which corresponds to the variable converted to column names
-3. `values_from` which corresponds to the values inside the new variables
-
-For example, the following code will spread the years as new columns displaying the population per country:
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_wider <- gapminder %>% 
-  select(country, year, pop) %>% 
-  pivot_wider(names_from = year, values_from = pop)
-```
-
----
-
-# Pivot Longer
-
-Usually R is working with long tables, not wide. For this reason it is very useful to reorganise a dataset with the `pivot_longer()` function.
-
-![](https://i0.wp.com/cmdlinetips.com/wp-content/uploads/2020/02/pivot_longer_wide_to_long_tidy.jpg?raw=true)
-
----
-
-# Pivot Longer
-
-`pivot_longer()` has 4 main arguments:
-1. The dataset to pivot (but it can be omitted if it follows a pipe operator)
-2. `names_to` which corresponds to the column names aggregated in a new variable
-3. `values_to` which corresponds to the values aggregated in a new variable
-4. The last argument `cols` corresponds to the column names to be aggregated. Observe how we set this to `-country` indicating that we don’t want to “tidy” the country but all the other variables
-
-```{r eval=FALSE, echo=TRUE}
-gapminder_longer <- gapminder_wider %>% 
-  pivot_longer(names_to = "year", values_to = "pop", cols = -country)
-```
-
-For `pivot_longer()` the new variables are in quotation marks because they are not present in the existing `gapminder_wider` table whereas `country` is and has no quotation mark.
-
----
-
-class: inverse, mline, center, middle
-
-# 8. Save Your Data
+# 5. Save Your Data
 
 ---
 
@@ -1348,18 +565,75 @@ Note: don't forget the file extension in the argument `file`
 Example:
 
 ```{r eval=FALSE, echo=TRUE}
-write.csv(gapminder_wider, "data_gapminder_transformed.csv")
+write.csv(my_file_object, "my_file_name.csv")
 ```
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Save your "unicef_metadata.csv" file under a new name by using the R object name that you previously gave
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+
+# Become Expert in R
+
+Because R is free, plenty of free learning materials are available online:
+
+* Video tutorials in Youtube, Tik Tok (@chelseaparlettpelleriti, @tommyteaches, ...)
+  
+* Interactive tutorials, see for example:
+  - [RStudio Primers](https://rstudio.cloud/learn/primers)
+  - [R-Bootcamp](https://r-bootcamp.netlify.com)
+  - [Introduction to R](https://www.quantargo.com/courses/course-r-introduction)
+  - [DCU R tutorials](https://dcu-r-tutorials.netlify.app)
+
+* Book tutorials, see for example:
+  - [R for Data Science](https://r4ds.had.co.nz/) by Wickham & Grolemund (2017)
+  - [A ModernDive into R and the tidyverse](https://moderndive.com/) by Ismay & Kim (2019)
+  - [Getting Used to R, RStudio, and R Markdown](https://rbasics.netlify.com/) by Kennedy (2019)
+  - [Introduction to Open Data Science](https://ohi-science.org/data-science-training/) by the Ocean Health Index Team (2019)
+  
+Note: All books are included in the [Big Book of R](https://www.bigbookofr.com/)
+
+---
+
+# How to solve your pRoblems
+
+.pull-left[
+### 1. Look at your error
+  * If it's obvious, solve it by yourself
+  * If it's not obvious, copy paste the error in google
+  
+### 2. Look at your object
+  * `str(ObjectName)`
+
+### 3. Look at the function
+  * Documentation (`F1` or `?`)
+
+### 4. Look at the web
+  * Google "R how to ..."
+  * Stack Overflow
+]
+.pull-right[
+```{r out.width='100%'}
+include_graphics("https://pbs.twimg.com/media/DAsjfPjXkAIBoET?format=jpg&name=medium")
+```
+]
 
 ---
 class: inverse, mline, left, middle
 
 <img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
 
-# Thanks for your attention and don't hesitate to ask any questions!
+# Thanks for your attention and don't hesitate to ask if you have any question!
 
 [`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
 [`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
 [`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
 [`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
-

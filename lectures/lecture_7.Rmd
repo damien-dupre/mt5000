@@ -269,7 +269,7 @@ include_graphics("img/tableau_alias_2.png")
 ---
 class: title-slide, middle
 
-## Hoover Tooltip
+## hover Tooltip
 
 ---
 
@@ -482,9 +482,9 @@ Some other actions can be trick to implement but could be essential when adding 
 If all the set-up fields are left as with default values, all the figure will be modified if a user hovers, clicks, or select a variable from a menu
 
 .pull-left[
-- Adding Highlight Actions to a dashboard is **the easiest way to make it smart**. By choosing "hoover" as interaction mode, the figures will react to the users simultaneously.
+- Adding Highlight Actions to a dashboard is **the easiest way to make it smart**. By choosing "hover" as interaction mode, the figures will react to the users simultaneously.
 
-- Filter Actions are interesting too but they can be **confusing when hoover or click are chosen** to trigger. Prefer triggering Filter Actions from menus instead.
+- Filter Actions are interesting too but they can be **confusing when hover or click are chosen** to trigger. Prefer triggering Filter Actions from menus instead.
 ]
 
 .pull-right[
