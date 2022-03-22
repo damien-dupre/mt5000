@@ -8,6 +8,7 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
     <script src="libs/countdown-0.3.5/countdown.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
@@ -21,6 +22,8 @@ class: center, middle, inverse, title-slide
 ### Damien Dupré - Dublin City University
 
 ---
+
+
 
 
 
@@ -120,7 +123,7 @@ class: title-slide, middle
 2. Load the package {gapminder} to access the data
 3. Use the function `str()` on the gapminder data 
 
-<div class="countdown" id="timer_62261630" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a20e" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -197,7 +200,7 @@ class: title-slide, middle
 2. Create a new object that only contains data for France
 3. Create a new object using the previous object that only contains data for France in 1982
 
-<div class="countdown" id="timer_622618df" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a139" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -279,7 +282,7 @@ new_data &lt;- select(_ _ _, -_ _ _, -_ _ _)
 new_data
 ```
 
-<div class="countdown" id="timer_62261648" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a133" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -332,7 +335,7 @@ europe_2007 &lt;- filter(_ _ _, _ _ _ == _ _ _ &amp; _ _ _ == _ _ _)
 mutate(_ _ _, _ _ _ = _ _ _/_ _ _(_ _ _))
 ```
 
-<div class="countdown" id="timer_62261747" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a1e0" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -429,7 +432,7 @@ gapminder_group &lt;- group_by(_ _ _, _ _ _, _ _ _)
 summarise(_ _ _, _ _ _ = _ _ _(_ _ _))
 ```
 
-<div class="countdown" id="timer_62261673" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a159" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -486,6 +489,8 @@ data_with_third_column &lt;- mutate(data, column_3 = column_1 + column_2)
 data_filter_third_column &lt;- filter(data_with_third_column, column_3 &lt; 10)
 ```
 
+--
+
 There’s another way to tackle the same problem with the pipe, `%&gt;%`:
 
 
@@ -494,6 +499,8 @@ data_filter_third_column &lt;- data %&gt;%
   mutate(column_3 = column_1 + column_2) %&gt;% 
   filter(column_3 &lt; 10)
 ```
+
+--
 
 You can read it as a series of imperative statements: 
 
@@ -512,18 +519,16 @@ Imagine that we want to summarise the population average and standard deviation 
 gapminder_europe &lt;- filter(gapminder, continent == "Europe")
 
 gapminder_summary_europe &lt;- summarise(gapminder_europe, 
-  m_pop = mean(pop),
-  sd_pop = sd(pop)
-)
+    m_pop = mean(pop),
+    sd_pop = sd(pop)
+  )
 ```
 
 This code is a little frustrating to write because we have to give each intermediate data frame a name, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
 
----
+--
 
-# The pipe operator %&gt;% 
-
-There’s another way to tackle the same problem with the pipe, `%&gt;%`:
+There is another way to tackle the same problem with the pipe, `%&gt;%`:
 
 
 ```r
@@ -535,8 +540,6 @@ gapminder_summary_europe &lt;- gapminder %&gt;%
 ---
 
 # The pipe operator %&gt;%
-
-You can read it as a series of imperative statements: group, then summarise, then filter in the first example and: filter, then summarise in the second example. As suggested by this reading, a good way to pronounce `%&gt;%` when reading code is **“then”**.
 
 
 ```r
@@ -592,13 +595,11 @@ class: title-slide, middle
 ```
 starwars %&gt;%
  select(name, height, mass, homeworld) %&gt;%
- mutate(
-  mass = NULL,
-  height = height * 0.0328084 # convert to feet
-)
+ mutate(height = height * 0.0328084) %&gt;% # convert to feet
+ filter(max(height))
 ```
 
-<div class="countdown" id="timer_62261979" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a469" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -625,9 +626,103 @@ _ _ _ %&gt;%
   summarise(_ _ _ = _ _ _(_ _ _))
 ```
 
-<div class="countdown" id="timer_622618a4" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_6239a3c6" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
+
+---
+
+class: inverse, mline, center, middle
+
+# 6. The left/right/full/inner_join() functions
+
+---
+
+# Join 2 Tables
+
+.pull-left[
+The principle is simple, two different tables are sharing a **key variable**. By joining these two table by this key variable, it is possible to merge them into one table and to keep all variables.
+
+However, there are different cases, imagine that your X table (on the left) has more observations on the key variable than the Y table (on the right)
+
+]
+
+.pull-right[
+&lt;img src="https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+You might want to keep:
+- Only the observations included in the left table
+- Only the observations included in the right table
+- Only the observations included in both tables
+- All observations
+
+For more visualisation see [Tidy Animated Verbs](https://www.garrickadenbuie.com/project/tidyexplain/)
+
+---
+
+# Join 2 Tables
+
+&lt;img src="https://rafalab.github.io/dsbook/wrangling/img/joins.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Join 2 Tables with Same Index Name
+
+Create 2 dataframe objects sharing 2 key variables: country and year
+
+
+```r
+table_1 &lt;- gapminder %&gt;% 
+  select(country, year, pop)
+
+table_2 &lt;- gapminder %&gt;% 
+  select(country, year, lifeExp)
+```
+
+Different possibilities to automatically join the dataframe objects
+
+
+```r
+table_right_joined &lt;- right_join(table_1, table_2)
+table_left_joined &lt;- left_join(table_1, table_2)
+table_inner_joined &lt;- inner_join(table_1, table_2)
+table_full_joined &lt;- full_join(table_1, table_2)
+```
+
+Set the argument `by` to manually choose the key variables, example:
+
+
+```r
+manual_join &lt;- full_join(table_1, table_2, by = c("country", "year"))
+```
+
+---
+
+# Join 2 Tables with Different Index Name
+
+Sometimes the name of the variable index used to match the two tables is different, in this case it is necessary to __manually specify the matching variables__.
+
+
+```r
+table_1 &lt;- gapminder %&gt;% 
+  select(country, year, pop)
+
+table_2 &lt;- gapminder %&gt;% 
+  select(country_measure = country, year_measure = year, lifeExp)
+```
+
+Set the argument `by` to manually choose the key variables, and specify the association:
+
+
+```r
+manual_join &lt;- 
+  full_join(
+    table_1, 
+    table_2, 
+    by = c("country" = "country_measure", "year" = "year_measure")
+  )
+```
 
 ---
 class: inverse, mline, left, middle

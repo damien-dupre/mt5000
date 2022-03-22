@@ -31,6 +31,13 @@ options(scipen = 999, htmltools.preserve.raw = FALSE)
 opts_chunk$set(echo = FALSE, fig.align = "center", fig.retina = 3)
 ```
 
+```{r xaringan-extra-styles, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE, 
+  mute_unhighlighted_code = TRUE
+)
+```
+
 # R so far
 
 We have already seen how to:
@@ -453,6 +460,8 @@ data_with_third_column <- mutate(data, column_3 = column_1 + column_2)
 data_filter_third_column <- filter(data_with_third_column, column_3 < 10)
 ```
 
+--
+
 There’s another way to tackle the same problem with the pipe, `%>%`:
 
 ```{r echo=TRUE, eval=FALSE}
@@ -460,6 +469,8 @@ data_filter_third_column <- data %>%
   mutate(column_3 = column_1 + column_2) %>% 
   filter(column_3 < 10)
 ```
+
+--
 
 You can read it as a series of imperative statements: 
 
@@ -477,18 +488,16 @@ Imagine that we want to summarise the population average and standard deviation 
 gapminder_europe <- filter(gapminder, continent == "Europe")
 
 gapminder_summary_europe <- summarise(gapminder_europe, 
-  m_pop = mean(pop),
-  sd_pop = sd(pop)
-)
+    m_pop = mean(pop),
+    sd_pop = sd(pop)
+  )
 ```
 
 This code is a little frustrating to write because we have to give each intermediate data frame a name, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
 
----
+--
 
-# The pipe operator %>% 
-
-There’s another way to tackle the same problem with the pipe, `%>%`:
+There is another way to tackle the same problem with the pipe, `%>%`:
 
 ```{r eval=FALSE, echo=TRUE}
 gapminder_summary_europe <- gapminder %>% 
@@ -499,8 +508,6 @@ gapminder_summary_europe <- gapminder %>%
 ---
 
 # The pipe operator %>%
-
-You can read it as a series of imperative statements: group, then summarise, then filter in the first example and: filter, then summarise in the second example. As suggested by this reading, a good way to pronounce `%>%` when reading code is **“then”**.
 
 ```{r eval=FALSE, echo=TRUE}
 gapminder_summary_europe <- gapminder %>% 
@@ -554,10 +561,8 @@ class: title-slide, middle
 ```
 starwars %>%
  select(name, height, mass, homeworld) %>%
- mutate(
-  mass = NULL,
-  height = height * 0.0328084 # convert to feet
-)
+ mutate(height = height * 0.0328084) %>% # convert to feet
+ filter(max(height))
 ```
 
 ```{r}
@@ -587,6 +592,99 @@ _ _ _ %>%
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 6. The left/right/full/inner_join() functions
+
+---
+
+# Join 2 Tables
+
+.pull-left[
+The principle is simple, two different tables are sharing a **key variable**. By joining these two table by this key variable, it is possible to merge them into one table and to keep all variables.
+
+However, there are different cases, imagine that your X table (on the left) has more observations on the key variable than the Y table (on the right)
+
+]
+
+.pull-right[
+```{r echo=FALSE, out.width='100%'}
+include_graphics("https://raw.githubusercontent.com/gadenbuie/tidyexplain/master/images/static/png/original-dfs.png")
+```
+]
+
+You might want to keep:
+- Only the observations included in the left table
+- Only the observations included in the right table
+- Only the observations included in both tables
+- All observations
+
+For more visualisation see [Tidy Animated Verbs](https://www.garrickadenbuie.com/project/tidyexplain/)
+
+---
+
+# Join 2 Tables
+
+```{r echo=FALSE, out.width='50%'}
+include_graphics("https://rafalab.github.io/dsbook/wrangling/img/joins.png")
+```
+
+---
+
+# Join 2 Tables with Same Index Name
+
+Create 2 dataframe objects sharing 2 key variables: country and year
+
+```{r eval=FALSE, echo=TRUE}
+table_1 <- gapminder %>% 
+  select(country, year, pop)
+
+table_2 <- gapminder %>% 
+  select(country, year, lifeExp)
+```
+
+Different possibilities to automatically join the dataframe objects
+
+```{r eval=FALSE, echo=TRUE}
+table_right_joined <- right_join(table_1, table_2)
+table_left_joined <- left_join(table_1, table_2)
+table_inner_joined <- inner_join(table_1, table_2)
+table_full_joined <- full_join(table_1, table_2)
+```
+
+Set the argument `by` to manually choose the key variables, example:
+
+```{r eval=FALSE, echo=TRUE}
+manual_join <- full_join(table_1, table_2, by = c("country", "year"))
+```
+
+---
+
+# Join 2 Tables with Different Index Name
+
+Sometimes the name of the variable index used to match the two tables is different, in this case it is necessary to __manually specify the matching variables__.
+
+```{r eval=FALSE, echo=TRUE}
+table_1 <- gapminder %>% 
+  select(country, year, pop)
+
+table_2 <- gapminder %>% 
+  select(country_measure = country, year_measure = year, lifeExp)
+```
+
+Set the argument `by` to manually choose the key variables, and specify the association:
+
+```{r eval=FALSE, echo=TRUE}
+manual_join <- 
+  full_join(
+    table_1, 
+    table_2, 
+    by = c("country" = "country_measure", "year" = "year_measure")
+  )
 ```
 
 ---

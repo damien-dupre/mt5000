@@ -1,8 +1,7 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 9: Introduction to Rmarkdown"
-author: "Damien Dupré"
-date: "Dublin City University"
+subtitle: "Lecture 11: Introduction to Rmarkdown"
+author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
     css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
@@ -14,31 +13,28 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include = FALSE}
+```{r include = FALSE}
 # libraries --------------------------------------------------------------------
 library(countdown)
+library(fontawesome)
+library(here)
 library(kableExtra)
 library(knitr)
 library(tidyverse)
 library(ymlthis)
-# general options --------------------------------------------------------------
-options(scipen = 999)
-set.seed(42)
+
 # chunk options ----------------------------------------------------------------
-opts_chunk$set(
-  cache.extra = rand_seed, 
-  message = FALSE, 
-  warning = FALSE, 
-  error = FALSE, 
-  echo = FALSE,
-  cache = FALSE,
-  eval = TRUE,
-  comment = "", 
-  fig.align = "center", 
-  fig.retina = 3
-  )
+opts_chunk$set(echo = FALSE)
 
+# data -------------------------------------------------------------------------
+titanic <- read_csv(here("data/titanic.csv"))
+```
 
+```{r xaringan-extra-styles, echo=FALSE}
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE, 
+  mute_unhighlighted_code = TRUE
+)
 ```
 
 # Objectives
@@ -387,70 +383,6 @@ output: pdf_document
 ---
 ```
 
----
-
-class: middle, inverse
-
-# Demonstration:<br>R Markdown presenting the Titanic Data 
-
-
-```{r setup, include = FALSE}
-# general options --------------------------------------------------------------
-options(scipen = 999)
-set.seed(42)
-# chunk options ----------------------------------------------------------------
-knitr::opts_chunk$set(
-  cache.extra = knitr::rand_seed, 
-  message = FALSE, 
-  warning = FALSE, 
-  error = FALSE, 
-  echo = FALSE,
-  cache = FALSE,
-  eval = TRUE,
-  comment = "", 
-  fig.align = "center", 
-  fig.retina = 3
-  )
-# libraries --------------------------------------------------------------------
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(countdown)
-
-# theme ------------------------------------------------------------------------
-library(xaringanthemer)
-style_mono_light(
-  base_color = "#23395b",
-  code_inline_background_color = "#23395b"
-  )
-
-# data -------------------------------------------------------------------------
-titanic <- read_csv(here::here("data/titanic.csv"))
-```
-
-# Objectives
-
-In this tutorial, with RStudio Cloud, we will see how to:
-
-- Includes Transformation steps and include descriptive statistics in R Markdown files
-- Present these descriptive statistics in a table in R Markdown files
-
----
-
-class: inverse, mline, center, middle
-
-# 1. Transformations and Tables in R Markdown files
-
----
-
-# Requeriements
-
-Before starting, we need to check that:
-
-- You have created an account on RStudio cloud
-- You have installed the required packages
-- You have created a default R Markdown file
-- An output document is created without errors we you press "knit" in the R Markdown file
 
 ---
 
@@ -641,11 +573,10 @@ library(countdown)
 library(xaringanthemer)
 style_mono_light(
   base_color = "#23395b",
-  code_inline_background_color ="#23395b"
+  code_inline_background_color = "#23395b"
   )
 
-# data -------------------------------------------------------------------------
-titanic <- read_csv(here::here("data/titanic.csv"))
+
 ```
 
 # Objectives
@@ -822,3 +753,15 @@ ggplot(titanic, aes(Fare, Age)) +
 class: middle, inverse
 
 # Demonstration
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your attention and don't hesitate to ask if you have any questions!
+
+[`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
+[`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
+[`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
