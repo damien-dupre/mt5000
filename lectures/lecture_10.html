@@ -137,9 +137,9 @@ library(tidyverse)
 
 **“the grammar of graphics”** (the “gg” in ggplot) defines a set of rules for constructing statistical graphics by combining different types of layers. 
 
-From the first (bottom) to the last (top), the layers are :
+From the first (bottom) to the last (top), the mandatory layers are :
 
-&lt;img src="http://www.lucaliebi.ch/r_books/images/ggplot2.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://englelab.gatech.edu/useRguide/images/dataviz/ge_geom.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -340,39 +340,6 @@ ggplot(data = gapminder_avg_continent_2007) +
 &lt;img src="lecture_10_files/figure-html/unnamed-chunk-19-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
-
-# Themes
-
-Now, to make the plot more professional, let's remove that standard grey background using a different theme. 
-
-Many themes come built into the {ggplot2} package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up.
-
-
-```r
-ggplot(gapminder) +
-  aes(x = gdpPercap, y = lifeExp, color = continent) +
-  geom_point() +
-  theme_bw()
-```
-
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-20-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-
-# Themes
-
-Built-in ggplot2 themes includes:
-
-- `theme_bw()`
-- `theme_classic()`
-- `theme_minimal()`
-- `theme_dark()`
-- `theme_light()`
-- ... 
-
-Try them in the following exercises.
-
----
 class: title-slide, middle
 
 ## Live Demo
@@ -382,29 +349,31 @@ class: title-slide, middle
 
 ## Exercise
 
-Build a ggplot with the `gapminder` dataset and one `geom_boxplot()` layer
-which contains the x as `continent`, y as `lifeExp` and color as `continent` 
-in its `aes()`. Use a theme of your choice as well (e.g., `theme_bw()`, `theme_classic()`, `theme_minimal()`, `theme_dark()`):
+Create:
+
+- A `ggplot()` layer with the `gapminder` data,
+- An `aes()` layer containing `continent` as x, `lifeExp` as y, and `continent` as color,
+- And a `geom_boxplot()` layer:
 
 
 ```r
 _ _ _(_ _ _) +
   aes(x = _ _ _, y = _ _ _, color = _ _ _) +
-  _ _ _() +
   _ _ _()
 ```
 
-Build a ggplot with the `gapminder` dataset and one `geom_col()` layer which contains the x as `year`, y as `pop` and fill as `continent` in its `aes()`. Use a theme of your choice as well:
+- A `ggplot()` layer with the `gapminder` data,
+- An `aes()` layer containing `year` as x, `pop` as y, and `continent` as fill,
+- And a `geom_col()` layer:
 
 
 ```r
 _ _ _(_ _ _) +
   aes(x = _ _ _, y = _ _ _, fill = _ _ _)
-  _ _ _() +
   _ _ _()
 ```
 
-<div class="countdown" id="timer_623af237" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_623b7cd6" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -449,6 +418,39 @@ ggplot(gapminder) +
 
 ---
 
+# Themes
+
+Now, to make the plot more professional, let's remove that standard grey background using a different theme. 
+
+Many themes come built into the {ggplot2} package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up.
+
+
+```r
+ggplot(gapminder) +
+  aes(x = gdpPercap, y = lifeExp, color = continent) +
+  geom_point() +
+  theme_bw()
+```
+
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-25-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Themes
+
+Built-in ggplot2 themes includes:
+
+- `theme_bw()`
+- `theme_classic()`
+- `theme_minimal()`
+- `theme_dark()`
+- `theme_light()`
+- ... 
+
+&lt;img src="https://thinkr.fr/wp-content/uploads/2019/07/ggplot-meme.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
 # Facets
 
 Faceting is used to __split a particular visualisation by the values of another variable__. 
@@ -472,7 +474,7 @@ ggplot(gapminder) +
   theme_classic()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-26-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-27-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 The tilde (`~`) can be read as "by". If not included, R will prompt the following  error:
 
@@ -498,7 +500,7 @@ ggplot(gapminder) +
   theme_classic()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-29-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -522,7 +524,7 @@ ggplot(gapminder) +
   theme_classic()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-29-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-30-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 `labs()` can actually rename many more texts like colour, subtitle, caption, ...
 
@@ -544,7 +546,7 @@ ggplot(gapminder) +
   theme_classic()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-30-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-31-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -562,7 +564,7 @@ ggplot(gapminder) +
   theme_classic()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-31-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-32-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -586,7 +588,7 @@ ggplot(gapminder) +
   guides(color ="none")
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-32-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-33-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -628,7 +630,7 @@ ggplot(data = map_pop_2007) +
   geom_polygon()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-35-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-36-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -688,7 +690,7 @@ ggplot(_ _ _) +
   facet_wrap(_ _ _) 
 ```
 
-<div class="countdown" id="timer_623af232" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_623b7ead" style="right:0;bottom:0;" data-warnwhen="60">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -740,7 +742,7 @@ gapminder %&gt;%
   geom_line()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-41-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-42-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -759,7 +761,7 @@ gapminder %&gt;%
   geom_line()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-42-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-43-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -778,7 +780,7 @@ gapminder %&gt;%
   geom_line()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-43-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-44-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -796,7 +798,7 @@ gapminder %&gt;%
   geom_col()
 ```
 
-&lt;img src="lecture_10_files/figure-html/unnamed-chunk-44-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture_10_files/figure-html/unnamed-chunk-45-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, mline, left, middle

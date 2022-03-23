@@ -558,11 +558,13 @@ class: title-slide, middle
 
 2. Execute the following code:
 
-```
+```{r eval=FALSE}
 starwars %>%
- select(name, height, mass, homeworld) %>%
- mutate(height = height * 0.0328084) %>% # convert to feet
- filter(max(height))
+  select(name, height, mass, homeworld) %>%
+  mutate(height = height * 0.0328084) %>% # overwrite height values to feet
+  group_by(homeworld) %>%
+  filter(height == max(height)) %>%
+  arrange(desc(height))
 ```
 
 ```{r}

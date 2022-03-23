@@ -157,10 +157,10 @@ library(tidyverse)
 
 **“the grammar of graphics”** (the “gg” in ggplot) defines a set of rules for constructing statistical graphics by combining different types of layers. 
 
-From the first (bottom) to the last (top), the layers are :
+From the first (bottom) to the last (top), the mandatory layers are :
 
 ```{r echo=FALSE, out.width='50%'}
-include_graphics("http://www.lucaliebi.ch/r_books/images/ggplot2.png")
+include_graphics("https://englelab.gatech.edu/useRguide/images/dataviz/ge_geom.png")
 ```
 
 ---
@@ -344,36 +344,6 @@ ggplot(data = gapminder_avg_continent_2007) +
 ```
 
 ---
-
-# Themes
-
-Now, to make the plot more professional, let's remove that standard grey background using a different theme. 
-
-Many themes come built into the {ggplot2} package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up.
-
-```{r fig.height=4, fig.width=12}
-ggplot(gapminder) +
-  aes(x = gdpPercap, y = lifeExp, color = continent) +
-  geom_point() +
-  theme_bw()
-```
-
----
-
-# Themes
-
-Built-in ggplot2 themes includes:
-
-- `theme_bw()`
-- `theme_classic()`
-- `theme_minimal()`
-- `theme_dark()`
-- `theme_light()`
-- ... 
-
-Try them in the following exercises.
-
----
 class: title-slide, middle
 
 ## Live Demo
@@ -383,23 +353,25 @@ class: title-slide, middle
 
 ## Exercise
 
-Build a ggplot with the `gapminder` dataset and one `geom_boxplot()` layer
-which contains the x as `continent`, y as `lifeExp` and color as `continent` 
-in its `aes()`. Use a theme of your choice as well (e.g., `theme_bw()`, `theme_classic()`, `theme_minimal()`, `theme_dark()`):
+Create:
+
+- A `ggplot()` layer with the `gapminder` data,
+- An `aes()` layer containing `continent` as x, `lifeExp` as y, and `continent` as color,
+- And a `geom_boxplot()` layer:
 
 ```{r eval=FALSE}
 _ _ _(_ _ _) +
   aes(x = _ _ _, y = _ _ _, color = _ _ _) +
-  _ _ _() +
   _ _ _()
 ```
 
-Build a ggplot with the `gapminder` dataset and one `geom_col()` layer which contains the x as `year`, y as `pop` and fill as `continent` in its `aes()`. Use a theme of your choice as well:
+- A `ggplot()` layer with the `gapminder` data,
+- An `aes()` layer containing `year` as x, `pop` as y, and `continent` as fill,
+- And a `geom_col()` layer:
 
 ```{r eval=FALSE}
 _ _ _(_ _ _) +
   aes(x = _ _ _, y = _ _ _, fill = _ _ _)
-  _ _ _() +
   _ _ _()
 ```
 
@@ -442,6 +414,38 @@ If aesthetics are different for several geometry layers, it is also __possible t
 ggplot(gapminder) +
   geom_point(aes(x = year, y = lifeExp, shape = continent)) +
   geom_line(aes(x = year, y = lifeExp, color = country))
+```
+
+---
+
+# Themes
+
+Now, to make the plot more professional, let's remove that standard grey background using a different theme. 
+
+Many themes come built into the {ggplot2} package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up.
+
+```{r fig.height=4, fig.width=12}
+ggplot(gapminder) +
+  aes(x = gdpPercap, y = lifeExp, color = continent) +
+  geom_point() +
+  theme_bw()
+```
+
+---
+
+# Themes
+
+Built-in ggplot2 themes includes:
+
+- `theme_bw()`
+- `theme_classic()`
+- `theme_minimal()`
+- `theme_dark()`
+- `theme_light()`
+- ... 
+
+```{r, echo=FALSE, out.width='80%'}
+include_graphics("https://thinkr.fr/wp-content/uploads/2019/07/ggplot-meme.jpg")
 ```
 
 ---
