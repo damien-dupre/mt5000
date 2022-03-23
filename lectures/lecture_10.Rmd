@@ -353,7 +353,8 @@ Many themes come built into the {ggplot2} package. My preference is `theme_bw()`
 
 ```{r fig.height=4, fig.width=12}
 ggplot(gapminder) +
-  geom_point(aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  aes(x = gdpPercap, y = lifeExp, color = continent) +
+  geom_point() +
   theme_bw()
 ```
 
@@ -423,13 +424,24 @@ Take a look at the ggplot2 [cheat sheet](https://www.rstudio.com/wp-content/uplo
 
 # Inherited Propriety of Geometries
 
-You can add as many geometry layers as you want, however repeating the mapping for each geometry layer is very redundant. Thankfully, if all your geometry layers are using the same aesthetics mapping, __it is possible to include this mapping inside the `ggplot()`__, then all the geometry layers will have the same mapping:
+You can add as many geometry layers as you want, however repeating the mapping for each geometry layer is very redundant. 
 
-```{r fig.height=4, fig.width=12}
+Thankfully, if all your geometry layers are using the same aesthetics mapping, __it is possible to include this mapping inside the `ggplot()`__, then all the geometry layers will have the same mapping:
+
+```{r eval=FALSE}
 ggplot(gapminder, aes(x = year, y = lifeExp, color = country)) +
   geom_point() +
-  geom_line() +
-  guides(color ="none")
+  geom_line()
+```
+
+--
+
+If aesthetics are different for several geometry layers, it is also __possible to declare the aesthetics in the geometry__:
+
+```{r eval=FALSE}
+ggplot(gapminder) +
+  geom_point(aes(x = year, y = lifeExp, shape = continent)) +
+  geom_line(aes(x = year, y = lifeExp, color = country))
 ```
 
 ---
@@ -449,7 +461,8 @@ We do this by adding `facet_wrap(~ continent)` layer.
 # Facets
 
 ```{r fig.height=4, fig.width=12}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point() +
   facet_wrap(~ continent) +
   theme_classic()
@@ -458,7 +471,8 @@ ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
 The tilde (`~`) can be read as "by". If not included, R will prompt the following  error:
 
 ```{r echo=FALSE, error=TRUE}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point() +
   facet_wrap(continent) +
   theme_classic()
@@ -472,8 +486,9 @@ We can also specify the number of rows and columns in the grid by using the `nro
 
 For example, suppose we would like our faceted figure to have 1 rows instead of 2. We simply add an `nrow = 1` argument to `facet_wrap(~ continent)`:
 
-```{r fig.height=4, fig.width=12}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+```{r fig.height=3, fig.width=12}
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point() +
   facet_wrap(~ continent, nrow = 1) +
   theme_classic()
@@ -488,7 +503,8 @@ Ggplot has a layer called `labs()` in order to change the name of the axis label
 `labs()` has at least 3 arguments for us: x, y and title.
 
 ```{r fig.height=2, fig.width=12}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point() +
   facet_wrap(~ continent, nrow = 1) +
   labs(
@@ -509,8 +525,9 @@ Instead of creating summaries inside the data frame object, ggplot has some func
 
 The first special effect is the `geom_smooth()` layer. `geom_smooth()` is a classic geometry layer but which displays linear and non-linear trends.
 
-```{r fig.height=4, fig.width=12}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+```{r fig.height=3, fig.width=12}
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point() +
   geom_smooth() +
   facet_wrap(~ continent, nrow = 1) +
@@ -521,10 +538,11 @@ ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
 
 # Statistics and Special Effects
 
-`geom_smooth()` has one important extra argument called `method`. If method has the value "lm", a linear regression will be shown. If method has the value "loess" or "gam", a non-linear regression will be shown.
+`geom_smooth()` has one important extra argument called `method`. If method has the value __"lm"__, a linear regression will be shown. If method has the value __"loess"__ or __"gam"__, a non-linear regression will be shown.
 
 ```{r fig.height=4, fig.width=12}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point() +
   geom_smooth(method = "lm") +
   facet_wrap(~ continent, nrow = 1) +
@@ -536,7 +554,8 @@ ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
 # Additional Options
 
 ```{r fig.height=3, fig.width=12}
-ggplot(gapminder, aes(x = year, y = lifeExp, color = continent)) +
+ggplot(gapminder) +
+  aes(x = year, y = lifeExp, color = continent) +
   geom_point(alpha = 0.2, size = 1) +
   geom_smooth(method = "lm") +
   facet_wrap(~ continent, nrow = 1) +
@@ -573,8 +592,9 @@ map_world <- map_data("world")
 
 map_pop_2007 <- full_join(map_world, pop_2007, by = c("region" = "country"))
 
-ggplot(data = map_pop_2007, aes(x = long, y = lat)) +
-  geom_polygon(aes(group = group, fill = pop))
+ggplot(data = map_pop_2007) +
+  aes(x = long, y = lat, group = group, fill = pop) +
+  geom_polygon()
 ```
 
 ---
@@ -582,17 +602,19 @@ ggplot(data = map_pop_2007, aes(x = long, y = lat)) +
 # Map Visualisations
 
 ```{r  fig.height=5, fig.width=12}
-ggplot(data = map_pop_2007, aes(x = long, y = lat)) +
-  geom_polygon(aes(group = group, fill = pop))
+ggplot(data = map_pop_2007) +
+  aes(x = long, y = lat, group = group, fill = pop) +
+  geom_polygon()
 ```
 
 ---
 
 # Map Visualisations
 
-```{r  fig.height=4, fig.width=12}
-ggplot(data = map_pop_2007, aes(x = long, y = lat)) +
-  geom_polygon(aes(group = group, fill = pop)) +
+```{r maps, fig.height=7, fig.width=12, fig.show="hide"}
+ggplot(data = map_pop_2007) +
+  aes(x = long, y = lat, group = group, fill = pop) +
+  geom_polygon() +
   scale_fill_gradient(low = "yellow", high = "red", na.value = "grey") +
   labs(
     title = "Differences between countries regarding their population in 2007",
@@ -606,6 +628,14 @@ ggplot(data = map_pop_2007, aes(x = long, y = lat)) +
 ```
 
 ---
+
+# Map Visualisations
+
+```{r, echo=FALSE}
+include_graphics(fig_chunk("maps", "png"))
+```
+
+---
 class: title-slide, middle
 
 ## Live Demo
@@ -615,11 +645,10 @@ class: title-slide, middle
 
 ## Exercise
 
-Build a ggplot with the `gapminder` dataset and one `geom_boxplot()` layer which contains the x as `continent`, y as `lifeExp` and color as `continent` in its `aes()`. Use `year` as a facet variable, use a theme of your choice as well and changes axises labels:
+Build a ggplot with the `gapminder` dataset and one `aes()` layer which contains the x as `continent`, y as `lifeExp` and color as `continent`. Use `geom_boxplot()` as geometry and `year` as a facet variable, use a theme of your choice as well and changes axises labels:
 
 ```{r eval=FALSE}
-ggplot(_ _ _) +
-  geom_boxplot(...
+ggplot(...
 ```
 
 Build a ggplot with the `gapminder` dataset and:
@@ -629,8 +658,10 @@ Build a ggplot with the `gapminder` dataset and:
 - One `facet_wrap()` for each continent.
 
 ```{r eval=FALSE}
-ggplot(_ _ _ , aes(x = _ _ _ , y = _ _ _)) +
-  geom_line(...
+ggplot(_ _ _) +
+  geom_line(aes(_ _ _)) +
+  geom_smooth(aes(_ _ _)) +
+  facet_wrap(_ _ _) 
 ```
 
 ```{r echo=FALSE}
@@ -652,22 +683,27 @@ Indeed, having a data frame object as first argument of the `ggplot()` function 
 
 ```{r eval=FALSE}
 # this classic representation:
-ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+ggplot(data = gapminder) +
+  aes(x = gdpPercap, y = lifeExp, color = continent)
   geom_point()
 
 # is the same as:
 gapminder %>% 
-  ggplot(aes(gdpPercap, lifeExp, color = continent)) +
+  ggplot() +
+  aes(x = gdpPercap, y = lifeExp, color = continent) +
+  geom_point()
+
+# is the same as:
+gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, color = continent)) +
   geom_point()
 ```
 
 The layers are still added with the `+` symbol.
 
-In this last code, it is also possible to modify the data frame using `filter()`, `select()`, `mutate()`, and `summarise()`.
-
 ---
 
-# Filter to ggplot()
+# filter() to ggplot()
 
 You can easily display only the data for a specific section of you interest. For example, let's filter the data only for Ireland:
 
@@ -680,7 +716,7 @@ gapminder %>%
 
 ---
 
-# Mutate to ggplot()
+# mutate() to ggplot()
 
 If you need to display a variable that has to be created beforehand, you can always include a mutate statement in the chain.
 
@@ -696,7 +732,7 @@ gapminder %>%
 
 ---
 
-# Summary to ggplot()
+# summarise() to ggplot()
 
 Finally, one of the most useful possibilities will be to summarise variables per groups and to display this information in figures.
 
@@ -712,7 +748,7 @@ gapminder %>%
 
 ---
 
-# Summary to ggplot()
+# summarise() to ggplot()
 
 We can also compare the sum of the population by continent for the year 2007:
 
