@@ -178,9 +178,9 @@ include_graphics("img/r_console.png")
 ```
 ]
 
-You can execute code by typing it directly into the Console. However, it won’t be saved. And if you make a mistake you will have to re-type everything all over again. 
+You can execute code by typing it directly into the Console. However, it will not be saved. And if you make a mistake you will have to re-type everything all over again. 
 
-Instead, it’s better to write all your code in a document called the **Code Editor**.
+Instead, it is better to write all your code in a document (R script or R Markdown) in the **Code Editor**.
 
 ---
 
@@ -421,7 +421,7 @@ All object assignments have the same form:
 object_name <- object_content
 ```
 
-You want your object names to be descriptive, so you’ll need a convention for multiple words. I recommend **snake_case** where you separate lowercase words with `_`.
+You want your object names to be descriptive, so you will need a convention for multiple words. I recommend **snake_case** where you separate lower-case words with `_`.
 
 ```{r, eval=FALSE, echo=TRUE}
 numeric_value <- 1
@@ -450,16 +450,14 @@ class: title-slide, middle
 
 ## Exercise
 
-In the same R Script in RStudio, **Copy and Paste** the following code and **display the content** of each object by typing and running the name of the object on separate lines:
+In the same R Script in RStudio, **Copy and Paste and Run** the following code:
 
 ```
 my_power <- c(0.5, 99.5)
 
 my_knowledge <- c("without R", "with R")
 
-my_data <- data.frame(power = my_power, cases = my_knowledge)
-
-easy_viz <- barplot(height = my_power, names.arg = my_knowledge)
+barplot(height = my_power, names.arg = my_knowledge)
 ```
 
 ```{r}
@@ -563,7 +561,7 @@ Usually, only R Script file (.R) or R Markdown file (.Rmd) have to be saved as t
 
 However if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
 
-The simpliest export is a .csv file with the function `write.csv()`. It as two main arguments:
+The simplest export is a .csv file with the function `write.csv()`. It as two main arguments:
 - `x` which is the name of the object to save
 - `file` which is the name of the output file
 
@@ -572,7 +570,12 @@ Note: don't forget the file extension in the argument `file`
 Example:
 
 ```{r eval=FALSE, echo=TRUE}
+# Saved in the current directory
 write.csv(my_file_object, "my_file_name.csv")
+
+# Saved in the directory you prefer
+write.csv(my_file_object, "C:/path/to/my/my_file_name.csv") # Windows
+write.csv(my_file_object, "/Users/path/to/my/my_file_name.csv") # Macos
 ```
 
 ---

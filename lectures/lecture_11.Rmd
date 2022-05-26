@@ -169,15 +169,9 @@ include_graphics("img/html_output.png")
 ]
 
 ---
-
 class: inverse, mline, center, middle
 
 # 1. The YAML
-
----
-
-# The YAML
-
 
 ---
 

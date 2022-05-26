@@ -15,6 +15,7 @@ output:
 
 ```{r setup, include = FALSE}
 # libraries --------------------------------------------------------------------
+library(anicon)
 library(countdown)
 library(fontawesome)
 library(gapminder)
@@ -157,7 +158,8 @@ For example
 filter(gapminder, country == "Ireland")
 ```
 
-Importantly, Column/Variable names are not between quotation marks in the Tidyverse whereas the value to filter is
+Importantly, Column/Variable names are not between quotation marks in the Tidyverse whereas the value to filter is:
+
 - A Column/Variable is an object containing multiple values inside the data frame object.
 - The string "Ireland" does not exist in our environment and will not be saved. It is here just as a value, which explains the quotation marks.
 
@@ -167,17 +169,10 @@ Importantly, Column/Variable names are not between quotation marks in the Tidyve
 
 To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (exactly equal).
 
-When you’re starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality. When this happens you’ll get an informative error:
+When you are starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality. When this happens you will get an informative error:
 
-```{r eval=FALSE, echo=TRUE}
+```{r echo=TRUE, error=TRUE}
 filter(gapminder, country = "Ireland")
-```
-
-```out
-Error: Problem with `filter()` input `..1`.
-x Input `..1` is named.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `country == "Ireland"`?
 ```
 
 ---
@@ -221,7 +216,7 @@ class: inverse, mline, center, middle
 
 # The select() function
 
-It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. 
+It is not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you are actually interested in. 
 
 `select()` allows you to rapidly zoom in on a useful subset using operations based on the names of the variables. 
 
@@ -245,7 +240,7 @@ gapminder_keep <- select(gapminder, country, year, pop)
 gapminder_remove <- select(gapminder, -continent, -lifeExp, -gdpPercap)
 ```
 
-In the previous example the objects `gapminder_keep` and `gapminder_remove` should have the same number of variable and therefore be equal.
+`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` In the previous example the objects `gapminder_keep` and `gapminder_remove` should have the same number of variable and therefore be equal.
 
 ---
 
@@ -298,7 +293,7 @@ class: inverse, mline, center, middle
 
 # The mutate() function
 
-Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. That’s the job of `mutate()`. 
+Besides selecting sets of existing columns, it is often useful to add new columns that are functions of existing columns. That is the job of `mutate()`.  
 
 Once again the first argument is the name of the data frame object to modify, then the second argument is the name of the column to create followed by the `=` sign and the condition creating the new values.
 
@@ -421,7 +416,7 @@ class: inverse, mline, center, middle
 
 # The Pipe Operator %>% (1)
 
-We have see how to create a sequence of numbers from 1 to 10 using the function `seq()`:
+We have seen how to create a sequence of numbers from 1 to 10 using the function `seq()`:
 
 ```{r echo=TRUE, eval=FALSE}
 seq(1, 10)
@@ -440,7 +435,7 @@ To make the code shorter you could do instead:
 sum(seq(1, 10))
 ```
 
-The **tidyverse** makes heavy use of the pipe operator (`%>%`), which takes whatever is on the left-hand-side of the pipe and makes it the first argument of whatever function is on the right-hand-side of the pipe. 
+The **tidyverse** makes heavy use of the pipe operator (`%>%`), which __takes whatever is on the left-hand-side of the pipe and makes it the first argument of whatever function is on the right-hand-side of the pipe__. 
 
 Therefore `seq(1, 10) %>% sum()` is equivalent to `sum(seq(1, 10))`.
 
@@ -524,27 +519,6 @@ Becomes
 > Summarise the average population as "m_pop" and the standard deviation as "sd_pop".
 
 ---
-
-# The pipe operator %>%
-
-Behind the scenes, `x %>% f()` turns into `f(x)`, and `x %>% f() %>% g()` turns into `g(f(x))` and so on.
-
-The following sequence can be read as:
-1. Take `x` then
-2. Use it as the input to the function `f()` then
-3. Use `f(x)` as the input to the function `g()` then
-4. Use `g(f(x))` as the input to the function `h()`
-
-```{r eval=FALSE, echo=TRUE}
-x %>% 
-  f() %>% 
-  g() %>% 
-  h()
-```
-
-Working with the pipe is one of the key criteria for belonging to the tidyverse. The only exception is {ggplot2}.
-
----
 class: title-slide, middle
 
 ## Live Demo
@@ -568,7 +542,7 @@ starwars %>%
 ```
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 3, warn_when = 60)
 ```
 
 ---

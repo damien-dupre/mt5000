@@ -37,7 +37,7 @@ for (row_student in 1:nrow(list_email_students)) {
   
   # data -----------------------------------------------------------------------
   # https://ourworldindata.org/covid-vaccinations
-  df <- here("data/owid_covid_data.csv") %>% 
+  df <- read_csv("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv") %>% 
     read_csv(
       col_types = cols(
         .default = col_double(),

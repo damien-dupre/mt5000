@@ -801,6 +801,15 @@ include_graphics("img/dataviz_exercise_4.png")
 
 # What’s Wrong Here?
 
+```{r out.width='80%'}
+include_graphics("img/dataviz_exercise_12.jpg")
+```
+.center.tiny[Source: KCRA graph on the 7pm news - r/Sacramento [`r emo::ji("link")`](https://www.reddit.com/r/Sacramento/comments/tysyxz/kcra_graph_on_the_7pm_news/)]
+
+---
+
+# What’s Wrong Here?
+
 ```{r out.width='100%'}
 include_graphics("img/dataviz_exercise_5.jpeg")
 ```
