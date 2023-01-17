@@ -113,6 +113,8 @@ Platforms to find and reward participants:
 - Qualtrics
 - Survey Monkey
 
+---
+
 # Latent Variables
 
 Scale to measure the **"Perceived Ease-of-use" of MS EXCEL** in 4 items were measured from 1 "totally disagree" to 7 "totally agree":

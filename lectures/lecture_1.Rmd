@@ -98,15 +98,15 @@ include_graphics("https://pbs.twimg.com/profile_images/1221820283159490565/96a3X
 - TABLEAU
 - R & RStudio
 
-The lecture will alternate between **theory sessions**, **practice sessions** and **exercises**.
+The lecture will alternate between **theory sessions** and **practice sessions**.
 
 ---
 
 # Module Content
 
 ## Targets
-
-- **Short Term**: Success in MT5000 assignments
+ 
+- **Short Term**: Success in MT5000 assignments and winning the EDHEC [Data Viz Challenge](https://www.tableau.com/academic/edhec-business-school-starts-data-viz-challenge-students-across-europe)
 
 - **Mid Term**: Success in all other DCU lectures (academic data analytics style and conventions)
 
@@ -116,6 +116,7 @@ The lecture will alternate between **theory sessions**, **practice sessions** an
 
 `r faa("bomb", animate="burst", speed="slow", color="blue")` Data Analytics is the best, easiest and highly paid job you can obtain with your master, see by yourself:
 - [MSc Management Business – Deep Dive with Cathal Dunne, AIB, Data Quality Analyst](https://business.dcu.ie/msc-management-business-deep-dive-with-cathal-dunne-aib-data-quality-analyst/)
+- [Let's ask to ChatGPT](https://chat.openai.com/chat)
 - [Data Analyst Positions on Indeed.com](https://ie.indeed.com/jobs?q="data analyst"&l=Dublin%2C County Dublin)
 
 ---
@@ -131,11 +132,10 @@ include_graphics("https://c.tenor.com/DIWxMkR9kyUAAAAC/fortune-and-glory-indiana
 # Module Organisation
 
 ### Lecture Every Week
-- Wednesday between 11am and 1pm (Irish Time) 
-- Until March 30th, 2022
-- Recordings available on Loop
+- Wednesday between 12pm and 3pm (Irish Time) 
+- Recordings on-demand an not shareable
 
-### Tutorial, Exercise and Answer Videos
+### Practice at Home
 - Practice with the technologies and methods shown during the lectures
 - Essential for the assignments
 
@@ -150,17 +150,19 @@ include_graphics("https://c.tenor.com/DIWxMkR9kyUAAAAC/fortune-and-glory-indiana
 
 - A unique dataset will be send to you by email to prevent plagiarism. This dataset will be used for each assignment:
 
-### Assignment 1. Tableau Dashboard (50%)
+### Assignment 1. Tableau Online Dashboard (50%)
 
-> Deadline 23/03/2022
+> Deadline 23/03/2023
 
 > Design a professional looking data dashboard aiming to communicate a narrative (also called storytelling)
 
-### Assignment 2. Rmarkdown Dashboard (50%)
+> Presentation of the dashboard in a 5min video
 
-> Deadline 13/04/2022 (`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Only 3 weeks after Assignment 1)
+### Assignment 2. Quarto Report (50%)
 
-> Using R and RStudio, reproduce the results presented in the tableau dashboard with a Rmarkdown Dashboard
+> Deadline 13/04/2023 (`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Only 3 weeks after Assignment 1)
+
+> Using R and RStudio, reproduce the results presented in the tableau dashboard with a Quarto report
 
 ---
 
@@ -326,6 +328,65 @@ include_graphics("https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e38
 - **Step 3**: Visualise, Model and Communicate your Results with PowerBI and Tableau 
 
 **And finally, do all these steps again only with R**
+
+---
+ 
+class: inverse, mline, center, middle
+ 
+# Data Analytics and Storytelling
+ 
+---
+ 
+# Role of Data Storytelling
+ 
+> **Stories** are how we translate core, essential **content**<br>to different **forms**<br>for specific **audiences**.
+ 
+--
+ 
+### Purpose of stories:
+ 
+Visual communication plays an important role in a visual analytics process. No matter how advanced and sophisticated data visualisation techniques are used, if we failed to tell a compelling story by using the data visualisation designed, all the hard work and efforts will be wasted.
+ 
+--
+ 
+### Motivation:
+ 
+.pull-left[
+**Exploratory analysis**: 
+- exploring and understanding the data, conducting the analysis
+]
+ 
+.pull-right[
+**Explanatory analysis**: 
+- explaining your findings from your analysis in a coherent narrative that leads to a call to action
+]
+ 
+---
+ 
+# Build your Story
+ 
+> When adding texts or visualisations, ask yourself: "Does this element support the point I want to make about the data?"
+ 
+--
+ 
+### Guiding Your Viewer 
+ 
+Another way we can guide people through our visualization is by using **annotations**, which can be very helpful in guiding someone through our figure. However, think about only labelling the data that matters.
+ 
+--
+ 
+### Use your titles/captions!
+ 
+- Titles can guide people to the point of your figure
+- Primes people to know what to look for
+- "If there is a conclusion you want your audience to reach, state it in words" - Cole Nussbaum Knaflic
+ 
+--
+
+### References
+ 
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+- [Hands-On Data Visualization: Interactive Storytelling from Spreadsheets to Code](https://handsondataviz.org/)
 
 ---
 class: inverse, mline, left, middle

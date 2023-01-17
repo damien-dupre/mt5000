@@ -4,30 +4,36 @@
     <title>MT5000 - Data Analytics &amp; Visualization</title>
     <meta charset="utf-8" />
     <meta name="author" content="Damien Dupré - Dublin City University" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.19/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
     <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
     <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
-    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/htmlwidgets-1.6.0/htmlwidgets.js"></script>
     <script src="libs/es6shim-0.35.6/es6shim.js"></script>
     <script src="libs/es7shim-6.0.0/es7shim.js"></script>
     <script src="libs/graphre-0.1.3/graphre.js"></script>
-    <script src="libs/nomnoml-1.3.1/nomnoml.js"></script>
-    <script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script>
+    <script src="libs/nomnoml-1.4.0/nomnoml.js"></script>
+    <script src="libs/nomnoml-binding-0.2.5/nomnoml.js"></script>
     <script src="libs/viz-1.8.2/viz.js"></script>
     <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-    <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # MT5000 - Data Analytics &amp; Visualization
+]
+.subtitle[
 ## Lecture 1: Introduction
+]
+.author[
 ### Damien Dupré - Dublin City University
+]
 
 ---
 
@@ -93,15 +99,15 @@ class: center, middle, inverse, title-slide
 - TABLEAU
 - R &amp; RStudio
 
-The lecture will alternate between **theory sessions**, **practice sessions** and **exercises**.
+The lecture will alternate between **theory sessions** and **practice sessions**.
 
 ---
 
 # Module Content
 
 ## Targets
-
-- **Short Term**: Success in MT5000 assignments
+ 
+- **Short Term**: Success in MT5000 assignments and winning the EDHEC [Data Viz Challenge](https://www.tableau.com/academic/edhec-business-school-starts-data-viz-challenge-students-across-europe)
 
 - **Mid Term**: Success in all other DCU lectures (academic data analytics style and conventions)
 
@@ -111,6 +117,7 @@ The lecture will alternate between **theory sessions**, **practice sessions** an
 
 <span>&lt;i class="fas  fa-bomb faa-burst animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> Data Analytics is the best, easiest and highly paid job you can obtain with your master, see by yourself:
 - [MSc Management Business – Deep Dive with Cathal Dunne, AIB, Data Quality Analyst](https://business.dcu.ie/msc-management-business-deep-dive-with-cathal-dunne-aib-data-quality-analyst/)
+- [Let's ask to ChatGPT](https://chat.openai.com/chat)
 - [Data Analyst Positions on Indeed.com](https://ie.indeed.com/jobs?q="data analyst"&amp;l=Dublin%2C County Dublin)
 
 ---
@@ -124,11 +131,10 @@ The lecture will alternate between **theory sessions**, **practice sessions** an
 # Module Organisation
 
 ### Lecture Every Week
-- Wednesday between 11am and 1pm (Irish Time) 
-- Until March 30th, 2022
-- Recordings available on Loop
+- Wednesday between 12pm and 3pm (Irish Time) 
+- Recordings on-demand an not shareable
 
-### Tutorial, Exercise and Answer Videos
+### Practice at Home
 - Practice with the technologies and methods shown during the lectures
 - Essential for the assignments
 
@@ -143,17 +149,19 @@ The lecture will alternate between **theory sessions**, **practice sessions** an
 
 - A unique dataset will be send to you by email to prevent plagiarism. This dataset will be used for each assignment:
 
-### Assignment 1. Tableau Dashboard (50%)
+### Assignment 1. Tableau Online Dashboard (50%)
 
-&gt; Deadline 23/03/2022
+&gt; Deadline 23/03/2023
 
 &gt; Design a professional looking data dashboard aiming to communicate a narrative (also called storytelling)
 
-### Assignment 2. Rmarkdown Dashboard (50%)
+&gt; Presentation of the dashboard in a 5min video
 
-&gt; Deadline 13/04/2022 (<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Only 3 weeks after Assignment 1)
+### Assignment 2. Quarto Report (50%)
 
-&gt; Using R and RStudio, reproduce the results presented in the tableau dashboard with a Rmarkdown Dashboard
+&gt; Deadline 13/04/2023 (<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Only 3 weeks after Assignment 1)
+
+&gt; Using R and RStudio, reproduce the results presented in the tableau dashboard with a Quarto report
 
 ---
 
@@ -203,8 +211,8 @@ Without data, an organization could not successfully complete most business acti
 - Knowing number of sales for each representative (fact – data)
 - Knowing total monthly sales (transformed – information)
 
-<div id="htmlwidget-30e4409849e39179307f" style="width:864px;height:216px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-30e4409849e39179307f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#stroke: black\n#direction: right\n#align: center\n[Data]->[Transformation Process]\n[Transformation Process]->[Information]","svg":false},"evals":[],"jsHooks":[]}</script>
+<div class="nomnoml html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-30e4409849e39179307f" style="width:864px;height:216px;"></div>
+<script type="application/json" data-for="htmlwidget-30e4409849e39179307f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#stroke: black\n#direction: right\n#align: center\n[Data]->[Transformation Process]\n[Transformation Process]->[Information]","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -222,7 +230,7 @@ Without data, an organization could not successfully complete most business acti
 - The analysis of data, typically large sets of data, by the use of mathematics, statistics, and computer software
 
 &lt;div class="figure" style="text-align: center"&gt;
-<div id="htmlwidget-2e17466358a46d139971" style="width:800px;height:150px;" class="grViz html-widget"></div>
+<div id="htmlwidget-2e17466358a46d139971" style="width:800px;height:150px;" class="grViz html-widget "></div>
 <script type="application/json" data-for="htmlwidget-2e17466358a46d139971">{"x":{"diagram":"\n  digraph {\n    \"Business performance results\" -> \"What happened?\" [dir = both]\n    \"Business performance results\" -> \"Why did it happen?\" [dir = both]\n    \"Business performance results\" -> \"What do we want to happen?\" [dir = both]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 &lt;p class="caption"&gt;Data analytics provides an integrated view of business performance.&lt;/p&gt;
 &lt;/div&gt;
@@ -308,6 +316,65 @@ It uses a combination of historical information about past transactions or event
 **And finally, do all these steps again only with R**
 
 ---
+ 
+class: inverse, mline, center, middle
+ 
+# Data Analytics and Storytelling
+ 
+---
+ 
+# Role of Data Storytelling
+ 
+&gt; **Stories** are how we translate core, essential **content**&lt;br&gt;to different **forms**&lt;br&gt;for specific **audiences**.
+ 
+--
+ 
+### Purpose of stories:
+ 
+Visual communication plays an important role in a visual analytics process. No matter how advanced and sophisticated data visualisation techniques are used, if we failed to tell a compelling story by using the data visualisation designed, all the hard work and efforts will be wasted.
+ 
+--
+ 
+### Motivation:
+ 
+.pull-left[
+**Exploratory analysis**: 
+- exploring and understanding the data, conducting the analysis
+]
+ 
+.pull-right[
+**Explanatory analysis**: 
+- explaining your findings from your analysis in a coherent narrative that leads to a call to action
+]
+ 
+---
+ 
+# Build your Story
+ 
+&gt; When adding texts or visualisations, ask yourself: "Does this element support the point I want to make about the data?"
+ 
+--
+ 
+### Guiding Your Viewer 
+ 
+Another way we can guide people through our visualization is by using **annotations**, which can be very helpful in guiding someone through our figure. However, think about only labelling the data that matters.
+ 
+--
+ 
+### Use your titles/captions!
+ 
+- Titles can guide people to the point of your figure
+- Primes people to know what to look for
+- "If there is a conclusion you want your audience to reach, state it in words" - Cole Nussbaum Knaflic
+ 
+--
+
+### References
+ 
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+- [Hands-On Data Visualization: Interactive Storytelling from Spreadsheets to Code](https://handsondataviz.org/)
+
+---
 class: inverse, mline, left, middle
 
 &lt;img class="circle" src="https://github.com/damien-dupre.png" width="250px"/&gt;
@@ -316,8 +383,8 @@ class: inverse, mline, left, middle
 
 [<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
 [<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M501.6 4.186c-7.594-5.156-17.41-5.594-25.44-1.063L12.12 267.1C4.184 271.7-.5037 280.3 .0431 289.4c.5469 9.125 6.234 17.16 14.66 20.69l153.3 64.38v113.5c0 8.781 4.797 16.84 12.5 21.06C184.1 511 188 512 191.1 512c4.516 0 9.038-1.281 12.99-3.812l111.2-71.46l98.56 41.4c2.984 1.25 6.141 1.875 9.297 1.875c4.078 0 8.141-1.031 11.78-3.094c6.453-3.625 10.88-10.06 11.95-17.38l64-432C513.1 18.44 509.1 9.373 501.6 4.186zM369.3 119.2l-187.1 208.9L78.23 284.7L369.3 119.2zM215.1 444v-49.36l46.45 19.51L215.1 444zM404.8 421.9l-176.6-74.19l224.6-249.5L404.8 421.9z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -366,6 +433,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
