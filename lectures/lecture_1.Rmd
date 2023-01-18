@@ -214,7 +214,7 @@ Without data, an organization could not successfully complete most business acti
 - Knowing number of sales for each representative (fact – data)
 - Knowing total monthly sales (transformed – information)
 
-```{nomnoml, fig.width=12, fig.height=3}
+```{nomnoml, fig.width=10, fig.height=3}
 #stroke: black
 #direction: right
 #align: center
@@ -330,7 +330,6 @@ include_graphics("https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e38
 **And finally, do all these steps again only with R**
 
 ---
- 
 class: inverse, mline, center, middle
  
 # Data Analytics and Storytelling
@@ -379,7 +378,7 @@ Another way we can guide people through our visualization is by using **annotati
  
 - Titles can guide people to the point of your figure
 - Primes people to know what to look for
-- "If there is a conclusion you want your audience to reach, state it in words" - Cole Nussbaum Knaflic
+- "If there is a conclusion you want your audience to reach, state it in words"
  
 --
 
