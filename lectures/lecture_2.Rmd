@@ -54,8 +54,8 @@ A tool is required to collect data, but there are tools to measure anything:
 - Psychological States
 - ...
 
-```{r out.width = "70%"}
-knitr::include_graphics("https://i.imgflip.com/3jtxnx.jpg")
+```{r out.width='70%'}
+include_graphics("https://i.imgflip.com/3jtxnx.jpg")
 ```
 
 ---
@@ -185,8 +185,8 @@ Reliability test is performed every time a scale is used but only using Cronbach
 
 # Validity and Reliability
 
-```{r out.width = "50%"}
-knitr::include_graphics("https://www.publichealthnotes.com/wp-content/uploads/2018/08/560px-Reliability_and_validity.svg_.png")
+```{r out.width='50%'}
+include_graphics("https://www.publichealthnotes.com/wp-content/uploads/2018/08/560px-Reliability_and_validity.svg_.png")
 ```
 
 ---
@@ -344,6 +344,43 @@ The schema is crucial to enabling retrieval of desired data. Therefore the struc
 
 ```{r out.width='50%'}
 include_graphics("https://external-preview.redd.it/eWJ9RiTdWLJAyW8R7AuX0HGijt10i9SpSEXL55Iy_Uw.jpg?auto=webp&s=6ccfe1cf8e0d2827d8809c3823a332c3c7b26074")
+```
+
+---
+class: title-slide, middle
+
+## Exercise: How to Structure these Data?
+
+.pull-left[
+Every week, I am webscrapping the website myhome.ie and collect all their information to monitor changes in the price of advertised houses. All row data are stored in the following github repository: https://github.com/damien-dupre/myhome_weekly
+
+**How should I structure the data to make a relevant database?**
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/myhome_weekly_raw.png")
+```
+]
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+
+# Possible Solution
+
+#### Proposed Schema
+
+```{r out.width='40%'}
+include_graphics("img/exercise_schema.png")
+```
+
+#### Example of Files
+
+```{r out.width='60%'}
+include_graphics("img/exercise_files.png")
 ```
 
 ---
