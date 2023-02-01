@@ -136,9 +136,7 @@ class: title-slide, mline, center, middle
 
 # Exercise: Clean unicef.xlsx
 
-Unicef collects a lot of data but they don't know either how to process them or how to visualise them. The following file is coming from their official website and is the topic of a European Data Visualisation Challenge: https://www.edhec.edu/en/student-dataviz-challenge-2022 (DL May 2022)
-
-[Follow the steps of the DCU student who finsihed in the top 10 of the challenge in 2020](https://www.edhec.edu/en/student-dataviz-challenge-2022)
+Unicef collects a lot of data but they don't know either how to process them or how to visualise them. The following file is coming from their official website and was the data used for the EDHEC European Data Visualisation Challenge: https://www.edhec.edu/en/student-dataviz-challenge-2022
 
 ### `r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` On the module Loop page, got to "Lecture Data" and download the document called "unicef.xlsx"
 
