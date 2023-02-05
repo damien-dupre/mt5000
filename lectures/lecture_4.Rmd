@@ -369,7 +369,7 @@ include_graphics("img/viz_correlation_2.png")
 
 # Master the Key Figures
 
-```{nomnoml, fig.width=12, fig.height=6}
+```{nomnoml, fig.width=10, fig.height=6}
 #stroke: black
 #direction: right
 #align: center
@@ -474,17 +474,20 @@ class: title-slide, middle
 ```{r fig.width=2.7, fig.align='default'}
 ggplot(organisation_alpha, aes(salary_2019)) +
   geom_histogram(bins = 10) +
-  labs(x = "Salary", y = "Count by Bin Range") +
+  labs(x = "Salary", y = "Count") +
   coord_flip() + 
   theme_bw() +
   theme(text = element_text(size = 20))  
 
 ggplot(organisation_alpha, aes(salary_2019)) +
   geom_density() +
-  labs(x = "Salary", y = "Proportion by Bin Range") +
+  labs(x = "Salary", y = "Proportion") +
   coord_flip() + 
   theme_bw() +
-  theme(text = element_text(size = 20))  
+  theme(
+    axis.text.x = element_blank(),
+    text = element_text(size = 20)
+  )  
 
 ggplot(organisation_alpha, aes(salary_2019)) +
   geom_boxplot() +
