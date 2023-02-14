@@ -184,16 +184,13 @@ include_graphics("img/powerbi_menu.png")
 - Will bring you back to the welcome page
 --
 
-- Shortcut to pinned Power BI activities
---
-
-- Shortcut to your most recent Power BI activities
---
-
 - The main access to create visualisations and dashboards
 --
 
-- List of the data you previously used with their settings
+- List of visualisations and dashboards you previously used or created
+--
+
+- List of data you previously used
 --
 
 - Create and access "scorecards" (mini dashboards to track data)
@@ -202,16 +199,7 @@ include_graphics("img/powerbi_menu.png")
 - Connection to your organisation database and web services 
 --
 
-- Power BI activities that you haven't created but shared with you
---
-
 - Shortcut to the [Microsoft learning platform for Power BI tutorials](https://docs.microsoft.com/en-us/learn/powerplatform/power-bi)
---
-
-- Collaborative environment to design dashboard (Pro version only)
---
-
-- List of created documents (dashboards, reports, workbooks, and datasets)
 
 ---
 
@@ -234,7 +222,7 @@ include_graphics("img/powerbi_menu.png")
 # Vocabulary
 
 ```{r out.width='80%'}
-include_graphics("https://v1.nitrocdn.com/MmRYricBGnwFelNvIykEOHWwZuUwjnwj/assets/static/optimized/rev-169dd29/wp-content/uploads/2019/11/powerbi-diagram.png")
+include_graphics("https://cdn-aldpb.nitrocdn.com/MmRYricBGnwFelNvIykEOHWwZuUwjnwj/assets/images/optimized/rev-a60081a/wp-content/uploads/2019/11/powerbi-diagram.png")
 ```
 .center.tiny[Source: How to Create Your First Power BI Dashboard (Step-by-Step) [`r emo::ji("link")`](https://spreadsheeto.com/power-bi-dashboard/)]
 
@@ -243,9 +231,7 @@ class: title-slide, middle
 
 ## Live Demo
 
-### Go to: Get Data (Nav. Pane) -> Sample -> "Customer Profitability Sample" 
-
-### Go to: Learn (Nav. Pane) -> "Artificial Intelligence Sample"
+### Go to: Learn (Nav. Pane) -> Sample Report -> Open "Store Sales"
 
 ---
 
@@ -476,6 +462,26 @@ class: inverse, mline, center, middle
 
 ---
 
+---
+
+class: inverse, mline, center, middle
+
+# 0. Practice Data and Topic
+
+---
+
+# Practice Data
+
+In order to show you how to use Power BI, we are going to exercise with the dataset called **titanic**.
+
+The most interesting outcome variable is the survive variable which says if the passenger has survived (coded 1) or not (coded 0)
+
+```{r}
+include_graphics("https://miro.medium.com/v2/resize:fit:1400/format:webp/1*JtEf9FVlJqxRDhhu0ec3fw.png")
+```
+
+---
+
 # Titanic Dataset
 
 ```{r out.width='100%'}
@@ -493,9 +499,25 @@ Variables:
 - embarked - Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)
 
 ---
+
+# Dashboard Topic
+
+Usually when you process data you have a motivation or interest in processing the Data
+
+Here this practice data is dummy but we can still try to make it interesting by solving the following question:
+
+- #### Titanic: “women and children first” or “every man for himself”?
+
+By using **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure** we will try to answer this question from the data obtained.
+
+```{r out.width='30%'}
+include_graphics("https://rss.onlinelibrary.wiley.com/cms/asset/70b0be43-c955-49b3-bf12-ec04f17c1240/sign1229-gra-0002-m.jpg")
+```
+
+---
 class: title-slide, middle
 
-## From the loop page, use **titanic.csv** to create a report in Power BI
+## Use **titanic.csv** to create a report in Power BI
 
 Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
 
