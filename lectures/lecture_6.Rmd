@@ -53,6 +53,30 @@ include_graphics("https://unilytics.com/wp-content/uploads/2017/02/challenge-acc
 ...Welcome to **Tableau**!
 
 ---
+
+# Tableau Dashboard Showcase
+
+```{r out.width='100%'}
+include_graphics("https://www.edhec.edu/sites/default/files/ckeditor-inlines/li_chen.png")
+```
+
+---
+
+# Tableau Dashboard Showcase
+
+```{r out.width='100%'}
+include_graphics("https://www.edhec.edu/sites/default/files/ckeditor-inlines/qiaolong_lin-.png")
+```
+
+---
+
+# Tableau Dashboard Showcase
+
+```{r out.width='100%'}
+include_graphics("https://www.edhec.edu/sites/default/files/ckeditor-inlines/filippo_pisello.png")
+```
+
+---
 class: inverse, mline, center, middle
 
 # 1. Around Tableau
@@ -77,38 +101,6 @@ Among these product, you will find:
 
 ---
 
-# How to Install Tableau Desktop?
-
-If you have a Windows, MacOs, or Linux:
-
-1. Go to https://www.tableau.com/products/desktop/download
-2. Fill the form with your DCU email address
-3. Click Download Free Trial (A license will be provided to use it September)
-
-```{r out.width='60%'}
-include_graphics("https://data-flair.training/blogs/wp-content/uploads/sites/2/2019/11/enter-business-email-1.png")
-```
-
-`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Tableau Desktop is currently **not supporting Chromebooks**. Users of Chromebooks will have to use **Tableau Public** (free online) or even **Tableau Online** (free 14 days trial) or to use **Tableau Desktop at the DCU computer labs** to do their assignment.
-
----
-
-# How to Install Tableau Desktop?
-
-Once Tableau Desktop is downloaded, install it, then:
-
-1. Click **Activate**
-2. On the form, enter your **school email address** for Business E-mail and enter the **name of your school** for Organization.
-3. Activate with your **product key that you have received by email** (valid until September)
-
-```{r out.width='60%'}
-include_graphics("https://cdns.tblsft.com/sites/default/files/blog/pasted_image_0_14.png")
-```
-
-Already have a copy of Tableau Desktop installed? Update your license in the application: Help menu → Manage Product Keys
-
----
-
 # How to Use Tableau Public
 
 1. Go to https://public.tableau.com
@@ -121,6 +113,46 @@ include_graphics("https://images.squarespace-cdn.com/content/v1/56fd706140261df9
 .center.tiny[Source: How I Came to Choose One out of Sixty Two Data Visualizations [`r emo::ji("link")`](https://www.doingdata.org/)]
 
 ---
+
+# How to Use Tableau Public
+
+```{r out.width='100%'}
+include_graphics("img/tableau_public_home.png")
+```
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='80%'}
+include_graphics("img/tableau_public_login.png")
+```
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='50%'}
+include_graphics("img/tableau_public_verify.png")
+```
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='100%'}
+include_graphics("img/tableau_public_account.png")
+```
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='100%'}
+include_graphics("img/tableau_public_createaviz.png")
+```
+
+---
 class: inverse, mline, center, middle
 
 # 2. Tableau Overview
@@ -131,9 +163,8 @@ class: inverse, mline, center, middle
 
 Tableau is very similar to Power BI but it actually simpler in its structure (but the visualisation capabilities are more complex):
 
-There are 5 types of areas:
+There are 4 types of areas:
 
-- **Start Page** is where you connect your data
 - **Data Source** is where you check the type of variables and where you can do basic transformations
 - **Worksheet** is where you build each individual visualisation (1 worksheet per visualisation)
 - **Dashboard** is where you combine all the visualisations in 1 interactive page
@@ -141,10 +172,10 @@ There are 5 types of areas:
 
 ---
 
-# Tableau Start Page
+# Tableau Data Source
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_start.png")
+include_graphics("img/tableau_data_1.png")
 ```
 
 ---
@@ -152,7 +183,7 @@ include_graphics("img/tableau_start.png")
 # Tableau Data Source
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_data.png")
+include_graphics("img/tableau_data_2.png")
 ```
 
 ---
@@ -184,7 +215,7 @@ include_graphics("img/tableau_story.png")
 # Principles
 
 Tableau is only about:
-- Dragging & dropping from variable list to plot (no-code software)
+- Dragging & dropping from variable list to plot (no-code software) 
 - Selecting the right data summary
 - Creating independent figures and organising them on a page
 
@@ -199,50 +230,113 @@ class: inverse, mline, center, middle
 
 ---
 
-# Stand Alone or Auto Update?
+# Files or Connectors?
 
 Without being too complicated, there is two major ways to connect data in Tableau:
-- Stand alone is a single file which won't be modified
-- Auto update is a cloud hosted file or a database that can be modified. The dashboard will update its values automatically (e.g., [Covid Dashboards](https://public.tableau.com/en-us/s/covid-19-viz-gallery))
+- From a File which won't be modified
+- From a database through a connector (i.e., interface) to obtained data stored on a remote server (e.g., [Covid Dashboards](https://public.tableau.com/en-us/s/covid-19-viz-gallery))
+
+**Files** can be of format .csv, .xls, .xlsx, .json, ...
+
+**Databases** cloud hosted on google drive or with OData protocol (url access to the data)
+
+--
 
 .pull-left[
-**Stand Alone Connection** made with a file type .csv, .xls, .xlsx, .json, ...
+`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` More details about Tableau data connection possibilities with the following contents among others found online:
+
+- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/guides/everybody-install/en-us/everybody_admin_data.htm)
+- [Tableau Data Connections to Databases and Multiple Sources9](https://www.guru99.com/tableau-data-connections.html)
+- [Types of Tableau Data Sources with Connection Establishment Process](https://data-flair.training/blogs/tableau-data-sources/)
 ]
+
 .pull-right[
-```{r out.width='90%'}
-include_graphics("https://miro.medium.com/max/1400/1*HXXjA2dvTwg7DKL_TMXGHw.jpeg")
+```{r out.width='100%'}
+include_graphics("img/bobross_connection.jpg")
+```
+
+.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
+]
+
+---
+
+# Connect to Multiple Data
+
+It is possible to add more than one file but it can be done with or without joining the data.
+
+- If you join the two or more data source, you will be able to use variables from different files in the same visualisation. However, a relationship between the data has to be established.
+- If you don't join the data, the variables from each data will have to be used separately in different visualisations.
+
+---
+
+# Joining Multiple Data
+
+.pull-left[
+Connect your first data file/database
+In the Data Source window, beside Connections, click on the plus sign to "Connect to Data"
+] 
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/tableau_connect_join_1.png")
 ```
 ]
+
 .pull-left[
-**Auto Update Connection** made with a cloud hosted file type google sheet, dropbox, onedrive, ... or made with a database type SQL
-]
+Drag and drop the second file next to the box representing the first file
+] 
+
 .pull-right[
-```{r out.width='90%'}
-include_graphics("https://www.guru99.com/images/tableau/060818_0511_TableauConn1.jpg")
+```{r out.width='100%'}
+include_graphics("img/tableau_connect_join_2.png")
 ```
 ]
 
 ---
 
-# Stand Alone or Auto Update?
+# Joining Multiple Data
 
-More details about Tableau data connection possibilities with the following contents among others found online:
+Set the variables to join and if the link between the data files is correct then the link will be green
 
-- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/guides/everybody-install/en-us/everybody_admin_data.htm)
-- [Tableau Data Connections to Databases and Multiple Sources by Guru 99](https://www.guru99.com/tableau-data-connections.html)
-- [Types of Tableau Data Sources with Connection Establishment Process by Data Flair](https://data-flair.training/blogs/tableau-data-sources/)
-
-```{r out.width='60%'}
-include_graphics("img/bobross_connection.jpg")
+```{r out.width='100%'}
+include_graphics("img/tableau_connect_join_3.png")
 ```
 
-.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
+---
+
+# Add Different Data
+
+.pull-left[
+Instead of clicking on the plus sign beside Connections, you can add data by clicking on the database symbol.
+] 
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/tableau_add_data_1.png")
+```
+]
+
+However you won't be able to use variable from both source for the same visualisation:
+
+```{r out.width='30%'}
+include_graphics("img/tableau_add_data_2.png")
+```
 
 ---
 class: title-slide, middle
 
 ## Live Examples
 
+---
+class: title-slide, middle
+
+## Exercise
+
+From the loop page, on the tile "Lecture Data", use the files **organisation alpha details**, **organisation alpha salary 2017**, **organisation alpha salary 2018**, and **organisation alpha salary 2019** and join them in Tableau Public.
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
 
 ---
 class: inverse, mline, center, middle
@@ -254,7 +348,7 @@ class: inverse, mline, center, middle
 # Variable List Tab
 
 .pull-left[
-```{r out.width='50%'}
+```{r out.width='30%'}
 include_graphics("img/tableau_variables.png")
 ```
 ]
@@ -268,7 +362,7 @@ include_graphics("img/tableau_variables.png")
 **Measures = Continuous Variables**
 
 - Made of numbers
-- Special cases of **Measure Names**, **Measure Values**, and *tablename(Count)*
+- Special cases of **Measure Names**, and **Measure Values**
 ]
 
 ---
@@ -340,15 +434,12 @@ include_graphics("img/tableau_showme.png")
 
 # Aggregation Method
 
+When selected as Rows or Columns, double click/click left on a Measure variable (green variable)
+
 .pull-left[
-- For Measures only (continuous variable)
-- Possibilities:
-  - Dimensions (raw data)
-  - Measure
-    - COUNT
-    - AVERAGE
-    - STD
-    - ...
+Choose between:
+  - Dimensions (raw data, equivalent of "Don't summarize" in PowerBI)
+  - Measure (COUNT, AVERAGE, STD, ...)
 ]
 
 .pull-right[
@@ -402,6 +493,15 @@ include_graphics("img/tableau_composition_1.png")
 
 # Composition Figures
 
+```{r out.width='50%'}
+include_graphics("img/tableau_composition_2_1.png")
+include_graphics("img/tableau_composition_2_2.png")
+```
+
+---
+
+# Composition Figures
+
 ```{r out.width='100%'}
 include_graphics("img/tableau_composition_2.png")
 ```
@@ -411,8 +511,24 @@ include_graphics("img/tableau_composition_2.png")
 # Composition Figures
 
 ```{r out.width='100%'}
+include_graphics("img/tableau_simple_bar.gif")
+```
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
 include_graphics("img/tableau_composition_3.png")
 ```
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_pie_chart.gif")
+``` 
 
 ---
 class: title-slide, middle
@@ -447,6 +563,14 @@ include_graphics("img/tableau_distribution_1.png")
 # Distribution Figures
 
 ```{r out.width='100%'}
+include_graphics("img/tableau_histogram.gif")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
 include_graphics("img/tableau_distribution_2.png")
 ```
 
@@ -455,7 +579,23 @@ include_graphics("img/tableau_distribution_2.png")
 # Distribution Figures
 
 ```{r out.width='100%'}
+include_graphics("img/tableau_box_plot.gif")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
 include_graphics("img/tableau_distribution_3.png")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_average_bar.gif")
 ```
 
 ---
@@ -480,6 +620,14 @@ Comparison Figures can be easily done by adding "Dimension" as colour, column or
 
 ```{r out.width='100%'}
 include_graphics("img/tableau_comparison_1.png")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_multiple_bar.gif")
 ```
 
 ---
@@ -525,8 +673,9 @@ A trend line can be added from the **Analytics** option.
 
 # Relationship Figures
 
-```{r out.width='100%'}
+```{r out.width='50%'}
 include_graphics("img/tableau_relationship_1.png")
+include_graphics("img/tableau_relationship_2.png")
 ```
 
 ---
@@ -534,14 +683,38 @@ include_graphics("img/tableau_relationship_1.png")
 # Relationship Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_relationship_2.png")
+include_graphics("img/tableau_scatterplot.gif")
 ```
 
 ---
 
 class: inverse, mline, center, middle
 
-# 6. Tableau Practice
+# 6. Tableau Dashboard
+
+---
+
+# Tableau Dashboard
+
+Like in Power BI, a dashboard is obtained by dropping several "Sheets"/Vizualisations on a page, by organising their position, and by adding additional elements (i.e., text, image, ...).
+
+Design features can be modified in order to give the dashboard a professional feel.
+
+Interactive customisations can be added from the Dashboard for all the "Sheets"/Visualisations to move simultaneously (next lecture).
+
+---
+
+# Tableau Dashboard
+
+```{r out.width='100%'}
+include_graphics("img/tableau_dashboard.gif")
+```
+
+---
+
+class: inverse, mline, center, middle
+
+# 7. Tableau Practice
 
 ---
 
@@ -566,7 +739,10 @@ class: title-slide, middle
 
 ## From the loop page, use **titanic.csv** to create a Tableau Dashboard
 
-Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
+Create: 
+- **1 Pie Chart using Survival**
+- **1 Bar Chart Proportion using Survival, Sex and Embarked**
+- **1 Scatterplot using Fare, Age and Survival**
 
 Remember to **use titles**, to **customise them** and to **add a text** to convey your narrative
 
