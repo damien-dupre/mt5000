@@ -540,7 +540,11 @@ include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/qs_pivo
 
 ---
 
-# Join in Tableau
+# Relationships vs Joins
+
+The default method in Tableau is to use relationships. Relationships preserve the original tables’ level of detail when combining information. Relationships are the recommended method of combining data in most instances.
+
+However, there may be times when you want to directly establish a join, either for control or for desired aspects of a join compared to a relationship, such as deliberate filtering or duplication.
 
 .pull-left[
 Join is the action of **merging two tables** based on a common key variable
@@ -550,22 +554,15 @@ Join is the action of **merging two tables** based on a common key variable
 ]
 
 .pull-right[
-```{r out.width='100%'}
+```{r out.width='90%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin2.gif")
 include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin3.gif")
 ```
 ]
 
-Click on the join logo to select which of Inner, Left, Right or Full join you want to do.
-
-```{r out.width='80%'}
-include_graphics("https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin4.gif")
-```
-
 ---
 
 # Link to Data Transformation in Tableau
-
-
 
 .pull-left[
 ### Pivot Tutorials
@@ -596,34 +593,25 @@ class: title-slide, middle
 ---
 class: inverse, mline, center, middle
 
-# 4. Share your Tableau Dashboard
+# 4. Publish your Tableau Dashboard
 
 ---
 
-# Export vs. Share
+# Publish 
 
-#### Exporting is the process of saving a dashboard in a file that can be read by someone else.
+#### Publishing is the process of saving a dashboard online. It can then be access by everyone.
 
-- Export as PowerPoint: Useful to communicate your visualisation to people who doesn't have Tableau but loose the interactivity
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: For your assignment, publish your dasboard online and submit the dashboard URL on loop.
 
-- Export as Packaged Workbook: Save the visualisation with the data (.twbx file extension). **Your assignment has to be Exported as Packaged Workbook and uploaded on Loop**
-
-`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: If you save as a simple workbook (.twb file extension), it won't be accepted.
-
---
-
-#### Sharing is the process of publishing a dashboard online for everyone to access it.
-
-- It is done with an account to **Tableau Online** 
-- It can be used in your CV as a portfolio of skills in data visualisation and storytelling
-
-`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` Note: Sharing your assignment dashboard with **Tableau Online** is an alternative option to submit your assignment
+```{r out.width='70%'}
+include_graphics("img/tableau_published.png")
+```
 
 ---
 
-# Export vs. Share
+# Export vs. Share with Desktop
 
-More details about how to save and share Tableau with the following contents among others found online:
+More details about how to save and share Tableau Desktop with the following contents among others found online:
 
 - [A Quick Guide to Tableau File Types](https://vizartpandey.com/a-quick-guide-to-tableau-file-types/)
 - [Learn all kinds of file extensions used in Tableau](https://data-flair.training/blogs/tableau-file-types/)
@@ -674,9 +662,18 @@ Two data files will be emailed to you, focus your dashboard on the files called 
 Tableau is much more than basic visualisations, very professional output can be obtained easily, see some examples online: https://public.tableau.com/gallery/
 
 - Use these existing dashboards as inspirations for your own dashboards. Don't reinvent the wheel, reproducing with your own data is challenging enough. 
-- Follow the steps of Mehmet, student of MT5000 in 2020, selected among the top 10 of [EDHEC DataViz Challenge](https://www.edhec.edu/en/edhec-dataviz-challenge)
+- Follow the steps of Mehmet, student of MT5000 in 2020 and Domitille in 2022, selected among the top 10 of [EDHEC DataViz Challenge](https://www.edhec.edu/en/edhec-dataviz-challenge)
 
-### Coming Soon: EDHEC DataViz Challenge (2022) https://www.edhec.edu/en/student-dataviz-challenge-2022
+### EDHEC DataViz Challenge (2023)
+
+- Step 1: Publish your dashboard entry to your Tableau Public Profile with the tag **#StudentdataViz2023**.
+- Setp 2: From March 7, submit your dasboard URL [here](https://docs.google.com/forms/d/e/1FAIpQLSfKDVRlQzM5GK5wLNTtdxxHkk3uyYnjW7_BjycxwC31qDMd_w/viewform).
+
+### The Challenge is open for entries until April 11th, 2023. 
+
+---
+
+# Tableau Challenge
 
 Past challenges are an excellent way to have an idea of outstanding dashboards:
 - [Google Data Viz Challenge (2012)]( https://public.tableau.com/en-us/s/big-data-viz-challenge-entries)
@@ -684,6 +681,10 @@ Past challenges are an excellent way to have an idea of outstanding dashboards:
 - [Do Good Data Viz Challenge (2016)](https://www.tableau.com/tableau-foundation-challenge)
 - [Women in Analytics Data Viz Competition (2020)](https://womeninanalytics.com/data-viz-competition/)
 - [DataConnect Data Viz Competition (2022)](https://www.dataconnectconf.com/dataviz-competition)
+
+```{r out.width='30%'}
+include_graphics("https://media.makeameme.org/created/use-tableau-you.jpg")
+```
 
 ---
 class: inverse, mline, left, middle
