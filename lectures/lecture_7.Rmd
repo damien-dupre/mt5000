@@ -207,10 +207,10 @@ It uses a **statistical aggregation** for this second variable. By default it is
 To add a **second line in the same plot** using the original Date variable:
 
 1. Drag and drop this second variable in the row or column field next to the first one
-2. Then, drag and drop this second variable in actual axis to merge
+2. Then, select `Dual Axis` to merge them
 
 ```{r out.width='60%'}
-include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/line_8.png")
+include_graphics("img/tableau_dual_axis.gif")
 ```
 
 ---
@@ -367,7 +367,7 @@ It is possible to **add more variables** in the tooltip with drag-and-drop to th
 However, instead of adding another value, you can also **add a full visualisation** in the tooltip. When configuring the tooltip, click `Insert` and select `Sheets` with the name of the visualisation to add.
 
 ```{r out.width='100%'}
-include_graphics("https://b6d1pk1fu4-flywheel.netdna-ssl.com/wp-content/uploads/2018/10/Adding-a-Sheet-to-a-Tableau-Tooltip-300x188@2x.png")
+include_graphics("img/tableau_sheet_tooltip.gif")
 ```
 
 ---
@@ -599,9 +599,9 @@ class: inverse, mline, center, middle
 
 # Publish 
 
-#### Publishing is the process of saving a dashboard online. It can then be access by everyone.
+#### Publishing is the process of saving a dashboard online. It can then be accessed by everyone.
 
-`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: For your assignment, publish your dasboard online and submit the dashboard URL on loop.
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: For your assignment, publish your dashboard online and submit the dashboard URL on loop.
 
 ```{r out.width='70%'}
 include_graphics("img/tableau_published.png")
@@ -648,16 +648,28 @@ Two data files will be emailed to you, focus your dashboard on the files called 
 
 **Tell a "story" (i.e., narrative) behind the data in ONE Tableau Dashboard.**
 
+.pull-left[
 ### Assessment Criteria
 
 - Creativity (25%)
 - Analytical Depth (25%)
 - Beauty/Design (25%)
 - Overall Story (25%)
+]
+
+.pull-right[
+### Assessment Submission
+
+Submit the URL of your dashboard on the Assignment Upload module of the MT5000 Loop page
+
+**Deadline March 30th, 1pm**
+]
 
 ---
 
 # Tableau Challenge
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: This is not mandatory for your assignment, only submitting the URL of your dashboard before March 30th on Loop is.
 
 Tableau is much more than basic visualisations, very professional output can be obtained easily, see some examples online: https://public.tableau.com/gallery/
 
