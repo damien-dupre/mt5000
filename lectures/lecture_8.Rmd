@@ -15,6 +15,7 @@ output:
 
 ```{r setup, include = FALSE}
 # libraries --------------------------------------------------------------------
+library(anicon)
 library(countdown)
 library(fontawesome)
 library(gapminder)
@@ -111,9 +112,9 @@ include_graphics("img/the_matrix.gif")
 
 ---
 
-# Rstudio Cloud
+# Posit Cloud
 
-In your webrowser (Chrome, Firefox, ...), go to: https://rstudio.cloud/
+In your webrowser (Chrome, Firefox, ...), go to: https://posit.cloud/
   - Sign up
   - In your workspace, Click "new project"
 
@@ -146,29 +147,29 @@ class: inverse, mline, center, middle
 
 # RStudio IDE
 
-When you open RStudio, you’ll see the following 3 windows (also called panes):
+When you create a new project, you will lauch Rstudio see the following 3 windows (also called panes):
 
 * **Console**: where the results are printed
 * **Workspace**: where the objects are stored
 * **Files, Plots, Package, Help and Viewer**: where data science materials are
 
-```{r out.width='70%'}
+```{r out.width='60%'}
 include_graphics("img/rstudio_panes.png")
 ```
 
-The last window **Code Editor** opens when creating a new R Script or R Markdown file
+The last window **Code Editor** opens when creating a new R Script
 
 ---
 
 # Console: R’s Heart
 
-The console displays 1. What has been ran, 2. The results (or some parts) of has been ran, and 3. The status of the R process.
+The console displays 1. **What has been ran**, 2. The **results** (or some parts) of has been ran, and 3. The **status of the R process**.
 
 .pull-left[
 The Status of R is indicated by the symbol in the console prompt:
 
 * `>` means ready to process code 
-* `+` means incomplete command (escape with `ESC`)
+* `+` means incomplete command (escape with <kbd>Esc</kbd>)
 * &#128721; at the top right corner means the console is busy processing your code
 ]
 
@@ -180,15 +181,15 @@ include_graphics("img/r_console.png")
 
 You can execute code by typing it directly into the Console. However, it will not be saved. And if you make a mistake you will have to re-type everything all over again. 
 
-Instead, it is better to write all your code in a document (R script or R Markdown) in the **Code Editor**.
+Instead, it is better to **write all your code in a document (R script or Quarto file) in the Code Editor**.
 
 ---
 
 # Environment: R’s Brain
 
-The Environment tab of this pane shows you the names of all the data objects (like vectors, matrices, and data frames) that you have defined in your current R session. 
+The Environment tab of this pane shows you the **names of all the data objects** (like vectors, matrices, and data frames) that you have defined in your current R session. 
 
-You can also see information like the number of observations and rows in data objects. 
+You can also see **information** like the number of observations and rows in data objects. 
 
 ```{r out.width='100%'}
 include_graphics("https://www.statology.org/wp-content/uploads/2021/10/envir1.png")
@@ -204,7 +205,7 @@ include_graphics("https://www.statology.org/wp-content/uploads/2021/10/envir1.pn
 
 * The **Packages** shows a list of all the R packages installed on the local or remote machine and indicates whether or not they are currently loaded.
 
-* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling `F1` with the cursor on the function or by typing `?` followed by the function name such as:
+* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling <kbd>F1</kbd> with the cursor on the function or by typing `?` followed by the function name such as:
 
 ```{r echo=TRUE, eval=FALSE}
 ?seq
@@ -217,7 +218,7 @@ include_graphics("https://www.statology.org/wp-content/uploads/2021/10/envir1.pn
 
 - It makes the link between all the previous pane and allows to reproduce actions and behaviours.
 
-- You can open as many R Script / R Markdown as you want.
+- You can open as many R Script / Quarto file as you want.
 
 - These documents are the only documents that have to be saved. No need to save you data, figures and calculations as you can reproduce them every time instantaneously with the code.
 
@@ -235,7 +236,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# What are .R and .Rmd files?
+# What are .R and .qmd files?
 
 **.R** is the extension for a R script (document including only R code): 
 - Click **File > New File > R Script** in RStudio
@@ -257,10 +258,10 @@ paste("active", "code")
 
 ---
 
-# What are .R and .Rmd files?
+# What are .R and .qmd files?
 
-**.Rmd** is the extension for a R Markdown file: 
-- Click **File > New File > R Markdown...** in RStudio
+**.qmd** is the extension for a Quarto file: 
+- Click **File > New File > Quarto document...** in RStudio
 - Refers to a document that includes code and text
 - Generates a specific type of output
   - .html (web page, slides, books, and dashboards)
@@ -268,30 +269,31 @@ paste("active", "code")
   - .doc (MS Word documents)
   
 ```{r out.width='80%'}
-include_graphics("https://d33wubrfki0l68.cloudfront.net/59f29676ef5e4d74685e14f801bbc10c2dbd3cef/c0688/lesson-images/markdown-1-markup.png")
+include_graphics("https://r4ds.hadley.nz/quarto/diamond-sizes-report.png")
 ```
 
 ---
 
 # How to Run R Code?
 
-In a R Script, place your cursor anywhere on the line you want to run and either:
+
 
 .pull-left[
-- Press `Ctrl` & `Enter` (Win)
-- Press `Command` & `Enter` (Mac)
+In a R Script, place your cursor anywhere on the line you want to run and either:
+- Press <kbd>Ctrl</kbd> & <kbd>Enter</kbd> (Win)
+- Press <kbd>command</kbd> & <kbd>Enter</kbd> (Mac)
 - Click the `Run` button on RStudio's interface
+
+In a Quarto file:
+- Use the **green** arrow to run the current chunk of code
+- Use the `Knit` button on RStudio's interface to create the output file
 ]
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("https://appsilon.com/wp-content/uploads/2020/05/4_blog_code_execution_optimized.gif")
+include_graphics("img/rstudio_run.gif")
 ```
 ]
-
-In a R Markdown:
-- Use the **green** arrow to run the current chunk of code
-- Use the `Knit` button on RStudio's interface to create the output file
 
 ---
 
@@ -353,8 +355,17 @@ class: title-slide, middle
 
 Open a R Script in RStudio. In this document:
 - Use line 1 to **install the package "praise"**
+```{r echo=TRUE, eval=FALSE}
+install.packages("praise")
+```
 - Use line 2 to **load the library praise**
+```{r echo=TRUE, eval=FALSE}
+library(praise)
+```
 - Use line 3 to **run the function `praise()`** as it is, without arguments
+```{r echo=TRUE, eval=FALSE}
+praise()
+```
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -364,9 +375,9 @@ countdown(minutes = 5, warn_when = 60)
 
 # Calling Functions
 
-Functions are algorithms (or lines of code) which transform data to something else. For example, the function `lm()`, uses data to compute the result of a linear regression model.
+Functions are algorithms (or lines of code) which **transform data to something else**. For example, the function `lm()`, uses data to compute the result of a linear regression model.
  
-Functions are called by their name and have several arguments that require some information.
+Functions have **a name** and **several arguments** that require some information.
 
 ```{r echo=TRUE, eval=FALSE}
 function_name(argument_1 = value_1, argument_2 = value_2, ...)
@@ -378,6 +389,12 @@ For example, the function `seq()` makes a sequences of numbers:
 
 ```{r echo=TRUE, eval=TRUE}
 seq(from = 1, to = 10)
+```
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Arguments doesn't need to be explicitly called, they can also be matched by position:
+
+```{r echo=TRUE, eval=TRUE}
+seq(1, 10)
 ```
 
 ---
@@ -392,12 +409,15 @@ An object is a box that **can include anything** (e.g., values, dataframes, figu
 
 To create an object, you need to **assign something** to a name using the `<-` operator. If you type the name of the object, R will print out its content.
 
-```{r echo=TRUE, eval=FALSE}
+```{r echo=TRUE}
 x <- 4
 x
+seq(x, 10)
 ```
 
---
+---
+
+# Assign Values to Objects in R
 
 It is very important to distinguish values and objects in R:
 
@@ -407,8 +427,14 @@ tribble(
                "Number",   "Numeric Value",                     "1, 2, ...",
      "Word with quotes", "Character Value",             '"one", "two", ...',
   "Word without quotes",     "Object Name", "function name, data name, ..."
-  ) %>%
+  ) |>
   kable(format = "html")
+```
+
+These types of values are then stored in different objects:
+
+```{r out.width='50%'}
+include_graphics("http://r.qcbs.ca/workshop01/workshop01-en/images/matrix.png")
 ```
 
 ---
@@ -450,7 +476,7 @@ class: title-slide, middle
 
 ## Exercise
 
-In the same R Script in RStudio, **Copy and Paste and Run** the following code:
+In the same R Script in RStudio, **Copy, Paste, and Run** the following code:
 
 ```
 my_power <- c(0.5, 99.5)
@@ -467,15 +493,15 @@ countdown(minutes = 5, warn_when = 60)
 ---
 class: inverse, mline, center, middle
 
-# 4. Access Data in RStudio Cloud
+# 4. Access Data in Posit Cloud
 
 ---
 
 # Open your Data as R Object (1)
 
-RStudio Cloud is a free remote computer, the computing is not run on your computer.
+Posit Cloud is a free remote computer, the computing is not run on your computer.
 
-To open Data on RStudio cloud, you first need to `Upload` your file on this computer and to `Import` the data in R.
+To open Data on Posit Cloud, you first need to `Upload` your file on this computer and to `Import` the data in R.
 
 .pull-left[
 .center[Step 1: Upload your File]
@@ -514,8 +540,13 @@ To ensure code reproducibility, open data with the appropriate function (e.g., `
 The main argument of these functions is `file` which corresponds to the path to a file, followed by the name of the file and it extension:
 
 ```{r echo=TRUE, eval=FALSE}
-my_file_object <- read.csv("C:/path/to/my/file.csv") # Windows
-my_file_object <- read.csv("/Users/path/to/my/file.csv") # Macos
+# Windows
+my_file_object <- read.csv(file = "C:/path/to/my/file.csv")
+my_file_object <- read.csv("C:/path/to/my/file.csv")
+
+# Macos
+my_file_object <- read.csv(file = "/Users/path/to/my/file.csv")
+my_file_object <- read.csv("/Users/path/to/my/file.csv")
 ```
 
 The following codes will generate an error:
@@ -540,7 +571,7 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Click on `Upload` to upload your "unicef_metadata.csv" file on your RStudio Cloud
+1. Click on `Upload` to upload your "unicef_metadata.csv" file on your Posit Cloud
 
 2. Click on `Import` to import these data in R
 
@@ -557,9 +588,9 @@ class: inverse, mline, center, middle
 
 # Save Your Data
 
-Usually, only R Script file (.R) or R Markdown file (.Rmd) have to be saved as they allow the full replicability of transformations and result.
+Usually, **only R Script file (.R) or Quarto file (.qmd) have to be saved** as they allow the full replicability of transformations and result.
 
-However if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
+However, if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
 
 The simplest export is a .csv file with the function `write.csv()`. It as two main arguments:
 - `x` which is the name of the object to save
@@ -571,6 +602,7 @@ Example:
 
 ```{r eval=FALSE, echo=TRUE}
 # Saved in the current directory
+write.csv(x = my_file_object, file = "my_file_name.csv")
 write.csv(my_file_object, "my_file_name.csv")
 
 # Saved in the directory you prefer
@@ -583,10 +615,10 @@ class: title-slide, middle
 
 ## Exercise
 
-Save your "unicef_metadata.csv" file under a new name by using the R object name that you previously gave
+Save the data contained in the object "unicef_metadata" in a new .csv file (give a different name than "unicef_metadata.csv" else this document will be overwritten)
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 3, warn_when = 60)
 ```
 
 ---
@@ -598,15 +630,15 @@ Because R is free, plenty of free learning materials are available online:
 * Video tutorials in Youtube, Tik Tok (@chelseaparlettpelleriti, @tommyteaches, ...)
   
 * Interactive tutorials, see for example:
-  - [RStudio Primers](https://rstudio.cloud/learn/primers)
+  - [Posit Primers](https://posit.cloud/learn/primers)
   - [R-Bootcamp](https://r-bootcamp.netlify.com)
   - [Introduction to R](https://www.quantargo.com/courses/course-r-introduction)
   - [DCU R tutorials](https://dcu-r-tutorials.netlify.app)
 
 * Book tutorials, see for example:
-  - [R for Data Science](https://r4ds.had.co.nz/) by Wickham & Grolemund (2017)
-  - [A ModernDive into R and the tidyverse](https://moderndive.com/) by Ismay & Kim (2019)
-  - [Getting Used to R, RStudio, and R Markdown](https://rbasics.netlify.com/) by Kennedy (2019)
+  - [R for Data Science](https://r4ds.hadley.nz/) by Wickham & Grolemund (2023)
+  - [A ModernDive into R and the tidyverse](https://moderndive.com/) by Ismay & Kim (2022)
+  - [Getting Used to R, RStudio, and Quarto file](https://rbasics.netlify.com/) by Kennedy (2021)
   - [Introduction to Open Data Science](https://ohi-science.org/data-science-training/) by the Ocean Health Index Team (2019)
   
 Note: All books are included in the [Big Book of R](https://www.bigbookofr.com/)

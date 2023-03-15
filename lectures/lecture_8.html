@@ -4,22 +4,30 @@
     <title>MT5000 - Data Analytics &amp; Visualization</title>
     <meta charset="utf-8" />
     <meta name="author" content="Damien Dupré - Dublin City University" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
     <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
-    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
-    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # MT5000 - Data Analytics &amp; Visualization
+]
+.subtitle[
 ## Lecture 8: Introduction to R
+]
+.author[
 ### Damien Dupré - Dublin City University
+]
 
 ---
 
@@ -88,9 +96,9 @@ class: clear
 
 ---
 
-# Rstudio Cloud
+# Posit Cloud
 
-In your webrowser (Chrome, Firefox, ...), go to: https://rstudio.cloud/
+In your webrowser (Chrome, Firefox, ...), go to: https://posit.cloud/
   - Sign up
   - In your workspace, Click "new project"
 
@@ -119,27 +127,27 @@ class: inverse, mline, center, middle
 
 # RStudio IDE
 
-When you open RStudio, you’ll see the following 3 windows (also called panes):
+When you create a new project, you will lauch Rstudio see the following 3 windows (also called panes):
 
 * **Console**: where the results are printed
 * **Workspace**: where the objects are stored
 * **Files, Plots, Package, Help and Viewer**: where data science materials are
 
-&lt;img src="img/rstudio_panes.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/rstudio_panes.png" width="60%" style="display: block; margin: auto;" /&gt;
 
-The last window **Code Editor** opens when creating a new R Script or R Markdown file
+The last window **Code Editor** opens when creating a new R Script
 
 ---
 
 # Console: R’s Heart
 
-The console displays 1. What has been ran, 2. The results (or some parts) of has been ran, and 3. The status of the R process.
+The console displays 1. **What has been ran**, 2. The **results** (or some parts) of has been ran, and 3. The **status of the R process**.
 
 .pull-left[
 The Status of R is indicated by the symbol in the console prompt:
 
 * `&gt;` means ready to process code 
-* `+` means incomplete command (escape with `ESC`)
+* `+` means incomplete command (escape with &lt;kbd&gt;Esc&lt;/kbd&gt;)
 * &amp;#128721; at the top right corner means the console is busy processing your code
 ]
 
@@ -147,17 +155,17 @@ The Status of R is indicated by the symbol in the console prompt:
 &lt;img src="img/r_console.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
-You can execute code by typing it directly into the Console. However, it won’t be saved. And if you make a mistake you will have to re-type everything all over again. 
+You can execute code by typing it directly into the Console. However, it will not be saved. And if you make a mistake you will have to re-type everything all over again. 
 
-Instead, it’s better to write all your code in a document called the **Code Editor**.
+Instead, it is better to **write all your code in a document (R script or Quarto file) in the Code Editor**.
 
 ---
 
 # Environment: R’s Brain
 
-The Environment tab of this pane shows you the names of all the data objects (like vectors, matrices, and data frames) that you have defined in your current R session. 
+The Environment tab of this pane shows you the **names of all the data objects** (like vectors, matrices, and data frames) that you have defined in your current R session. 
 
-You can also see information like the number of observations and rows in data objects. 
+You can also see **information** like the number of observations and rows in data objects. 
 
 &lt;img src="https://www.statology.org/wp-content/uploads/2021/10/envir1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
@@ -171,7 +179,7 @@ You can also see information like the number of observations and rows in data ob
 
 * The **Packages** shows a list of all the R packages installed on the local or remote machine and indicates whether or not they are currently loaded.
 
-* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling `F1` with the cursor on the function or by typing `?` followed by the function name such as:
+* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling &lt;kbd&gt;F1&lt;/kbd&gt; with the cursor on the function or by typing `?` followed by the function name such as:
 
 
 ```r
@@ -185,7 +193,7 @@ You can also see information like the number of observations and rows in data ob
 
 - It makes the link between all the previous pane and allows to reproduce actions and behaviours.
 
-- You can open as many R Script / R Markdown as you want.
+- You can open as many R Script / Quarto file as you want.
 
 - These documents are the only documents that have to be saved. No need to save you data, figures and calculations as you can reproduce them every time instantaneously with the code.
 
@@ -201,7 +209,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# What are .R and .Rmd files?
+# What are .R and .qmd files?
 
 **.R** is the extension for a R script (document including only R code): 
 - Click **File &gt; New File &gt; R Script** in RStudio
@@ -236,37 +244,38 @@ paste("active", "code")
 
 ---
 
-# What are .R and .Rmd files?
+# What are .R and .qmd files?
 
-**.Rmd** is the extension for a R Markdown file: 
-- Click **File &gt; New File &gt; R Markdown...** in RStudio
+**.qmd** is the extension for a Quarto file: 
+- Click **File &gt; New File &gt; Quarto document...** in RStudio
 - Refers to a document that includes code and text
 - Generates a specific type of output
   - .html (web page, slides, books, and dashboards)
   - .pdf (Academic LaTex papers and reports)
   - .doc (MS Word documents)
   
-&lt;img src="https://d33wubrfki0l68.cloudfront.net/59f29676ef5e4d74685e14f801bbc10c2dbd3cef/c0688/lesson-images/markdown-1-markup.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://r4ds.hadley.nz/quarto/diamond-sizes-report.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # How to Run R Code?
 
-In a R Script, place your cursor anywhere on the line you want to run and either:
+
 
 .pull-left[
-- Press `Ctrl` &amp; `Enter` (Win)
-- Press `Command` &amp; `Enter` (Mac)
+In a R Script, place your cursor anywhere on the line you want to run and either:
+- Press &lt;kbd&gt;Ctrl&lt;/kbd&gt; &amp; &lt;kbd&gt;Enter&lt;/kbd&gt; (Win)
+- Press &lt;kbd&gt;command&lt;/kbd&gt; &amp; &lt;kbd&gt;Enter&lt;/kbd&gt; (Mac)
 - Click the `Run` button on RStudio's interface
+
+In a Quarto file:
+- Use the **green** arrow to run the current chunk of code
+- Use the `Knit` button on RStudio's interface to create the output file
 ]
 
 .pull-right[
-&lt;img src="https://appsilon.com/wp-content/uploads/2020/05/4_blog_code_execution_optimized.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/rstudio_run.gif" width="100%" style="display: block; margin: auto;" /&gt;
 ]
-
-In a R Markdown:
-- Use the **green** arrow to run the current chunk of code
-- Use the `Knit` button on RStudio's interface to create the output file
 
 ---
 
@@ -327,10 +336,23 @@ class: title-slide, middle
 
 Open a R Script in RStudio. In this document:
 - Use line 1 to **install the package "praise"**
+
+```r
+install.packages("praise")
+```
 - Use line 2 to **load the library praise**
+
+```r
+library(praise)
+```
 - Use line 3 to **run the function `praise()`** as it is, without arguments
 
-<div class="countdown" id="timer_6239a133" style="right:0;bottom:0;" data-warnwhen="60">
+```r
+praise()
+```
+
+<div class="countdown" id="timer_ff323ac4" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -338,9 +360,9 @@ Open a R Script in RStudio. In this document:
 
 # Calling Functions
 
-Functions are algorithms (or lines of code) which transform data to something else. For example, the function `lm()`, uses data to compute the result of a linear regression model.
+Functions are algorithms (or lines of code) which **transform data to something else**. For example, the function `lm()`, uses data to compute the result of a linear regression model.
  
-Functions are called by their name and have several arguments that require some information.
+Functions have **a name** and **several arguments** that require some information.
 
 
 ```r
@@ -354,6 +376,17 @@ For example, the function `seq()` makes a sequences of numbers:
 
 ```r
 seq(from = 1, to = 10)
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Arguments doesn't need to be explicitly called, they can also be matched by position:
+
+
+```r
+seq(1, 10)
 ```
 
 ```
@@ -378,7 +411,21 @@ x &lt;- 4
 x
 ```
 
---
+```
+## [1] 4
+```
+
+```r
+seq(x, 10)
+```
+
+```
+## [1]  4  5  6  7  8  9 10
+```
+
+---
+
+# Assign Values to Objects in R
 
 It is very important to distinguish values and objects in R:
 
@@ -409,6 +456,10 @@ It is very important to distinguish values and objects in R:
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+These types of values are then stored in different objects:
+
+&lt;img src="http://r.qcbs.ca/workshop01/workshop01-en/images/matrix.png" width="50%" style="display: block; margin: auto;" /&gt;
+
 ---
 
 # Different R Objects
@@ -420,7 +471,7 @@ All object assignments have the same form:
 object_name &lt;- object_content
 ```
 
-You want your object names to be descriptive, so you’ll need a convention for multiple words. I recommend **snake_case** where you separate lowercase words with `_`.
+You want your object names to be descriptive, so you will need a convention for multiple words. I recommend **snake_case** where you separate lower-case words with `_`.
 
 
 ```r
@@ -450,34 +501,33 @@ class: title-slide, middle
 
 ## Exercise
 
-In the same R Script in RStudio, **Copy and Paste** the following code and **display the content** of each object by typing and running the name of the object on separate lines:
+In the same R Script in RStudio, **Copy, Paste, and Run** the following code:
 
 ```
 my_power &lt;- c(0.5, 99.5)
 
 my_knowledge &lt;- c("without R", "with R")
 
-my_data &lt;- data.frame(power = my_power, cases = my_knowledge)
-
-easy_viz &lt;- barplot(height = my_power, names.arg = my_knowledge)
+barplot(height = my_power, names.arg = my_knowledge)
 ```
 
-<div class="countdown" id="timer_6239a13b" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_3e4b7c2e" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
 class: inverse, mline, center, middle
 
-# 4. Access Data in RStudio Cloud
+# 4. Access Data in Posit Cloud
 
 ---
 
 # Open your Data as R Object (1)
 
-RStudio Cloud is a free remote computer, the computing is not run on your computer.
+Posit Cloud is a free remote computer, the computing is not run on your computer.
 
-To open Data on RStudio cloud, you first need to `Upload` your file on this computer and to `Import` the data in R.
+To open Data on Posit Cloud, you first need to `Upload` your file on this computer and to `Import` the data in R.
 
 .pull-left[
 .center[Step 1: Upload your File]
@@ -511,8 +561,13 @@ The main argument of these functions is `file` which corresponds to the path to 
 
 
 ```r
-my_file_object &lt;- read.csv("C:/path/to/my/file.csv") # Windows
-my_file_object &lt;- read.csv("/Users/path/to/my/file.csv") # Macos
+# Windows
+my_file_object &lt;- read.csv(file = "C:/path/to/my/file.csv")
+my_file_object &lt;- read.csv("C:/path/to/my/file.csv")
+
+# Macos
+my_file_object &lt;- read.csv(file = "/Users/path/to/my/file.csv")
+my_file_object &lt;- read.csv("/Users/path/to/my/file.csv")
 ```
 
 The following codes will generate an error:
@@ -538,11 +593,12 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Click on `Upload` to upload your "unicef_metadata.csv" file on your RStudio Cloud
+1. Click on `Upload` to upload your "unicef_metadata.csv" file on your Posit Cloud
 
 2. Click on `Import` to import these data in R
 
-<div class="countdown" id="timer_6239a14a" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_d2cd41d4" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -555,11 +611,11 @@ class: inverse, mline, center, middle
 
 # Save Your Data
 
-Usually, only R Script file (.R) or R Markdown file (.Rmd) have to be saved as they allow the full replicability of transformations and result.
+Usually, **only R Script file (.R) or Quarto file (.qmd) have to be saved** as they allow the full replicability of transformations and result.
 
-However if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
+However, if you want to use the data that have been transformed, joined or pivoted, a function has to be used according the type of export.
 
-The simpliest export is a .csv file with the function `write.csv()`. It as two main arguments:
+The simplest export is a .csv file with the function `write.csv()`. It as two main arguments:
 - `x` which is the name of the object to save
 - `file` which is the name of the output file
 
@@ -569,7 +625,13 @@ Example:
 
 
 ```r
+# Saved in the current directory
+write.csv(x = my_file_object, file = "my_file_name.csv")
 write.csv(my_file_object, "my_file_name.csv")
+
+# Saved in the directory you prefer
+write.csv(my_file_object, "C:/path/to/my/my_file_name.csv") # Windows
+write.csv(my_file_object, "/Users/path/to/my/my_file_name.csv") # Macos
 ```
 
 ---
@@ -577,10 +639,11 @@ class: title-slide, middle
 
 ## Exercise
 
-Save your "unicef_metadata.csv" file under a new name by using the R object name that you previously gave
+Save the data contained in the object "unicef_metadata" in a new .csv file (give a different name than "unicef_metadata.csv" else this document will be overwritten)
 
-<div class="countdown" id="timer_6239a372" style="right:0;bottom:0;" data-warnwhen="60">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<div class="countdown" id="timer_1c5cbad8" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -592,15 +655,15 @@ Because R is free, plenty of free learning materials are available online:
 * Video tutorials in Youtube, Tik Tok (@chelseaparlettpelleriti, @tommyteaches, ...)
   
 * Interactive tutorials, see for example:
-  - [RStudio Primers](https://rstudio.cloud/learn/primers)
+  - [Posit Primers](https://posit.cloud/learn/primers)
   - [R-Bootcamp](https://r-bootcamp.netlify.com)
   - [Introduction to R](https://www.quantargo.com/courses/course-r-introduction)
   - [DCU R tutorials](https://dcu-r-tutorials.netlify.app)
 
 * Book tutorials, see for example:
-  - [R for Data Science](https://r4ds.had.co.nz/) by Wickham &amp; Grolemund (2017)
-  - [A ModernDive into R and the tidyverse](https://moderndive.com/) by Ismay &amp; Kim (2019)
-  - [Getting Used to R, RStudio, and R Markdown](https://rbasics.netlify.com/) by Kennedy (2019)
+  - [R for Data Science](https://r4ds.hadley.nz/) by Wickham &amp; Grolemund (2023)
+  - [A ModernDive into R and the tidyverse](https://moderndive.com/) by Ismay &amp; Kim (2022)
+  - [Getting Used to R, RStudio, and Quarto file](https://rbasics.netlify.com/) by Kennedy (2021)
   - [Introduction to Open Data Science](https://ohi-science.org/data-science-training/) by the Ocean Health Index Team (2019)
   
 Note: All books are included in the [Big Book of R](https://www.bigbookofr.com/)
@@ -637,8 +700,8 @@ class: inverse, mline, left, middle
 
 [<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
 [<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -687,6 +750,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
