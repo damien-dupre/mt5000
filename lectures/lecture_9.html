@@ -4,22 +4,30 @@
     <title>MT5000 - Data Analytics &amp; Visualization</title>
     <meta charset="utf-8" />
     <meta name="author" content="Damien Dupré - Dublin City University" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
     <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
-    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
-    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # MT5000 - Data Analytics &amp; Visualization
+]
+.subtitle[
 ## Lecture 9: Data Transformations in the Tidyverse
+]
+.author[
 ### Damien Dupré - Dublin City University
+]
 
 ---
 
@@ -32,12 +40,12 @@ class: center, middle, inverse, title-slide
 
 We have already seen how to:
 
-- Use RStudio Cloud
-- Install, load and use packages
-- Run R code in R Script or R Markdown files
-- Use keyboard shortcuts: `Ctrl` &amp; `Enter` (Win) / `Command` &amp; `Enter` (Mac)
-- Create object with the assignment arrow `&lt;-` sign
-- Upload and read data in RStudio Cloud
+- **Use Rstudio** in the Posit Cloud
+- **Install, load and use packages**
+- Run **R code in R Script**
+- Use **keyboard shortcuts**: &lt;kbd&gt;Ctrl&lt;/kbd&gt; &amp; &lt;kbd&gt;Enter&lt;/kbd&gt; (Win) / &lt;kbd&gt;Command&lt;/kbd&gt; &amp; &lt;kbd&gt;Enter&lt;/kbd&gt; (Mac)
+- **Create object** with the assignment arrow `&lt;-` sign made of the key  &lt;kbd&gt;&lt;&lt;/kbd&gt; followed by &lt;kbd&gt;-&lt;/kbd&gt;
+- **Upload and read data** in Posit Cloud
 
 Now let's enter the {tidyverse}
 
@@ -47,9 +55,9 @@ Now let's enter the {tidyverse}
 
 # Entering the {tidyverse}
 
-The {tidyverse} package is primarily made up of a set of super useful R packages ({ggplot2}, {dplyr}, {purrr}, {tidyr}, {readr}, {tibble}).
+The {tidyverse} package is primarily **made up of a set of super useful R packages** ({ggplot2}, {dplyr}, {purrr}, {tidyr}, {readr}, {tibble}).
 
-It is also a new way of thinking about implementing “tidy” data analysis. 
+It is also a **new way of thinking** about implementing “tidy” data analysis. 
 
 If you combine tidy thinking with the {tidyverse} packages, you will inevitably become a master of tidy analysis. 
 
@@ -64,6 +72,8 @@ library(tidyverse)
 ---
 
 # {dplyr}'s main functions
+
+In the {tidyverse} there is a package called {dplyr}.
 
 There are five **{dplyr}** functions that you will use to do the vast majority of data manipulations:
 
@@ -83,7 +93,7 @@ These five functions provide the verbs for a language of data manipulation.
 
 # {dplyr}'s main functions
 
-All verbs work similarly:
+All functions work similarly:
 
 - &lt;span style='color: red;'&gt;The first argument is a dataframe object name&lt;/span&gt; 
 - &lt;span style='color: green;'&gt;The subsequent arguments describe how the dataframe is transformed&lt;/span&gt; 
@@ -98,16 +108,31 @@ Here is a generic example:
 
 # The gapminder dataset
 
-The dataset used today is stored in the {gapminder} package into an object called `gapminder`. 
+The dataset used today is in the {gapminder} package into an object called `gapminder`. 
 
-Each row in this table corresponds to a country at a specific year. For each row, we have 6 columns:
-
+Each row corresponds to a country at a specific year. For each row, we have 6 columns:
 - **country**: Name of country.
 - **year**: Year of the observation (between 1952 and 2007).
 - **pop**: Number of people living in the country.
 - **continent**: Which of the five continents the country is part of. 
 - **lifeExp**: Life expectancy in years.
 - **gdpPercap**: Gross domestic product (in US dollars).
+
+to use the `gapminder` dataset, first install the {gapminder} package and load this package:
+
+
+```r
+install.packages("gapminder")
+library(gapminder)
+```
+
+Create an object called `gapminder` which contains the `gapminder` dataset and display the 5 first rows with the `head()` function:
+
+
+```r
+data("gapminder")
+head(gapminder)
+```
 
 ---
 class: title-slide, middle
@@ -120,10 +145,29 @@ class: title-slide, middle
 ## Exercise
 
 1. Install the packages {tidyverse} and {gapminder} which contains the data gapminder
-2. Load the package {gapminder} to access the data
-3. Use the function `str()` on the gapminder data 
 
-<div class="countdown" id="timer_623b5219" style="right:0;bottom:0;" data-warnwhen="60">
+
+```r
+install.packages("gapminder")
+```
+
+2. Load the package {gapminder} and use the function `data()` to access the data
+
+
+```r
+library(gapminder)
+data("gapminder")
+```
+
+3. Use the function `str()` on the gapminder object
+
+
+```r
+head(gapminder)
+```
+
+<div class="countdown" id="timer_50824ecd" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -136,18 +180,19 @@ class: inverse, mline, center, middle
 
 # The filter() function
 
-You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting and `filter()` allows you to subset observations based on their values.
+You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting and `filter()` allows you to **subset observations based on their values**.
 
 `filter()`'s transformation is a conditional statement, only observations TRUE to the condition are kept.
 
-For example
+For example:
 
 
 ```r
 filter(gapminder, country == "Ireland")
 ```
 
-Importantly, Column/Variable names are not between quotation marks in the Tidyverse whereas the value to filter is
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Importantly, **Column/Variable names are not between quotation marks** in the Tidyverse whereas the **value to filter is between quotation marks**:
+
 - A Column/Variable is an object containing multiple values inside the data frame object.
 - The string "Ireland" does not exist in our environment and will not be saved. It is here just as a value, which explains the quotation marks.
 
@@ -155,21 +200,23 @@ Importantly, Column/Variable names are not between quotation marks in the Tidyve
 
 # Comparisons
 
-To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `&gt;`, `&gt;=`, `&lt;`, `&lt;=`, `!=` (not equal), and `==` (exactly equal).
+To use filtering effectively, you have to know how to select the observations that you want using the **comparison operators**. R provides the standard suite: `&gt;`, `&gt;=`, `&lt;`, `&lt;=`, `!=` (not equal), and `==` (exactly equal).
 
-When you’re starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality. When this happens you’ll get an informative error:
+When you are starting out with R, the **easiest mistake to make** is to use `=` instead of `==` when testing for equality. When this happens you will get an informative error:
 
 
 ```r
 filter(gapminder, country = "Ireland")
 ```
 
-```out
-Error: Problem with `filter()` input `..1`.
-x Input `..1` is named.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `country == "Ireland"`?
 ```
+## Error in `filter()`:
+## ! We detected a named input.
+## ℹ This usually means that you've used `=` instead of `==`.
+## ℹ Did you mean `country == "Ireland"`?
+```
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> The single equal sign `=` is only to assign values to argument in functions whereas the double equal sign `==` checks for equality (use the "exactly equal" term to remember).
 
 ---
 
@@ -186,6 +233,15 @@ gapminder_ireland_2007 &lt;- filter(gapminder_ireland, year == 2007)
 
 A choice is offered to you, you can either overwrite the original object by using the same object name or to use a different object name.
 
+--
+
+An alternative possibility to obtain the same results would be to include multiple comparisons within the `filter()` function:
+
+
+```r
+gapminder_ireland_2007 &lt;- filter(gapminder, country == "Ireland", year == 2007)
+```
+
 ---
 class: title-slide, middle
 
@@ -196,12 +252,19 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Be sure that the packages {tidyverse} and {gapminder} are loaded
-2. Create a new object that only contains data for France
-3. Create a new object using the previous object that only contains data for France in 1982
+1/ Be sure that the packages {tidyverse} and {gapminder} are loaded
+2/ Create a new object that only contains data for France
 
-<div class="countdown" id="timer_623b50bf" style="right:0;bottom:0;" data-warnwhen="60">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+
+```r
+_____ &lt;- filter(_____, country == ______) # fill the gaps
+```
+
+3/ Create a new object using the previous object that only contains data for France in 1982
+
+<div class="countdown" id="timer_d2b347ec" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -213,22 +276,39 @@ class: inverse, mline, center, middle
 
 # The select() function
 
-It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. 
+It is not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often **narrowing in on the variables** you are actually interested in. 
 
-`select()` allows you to rapidly zoom in on a useful subset using operations based on the names of the variables. 
+`select()` allows you to rapidly zoom in on a **useful subset** using operations based on the names of the variables. 
 
-Again the first argument is the name of the data frame object to process and the following arguments are the name of the columns to keep.
+Again the first argument is the name of the **data frame** object to process and the following arguments are the **name of the columns to keep**.
 
 
 ```r
 select(gapminder, country, year, pop)
 ```
 
+```
+## # A tibble: 1,704 × 3
+##    country      year      pop
+##    &lt;fct&gt;       &lt;int&gt;    &lt;int&gt;
+##  1 Afghanistan  1952  8425333
+##  2 Afghanistan  1957  9240934
+##  3 Afghanistan  1962 10267083
+##  4 Afghanistan  1967 11537966
+##  5 Afghanistan  1972 13079460
+##  6 Afghanistan  1977 14880372
+##  7 Afghanistan  1982 12881816
+##  8 Afghanistan  1987 13867957
+##  9 Afghanistan  1992 16317921
+## 10 Afghanistan  1997 22227415
+## # … with 1,694 more rows
+```
+
 ---
 
 # Keep and remove variables
 
-The `select()` function can not only be used to keep specific variables but it can also be used to remove them from the data frame object. 
+The `select()` function can be **used to keep specific variables** but it can also be **used to remove them** from the data frame object. 
 
 To do so, just add the `-` sign in front of the variable name to be removed. For example:
 
@@ -239,7 +319,7 @@ gapminder_keep &lt;- select(gapminder, country, year, pop)
 gapminder_remove &lt;- select(gapminder, -continent, -lifeExp, -gdpPercap)
 ```
 
-In the previous example the objects `gapminder_keep` and `gapminder_remove` should have the same number of variable and therefore be equal.
+<span>&lt;i class="fas  fa-arrow-circle-right faa-horizontal animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> In the previous example the objects `gapminder_keep` and `gapminder_remove` should have the same number of variable and therefore be equal.
 
 ---
 
@@ -247,13 +327,30 @@ In the previous example the objects `gapminder_keep` and `gapminder_remove` shou
 
 While you are keeping only specify variables with `select()`, these variables can also be renamed on the same time. 
 
-The new name has to be first, followed by the `=` sign, and the old name.
+The **new name has to be first**, followed by the `=` sign, and then the **old name**.
 
 Example:
 
 
 ```r
 select(gapminder, country, population = pop, measure_year = year)
+```
+
+```
+## # A tibble: 1,704 × 3
+##    country     population measure_year
+##    &lt;fct&gt;            &lt;int&gt;        &lt;int&gt;
+##  1 Afghanistan    8425333         1952
+##  2 Afghanistan    9240934         1957
+##  3 Afghanistan   10267083         1962
+##  4 Afghanistan   11537966         1967
+##  5 Afghanistan   13079460         1972
+##  6 Afghanistan   14880372         1977
+##  7 Afghanistan   12881816         1982
+##  8 Afghanistan   13867957         1987
+##  9 Afghanistan   16317921         1992
+## 10 Afghanistan   22227415         1997
+## # … with 1,694 more rows
 ```
 
 ---
@@ -282,8 +379,9 @@ new_data &lt;- select(_ _ _, -_ _ _, -_ _ _)
 new_data
 ```
 
-<div class="countdown" id="timer_623b5028" style="right:0;bottom:0;" data-warnwhen="60">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<div class="countdown" id="timer_af62372a" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -295,9 +393,9 @@ class: inverse, mline, center, middle
 
 # The mutate() function
 
-Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. That’s the job of `mutate()`. 
+Besides selecting sets of existing columns, it is often useful to **add new columns** that are functions of existing columns. That is the job of `mutate()`.  
 
-Once again the first argument is the name of the data frame object to modify, then the second argument is the name of the column to create followed by the `=` sign and the condition creating the new values.
+Once again the first argument is the **name of the data frame** object to modify, then the second argument is the **name of the column to create** followed by the `=` sign and the **condition creating the new values**.
 
 For example we can create a new column called `gdp_total` which contains the values resulting from the multiplication between `pop` and `gdpPercap`:
 
@@ -325,17 +423,19 @@ class: title-slide, middle
 mutate(_ _ _, _ _ _ = _ _ _(_ _ _))
 ```
 
-2/ From the data frame object `gapminder`, filter the countries in Europe and their values for 2007. Assign the result to an new object called `europe_2007`. 
-Then create a new column called `europe_prop` corresponding to the value of the column `pop` divided by the total population in Europe in 2007.
+2/ From the data frame object `gapminder`, filter the countries in Europe and their values for 2007. Assign the result to an new object called `europe_2007`.
+
+Then create a new column called `europe_prop` corresponding to the value of the column `pop` divided by the total population in Europe in 2007 obtained by the function `sum()`.
 
 
 ```r
-europe_2007 &lt;- filter(_ _ _, _ _ _ == _ _ _ &amp; _ _ _ == _ _ _)
+europe_2007 &lt;- filter(_ _ _, _ _ _ == _ _ _, _ _ _ == _ _ _)
 
 mutate(_ _ _, _ _ _ = _ _ _/_ _ _(_ _ _))
 ```
 
-<div class="countdown" id="timer_623b4fac" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_479516c4" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -348,7 +448,7 @@ class: inverse, mline, center, middle
 
 # The summarise() function
 
-The last key verb is `summarise()`. It collapses a data frame to a single row:
+The last key verb is `summarise()`. It **aggregates a data frame** to a single row using a maths function:
 
 
 ```r
@@ -356,52 +456,59 @@ summarise(gapminder, mean(pop))
 summarise(gapminder, sd(pop))
 ```
 
-The result of `summarise()` is a dataframe, the default header of the summary is the calculation but a new header can be defined by using the `=` sign when summarising the data:
+The result of `summarise()` is a dataframe, the default header of the summary is the calculation but a **new header** can be defined by using the `=` sign when summarising the data:
 
 
 ```r
-summarise(gapminder, m_pop = mean(pop))
+summarise(gapminder, mean_pop = mean(pop))
 summarise(gapminder, sd_pop = sd(pop))
 ```
 
-Finally, more than one summary can be done inside a `summarise()`:
+Finally, **more than one summary** can be done inside a `summarise()`:
 
 
 ```r
-summarise(gapminder, m_pop = mean(pop), sd_pop = sd(pop))
+summarise(gapminder, sum_pop = sum(pop), mean_pop = mean(pop), sd_pop = sd(pop))
+```
+
+```
+## # A tibble: 1 × 3
+##       sum_pop  mean_pop     sd_pop
+##         &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 50440465801 29601212. 106157897.
 ```
 
 ---
 
 # The summarise() function
 
-`summarise()` is not terribly useful unless we pair it with `group_by()`. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. 
+`summarise()` is not terribly useful **unless we pair it** with `group_by()`. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. 
 
-For example, if we applied exactly the same code to a data frame grouped by year, we get the average world population per year:
+For example, if we applied exactly the same code to a data frame **grouped by year**, we get the average world population per year:
 
 
 ```r
 gapminder_by_year &lt;- group_by(gapminder, year)
 
-summarise(gapminder_by_year, mean_pop = mean(pop))
+summarise(gapminder_by_year, sum_pop = sum(pop))
 ```
 
 ```
 ## # A tibble: 12 × 2
-##     year  mean_pop
-##    &lt;int&gt;     &lt;dbl&gt;
-##  1  1952 16950402.
-##  2  1957 18763413.
-##  3  1962 20421007.
-##  4  1967 22658298.
-##  5  1972 25189980.
-##  6  1977 27676379.
-##  7  1982 30207302.
-##  8  1987 33038573.
-##  9  1992 35990917.
-## 10  1997 38839468.
-## 11  2002 41457589.
-## 12  2007 44021220.
+##     year    sum_pop
+##    &lt;int&gt;      &lt;dbl&gt;
+##  1  1952 2406957150
+##  2  1957 2664404580
+##  3  1962 2899782974
+##  4  1967 3217478384
+##  5  1972 3576977158
+##  6  1977 3930045807
+##  7  1982 4289436840
+##  8  1987 4691477418
+##  9  1992 5110710260
+## 10  1997 5515204472
+## 11  2002 5886977579
+## 12  2007 6251013179
 ```
 
 ---
@@ -432,8 +539,9 @@ gapminder_group &lt;- group_by(_ _ _, _ _ _, _ _ _)
 summarise(_ _ _, _ _ _ = _ _ _(_ _ _))
 ```
 
-<div class="countdown" id="timer_623b5225" style="right:0;bottom:0;" data-warnwhen="60">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<div class="countdown" id="timer_5e9e7bfe" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -443,9 +551,9 @@ class: inverse, mline, center, middle
 
 ---
 
-# The Pipe Operator %&gt;% (1)
+# The Pipe Operator %&gt;%
 
-We have see how to create a sequence of numbers from 1 to 10 using the function `seq()`:
+We have seen how to create a sequence of numbers from 1 to 10 using the function `seq()`:
 
 
 ```r
@@ -467,7 +575,7 @@ To make the code shorter you could do instead:
 sum(seq(1, 10))
 ```
 
-The **tidyverse** makes heavy use of the pipe operator (`%&gt;%`), which takes whatever is on the left-hand-side of the pipe and makes it the first argument of whatever function is on the right-hand-side of the pipe. 
+The **tidyverse** makes heavy use of the pipe operator (`%&gt;%`), which __takes whatever is on the left-hand-side of the pipe and makes it the first argument of whatever function is on the right-hand-side of the pipe__. 
 
 Therefore `seq(1, 10) %&gt;% sum()` is equivalent to `sum(seq(1, 10))`.
 
@@ -478,9 +586,40 @@ seq(1, 10) %&gt;% sum()
 
 ---
 
-# The Pipe Operator %&gt;% (2)
+# The Pipe Operator %&gt;%
 
-Imagine you have a dataset made of 2 columns and you want to create a 3rd column which is the result of the addition of column 1 and column 2. Then you want to keep only the observations lower than 10, you might write code like this:
+Remember the structure of the functions we just have seen:
+
+- &lt;span style='color: red;'&gt;The first argument is a dataframe object name&lt;/span&gt; 
+- &lt;span style='color: green;'&gt;The subsequent arguments describe how the dataframe is transformed&lt;/span&gt; 
+- &lt;span style='color: blue;'&gt;The result is a new dataframe&lt;/span&gt;
+
+Here is a generic example:
+
+.center[**&lt;span style='color: blue;'&gt;dataframe_transformed&lt;/span&gt; `&lt;-` function_name(&lt;span style='color: red;'&gt;dataframe_name&lt;/span&gt;, &lt;span style='color: green;'&gt;transformation&lt;/span&gt;)**
+]
+
+--
+
+The &lt;span style='color: red;'&gt;dataframe_name&lt;/span&gt; can be piped in the **function_name** with the pipe operator as follow:
+
+.center[**&lt;span style='color: blue;'&gt;dataframe_transformed&lt;/span&gt; `&lt;-` &lt;span style='color: red;'&gt;dataframe_name&lt;/span&gt; `%&gt;%` function_name(&lt;span style='color: green;'&gt;transformation&lt;/span&gt;)**
+]
+
+--
+
+Now, the dataframe created with this first **function_name** might be used by another function, we will use other pipe symbol to chain them:
+
+.center[**&lt;span style='color: blue;'&gt;dataframe_transformed&lt;/span&gt; `&lt;-` &lt;span style='color: red;'&gt;dataframe_name&lt;/span&gt; `%&gt;%`**
+**function_name(&lt;span style='color: green;'&gt;transformation&lt;/span&gt;) `%&gt;%`**
+**function_name(&lt;span style='color: green;'&gt;transformation&lt;/span&gt;)**
+]
+
+---
+
+# The Pipe Operator %&gt;%
+
+Imagine you have a dataset made of 2 columns and **you want to create a 3rd column** which is the result of the addition of column 1 and column 2. Then, **you want to keep only the observations lower than 10**, you might write code like this:
 
 
 ```r
@@ -510,9 +649,9 @@ A good way to pronounce the pipe `%&gt;%` when reading code is **“then”**.
 
 ---
 
-# The pipe operator %&gt;%
+# The Pipe Operator %&gt;%
 
-Imagine that we want to summarise the population average and standard deviation only of Europe. Using what you know about {dplyr}, you might write code like this:
+Imagine that **we want to summarise the population average and standard deviation only of Europe**. Using what you know about {dplyr}, you might write code like this:
 
 
 ```r
@@ -524,7 +663,7 @@ gapminder_summary_europe &lt;- summarise(gapminder_europe,
   )
 ```
 
-This code is a little frustrating to write because we have to give each intermediate data frame a name, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
+This code is a little frustrating to write because **we have to give each intermediate data frame a name**, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
 
 --
 
@@ -539,7 +678,7 @@ gapminder_summary_europe &lt;- gapminder %&gt;%
 
 ---
 
-# The pipe operator %&gt;%
+# The Pipe Operator %&gt;%
 
 
 ```r
@@ -557,28 +696,6 @@ Becomes
 &gt; Summarise the average population as "m_pop" and the standard deviation as "sd_pop".
 
 ---
-
-# The pipe operator %&gt;%
-
-Behind the scenes, `x %&gt;% f()` turns into `f(x)`, and `x %&gt;% f() %&gt;% g()` turns into `g(f(x))` and so on.
-
-The following sequence can be read as:
-1. Take `x` then
-2. Use it as the input to the function `f()` then
-3. Use `f(x)` as the input to the function `g()` then
-4. Use `g(f(x))` as the input to the function `h()`
-
-
-```r
-x %&gt;% 
-  f() %&gt;% 
-  g() %&gt;% 
-  h()
-```
-
-Working with the pipe is one of the key criteria for belonging to the tidyverse. The only exception is {ggplot2}.
-
----
 class: title-slide, middle
 
 ## Live Demo
@@ -593,9 +710,17 @@ class: title-slide, middle
 2. Execute the following code:
 
 
+```r
+starwars %&gt;%
+  select(name, height, mass, homeworld) %&gt;%
+  mutate(height = height * 0.0328084) %&gt;% # overwrite height values to feet
+  group_by(homeworld) %&gt;%
+  filter(height == max(height))
+```
 
-<div class="countdown" id="timer_623b509d" style="right:0;bottom:0;" data-warnwhen="60">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<div class="countdown" id="timer_c63ec95c" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -603,7 +728,16 @@ class: title-slide, middle
 
 ## Exercise
 
-1/ From the data frame object `gapminder`, summarise the population average with the `mean()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
+1/ From the data frame object `gapminder`, summarise the sum of the worldwide population by `year` and by using the pipe operator:
+
+
+```r
+_ _ _ %&gt;% 
+  group_by(_ _ _) %&gt;% 
+  summarise(_ _ _ = _ _ _(_ _ _))
+```
+
+2/ From the data frame object `gapminder`, summarise the lifeExp average with the `mean()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
 
 
 ```r
@@ -612,16 +746,8 @@ _ _ _ %&gt;%
   summarise(_ _ _ = _ _ _(_ _ _))
 ```
 
-2/ From the data frame object `gapminder`, summarise the population standard deviation with the `sd()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
-
-
-```r
-_ _ _ %&gt;% 
-  group_by(_ _ _, _ _ _) %&gt;% 
-  summarise(_ _ _ = _ _ _(_ _ _))
-```
-
-<div class="countdown" id="timer_623b4fb3" style="right:0;bottom:0;" data-warnwhen="60">
+<div class="countdown" id="timer_98e766bc" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -728,8 +854,8 @@ class: inverse, mline, left, middle
 
 [<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
 [<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -779,6 +905,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

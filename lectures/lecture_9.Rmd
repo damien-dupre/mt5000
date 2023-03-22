@@ -43,12 +43,12 @@ xaringanExtra::use_extra_styles(
 
 We have already seen how to:
 
-- Use RStudio Cloud
-- Install, load and use packages
-- Run R code in R Script or R Markdown files
-- Use keyboard shortcuts: `Ctrl` & `Enter` (Win) / `Command` & `Enter` (Mac)
-- Create object with the assignment arrow `<-` sign
-- Upload and read data in RStudio Cloud
+- **Use Rstudio** in the Posit Cloud
+- **Install, load and use packages**
+- Run **R code in R Script**
+- Use **keyboard shortcuts**: <kbd>Ctrl</kbd> & <kbd>Enter</kbd> (Win) / <kbd>Command</kbd> & <kbd>Enter</kbd> (Mac)
+- **Create object** with the assignment arrow `<-` sign made of the key  <kbd><</kbd> followed by <kbd>-</kbd>
+- **Upload and read data** in Posit Cloud
 
 Now let's enter the {tidyverse}
 
@@ -60,9 +60,9 @@ include_graphics("https://tidyverse.tidyverse.org/articles/tidyverse-logo.png")
 
 # Entering the {tidyverse}
 
-The {tidyverse} package is primarily made up of a set of super useful R packages ({ggplot2}, {dplyr}, {purrr}, {tidyr}, {readr}, {tibble}).
+The {tidyverse} package is primarily **made up of a set of super useful R packages** ({ggplot2}, {dplyr}, {purrr}, {tidyr}, {readr}, {tibble}).
 
-It is also a new way of thinking about implementing “tidy” data analysis. 
+It is also a **new way of thinking** about implementing “tidy” data analysis. 
 
 If you combine tidy thinking with the {tidyverse} packages, you will inevitably become a master of tidy analysis. 
 
@@ -76,6 +76,8 @@ library(tidyverse)
 ---
 
 # {dplyr}'s main functions
+
+In the {tidyverse} there is a package called {dplyr}.
 
 There are five **{dplyr}** functions that you will use to do the vast majority of data manipulations:
 
@@ -95,7 +97,7 @@ These five functions provide the verbs for a language of data manipulation.
 
 # {dplyr}'s main functions
 
-All verbs work similarly:
+All functions work similarly:
 
 - `r colorize("The first argument is a dataframe object name", "red")` 
 - `r colorize("The subsequent arguments describe how the dataframe is transformed", "green")` 
@@ -110,16 +112,29 @@ Here is a generic example:
 
 # The gapminder dataset
 
-The dataset used today is stored in the {gapminder} package into an object called `gapminder`. 
+The dataset used today is in the {gapminder} package into an object called `gapminder`. 
 
-Each row in this table corresponds to a country at a specific year. For each row, we have 6 columns:
-
+Each row corresponds to a country at a specific year. For each row, we have 6 columns:
 - **country**: Name of country.
 - **year**: Year of the observation (between 1952 and 2007).
 - **pop**: Number of people living in the country.
 - **continent**: Which of the five continents the country is part of. 
 - **lifeExp**: Life expectancy in years.
 - **gdpPercap**: Gross domestic product (in US dollars).
+
+to use the `gapminder` dataset, first install the {gapminder} package and load this package:
+
+```{r echo=TRUE, eval=FALSE}
+install.packages("gapminder")
+library(gapminder)
+```
+
+Create an object called `gapminder` which contains the `gapminder` dataset and display the 5 first rows with the `head()` function:
+
+```{r echo=TRUE, eval=FALSE}
+data("gapminder")
+head(gapminder)
+```
 
 ---
 class: title-slide, middle
@@ -132,8 +147,23 @@ class: title-slide, middle
 ## Exercise
 
 1. Install the packages {tidyverse} and {gapminder} which contains the data gapminder
-2. Load the package {gapminder} to access the data
-3. Use the function `str()` on the gapminder data 
+
+```{r echo=TRUE, eval=FALSE}
+install.packages("gapminder")
+```
+
+2. Load the package {gapminder} and use the function `data()` to access the data
+
+```{r echo=TRUE, eval=FALSE}
+library(gapminder)
+data("gapminder")
+```
+
+3. Use the function `str()` on the gapminder object
+
+```{r echo=TRUE, eval=FALSE}
+head(gapminder)
+```
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -148,17 +178,17 @@ class: inverse, mline, center, middle
 
 # The filter() function
 
-You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting and `filter()` allows you to subset observations based on their values.
+You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting and `filter()` allows you to **subset observations based on their values**.
 
 `filter()`'s transformation is a conditional statement, only observations TRUE to the condition are kept.
 
-For example
+For example:
 
 ```{r eval=FALSE, echo=TRUE}
 filter(gapminder, country == "Ireland")
 ```
 
-Importantly, Column/Variable names are not between quotation marks in the Tidyverse whereas the value to filter is:
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Importantly, **Column/Variable names are not between quotation marks** in the Tidyverse whereas the **value to filter is between quotation marks**:
 
 - A Column/Variable is an object containing multiple values inside the data frame object.
 - The string "Ireland" does not exist in our environment and will not be saved. It is here just as a value, which explains the quotation marks.
@@ -167,13 +197,15 @@ Importantly, Column/Variable names are not between quotation marks in the Tidyve
 
 # Comparisons
 
-To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (exactly equal).
+To use filtering effectively, you have to know how to select the observations that you want using the **comparison operators**. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (exactly equal).
 
-When you are starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality. When this happens you will get an informative error:
+When you are starting out with R, the **easiest mistake to make** is to use `=` instead of `==` when testing for equality. When this happens you will get an informative error:
 
 ```{r echo=TRUE, error=TRUE}
 filter(gapminder, country = "Ireland")
 ```
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` The single equal sign `=` is only to assign values to argument in functions whereas the double equal sign `==` checks for equality (use the "exactly equal" term to remember).
 
 ---
 
@@ -189,6 +221,14 @@ gapminder_ireland_2007 <- filter(gapminder_ireland, year == 2007)
 
 A choice is offered to you, you can either overwrite the original object by using the same object name or to use a different object name.
 
+--
+
+An alternative possibility to obtain the same results would be to include multiple comparisons within the `filter()` function:
+
+```{r eval=FALSE, echo=TRUE}
+gapminder_ireland_2007 <- filter(gapminder, country == "Ireland", year == 2007)
+```
+
 ---
 class: title-slide, middle
 
@@ -199,12 +239,17 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Be sure that the packages {tidyverse} and {gapminder} are loaded
-2. Create a new object that only contains data for France
-3. Create a new object using the previous object that only contains data for France in 1982
+1/ Be sure that the packages {tidyverse} and {gapminder} are loaded
+2/ Create a new object that only contains data for France
+
+```{r eval=FALSE, echo=TRUE}
+_____ <- filter(_____, country == ______) # fill the gaps
+```
+
+3/ Create a new object using the previous object that only contains data for France in 1982
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 3, warn_when = 60)
 ```
 
 ---
@@ -216,13 +261,13 @@ class: inverse, mline, center, middle
 
 # The select() function
 
-It is not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you are actually interested in. 
+It is not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often **narrowing in on the variables** you are actually interested in. 
 
-`select()` allows you to rapidly zoom in on a useful subset using operations based on the names of the variables. 
+`select()` allows you to rapidly zoom in on a **useful subset** using operations based on the names of the variables. 
 
-Again the first argument is the name of the data frame object to process and the following arguments are the name of the columns to keep.
+Again the first argument is the name of the **data frame** object to process and the following arguments are the **name of the columns to keep**.
 
-```{r eval=FALSE, echo=TRUE}
+```{r echo=TRUE}
 select(gapminder, country, year, pop)
 ```
 
@@ -230,7 +275,7 @@ select(gapminder, country, year, pop)
 
 # Keep and remove variables
 
-The `select()` function can not only be used to keep specific variables but it can also be used to remove them from the data frame object. 
+The `select()` function can be **used to keep specific variables** but it can also be **used to remove them** from the data frame object. 
 
 To do so, just add the `-` sign in front of the variable name to be removed. For example:
 
@@ -248,11 +293,11 @@ gapminder_remove <- select(gapminder, -continent, -lifeExp, -gdpPercap)
 
 While you are keeping only specify variables with `select()`, these variables can also be renamed on the same time. 
 
-The new name has to be first, followed by the `=` sign, and the old name.
+The **new name has to be first**, followed by the `=` sign, and then the **old name**.
 
 Example:
 
-```{r eval=FALSE, echo=TRUE}
+```{r echo=TRUE}
 select(gapminder, country, population = pop, measure_year = year)
 ```
 
@@ -281,7 +326,7 @@ new_data
 ```
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 3, warn_when = 60)
 ```
 
 ---
@@ -293,9 +338,9 @@ class: inverse, mline, center, middle
 
 # The mutate() function
 
-Besides selecting sets of existing columns, it is often useful to add new columns that are functions of existing columns. That is the job of `mutate()`.  
+Besides selecting sets of existing columns, it is often useful to **add new columns** that are functions of existing columns. That is the job of `mutate()`.  
 
-Once again the first argument is the name of the data frame object to modify, then the second argument is the name of the column to create followed by the `=` sign and the condition creating the new values.
+Once again the first argument is the **name of the data frame** object to modify, then the second argument is the **name of the column to create** followed by the `=` sign and the **condition creating the new values**.
 
 For example we can create a new column called `gdp_total` which contains the values resulting from the multiplication between `pop` and `gdpPercap`:
 
@@ -321,11 +366,12 @@ class: title-slide, middle
 mutate(_ _ _, _ _ _ = _ _ _(_ _ _))
 ```
 
-2/ From the data frame object `gapminder`, filter the countries in Europe and their values for 2007. Assign the result to an new object called `europe_2007`. 
-Then create a new column called `europe_prop` corresponding to the value of the column `pop` divided by the total population in Europe in 2007.
+2/ From the data frame object `gapminder`, filter the countries in Europe and their values for 2007. Assign the result to an new object called `europe_2007`.
+
+Then create a new column called `europe_prop` corresponding to the value of the column `pop` divided by the total population in Europe in 2007 obtained by the function `sum()`.
 
 ```{r eval=FALSE, echo=TRUE}
-europe_2007 <- filter(_ _ _, _ _ _ == _ _ _ & _ _ _ == _ _ _)
+europe_2007 <- filter(_ _ _, _ _ _ == _ _ _, _ _ _ == _ _ _)
 
 mutate(_ _ _, _ _ _ = _ _ _/_ _ _(_ _ _))
 ```
@@ -343,38 +389,38 @@ class: inverse, mline, center, middle
 
 # The summarise() function
 
-The last key verb is `summarise()`. It collapses a data frame to a single row:
+The last key verb is `summarise()`. It **aggregates a data frame** to a single row using a maths function:
 
 ```{r eval=FALSE, echo=TRUE}
 summarise(gapminder, mean(pop))
 summarise(gapminder, sd(pop))
 ```
 
-The result of `summarise()` is a dataframe, the default header of the summary is the calculation but a new header can be defined by using the `=` sign when summarising the data:
+The result of `summarise()` is a dataframe, the default header of the summary is the calculation but a **new header** can be defined by using the `=` sign when summarising the data:
 
 ```{r eval=FALSE, echo=TRUE}
-summarise(gapminder, m_pop = mean(pop))
+summarise(gapminder, mean_pop = mean(pop))
 summarise(gapminder, sd_pop = sd(pop))
 ```
 
-Finally, more than one summary can be done inside a `summarise()`:
+Finally, **more than one summary** can be done inside a `summarise()`:
 
-```{r eval=FALSE, echo=TRUE}
-summarise(gapminder, m_pop = mean(pop), sd_pop = sd(pop))
+```{r echo=TRUE}
+summarise(gapminder, sum_pop = sum(pop), mean_pop = mean(pop), sd_pop = sd(pop))
 ```
 
 ---
 
 # The summarise() function
 
-`summarise()` is not terribly useful unless we pair it with `group_by()`. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. 
+`summarise()` is not terribly useful **unless we pair it** with `group_by()`. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. 
 
-For example, if we applied exactly the same code to a data frame grouped by year, we get the average world population per year:
+For example, if we applied exactly the same code to a data frame **grouped by year**, we get the average world population per year:
 
 ```{r echo=TRUE}
 gapminder_by_year <- group_by(gapminder, year)
 
-summarise(gapminder_by_year, mean_pop = mean(pop))
+summarise(gapminder_by_year, sum_pop = sum(pop))
 ```
 
 ---
@@ -404,7 +450,7 @@ summarise(_ _ _, _ _ _ = _ _ _(_ _ _))
 ```
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 3, warn_when = 60)
 ```
 
 ---
@@ -414,7 +460,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# The Pipe Operator %>% (1)
+# The Pipe Operator %>%
 
 We have seen how to create a sequence of numbers from 1 to 10 using the function `seq()`:
 
@@ -445,9 +491,40 @@ seq(1, 10) %>% sum()
 
 ---
 
-# The Pipe Operator %>% (2)
+# The Pipe Operator %>%
 
-Imagine you have a dataset made of 2 columns and you want to create a 3rd column which is the result of the addition of column 1 and column 2. Then you want to keep only the observations lower than 10, you might write code like this:
+Remember the structure of the functions we just have seen:
+
+- `r colorize("The first argument is a dataframe object name", "red")` 
+- `r colorize("The subsequent arguments describe how the dataframe is transformed", "green")` 
+- `r colorize("The result is a new dataframe", "blue")`
+
+Here is a generic example:
+
+.center[**`r colorize("dataframe_transformed", "blue")` `<-` function_name(`r colorize("dataframe_name", "red")`, `r colorize("transformation", "green")`)**
+]
+
+--
+
+The `r colorize("dataframe_name", "red")` can be piped in the **function_name** with the pipe operator as follow:
+
+.center[**`r colorize("dataframe_transformed", "blue")` `<-` `r colorize("dataframe_name", "red")` `%>%` function_name(`r colorize("transformation", "green")`)**
+]
+
+--
+
+Now, the dataframe created with this first **function_name** might be used by another function, we will use other pipe symbol to chain them:
+
+.center[**`r colorize("dataframe_transformed", "blue")` `<-` `r colorize("dataframe_name", "red")` `%>%`**
+**function_name(`r colorize("transformation", "green")`) `%>%`**
+**function_name(`r colorize("transformation", "green")`)**
+]
+
+---
+
+# The Pipe Operator %>%
+
+Imagine you have a dataset made of 2 columns and **you want to create a 3rd column** which is the result of the addition of column 1 and column 2. Then, **you want to keep only the observations lower than 10**, you might write code like this:
 
 ```{r echo=TRUE, eval=FALSE}
 data_with_third_column <- mutate(data, column_3 = column_1 + column_2)
@@ -475,9 +552,9 @@ A good way to pronounce the pipe `%>%` when reading code is **“then”**.
 
 ---
 
-# The pipe operator %>%
+# The Pipe Operator %>%
 
-Imagine that we want to summarise the population average and standard deviation only of Europe. Using what you know about {dplyr}, you might write code like this:
+Imagine that **we want to summarise the population average and standard deviation only of Europe**. Using what you know about {dplyr}, you might write code like this:
 
 ```{r eval=FALSE, echo=TRUE}
 gapminder_europe <- filter(gapminder, continent == "Europe")
@@ -488,7 +565,7 @@ gapminder_summary_europe <- summarise(gapminder_europe,
   )
 ```
 
-This code is a little frustrating to write because we have to give each intermediate data frame a name, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
+This code is a little frustrating to write because **we have to give each intermediate data frame a name**, even though we don’t care about it. Naming things is hard, so this slows down our analysis.
 
 --
 
@@ -502,7 +579,7 @@ gapminder_summary_europe <- gapminder %>%
 
 ---
 
-# The pipe operator %>%
+# The Pipe Operator %>%
 
 ```{r eval=FALSE, echo=TRUE}
 gapminder_summary_europe <- gapminder %>% 
@@ -532,13 +609,12 @@ class: title-slide, middle
 
 2. Execute the following code:
 
-```{r eval=FALSE}
+```{r echo=TRUE, eval=FALSE}
 starwars %>%
   select(name, height, mass, homeworld) %>%
   mutate(height = height * 0.0328084) %>% # overwrite height values to feet
   group_by(homeworld) %>%
-  filter(height == max(height)) %>%
-  arrange(desc(height))
+  filter(height == max(height))
 ```
 
 ```{r}
@@ -550,15 +626,15 @@ class: title-slide, middle
 
 ## Exercise
 
-1/ From the data frame object `gapminder`, summarise the population average with the `mean()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
+1/ From the data frame object `gapminder`, summarise the sum of the worldwide population by `year` and by using the pipe operator:
 
 ```{r eval=FALSE, echo=TRUE}
 _ _ _ %>% 
-  group_by(_ _ _, _ _ _) %>% 
+  group_by(_ _ _) %>% 
   summarise(_ _ _ = _ _ _(_ _ _))
 ```
 
-2/ From the data frame object `gapminder`, summarise the population standard deviation with the `sd()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
+2/ From the data frame object `gapminder`, summarise the lifeExp average with the `mean()` function by `year` and by `continent` by adding the second grouping variable after the first one (use a coma to separate them) and by using the pipe operator:
 
 ```{r eval=FALSE, echo=TRUE}
 _ _ _ %>% 
