@@ -132,8 +132,7 @@ Two ways to access these slides:
 
   - From Loop: Lectures Slides > Lecture 8
   - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_8
-  
-  
+
 ```{r out.width='50%'}
 include_graphics("https://c.tenor.com/0heitU7-tg4AAAAC/copy-paste-paste.gif")
 ```
@@ -205,10 +204,12 @@ include_graphics("https://www.statology.org/wp-content/uploads/2021/10/envir1.pn
 
 * The **Packages** shows a list of all the R packages installed on the local or remote machine and indicates whether or not they are currently loaded.
 
-* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling <kbd>F1</kbd> with the cursor on the function or by typing `?` followed by the function name such as:
+* With the **Help** menu for R functions you can access to essential information to use them. Just have a look at some of them by typling <kbd>F1</kbd> with the cursor on the function, using the `help()` function, or by typing `?` followed by the function name such as:
 
 ```{r echo=TRUE, eval=FALSE}
+help(seq)
 ?seq
+help(lm)
 ?lm
 ```
 

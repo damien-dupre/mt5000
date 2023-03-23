@@ -146,20 +146,22 @@ class: title-slide, middle
 
 ## Exercise
 
-1. Install the packages {tidyverse} and {gapminder} which contains the data gapminder
+1/ Install the packages {tidyverse} and {gapminder} which contains the data gapminder
 
 ```{r echo=TRUE, eval=FALSE}
+install.packages("tidyverse")
 install.packages("gapminder")
 ```
 
-2. Load the package {gapminder} and use the function `data()` to access the data
+2/ Load the packages {tidyverse} and {gapminder} and use the function `data()` to access the data
 
 ```{r echo=TRUE, eval=FALSE}
+library(tidyverse)
 library(gapminder)
 data("gapminder")
 ```
 
-3. Use the function `str()` on the gapminder object
+3/ Use the function `head()` on the gapminder object
 
 ```{r echo=TRUE, eval=FALSE}
 head(gapminder)
@@ -240,6 +242,7 @@ class: title-slide, middle
 ## Exercise
 
 1/ Be sure that the packages {tidyverse} and {gapminder} are loaded
+
 2/ Create a new object that only contains data for France
 
 ```{r eval=FALSE, echo=TRUE}
