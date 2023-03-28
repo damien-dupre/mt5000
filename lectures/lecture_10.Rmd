@@ -95,7 +95,7 @@ And your visualisations will not use the scientific number format anymore
 
 ---
 
-# Rstudio Cloud
+# Posit Cloud
 
 In your webrowser (Chrome, Firefox, ...):
 
@@ -103,7 +103,7 @@ In your webrowser (Chrome, Firefox, ...):
   - From Loop: Lectures > Lecture 10
   - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_10
 
-2. In another tab, go to: https://rstudio.cloud/
+2. In another tab, go to: https://posit.cloud/
   - Sign in or Sign up (if not already done)
   - In your workspace, Click "Untitled Project" or "New Project" (if not already done)
   

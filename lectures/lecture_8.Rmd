@@ -277,8 +277,6 @@ include_graphics("https://r4ds.hadley.nz/quarto/diamond-sizes-report.png")
 
 # How to Run R Code?
 
-
-
 .pull-left[
 In a R Script, place your cursor anywhere on the line you want to run and either:
 - Press <kbd>Ctrl</kbd> & <kbd>Enter</kbd> (Win)
@@ -663,6 +661,7 @@ Note: All books are included in the [Big Book of R](https://www.bigbookofr.com/)
   * Google "R how to ..."
   * Stack Overflow
 ]
+
 .pull-right[
 ```{r out.width='100%'}
 include_graphics("https://pbs.twimg.com/media/DAsjfPjXkAIBoET?format=jpg&name=medium")
