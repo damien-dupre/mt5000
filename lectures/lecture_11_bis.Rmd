@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics & Visualization"
-subtitle: "Lecture 11: Introduction to Quarto"
+subtitle: "Lecture 11: Introduction to Rmarkdown"
 author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
@@ -37,54 +37,34 @@ xaringanExtra::use_extra_styles(
 
 # Objectives
 
-In this lecture, with Posit Cloud, we will see how to create **Quarto** files (.qmd) to embed text and code output and generate professional outputs.
+In this lecture, with RStudio Cloud, we will see how to create **R Markdown** files (.Rmd) to embed text and code output and generate professional outputs.
 
 --
 
 #### What do I need to do before starting?
 
-- Sign up for a free Posit cloud account
-- https://posit.cloud/
+- Sign up for a free RStudio cloud account
+- https://rstudio.cloud/
 
 --
 
 #### Where can I find more resources?
 
-- [Official Quarto Website](https://quarto.org/)
-- [R for Data Science](https://r4ds.hadley.nz/quarto.html)
-- [Appsilon](https://appsilon.com/r-quarto-tutorial/)
-- [Making shareable documents with Quarto](https://openscapes.github.io/quarto-website-tutorial/)
-- [Quarto 2hr webinar](https://jthomasmock.github.io/quarto-2hr-webinar/materials/01-intro-quarto.html)
+- More slides: 
+  - [slides.djnavarro.net/starting-rmarkdown](https://slides.djnavarro.net/starting-rmarkdown)
+  - [rmd4pharma.netlify.app/rmd-anatomy](https://rmd4pharma.netlify.app/static/slides/01-rmd-anatomy.html)
+  - [rmd4pharma.netlify.app/graphics](https://rmd4pharma.netlify.app/static/slides/03-graphics.html)
+- YouTube videos: [youtube.djnavarro.net/starting-rmarkdown](https://youtube.djnavarro.net/starting-rmarkdown)
 
 ---
 
-# What is Quarto?
-
-Quarto is an open-source scientific and technical publishing system that builds on standard markdown with features essential for scientific communication.
-
-- Computations: Python, R, Julia, Observable JS
-- Markdown: Pandoc flavored markdown with many enhancements
-- Output: Documents, presentations, websites, books, blogs
-
-See https://quarto.org for more details
-
---
-
-The Goal is to create a document that is all-in-one
-
-- Documents that include source code for their production
-- Notebook AND plain-text flavors
-- Programmatic automation and reproducibility
-
----
-
-# Two Sides of Quarto Files
+# Two Sides of R Markdown Files
 
 .pull-left[
 ### On the editor side...
 
 - Write text in markdown
-- Insert code using R or Python
+- Insert code using R
 - Write "metadata" with YAML
 ]
 
@@ -99,93 +79,21 @@ The Goal is to create a document that is all-in-one
 
 --
 
-Try it by yourself!
+Try it by yourself:
 
----
-class: title-slide, middle
+1. Create a new R Markdown document: `File > New File > R Markdown`
+2. A popup will appear, leave everything as default and click `Yes`
+3. A new popup will appear, leave everything as default and click `OK`
 
-## Exercise
+--
 
-In your Posit Cloud:
-
-1/ Create a new Quarto document: `File > New File > Quarto Document`
-
-2/ A popup will appear, untick **"Use visual markdown editor"**
-
-3/ Leave everything else as default and click `Create`
-
-4/ If a warning appears, click `Install` on the message to install the {rmarkdown} package
-
-```{r}
-include_graphics("img/rmarkdown_warning.png")
-```
-
-5/ Click the blue arrow `Render` and save the document
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
+## Let's dissect the document obtained!
 
 ---
 
-# Simple Example
+# R Markdown Structure
 
-```{r out.width='80%'}
-include_graphics("https://quarto.org/docs/tools/images/new-quarto-doc.png")
-```
-
----
-
-# Simple Example
-
-.pull-left.verysmall[
-````markdown
----
-title: "Untitled"
-format: html
----
-
-## Quarto
-
-Quarto enables you to weave together content and 
-executable code into a finished document. To learn 
-more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document 
-will be generated that includes both content and 
-the output of embedded code. You can embed code 
-like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this 
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of 
-code (only output is displayed).
-
-````
-]
-
-.pull-right[
-```{r}
-include_graphics("img/quarto_create.png")
-```
-]
-
----
-
-# Quarto Structure
-
-Quarto files have 3 different types of content:
+R Markdown files have 3 different types of content:
 
 #### 1. The YAML
 
@@ -197,14 +105,14 @@ Written in Markdown style (i.e., text without formatting), it is used as core de
 
 #### 3. The Code
 
-Inserted in the Quarto inside "chunks", the code is processed when creating the output and can display figures and tables
+Inserted in the R Markdown inside "chunks", the code is processed when creating the output and can display figures and tables
 
 ---
 
 # The part inside --- is the "YAML"
 
 ```{r out.width='80%'}
-include_graphics("img/quarto_default_yaml.png")
+include_graphics("img/my_first_rmd_html_yaml.png")
 ```
 
 ---
@@ -212,7 +120,7 @@ include_graphics("img/quarto_default_yaml.png")
 # The text is Markdown 
 
 ```{r out.width='80%'}
-include_graphics("img/quarto_default_markdown.png")
+include_graphics("img/my_first_rmd_html_markdown.png")
 ```
 
 ---
@@ -220,7 +128,7 @@ include_graphics("img/quarto_default_markdown.png")
 # The part in grey is R code
 
 ```{r out.width='80%'}
-include_graphics("img/quarto_default_code.png")
+include_graphics("img/my_first_rmd_html_r.png")
 ```
 
 ---
@@ -230,26 +138,23 @@ include_graphics("img/quarto_default_code.png")
 .pull-left[
 To generate the output file:
 
-1/ Go to `File > Render Document` (a  Use the `Render` shortcut icon is also displayed in the menu bar)
+1. Go to `File > Knit Document` (a `Knit` shortcut icon is also displayed in the menu bar)
+2. Give a name to your document and click `OK`
 
-<kbd>![](https://quarto.org/docs/get-started/hello/images/rstudio-render-button.png)</kbd>
-
-```{r}
-include_graphics("https://quarto.org/docs/get-started/hello/images/rstudio-render.png")
+```{r out.width='80%'}
+include_graphics("https://tech.me.holycross.edu/files/2016/12/knit.png")
 ```
-
-2/ Give a name to your document, click `OK`, and voila!
 ]
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/quarto_create.png")
+include_graphics("img/html_output.png")
 ```
 ]
 
 ---
 
-# Quarto Editor vs Output
+# R Markdown Editor vs Output
 
 .pull-left[
 ```{r out.width='100%'}
@@ -286,7 +191,7 @@ output: html_document
 
 ```
 ---
-title: "My First Quarto Document"
+title: "My First R Markdown Document"
 output: html_document
 date: "99/99/9999"
 ---
@@ -298,7 +203,7 @@ date: "99/99/9999"
 
 ```
 ---
-title: "My First Quarto Document"
+title: "My First R Markdown Document"
 subtitle: "My Subtitle"
 author: "Damien Dupre"
 date: "99/99/9999"
@@ -416,7 +321,7 @@ this is ***bold italics***
 
 Welcome to my **awesome** class. You 
 will learn all kinds of useful things 
-about Quarto.
+about R Markdown.
 
 
 - Markdown is simple
@@ -431,7 +336,7 @@ about Quarto.
 ## Introduction
 <br>
 Welcome to my **awesome** class. You will learn 
-all kinds of useful things about Quarto. 
+all kinds of useful things about R Markdown. 
 
 - Markdown is simple
 - You can add R code
@@ -444,7 +349,7 @@ class: title-slide, middle
 ## Exercise
 
 In RStudio Cloud:
-- Create a new Quarto file
+- Create a new R Markdown file
 - Remove all content except the YAML and save it as "my_first_rmarkdown.rmd"
 - Write a sentence about your emotions (positive and negative) triggered by R
 - Click "Knit" once finished
@@ -489,7 +394,7 @@ The starting back ticks are always followed by a set of {} including the code ch
 
 Chunk output can be customized with knitr options (i.e., arguments set in the {} of a chunk header). Above, we use 1 argument:
 
-- `include = FALSE` prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks.
+- `include = FALSE` prevents code and results from appearing in the finished file. R Markdown still runs the code in the chunk, and the results can be used by other chunks.
 
 
 Additional argument will be essential to use as well:
@@ -498,7 +403,7 @@ Additional argument will be essential to use as well:
 - `message = FALSE` prevents messages that are generated by code from appearing in the finished file.
 - `warning = FALSE` prevents warnings that are generated by code from appearing in the finished.
 
-See the **[Quarto Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)** for a complete list of knitr chunk options.
+See the **[R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)** for a complete list of knitr chunk options.
 
 ---
 

@@ -635,6 +635,19 @@ ggplot(data = map_pop_2007) +
 
 # Map Visualisations
 
+To manually change the name of some countries to match with the data from {maps}, please use the following code:
+
+```{r echo=TRUE, eval=FALSE}
+gapminder$country <- as.character(gapminder$country)
+
+gapminder$country[gapminder$country == "Afghanistan"] <- "AAAA"
+```
+
+
+---
+
+# Map Visualisations
+
 ```{r, echo=FALSE}
 include_graphics(fig_chunk("maps", "png"))
 ```
