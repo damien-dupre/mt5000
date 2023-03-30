@@ -24,9 +24,6 @@ library(tidyverse)
 
 # chunk options ----------------------------------------------------------------
 opts_chunk$set(echo = FALSE)
-
-# data -------------------------------------------------------------------------
-titanic <- read_csv(here("data/titanic.csv"))
 ```
 
 ```{r xaringan-extra-styles, echo=FALSE}
@@ -202,7 +199,7 @@ Inserted in the Quarto inside "chunks", the code is processed when creating the 
 
 ---
 
-# The part inside --- is the "YAML"
+# The "YAML"
 
 ```{r out.width='80%'}
 include_graphics("img/quarto_default_yaml.png")
@@ -210,7 +207,7 @@ include_graphics("img/quarto_default_yaml.png")
 
 ---
 
-# The text is Markdown 
+# The Markdown Text
 
 ```{r out.width='80%'}
 include_graphics("img/quarto_default_markdown.png")
@@ -218,7 +215,7 @@ include_graphics("img/quarto_default_markdown.png")
 
 ---
 
-# The part in grey is R code
+# The R Code
 
 ```{r out.width='80%'}
 include_graphics("img/quarto_default_code.png")
@@ -309,7 +306,7 @@ format: html
 
 ---
 
-# Execute code
+# Execute Code
 
 Quarto can use R or Python to execute code:
 
@@ -359,7 +356,7 @@ engine: python3
 
 ---
 
-# Execute code
+# Execute Code
 
 Quarto also introduces some of these as options for `execute:` in YAML, for similar concepts in other languages.
 
@@ -380,7 +377,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# Emphasising text
+# Emphasising Text
 
 --
 .pull-left[
@@ -411,7 +408,7 @@ this is ***bold italics***
 
 ---
 
-# Creating lists
+# Creating Lists
 
 --
 .pull-left[
@@ -441,7 +438,7 @@ this is ***bold italics***
 
 ---
 
-# Creating headings
+# Creating Headings
 
 --
 .pull-left[
@@ -544,7 +541,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# Anatomy of a code chunk
+# Anatomy of a Code Chunk
 
 ````markdown
 `r ''````{r}
@@ -633,7 +630,7 @@ ggplot(titanic, aes(Fare, Age)) +
 
 ---
 
-# Working with code
+# Working with Code
 
 To display the output of your code in the final document, just include your code in a chunk:
 
@@ -651,7 +648,7 @@ gapminder %>%
 
 ---
 
-# Working with code
+# Working with Code
 
 Remember, when the code results in creating an object, while the object is created, no output is printed in the final document:
 
@@ -664,7 +661,7 @@ data_pop <- gapminder %>%
 
 ---
 
-# Working with code
+# Working with Code
 
 To create an object and print your code in the same chunk, the name of the object has to be included in the chunk. This will print the content of the object:
 
@@ -761,7 +758,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# Professional websites
+# Professional Websites
 
 ```{r, echo=FALSE, out.width='70%'}
 include_graphics("img/example_professional_site.png")
@@ -777,7 +774,7 @@ include_graphics("img/example_book.png")
 
 ---
 
-# Academic papers
+# Academic Papers
 
 ```{r, echo=FALSE, out.width='60%'}
 include_graphics("img/example_papers.png")
@@ -785,7 +782,7 @@ include_graphics("img/example_papers.png")
 
 ---
 
-# Slide decks
+# Slide Decks
 
 ```{r, echo=FALSE, out.width='100%'}
 include_graphics("https://raw.githubusercontent.com/katiejolly/blog/master/assets/slide-design/twitter_img_march.png")
