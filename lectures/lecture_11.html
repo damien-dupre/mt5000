@@ -8,7 +8,6 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
-    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
     <script src="libs/countdown-0.4.0/countdown.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
@@ -119,7 +118,7 @@ In your Posit Cloud:
 
 5/ Click the blue arrow `Render` and save the document
 
-<div class="countdown" id="timer_caafa7e1" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_882ada59" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -225,7 +224,7 @@ To generate the output file:
 
 ![](https://quarto.org/docs/get-started/hello/images/rstudio-render.png)&lt;!-- --&gt;
 
-2/ Give a name to your document and click `OK`
+2/ Give a name to your document, click `OK`, and voila!
 ]
 
 .pull-right[
@@ -237,11 +236,11 @@ To generate the output file:
 # Quarto Editor vs Output
 
 .pull-left[
-&lt;img src="img/my_first_rmd_html.png" width="100%" /&gt;
+&lt;img src="img/quarto_default.png" width="100%" /&gt;
 ]
 
 .pull-right[
-&lt;img src="img/html_output.png" width="100%" /&gt;
+&lt;img src="img/quarto_create.png" width="100%" /&gt;
 ]
 
 ---
@@ -257,7 +256,7 @@ class: inverse, mline, center, middle
 
 ```
 ---
-output: html_document
+format: html
 ---
 ```
 
@@ -268,7 +267,7 @@ output: html_document
 ```
 ---
 title: "My First Quarto Document"
-output: html_document
+format: html
 date: "99/99/9999"
 ---
 ```
@@ -283,7 +282,73 @@ title: "My First Quarto Document"
 subtitle: "My Subtitle"
 author: "Damien Dupre"
 date: "99/99/9999"
-output: html_document
+format: html
+---
+```
+
+---
+
+# Execute code
+
+Quarto can use R or Python to execute code:
+
+- R code is executed natively with the `{knitr}` engine
+- Quarto can _also_ use the `Jupyter` engine to execute Julia, Python, or other languages that Jupyter supports
+
+--
+
+.pull-left[
+If R code is found first will default to `knitr`
+
+```yaml
+---
+format: html
+---
+```
+
+Or can force using `knitr` if you're mixing R/Python content or if your first code chunk is not R.
+
+```yaml
+---
+format: html
+engine: knitr
+---
+```
+]
+
+--
+
+.pull-right[
+You can specify Jupyter to use defaults:
+
+```yaml
+---
+engine: jupyter
+---
+```
+
+Or a specific Python version
+
+```yaml
+---
+engine: python3
+---
+```
+]
+
+---
+
+# Execute code
+
+Quarto also introduces some of these as options for `execute:` in YAML, for similar concepts in other languages.
+
+```yaml
+---
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 ```
 
@@ -424,13 +489,29 @@ class: title-slide, middle
 
 ## Exercise
 
-In RStudio Cloud:
-- Create a new Quarto file
-- Remove all content except the YAML and save it as "my_first_rmarkdown.rmd"
-- Write a sentence about your emotions (positive and negative) triggered by R
-- Click "Knit" once finished
+In Posit Cloud, with the file that you have previously created:
 
-<div class="countdown" id="timer_f9e7f648" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+1/ Remove all content except the YAML and save it as "my_first_quarto.qmd"
+
+2/ Modify the YAML to include:
+
+```yaml
+---
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+```
+
+3/ Write a sentence about your emotions (positive and negative) triggered by R, use `*` and `**` to highlight some part of your text in italic and bold
+
+4/ Add a section title with `##` and a subsection title with `###`
+
+5/ Click "Render" once finished
+
+<div class="countdown" id="timer_6a88d14f" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -443,16 +524,34 @@ class: inverse, mline, center, middle
 
 ---
 
+# Anatomy of a code chunk
+
+````markdown
+```{r}
+#| label: gapminder-pop
+#| echo: false
+gapminder %&gt;% 
+  select(pop)
+```
+```` 
+
+- Has 3x backticks on each end ` ``` ` 
+- Place engine (`r`) between curly braces `{r}`  
+- Place options underneath, behind the `#|` (hashpipe): `#| option1: value`  
+
+---
+
 # First Code Chunk
 
 In the first code chunk, will be added all the __actions that will be applied to the following chunks__ (e.g., code option, library used, data downloaded, ...).
 
 ````markdown
+```{r}
+#| label: setup
+#| include: false
 
-```{r setup, include=FALSE}
 # libraries
 library(gapminder)
-library(knitr)
 library(tidyverse)
   
 # data
@@ -461,26 +560,19 @@ titanic &lt;- read.csv("/cloud/project/titanic.csv")
 
 ````
 
-Every code chunk starts with 3 back ticks and finishes with 3 back ticks.
-
-The starting back ticks are always followed by a set of {} including the code chunk options
-
 ---
 
 # Code Chunk Options
 
-Chunk output can be customized with knitr options (i.e., arguments set in the {} of a chunk header). Above, we use 1 argument:
+Chunk output can be customized with hashpipe options (i.e., arguments set after the `#|`). Above, we use 1 argument:
 
-- `include = FALSE` prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks.
+- `#| include: false` prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks.
 
+Additional options can be turned on only for one chunk:
 
-Additional argument will be essential to use as well:
+- `#| echo: true` will display the code and the results in the finished file (it overwrite `echo: false` set in the YAML for this chunk only)
 
-- `echo = FALSE` prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.
-- `message = FALSE` prevents messages that are generated by code from appearing in the finished file.
-- `warning = FALSE` prevents warnings that are generated by code from appearing in the finished.
-
-See the **[Quarto Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)** for a complete list of knitr chunk options.
+See the **[Quarto Reference Guide](https://quarto.org/docs/reference/cells/cells-knitr.html)** for a complete list of chunk options.
 
 ---
 
@@ -488,16 +580,24 @@ See the **[Quarto Reference Guide](https://www.rstudio.com/wp-content/uploads/20
 
 As long as the package {tidyverse} is loaded and the data object created in the first setup chunk, then a __ggplot visualisation can be used in a separated chunk__:
 
+.small[
 ````markdown
 ---
 title: "Untitled"
-output: pdf_document
+output: html
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 
-```{r setup, include=FALSE}
+```{r}
+#| label: setup
+#| include: false
+
 library(tidyverse)
 
-titanic &lt;- read.csv("/cloud/project/titanic.csv")
+titanic &lt;- read_csv("/cloud/project/titanic.csv")
 ```
 
 # My Section Title
@@ -509,57 +609,123 @@ ggplot(titanic, aes(Fare, Age)) +
   geom_point()
 ```
 ````
+]
+
+---
+
+# Working with code
+
+To display the output of your code in the final document, just include your code in a chunk:
+
+````markdown
+```{r}
+gapminder %&gt;% 
+  select(pop)
+```
+```` 
+
+
+```
+## # A tibble: 1,704 × 1
+##         pop
+##       &lt;int&gt;
+##  1  8425333
+##  2  9240934
+##  3 10267083
+##  4 11537966
+##  5 13079460
+##  6 14880372
+##  7 12881816
+##  8 13867957
+##  9 16317921
+## 10 22227415
+## # … with 1,694 more rows
+```
+
+---
+
+# Working with code
+
+Remember, when the code results in creating an object, while the object is created, no output is printed in the final document:
+
+````markdown
+```{r}
+data_pop &lt;- gapminder %&gt;% 
+  select(pop)
+```
+```` 
+
+---
+
+# Working with code
+
+To create an object and print your code in the same chunk, the name of the object has to be included in the chunk. This will print the content of the object:
+
+````markdown
+```{r}
+data_pop &lt;- gapminder %&gt;% 
+  select(pop)
+  
+data_pop
+```
+```` 
+
+
+```
+## # A tibble: 1,704 × 1
+##         pop
+##       &lt;int&gt;
+##  1  8425333
+##  2  9240934
+##  3 10267083
+##  4 11537966
+##  5 13079460
+##  6 14880372
+##  7 12881816
+##  8 13867957
+##  9 16317921
+## 10 22227415
+## # … with 1,694 more rows
+```
 
 ---
 
 # Figures in the Output Document
 
-Warning, if the code results in the creation of an object, then the output will not be displayed:
-
-
-```r
-plot_titanic &lt;- ggplot(titanic, aes(Fare, Age)) +
-  geom_point()
-```
-
-To be displayed there are 2 solutions:
-
-#### 1. The content has to be printed by ending the code with the object name
-
-
-```r
-plot_titanic &lt;- ggplot(titanic, aes(Fare, Age)) +
-  geom_point()
-
-plot_titanic
-```
-
-#### 2. The code is ran without creating an object
-
-
-```r
-ggplot(titanic, aes(Fare, Age)) +
-  geom_point()
-```
-
----
-
-# Chunk Options for Visualisations
-
-In this following example, when the output document is created:
-
-- `echo = TRUE` indicates that not only the output of the code is shown but also the code itself
-- `warning = FALSE` indicates that no R warning will be displayed
-- `message = FALSE` indicates that no R message will be displayed
+Same for ggplot, if the code creates an object, the output will not be displayed:
 
 ````markdown
-
-```{r, echo = TRUE, warning = FALSE, message = FALSE}
-ggplot(titanic, aes(Fare, Age)) +
+```{r}
+plot_gapminder &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point()
 ```
+```` 
 
+To display the output of the code, there are 2 solutions:
+
+1/ The content has to be printed by ending the code with the object name
+
+.small[
+````markdown
+```{r}
+plot_gapminder &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point()
+
+plot_gapminder
+```
 ````
+]
+
+2/ The code is ran without creating an object
+
+.small[
+````markdown
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point()
+```
+```` 
+]
 
 ---
 
@@ -567,25 +733,24 @@ ggplot(titanic, aes(Fare, Age)) +
 
 Some chunk options are specific to visualisations outputs:
 
-- fig.cap="caption of the figure"
-- fig.height=5
-- fig.width=5
+- fig-cap: "caption of the figure"
+- fig-height: 5
+- fig-width: 5
 
 Note, the default unit for height and width is inches.
 
 ````markdown
-```{r, fig.cap="Example Caption", fig.height=2, fig.width=12, message=FALSE}
-ggplot(titanic, aes(Fare, Age)) +
+```{r}
+#| fig-cap: "caption of the figure"
+#| fig-height: 5
+#| fig-width: 5
+
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point()
 ```
 ````
 
-
-```
-## Warning: Removed 264 rows containing missing values (`geom_point()`).
-```
-
-![Example Caption](lecture_11_files/figure-html/unnamed-chunk-19-1.png)
+![Example Caption](lecture_11_files/figure-html/unnamed-chunk-18-1.png)
 
 ---
 class: title-slide, middle
