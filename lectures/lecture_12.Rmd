@@ -22,11 +22,9 @@ library(gapminder)
 library(here)
 library(knitr)
 library(tidyverse)
-library(xaringanExtra)
 
 # chunk options ----------------------------------------------------------------
 opts_chunk$set(echo = FALSE)
-use_freezeframe()
 ```
 
 # Objectives
