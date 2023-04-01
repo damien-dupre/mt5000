@@ -8,6 +8,11 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
+    <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
@@ -31,9 +36,9 @@ class: center, middle, inverse, title-slide
 
 # Objectives
 
-The last tool for data analytics and visualisations displayed in this lectures is called GitHub.
+The last tool for data analytics and visualisations displayed in this lectures is called **GitHub**.
 
-GitHub has a lot of different functions. For now, we will only see how to use it to published the html document output from out Quarto file.
+GitHub has a lot of different functions. For now, we will only see how to use it to **published the html document output from our Quarto file**.
 
 ![](http://www.quickmeme.com/img/75/7509f68823389e4af3777ca6d3744c632cc32ab3547bc56e319126aa29ab149a.jpg)&lt;!-- --&gt;
 
@@ -72,9 +77,9 @@ class: title-slide, middle
 
 ## Exercise: Sign up to GitHub
 
-1/ Go to https://github.com and click sign up
+1/ Go to https://github.com and click **sign up**
 
-2/ Fill the information requested, find a good user name as it will be used for your default website (e.g., `firstname-name` is usually good)
+2/ Fill the information requested, find a **good user name** as it will be used for your default website (e.g., `firstname-name` is usually good)
 
 3/ Later, add a profile picture
 
@@ -102,7 +107,7 @@ class: title-slide, middle
 
 ## Exercise
 
-Follow the steps here after to create your first repository.
+Follow the steps here after to **create your first repository**.
 
 ---
 
@@ -124,29 +129,29 @@ Follow the steps here after to create your first repository.
 
 # GitHub Repositories
 
-2/ Type a short, memorable name for your repository. For example, "hello-world".
+2/ **Type a short, memorable name** for your repository. For example, "hello-world".
 
 ![](https://docs.github.com/assets/cb-25139/mw-1000/images/help/repository/create-repository-name.webp)&lt;!-- --&gt;
 
+.pull-left[
+3/ **Optionally**, add a description of your repository. For example, "My first repository on GitHub." 
+]
+
+.pull-right[
+![](https://docs.github.com/assets/cb-26377/mw-1000/images/help/repository/create-repository-desc.webp)&lt;!-- --&gt;
+]
+
 ---
 
 # GitHub Repositories
 
-3/ Optionally, add a description of your repository. For example, "My first repository on GitHub." 
-
-![](https://docs.github.com/assets/cb-26377/mw-1000/images/help/repository/create-repository-desc.webp)&lt;!-- --&gt;
-
-4/ Choose a repository visibility. For more information, see "About repositories." 
+4/ **Choose a repository visibility**. For more information, see "About repositories." 
 
 ![](https://docs.github.com/assets/cb-20877/mw-1000/images/help/repository/create-repository-public-private.webp)&lt;!-- --&gt;
 
----
+5/ Tick **Add a README file**.
 
-# GitHub Repositories
-
-5/ Select Initialize this repository with a README.
-
-6/ Click Create repository.
+6/ Click **Create repository**.
 
 Congratulations! You've successfully created your first repository, and initialized it with a README file.
 
@@ -159,11 +164,11 @@ class: inverse, mline, center, middle
 
 # Always Commit Changes
 
-In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. Once you're ready to save those changes, you create a commit.
+In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. **Once you're ready to save those changes, you create a commit**.
 
-A commit contains a snapshot of the changes you've made to one or more files, along with a message that describes the changes. This message should be descriptive and clear, so that other developers can understand what changes you've made and why.
+**A commit contains a snapshot of the changes** you've made to one or more files, along with a message that describes the changes. This **message should be descriptive and clear**, so that other developers can understand what changes you've made and why.
 
-Committing your changes to GitHub is an important part of collaborating with others on a project, as it allows other developers to see what changes you've made and merge them into the main project. Commits also make it easy to revert changes if necessary, since you can always go back to a previous commit in the project's history.
+Committing your changes to GitHub is an important part of collaborating with others on a project, as it allows other developers to **see what changes you've made** and merge them into the main project. Commits also make it easy to revert changes if necessary, since you can always go back to a previous commit in the project's history.
 
 &gt; Everytime you want to take into account a change in your repository, you need to commit these changes
 
@@ -174,44 +179,49 @@ class: title-slide, middle
 
 When you created your new repository, you initialized it with a README file. README files are a great place to describe your project in more detail, or add some documentation such as how to install or use your project. The contents of your README file are automatically shown on the front page of your repository.
 
-Follow the steps here after to commit a change to the README file.
+**Follow the steps here after to commit a change to the README file.**
 
 ---
 
 # Commit the First Change
 
-1/ In your repository's list of files, click README.md. 
+1/ In your repository's list of files, **click README.md**. 
 
-![](https://docs.github.com/assets/cb-44661/mw-1000/images/help/repository/create-commit-open-readme.webp)&lt;!-- --&gt;
-
----
-
-# Commit the First Change
-
-
-2/ In the upper right corner of the file view, click the pen icon to open the file editor.
-
-![](https://docs.github.com/assets/cb-90977/mw-1000/images/help/repository/edit-file-edit-button.webp)&lt;!-- --&gt;
-
-3/ In the text box, type some information about yourself.
-
-4/ Above the new content, click Preview.
-
-![](https://docs.github.com/assets/cb-66827/mw-1000/images/help/repository/edit-readme-preview-changes.webp)&lt;!-- --&gt;
+&lt;img src="https://docs.github.com/assets/cb-44661/mw-1000/images/help/repository/create-commit-open-readme.webp" width="50%" /&gt;
 
 ---
 
 # Commit the First Change
 
-5/ Review the changes you made to the file. You will see the new content in green.
+2/ In the upper right corner of the file view, **click the pen icon to open the file editor**.
 
-![](https://docs.github.com/assets/cb-33561/mw-1000/images/help/repository/create-commit-review.webp)&lt;!-- --&gt;
+&lt;img src="https://docs.github.com/assets/cb-90977/mw-1000/images/help/repository/edit-file-edit-button.webp" width="80%" /&gt;
+
+3/ In the text box, **type some information about the project**.
+
+4/ Above the new content, click **Preview**.
+
+&lt;img src="https://docs.github.com/assets/cb-66827/mw-1000/images/help/repository/edit-readme-preview-changes.webp" width="80%" /&gt;
+
+---
+
+# Commit the First Change
+
+.pull-left[
+5/ **Review the changes** you made to the file. You will see the new content in green.
 
 6/ Click **Commit changes...**
 
-7/ In the "Commit message" field, type a short, meaningful commit message that describes the change you made to the file. 
+7/ In the "Commit message" field, type a short, meaningful **commit message** that describes the change you made to the file. 
+]
 
-8/ Below the commit message fields, decide whether to add your commit to the current branch or to a new branch. Select **commit directly to the `main` branch** for now. For collaborative projects never commit to the main branch
+.pull-right[
+![](https://docs.github.com/assets/cb-33561/mw-1000/images/help/repository/create-commit-review.webp)&lt;!-- --&gt;
+]
+
+8/ Below the commit message fields, decide whether to add your commit to the current branch or to a new branch. Select **commit directly to the `main` branch** for now. 
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Warning: For collaborative projects never commit to the main branch
 
 9/ Click **Propose file change**.
 
@@ -220,13 +230,13 @@ class: title-slide, middle
 
 ## Exercise
 
-Fill you Repository up with the files created when Rendering Quarto to html by following the steps described here after
+**Fill you Repository up with the files** created when Rendering Quarto to html by following the steps described here after
 
 ---
 
 # Fill up your Repository
 
-0/ (Only if you are using Rstudio in Posit cloud) Export your Rstudio project folder from Posit cloud to your computer and unzip this folder on your computer
+0/ (Only if you are using Rstudio in Posit cloud) **Export your Rstudio project folder from Posit cloud to your computer** and **unzip this folder on your computer**
 
 ![](img/posit_cloud_export_project.gif)&lt;!-- --&gt;
 
@@ -236,7 +246,7 @@ Fill you Repository up with the files created when Rendering Quarto to html by f
 
 1/ In your Repository Page in GitHub, Click **Add files** then **Upload files**
 
-2/ Drop your entire unzipped folder in the main box and commit your changes
+2/ **Drop your entire unzipped folder** in the main box and **commit your changes**
 
 ![](img/upload_project_github.gif)&lt;!-- --&gt;
 
@@ -249,11 +259,11 @@ class: inverse, mline, center, middle
 
 # GitHub Pages
 
-GitHub Pages is a web hosting service offered by GitHub that allows you to host static websites directly from a GitHub repository. This means you can use GitHub to store and version control your website's code, and then host it for free using GitHub Pages.
+GitHub Pages is a **web hosting service** offered by GitHub that allows you to host static websites directly from a GitHub repository. This means you can use GitHub to store and version control your website's code, and then host it for free using GitHub Pages.
 
-GitHub Pages supports several different types of websites, including personal or project pages, documentation, blogs, and more. You can use custom domains or subdomains for your website, and GitHub Pages also supports HTTPS encryption for secure communication.
+GitHub Pages supports several **different types of websites, including personal or project pages**, documentation, blogs, and more. You can use custom domains or subdomains for your website, and GitHub Pages also supports HTTPS encryption for secure communication.
 
-To create a GitHub Pages website, you need to have a GitHub account and a repository containing your website's HTML, CSS, and other files. Once you've created your repository and pushed your website's files to it, you can enable GitHub Pages in the repository settings. Your website will then be published at a URL based on your GitHub username and repository name (e.g., username.github.io/repository).
+To create a GitHub Pages website, you need to have a GitHub account and a r**epository containing your website's HTML, CSS, and other files**. Once you've created your repository and pushed your website's files to it, you can e**nable GitHub Pages in the repository settings**. Your website will then be published at a URL based on your GitHub username and repository name (e.g., username.github.io/repository).
 
 ---
 
@@ -272,7 +282,7 @@ Turn on GitHub Pages for your project repository:
 
 2/ In **Branch**, instead of None select **Main** and click **Save**
 
-3/ Click on **Actions** and wait that "pages build and deployment" finishes. When it's done, go to **https://yourusername.github.io/yourrepositoryname/**
+3/ Click on **Actions** and wait that "pages build and deployment" finishes. When it's done, go to **https://username.github.io/repository/**
 
 ---
 class: inverse, mline, center, middle
@@ -283,17 +293,21 @@ class: inverse, mline, center, middle
 
 # Assignment Instructions
 
-## Context
+### Context
 
 You are Data Analyst for the UNICEF organisation, an you have been asked to design a report to raise awareness of the public on a specific world issue.
 
-## Task
+### Task
 
 Using the files that you already have received by email (i.e., one or both **unicef_indicator_1.csv** and **unicef_indicator_2.csv** files as well as **unicef_metadata.csv** file), **create a Quarto document that contains a story** (i.e., narrative) **and some visualisations** to support this story. **Render** this document as html and **publish it with GitHub Pages**.
 
 ### Story
 
 You can copy-paste the exact same text included in your Tableau Dashboard assignment. You can also modify it or write a new one if you prefer. This story has to __use Markdown emphasis style__ (e.g., title levels, italic/bold font, list and bullet points, ...).
+
+---
+
+# Assignment Instructions
 
 .pull-left[
 ### Visualisations
@@ -302,7 +316,7 @@ They will have to be created with ggplot2. You need to __include 4 visualisation
 
 - A World Map chart,
 - A bar chart,
-- A scatterplot with a linear regression line,
+- A scatterplot with a regression line,
 - A time-series chart.
 ]
 
