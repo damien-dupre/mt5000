@@ -92,7 +92,6 @@ include_graphics("https://pbs.twimg.com/profile_images/1221820283159490565/96a3X
 
 ## Skills
 
-- SQL
 - EXCEL
 - PowerBI
 - TABLEAU
@@ -146,13 +145,9 @@ include_graphics("https://c.tenor.com/DIWxMkR9kyUAAAAC/fortune-and-glory-indiana
 
 # Assessment Structure
 
-- 100% CA with 2 Assignments
+### Assignment 1. Tableau Online Dashboard (40%)
 
-- A unique dataset will be send to you by email to prevent plagiarism. This dataset will be used for each assignment:
-
-### Assignment 1. Tableau Online Dashboard (50%)
-
-> Deadline 23/03/2023
+> Deadline 23/03/2024
 
 > Design a professional looking data dashboard aiming to communicate a narrative (also called storytelling)
 
@@ -160,9 +155,13 @@ include_graphics("https://c.tenor.com/DIWxMkR9kyUAAAAC/fortune-and-glory-indiana
 
 ### Assignment 2. Quarto Report (50%)
 
-> Deadline 13/04/2023 (`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Only 3 weeks after Assignment 1)
+> Deadline 13/04/2024 (`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Only 3 weeks after Assignment 1)
 
 > Using R and RStudio, reproduce the results presented in the tableau dashboard with a Quarto report
+
+### Kubicle Online Courses (10%)
+
+> Deadline 01/05/2024
 
 ---
 
@@ -173,6 +172,28 @@ include_graphics("https://c.tenor.com/DIWxMkR9kyUAAAAC/fortune-and-glory-indiana
 - Each assignment's instruction will be uploaded on loop after the deadline of the previous assignment.
 - Please submit professional outputs, as I'm not expecting student's approximative work from you any more.
 - Please avoid any form of plagiarism, copy-pasting or group collaborations. I will easily spot rephrased sentences, similar figure design and code sharing.
+
+---
+
+# Kubicle Courses
+
+#### Excel Essentials
+- [Data Manipulation and Formatting](https://app.kubicle.com/courses/data-manipulation-and-formatting) (150 Minutes)
+- [Formulas and Functions](https://app.kubicle.com/courses/formulas-and-functions) (210 Minutes)
+
+#### Data Analysis
+- [Lookups and Database Functions](https://app.kubicle.com/courses/lookups-and-database-functions) (150 Minutes)
+- [Pivot Tables](https://app.kubicle.com/courses/pivot-tables) (150 Minutes)
+
+#### Data Presentation Fundamentals
+- [Communicating Data Effectively](https://app.kubicle.com/courses/communicating-data-effectively) (90 Minutes)
+- [Telling Stories with Data](https://app.kubicle.com/courses/telling-stories-with-data) (60 Minutes)
+- [Presenting Your Data](https://app.kubicle.com/courses/presenting-your-data) (90 Minutes)
+
+#### Visualization Fundamentals
+- [Visual Data Thinking](https://app.kubicle.com/courses/visual-data-thinking) (60 Minutes)
+- [Applying Visual Data Skills](https://app.kubicle.com/courses/applying-visual-data-skills) (60 Minutes)
+- [Visualization in Practice](https://app.kubicle.com/courses/visualization-in-practice) (30 Minutes)
 
 ---
 class: inverse, mline, center, middle
@@ -187,7 +208,7 @@ class: inverse, mline, center, middle
 
 The term Big Data corresponds to a table containing observations (i.e. database or dataset) that is **too long, too large or too complex to be handled by conventional tools**
 
-### Microsoft Excel's Limits (v16.44 - Office 365):
+### Microsoft Excel's Limits (v16.77 - Office 365):
 
 - Total number of rows: **1,048,576 rows**
 - Total number columns: **16,384 columns**
@@ -249,56 +270,6 @@ DiagrammeR::grViz("
 
 ---
 
-# Data Analytics in Organisations
-
-```{r out.width='60%'}
-#| fig.cap: "Overview of Data Analytics in Organisations"
-include_graphics("img/organisation_structure.jpg")
-```
-.center.tiny[Laursen and Thorlund (2017) Business Analytics for Managers [`r emo::ji("link")`](https://capitadiscovery.co.uk/dcu/items/dda-27/EBC4714241?query=Business+Analytics+for+Managers&resultsUri=items%3Fquery%3DBusiness%2BAnalytics%2Bfor%2BManagers)]
-
----
-
-# Competitive Advantages
-
-```{r out.width='60%'}
-#| fig.cap: "An investment in data analytics needs to increase profits if it is to generate a return on investment"
-include_graphics("img/strategic_importance.png")
-```
-.center.tiny[Williams (2016) Business Intelligence Strategy and Big Data Analytics [`r emo::ji("link")`](https://capitadiscovery.co.uk/dcu/items/1021702?query=Business+Intelligence+Strategy+and+Big+Data+Analytics&resultsUri=items%3Fquery%3DBusiness%2BIntelligence%2BStrategy%2Band%2BBig%2BData%2BAnalytics)]
-
-Whether the goal is improved enhanced customer service, reduced operating costs, or any other improvement initiative; success demands:
-- A very skilful general management and change management
-- A clear vision of the desired future state
-- A compelling strategic argument for achieving the future state
-
----
-
-# Strategic Importance of Data Analytics
-
-Over the past 20 years, Data Analytics has proven to be highly useful in improving many different business processes:
-
-- **Management processes:** e.g., strategic planning, budgeting, performance measurement, controlling, and performance variance analysis.
-
-- **Revenue generation processes:** e.g., market research, customer segmentation, sales planning, revenue budgeting and management,
-pricing, promotions planning and execution, product development, service development, customer order processing, and so forth.
-
-- **Operating processes:** e.g., purchasing, supplier management, inbound logistics, manufacturing, operations, inventory management, distribution centre management, outbound logistics, quality assurance, order fulfilment, customer service, and so forth.
-
-A well-designed BI environment serves as a powerful multifaceted tool for performance measurement and process improvement.
-
----
-
-# Strategic Importance of Data Analytics
-
-```{r out.width='60%'}
-#| fig.cap: "Opportunities to leverage Data Analytics within the core processes that drive business results."
-include_graphics("img/data_analytics_opportunities.png")
-```
-.center.tiny[Williams (2016) Business Intelligence Strategy and Big Data Analytics [`r emo::ji("link")`](https://capitadiscovery.co.uk/dcu/items/1021702?query=Business+Intelligence+Strategy+and+Big+Data+Analytics&resultsUri=items%3Fquery%3DBusiness%2BIntelligence%2BStrategy%2Band%2BBig%2BData%2BAnalytics)]
-
----
-
 # Styles of Data Analytics
 
 It uses a combination of historical information about past transactions or events and reference data about, for example, customers or products, to enable a wide variety of analyses and decision support techniques.
@@ -312,22 +283,6 @@ It uses a combination of historical information about past transactions or event
 - **Alerts:** Communication to designated business people when a key business variable is outside a predefined performance standard or range.
 
 - **Predictive Analytics:** Application of historical business information to predict future the performance and potentially prescribe a favoured course of action.
-
----
-
-# Data Analytics Workflow
-
-```{r out.width='80%'}
-include_graphics("https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png")
-```
-
-### Techniques and tools used in this module
-
-- **Step 1**: Import Data with SQL
-- **Step 2**: Tidy and Transform Data with MS Excel
-- **Step 3**: Visualise, Model and Communicate your Results with PowerBI and Tableau 
-
-**And finally, do all these steps again only with R**
 
 ---
 class: inverse, mline, center, middle
