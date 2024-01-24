@@ -1,5 +1,5 @@
 ---
-title: "MT5000 - Data Analytics & Visualization"
+title: "MT5000 - Data Analytics and Story Telling"
 subtitle: "Lecture 10: Visualisation in R with {ggplot2}"
 author: "Damien Dupré"
 date: "Dublin City University"

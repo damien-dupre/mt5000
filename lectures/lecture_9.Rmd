@@ -1,5 +1,5 @@
 ---
-title: "MT5000 - Data Analytics & Visualization"
+title: "MT5000 - Data Analytics and Story Telling"
 subtitle: "Lecture 9: Data Transformations in the Tidyverse"
 author: "Damien Dupré - Dublin City University"
 output:
@@ -21,7 +21,6 @@ library(fontawesome)
 library(gapminder)
 library(knitr)
 library(tidyverse)
-library(tweetrmd)
 
 # functions --------------------------------------------------------------------
 # https://bookdown.org/yihui/rmarkdown-cookbook/font-color.html#using-an-r-function-to-write-raw-html-or-latex-code

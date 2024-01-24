@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>MT5000 - Data Analytics &amp; Visualization</title>
+    <title>MT5000 - Data Analytics and Story Telling</title>
     <meta charset="utf-8" />
     <meta name="author" content="Damien Dupré - Dublin City University" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
     <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
     <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
     <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+    <script src="libs/es6shim-0.35.6/es6shim.js"></script>
+    <script src="libs/es7shim-6.0.0/es7shim.js"></script>
+    <script src="libs/graphre-0.1.3/graphre.js"></script>
+    <script src="libs/nomnoml-1.5.3/nomnoml.js"></script>
+    <script src="libs/nomnoml-binding-0.2.7/nomnoml.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
@@ -19,10 +27,10 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# MT5000 - Data Analytics &amp; Visualization
+# MT5000 - Data Analytics and Story Telling
 ]
 .subtitle[
-## Lecture 3: Data Cleaning and Transformations
+## Lecture 3: Principles of Data Visualisation
 ]
 .author[
 ### Damien Dupré - Dublin City University
@@ -33,356 +41,999 @@ class: center, middle, inverse, title-slide
 
 
 
-# Always Prepare the Data
 
-.center[**To efficiently perform any kind of analysis on data, it is essential to format the data file in the most suitable way.**]
+# Previously ...
 
-To do so, 2 steps are required:
+### After having:
 
-1. Cleaning the data from any noise
-2. Transforming the data in order to obtain the relevant variables 
+#### 1. Downloaded your Data
 
----
+#### 2. Cleaned your Data
 
-class: inverse, mline, center, middle
+#### 3. Transformed your Data
 
-# 1. Cleaning Data
+It is time to look at your Data!
 
----
+### Data visualisations are important:
 
-# An Essential Step
+- For the Data Analyst/Scientist to **understand** what is going on with your data (e.g. errors, unexpected data, outline data analyses to perform)
+- For the reader to access the message and to **be convinced** of the arguments
 
-.center[**Cleaning Data means removing any non-essential feature included in the spreadsheet**]
-
-- If you don't have big data... then use Microsoft Excel! 
-
-&lt;img src="https://miro.medium.com/max/624/1*FAzumPnvzKUDolMG7SNcHw.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-- If you do have big data, then use R or Python.
+**Always look at your data before doing any analyses and do convincing visualisations!**
 
 ---
 
-# Question from Kareem
+# Visualisation Requirement
 
-&lt;img src="img/clean_tweet.png" width="100%" style="display: block; margin: auto;" /&gt;
+### Variables have different types
+
+- **Categorical**: If the variable's possibilities are words or sentences (character string)
+  - if the possibilities cannot be ordered: Categorical Nominal (*e.g.*, gender)
+  - if the possibilities can be ordered: Categorical Ordinal (*e.g.*, opinion scales)
+  
+- **Continuous**: If the variable's possibilities are numbers (*e.g.*, age or temperature) 
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Variables can be converted to either Categorical and Continuous but it is always better to keep them in their correct scale.
+
+Example:
+
+&gt; Likert items (opinion question from disagree to agree) are Categorical Ordinal but are analysed as Continuous.
+
+&gt; Gender item (male vs. female) is Categorical Nominal but can be recoded as 1 and 2 to be analysed with Continuous calculations.
+
+---
+class: title-slide, middle
+
+## Exercises
 
 ---
 
-# Exercise
+# Guess Variable Type - Exercise (1)
 
-## Find what is going wrong with this table
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variable Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Variable Range &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Variable Type &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Gender &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Male/Female/Other &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Country &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Ireland/France/USA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Age &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0 to Inf &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Age &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0-19, 20-29, 30-39, 40-49 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Price &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0 to Inf &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Temperature &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; -Inf to Inf &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; IQ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Low/Mid/High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Results &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0 to 100 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Results &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Fail/Pass/2:1/First &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;img src="img/clean_zoom.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Answer from Michael
-
-&lt;img src="img/clean_answer.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Use a Name Convention
-
-An addition to Michael's list would be to transform headers with a proper naming convention
-
-My suggestion is **snake_case**: all small letter and words separated by "_"
-
-&lt;img src="img/name_convention.jpg" width="70%" style="display: block; margin: auto;" /&gt;
-
----
-
-# To Clean Data ...
-
-### 1. Ditch the chart and all non values
-Charts can mess up with other software
-
-### 2. Column headings in row 1
-No more than 1 heading row and remove blanks
-
-### 3. Columns start at column A
-Remove blanks before data
-
-### 4. Use a naming convention
-snake_case is preferable but any would do
-
-### 5. Save as .csv file
-Better format and keeps only the current sheet
-
----
-
-class: title-slide, mline, center, middle
-
-## Exercise: Clean unicef.xlsx
-
----
-
-# Exercise: Clean unicef.xlsx
-
-Unicef collects a lot of data but they don't know either how to process them or how to visualise them. The following file is coming from their official website and was the data used for the EDHEC European Data Visualisation Challenge: https://www.edhec.edu/en/student-dataviz-challenge-2022
-
-### <span>&lt;i class="fas  fa-arrow-circle-right faa-horizontal animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> On the module Loop page, got to "Lecture Data" and download the document called "unicef.xlsx"
-
-### <span>&lt;i class="fas  fa-arrow-circle-right faa-horizontal animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> Open and clean the 1st sheet of this file
-
-<div class="countdown" id="timer_d5dd463b" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_28900203" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
 
-class: inverse, mline, center, middle
+# Guess Variable Type - Solution (1)
 
-# 2. Data Transformation
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variable Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Variable Range &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Variable Type &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Gender &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Male/Female/Other &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Nominal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Country &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Ireland/France/USA &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Nominal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Age &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0 to Inf &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Continuous &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Age &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0-19, 20-29, 30-39, 40-49 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Ordinal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Price &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0 to Inf &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Continuous &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Temperature &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; -Inf to Inf &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Continuous &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; IQ &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Low/Mid/High &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Ordinal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Results &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; 0 to 100 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Continuous &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; Results &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Fail/Pass/2:1/First &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Ordinal &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
-# Master the Key Transformations
+# Guess Variable Type - Exercise (2)
 
-Most important work is to tidy your data: 
-- Takes time to saves time and solves problems
-- Only 5 key transformations need to be mastered
+&lt;img src="img/viz_exercise_1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variable Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Variable Type &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; productName &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; supplierID &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; categoryID &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; quantityPerUnit &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; unitPrice &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; unitsInStock &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+<div class="countdown" id="timer_2f70aa8f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+# Guess Variable Type - Solution (2)
+
+&lt;img src="img/viz_exercise_1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variable Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Variable Type &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; productName &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Nominal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; supplierID &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Nominal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; categoryID &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Nominal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; quantityPerUnit &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Categorical Nominal &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; unitPrice &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Continuous &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 10em; "&gt; unitsInStock &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Continuous &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. The Key Figures
+
+---
+
+# Why Using Figures
+
+#### 1. When creating a report (academic or industrial), always **tell a story/narrative**
+
+#### 2. The figure is here to **support** your story/narrative and to make it **more convincing**
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Be careful, figures can lie or be misleading, use with ethics and professionalism
+
+&lt;img src="https://i0.wp.com/flowingdata.com/wp-content/uploads/2017/09/Fancy-dataviz-vs-best-chart-for-the-data.png" width="60%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: www.flowingdata.com [🔗](https://i0.wp.com/flowingdata.com/wp-content/uploads/2017/09/Fancy-dataviz-vs-best-chart-for-the-data.png)]
+
+---
+
+# Master the Key Figures
+
+&lt;img src="img/viz_key_figures_1.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Master the Key Figures
+
+### Keep your figures:
 
 .pull-left[
-## 1. Extension
+#### 1. Clear
 
-## 2. Reduction
+Complex figures should be crystal clear, use design features (colours, sizes, ...) to make them clear
 
-## 3. Direction
+#### 2. Self-Explanatory
 
-## 4. Aggregation
+Always use a caption, a legend and well defined axes
+]
+.pull-right[
+&lt;img src="https://venngage-wordpress.s3.amazonaws.com/uploads/2020/06/image17.png" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: www.venngage.com [🔗](https://venngage-wordpress.s3.amazonaws.com/uploads/2020/06/image17.png)]
+]
 
-## 5. Combination
+---
+
+# Master the Key Figures
+
+The main interest of Figure is their ability to ... aggregate data to meaningful information
+
+This **aggregation**, is done with basic statistical calculations:
+
+.pull-left[
+
+&lt;br&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Student Number &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Group &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Mark &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 70 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 55 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; S7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 65 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 ]
 
 .pull-right[
-&lt;img src="img/key_movements.png" width="70%" style="display: block; margin: auto;" /&gt;
+- **Count**
+  - Group A = 4 students
+  - Group B = 3 students
+- **Proportion**
+  - Group A = 57% (4/7)
+  - Group B = 43% (3/7)
+- **Density**
+  - 0 to 50 = 0%, 55 = 14%, 60 = 29%,
+  - 65 = 43%, 70 = 14%, 75 to 100 = 0%
+- **Median/Quartiles**
+  - Q1 = 60, Med = 65, Q3 = 65
+- **Mean/Standard Deviation**
+  - Mean = 62.8, SD = 4.9
 ]
 
 ---
 
-# Extension
+# Zoom on Median/Quartiles
 
-.center[**Extension = Create a new column**]
-
-&lt;img src="img/extension_img.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-In MS Excel:
-  - First row is row name (name convention)
-  - Second row is the function (starts with = sign)
-  - Following rows are applying the function (double click bottom right corner of the cell)
+&lt;img src="img/viz_med_quartiles_1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Excel Functions
+# Zoom on Median/Quartiles
 
-### For numeric values
-  - Numeric operator ( + - / *)
-  - $ (fixed parameter)
-  - COUNT(), MIN(), MAX(), SUM(), AVERAGE (), STDEV()
+&lt;img src="img/viz_med_quartiles_2.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-### For character strings
-  - LEFT()
-  - CONCATENATE()
-
-### Extra function
-  - IF(condition, value if true, value if false)
+&lt;img src="img/viz_med_quartiles_3.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Reduction
+# Zoom on Mean/SD
 
-.center[**Reduction = Keep only certain values**]
+- **Mean or Average** is the Sum of all the data divided by their Number
 
-&lt;img src="img/reduction_img.png" width="50%" style="display: block; margin: auto;" /&gt;
+- **Standard Deviation** is [the square root of] the average distance to the mean
 
-In MS Excel:
-  - Select header row
-  - In Data tab, use Filter
-  - Click the drop-down arrow for the column you want to filter
-  - Choose values to filter
+&lt;img src="https://s4be.cochrane.org/app/uploads/2018/09/Image-1-Standard-deviation-Standard-error-.jpg" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Excel Filters
+# Zoom on Correlation
 
-<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Remember: 
+Line between 2 Continuous Variables is a Regression Line
+Corresponds to the best fit:
+`$$Y = b0 + b1\,X + e$$`
 
-- Rows already filtered have a row index are coloured in blue
-- Copy-Paste filtered table in a new document if you want to work only on these values
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://www.excel-easy.com/data-analysis/images/filter/filter-result.png" alt="Example of data filtered buy the column Country to keep only values corresponding to USA" width="50%" /&gt;
-&lt;p class="caption"&gt;Example of data filtered buy the column Country to keep only values corresponding to USA&lt;/p&gt;
-&lt;/div&gt;
-
----
-
-# Direction
-
-- Direction = Arrange Row Order
-
-- In MS Excel:
-  - Select table
-  - In Data tab, use Sort
-  - Choose column to sort and how to sort
-
-&lt;img src="img/direction_img.png" width="40%" style="display: block; margin: auto;" /&gt;
-
-Be careful of taking into account all the table (all rows &amp; all columns)
-
-Double check if all columns changed!
+.pull-left[
+&lt;img src="img/viz_correlation_1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+- `\(b0\)` is **the intercept** which corresponds to the value of Y when X is 0
+- `\(b1\)` is **the slope** of the line which corresponds to the strength of relationship between X and Y
+- `\(e\)` is **the error** which corresponds to the distance between the points and the line (also called residual)
+]
 
 ---
 
-# Aggregation
+# Zoom on Correlation
 
-- Aggregation = Summary of Column
+Correlation is obtained by drawing the **best line** between the points and by calculating the slope of this line
 
-- In MS Excel:
-  - Simple = use function at the end of a table
-  - Complex = use pivot table
-  
-&lt;img src="img/aggregation_img.png" width="50%" style="display: block; margin: auto;" /&gt;
+Correlation is a value **from -1 to +1** which indicate the strength and direction of a relationship:
 
----
+- Closest to +1 is Strong Positive relationship
+- Closest to -1 is Strong Negative relationship
+- Closest to 0 is No relationship
 
-# Pivot Table in Excel
+Examples:
 
-1. Select data
-2. In Insert, use Pivot Table
-3. Drag columns to sort by row/column
-4. Choose value column to be aggregated
-5. Choose type of aggregation
-
-If you want to use the Pivot Table for further analysis:
-
-- Copy-Paste it in another document
-- Paste as value (removes dynamic link)
+&lt;img src="img/viz_correlation_2.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Combination
+# Master the Key Figures
 
-- Combination = Join two tables
+<div class="nomnoml html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-30e4409849e39179307f" style="width:720px;height:432px;"></div>
+<script type="application/json" data-for="htmlwidget-30e4409849e39179307f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#stroke: black\n#direction: right\n#align: center\n#fill: orange\n[Variable(s) to analyse]->[Categorical]\n[Variable(s) to analyse]->[Continuous]\n[Variable(s) to analyse]->[Categorical & Categorical;Categorical & Continuous]\n[Variable(s) to analyse]->[Continuous & Continuous]\n\n[Categorical]->[COMPOSITION]\n[Continuous]->[DISTRIBUTION]\n[Categorical & Categorical;Categorical & Continuous]->[COMPARISON]\n[Continuous & Continuous]->[RELATIONSHIP]","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
 
-- In MS Excel:
-  - One Column = vlookup function
-  - Multiple Columns = Power Query (Windows only)
-  
-&lt;img src="img/combination_img.png" width="50%" style="display: block; margin: auto;" /&gt;
+---
+class: title-slide, middle
 
---
-
-### =VLOOKUP(value, table, col_index, [range_lookup])
-
-- value: The value to look for in the first column of a table
-- table: The table from which to retrieve a value
-- col_index: The column in the table from which to retrieve a value
-- range_lookup: TRUE = approximate match / FALSE = exact match
+## COMPOSITION Type Figures
 
 ---
 
-class: title-slide, mline, center, middle
+# COMPOSITION Type Figures
 
-## Exercise: Transformations
+- Count of different categories 
+
+.pull-left[
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+- Proportion of different categories 
+
+.pull-left[
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
-# Exercise: Transformations
+# When to Use a Pie Chart?
 
-On the module Loop page, got to "Lecture Data" and download the document called "organisation_alpha.xls"
+Use pie charts when the variable has only to categories:
 
-1. **Extension**: Create a new variable/column which is the average response to all the questions from the survey for each employee (q1 to q9)
-2. **Reduction**: Filter employee’s 2019 salary to keep only employees with a salary higher than 30k and revert back to the full dataset
-3. **Aggregation**: Calculate the average salary by gender and by location
-4. **Combination**: Using the VLOOKUP function, add to the table a column corresponding to the  2017 salary located in the 2nd sheet
+&lt;img src="img/viz_piechart_1.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
 
-<div class="countdown" id="timer_123915b3" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
-<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
+If your variable has more than 2 categories then use bar chart:
+
+&lt;img src="img/viz_piechart_2.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+
+See: https://depictdatastudio.com/when-pie-charts-are-okay-seriously-guidelines-for-using-pie-and-donut-charts/
+
+---
+class: title-slide, middle
+
+## DISTRIBUTION Type Figures
+
+---
+
+# DISTRIBUTION Type Figures
+
+##.center[Histogram - Density - BoxPlot - Dynamite]
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-26-1.png" width="194.4" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-26-2.png" width="194.4" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-26-3.png" width="194.4" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-26-4.png" width="194.4" /&gt;
+
+---
+class: title-slide, middle
+
+## COMPARISION Type Figures
+
+---
+
+# COMPARISION - Categorical/Categorical
+
+Count of different values 
+.center[
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-27-1.png" width="360" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-27-2.png" width="360" /&gt;
+]
+
+Proportion of different values  
+.center[
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-28-1.png" width="360" /&gt;
+]
+
+---
+
+# COMPARISION - Categorical/Continuous
+
+Count of different values according Categories
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-29-1.png" width="50%" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-29-2.png" width="50%" /&gt;
+
+---
+
+# COMPARISION - Categorical/Continuous
+
+Density of different values according Categories
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-30-1.png" width="50%" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-30-2.png" width="50%" /&gt;
+
+---
+
+# COMPARISION - Categorical/Continuous
+
+Median/Quartiles according Categories
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-31-1.png" width="50%" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-31-2.png" width="50%" /&gt;
+
+---
+
+# COMPARISION - Categorical/Continuous
+
+Mean/Standard Deviation according Categories
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-32-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## RELATIONSHIP Type Figures
+
+---
+
+# RELATIONSHIP - Continuous/Continuous
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-33-1.png" width="360" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-33-2.png" width="360" /&gt;
+
+Continuous X Continuous X Categorical
+
+&lt;img src="lecture_3_files/figure-html/unnamed-chunk-34-1.png" width="360" /&gt;&lt;img src="lecture_3_files/figure-html/unnamed-chunk-34-2.png" width="360" /&gt;
 
 ---
 
 class: inverse, mline, center, middle
 
-# Extra Analytic Tips
+# 2. Customise your Figures
 
 ---
 
-# Tidy Data
+# Master the Key Figures
 
-- Each variable has its own column 
-- Each observation is placed in its own row 
-- Each value is placed in its own cell
-
-&lt;img src="img/tidy_full.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/viz_key_figures_2.jpeg" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Long or Wide?
+# Customise Figures
 
-## Long Format
+.pull-left[
+- Colours
+- Size dots
+- Shapes
+- Position (*i.e.* stack or dodge)
+- Orientation (vertical or horizontal)
+- Text content and font
+- Figure legend
+]
 
-&lt;img src="img/long_table.png" width="80%" style="display: block; margin: auto;" /&gt;
-
-## Wide Format
-
-&lt;img src="img/wide_table.png" width="80%" style="display: block; margin: auto;" /&gt;
+.pull-right[
+&lt;img src="img/viz_custom.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
-# Long or Wide?
+# Use Figures
 
-&lt;img src="img/long_or_wide.png" width="100%" style="display: block; margin: auto;" /&gt;
+### Use Figures only if they ...
+
+- Are self-explanatory
+- Help to understand your message (a figure is not a message)
 
 --
 
-&lt;img src="img/long_and_wide.png" width="100%" style="display: block; margin: auto;" /&gt;
+### Don’t duplicate the information
+
+- Always give the information in the main text of your report but
+- Don’t show a table and a figure with the same information
+
+--
+
+### To tell a story! Build a narrative around your Figures
+
+- Set of observations, facts, or events, true or invented, that are presented in a specific order such that they create an emotional reaction in the audience
+- Even if you think data are boring, make them interesting for your audience
+
+---
+class: title-slide, middle
+
+## Exercise
 
 ---
 
-# Reshape Table in Excel
+# What’s Wrong Here?
 
-In Data tab:
-
-1. Get Data/New Query&gt; From File &gt; From [Workbook/CSV]
-2. Select your file &gt; Edit
-3. Select columns to be reshaped
-4. Transform
-  - Pivot Columns: from long table to wide table
-  - Unpivot Columns: from wide to long table
-  
-&lt;img src="img/reshape_excel.gif" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/dataviz_exercise_1.png" width="70%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Official Twitter Account of The White House [🔗](https://twitter.com/WhiteHouse/status/1486709480351952901)]
 
 ---
 
-# Repeat Action Automatically
+# What’s Wrong Here?
 
-In Excel, the Macro button allows to record a sequence of  actions and to reproduce these actions:
-
-- VBA Code automatically recorded
-- Useful to process similar data files
-
-Recording a Macro:
-
-1. View Tab
-2. Use Macros &gt; Record Macro
-3. Do your actions
-4. Save the macro with a keyboard shortcut
-5. Use the macro again to reproduce your actions
+&lt;img src="img/dataviz_exercise_2.png" width="80%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Misleading Graphs in Real Life: Overview [🔗](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/misleading-graphs/)]
 
 ---
 
-# Optional Free Trainings
+# What’s Wrong Here?
 
-More about MS EXCEL with free online learning on Udemy.com (needs free registration):
+&lt;img src="img/dataviz_exercise_3.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: The statisticians at Fox News use classic and novel graphical techniques to lead with data [🔗](https://simplystatistics.org/posts/2012-11-26-the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/)]
 
-- Excel Quick Start Tutorial (36 min) https://www.udemy.com/course/excel_quickstart/
-- Ten Excel Features Every Analyst Should Know (30 min) https://www.udemy.com/course/ten-excel-features-every-analyst-should-know/
-- Excel Dashboards (60 min) https://www.udemy.com/course/excel-dashboards-in-an-hour/
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_4.png" width="80%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: The statisticians at Fox News use classic and novel graphical techniques to lead with data [🔗](https://simplystatistics.org/posts/2012-11-26-the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_12.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: KCRA graph on the 7pm news - r/Sacramento [🔗](https://www.reddit.com/r/Sacramento/comments/tysyxz/kcra_graph_on_the_7pm_news/)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_5.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: 5 Ways Writers Use Misleading Graphs To Manipulate You [🔗](https://venngage.com/blog/misleading-graphs/)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_6.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: The Worst Covid-19 Misleading Graphs [🔗](https://www.datasciencecentral.com/the-worst-covid-19-misleading-graphs/)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_7.png" width="60%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Misleading Graphs in Real Life: Overview [🔗](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/misleading-graphs/)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_8.jpeg" width="80%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Health Care in Crisis: 14,000 Losing Coverage Each Day [🔗](https://www.americanprogressaction.org/issues/healthcare/reports/2009/02/19/5635/health-care-in-crisis-14000-losing-coverage-each-day/)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_9.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Nick Cage Movies Vs. Drownings, and More Strange (but Spurious) Correlations [🔗](https://www.nationalgeographic.com/science/article/nick-cage-movies-vs-drownings-and-more-strange-but-spurious-correlations)]
+
+---
+
+# What’s Wrong Here?
+
+&lt;img src="img/dataviz_exercise_10.jpeg" width="70%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Fact checking Trump's 'Impeach this' map [🔗](https://edition.cnn.com/2019/10/01/politics/trump-impeach-this-map-fact-check/index.html)]
+
+---
+
+# Land Doesn’t Vote, People Do
+
+&lt;img src="img/dataviz_exercise_11.gif" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Land Doesn’t Vote, People Do: This Electoral Map Tells the Real Story [🔗](https://demcastusa.com/2019/11/11/land-doesnt-vote-people-do-this-electoral-map-tells-the-real-story/)]
+
+---
+
+# A Must Read
+
+&gt; “Mistakes, we’ve drawn a few. Learning from our errors in data visualisation” by The Economist
+
+https://medium.economist.com/mistakes-weve-drawn-a-few-8cdd8a42d368
+
+Example:
+
+&lt;img src="https://miro.medium.com/max/2560/1*9QE_yL3boSLqopJkSBfL5A.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, mline, center, middle
+
+# 3. Fundamentals of Data Visualization
+
+---
+
+# The Book
+
+.pull-left[
+**Fundamentals of Data Visualization** 
+by Claus O. Wilke
+
+Free online at https://clauswilke.com/dataviz/
+
+Provides basic principles for data visualisation
+]
+
+.pull-right[
+&lt;img src="img/dataviz_principle_1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Principle 1: Axes
+
+### .center[Don’t cheat with axes, include 0 when 0 is meaningful]
+
+.center[
+&lt;img src="img/dataviz_principle_2.png" width="45%" /&gt;&lt;img src="img/dataviz_principle_3.png" width="45%" /&gt;
+
+&lt;img src="img/dataviz_principle_4.png" width="45%" /&gt;&lt;img src="img/dataviz_principle_5.png" width="45%" /&gt;
+]
+
+---
+
+# Principle 1: Axes
+
+### .center[Don’t cheat with axes, include 0 when 0 is meaningful]
+
+.center[
+&lt;img src="img/dataviz_principle_6.png" width="50%" /&gt;&lt;img src="img/dataviz_principle_7.png" width="50%" /&gt;
+]
+
+---
+
+# Principle 2: Make it Easy
+
+### .center[Make your figure easy to read and to understand]
+
+.center[
+&lt;img src="img/dataviz_principle_8.png" width="50%" /&gt;&lt;img src="img/dataviz_principle_9.png" width="50%" /&gt;
+]
+
+---
+
+# Principle 3: Be Fancy
+
+### .center[Be fancy, use extract features if it helps, such as transparency and jitter]
+
+.center[
+&lt;img src="img/dataviz_principle_10.png" width="50%" /&gt;&lt;img src="img/dataviz_principle_11.png" width="50%" /&gt;
+]
+
+---
+
+# Principle 3: Be Fancy
+
+### .center[Be fancy, use extract features if it helps, such as transparency and jitter]
+
+.center[
+&lt;img src="img/dataviz_principle_12.png" width="50%" /&gt;&lt;img src="img/dataviz_principle_13.png" width="50%" /&gt;
+]
+
+---
+
+# Principle 4: Colours
+
+### .center[Use colours but not too many and be careful to vision disabilities]
+
+.pull-left[
+&lt;img src="img/dataviz_principle_14.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="img/dataviz_principle_15.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Principle 4: Colours
+
+### .center[Keep the same colours for the same variables]
+
+.center[
+&lt;img src="img/dataviz_principle_16.png" width="50%" /&gt;&lt;img src="img/dataviz_principle_17.png" width="50%" /&gt;
+]
+
+---
+
+# Principle 5: Details
+
+### .center[Every details count and lazy work is easily spotted]
+
+.center[
+&lt;img src="img/dataviz_principle_18.png" width="50%" /&gt;&lt;img src="img/dataviz_principle_19.png" width="50%" /&gt;
+]
+
+
+---
+
+# Principle 5: Details
+
+### .center[Be precise and use captions, axes, and titles to do it]
+
+&lt;img src="img/dataviz_principle_20.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, mline, center, middle
+
+# 4. Visualise with MS EXCEL
+
+---
+
+# COMPOSITION Type Figures
+
+Pie chart for Categorical variable
+
+&lt;img src="img/dataviz_excel_1.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# COMPOSITION Type Figures
+
+Bar chart for Categorical variable
+
+&lt;img src="img/dataviz_excel_2.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# DISTRIBUTION Type Figures
+
+Histogram for Continuous variable
+
+&lt;img src="img/dataviz_excel_3.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# DISTRIBUTION Type Figures
+
+Density plot for Continuous variable
+
+&lt;img src="img/dataviz_excel_4.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# DISTRIBUTION Type Figures
+
+Box plot for Continuous variable
+
+&lt;img src="img/dataviz_excel_5.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# DISTRIBUTION Type Figures
+
+Dynamite plot for Continuous variable
+
+&lt;img src="img/dataviz_excel_6.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# COMPARISION Type Figures
+
+Multiple histograms?
+
+&lt;img src="img/dataviz_excel_7.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# COMPARISION Type Figures
+
+Multiple box plot?
+
+&lt;img src="img/dataviz_excel_8.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# COMPARISION Type Figures
+
+Multiple dynamite plot?
+
+&lt;img src="img/dataviz_excel_9.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# RELATIONSHIP Type Figures
+
+Linear regression?
+
+&lt;img src="img/dataviz_excel_10.gif" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Visualisation with MS EXCEL
+
+As a spreadsheet software, MS EXCEL is ok for data cleaning and data transformation.
+
+However, avoid using MS EXCEL for data visualisation, prefer either TABLEAU or PowerBI
+
+If you use MS EXCEL, make sure that no one is able to identify that you have done it with MS EXCEL by to customising your figures with:
+- Text font
+- Colours
+- Background
+- ...
+
+---
+
+# Visualisation with MS EXCEL
+
+Avoid your figures looking like that!
+
+&lt;img src="https://i2.wp.com/www.real-statistics.com/wp-content/uploads/2012/11/bar-chart.png" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: www.real-statistics.com [🔗](https://i2.wp.com/www.real-statistics.com/wp-content/uploads/2012/11/bar-chart.png)]
+
+---
+
+# Visualisation Dashboards
+
+Since 10 years, dashboards have became more and more popular in organisation:
+- Display multiple information at once
+- GUI base/easy to use
+- Auto update when connected to a server
+- Fancy visualisation design/interactive
+
+Two major contenders: Tableau vs. PowerBI
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Tableau &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; PowerBI &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Tableau can handle a huge volume of data with better performance. &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; PowerBI can handle a limited volume of data. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Tableau is a little difficult. &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; PowerBI Interface is very easy to learn. &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Embedding report is a real-time challenge in Tableau &lt;/td&gt;
+   &lt;td style="text-align:left;width: 20em; "&gt; Embedding report is easy with PowerBI. &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+.center.tiny[Source: www.guru99.com [🔗](https://www.guru99.com/tableau-vs-power-bi-difference.html)]
+
+---
+
+# Kubicle Mandatory Trainings
+
+Data Presentation Fundamentals
+- [Communicating Data Effectively](https://app.kubicle.com/courses/communicating-data-effectively) (90 min)
+- [Telling Stories with Data](https://app.kubicle.com/courses/telling-stories-with-data) (60 min)
+- [Presenting Your Data](https://app.kubicle.com/courses/presenting-your-data) (90 min)
+
+Visualization Fundamentals
+- [Visual Data Thinking](https://app.kubicle.com/courses/visual-data-thinking) (60 min)
+- [Applying Visual Data Skills](https://app.kubicle.com/courses/applying-visual-data-skills) (60 min)
+- [Visualization in Practice](https://app.kubicle.com/courses/visualization-in-practice) (30 min)
 
 ---
 class: inverse, mline, left, middle
@@ -394,7 +1045,7 @@ class: inverse, mline, left, middle
 [<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
 [<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
 [<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
-[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M501.6 4.186c-7.594-5.156-17.41-5.594-25.44-1.063L12.12 267.1C4.184 271.7-.5037 280.3 .0431 289.4c.5469 9.125 6.234 17.16 14.66 20.69l153.3 64.38v113.5c0 8.781 4.797 16.84 12.5 21.06C184.1 511 188 512 191.1 512c4.516 0 9.038-1.281 12.99-3.812l111.2-71.46l98.56 41.4c2.984 1.25 6.141 1.875 9.297 1.875c4.078 0 8.141-1.031 11.78-3.094c6.453-3.625 10.88-10.06 11.95-17.38l64-432C513.1 18.44 509.1 9.373 501.6 4.186zM369.3 119.2l-187.1 208.9L78.23 284.7L369.3 119.2zM215.1 444v-49.36l46.45 19.51L215.1 444zM404.8 421.9l-176.6-74.19l224.6-249.5L404.8 421.9z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

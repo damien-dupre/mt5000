@@ -1,5 +1,5 @@
 ---
-title: "MT5000 - Data Analytics & Visualization"
+title: "MT5000 - Data Analytics and Story Telling"
 subtitle: "Lecture 5: Introduction to Power BI"
 author: "Damien Dupré - Dublin City University"
 output:
