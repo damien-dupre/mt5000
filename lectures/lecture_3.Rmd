@@ -13,7 +13,6 @@ output:
       countIncrementalSlides: false
 ---
 
-
 ```{r setup, include = FALSE}
 # libraries --------------------------------------------------------------------
 library(anicon)

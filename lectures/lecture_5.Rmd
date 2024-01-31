@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics and Story Telling"
-subtitle: "Lecture 5: Introduction to Power BI"
+subtitle: "Lecture 5: Introduction to Tableau"
 author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
@@ -26,7 +26,6 @@ options(
   knitr.kable.NA = " - "
   )
 set.seed(42)
-
 # chunk options ----------------------------------------------------------------
 opts_chunk$set(
   cache.extra = rand_seed, 
@@ -39,284 +38,443 @@ opts_chunk$set(
   fig.align = "center", 
   fig.retina = 3
   )
-
 ```
 
-# Previously ...
+# Previoulsy ...
 
-We have seen how important data visualisations are to convince an audience when included in a story/narrative.
+We have seen how to use Power BI for basic Reports and Dashboards
 
-We have also seen that data visualisations can contain mistakes or,  even worst, can lie and have to be displayed with ethics and professionalism.
+Now is the time to learn a much **more powerful** and much **more complicated** tool... 
 
-Finally, we have seen that data visualisations have a certain meaning according to the type of figure used (i.e., Composition, Distribution, Comparison, and Relationship) and they have to be created following basic visualisation principles.
+```{r out.width='40%'}
+include_graphics("https://unilytics.com/wp-content/uploads/2017/02/challenge-accepted.png")
+```
 
-### `r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` Now it's time to practice with Power BI
+...Welcome to **Tableau**!
 
 ---
 
+# Tableau Dashboard Showcase
+
+```{r out.width='100%'}
+include_graphics("https://www.edhec.edu/sites/default/files/ckeditor-inlines/li_chen.png")
+```
+
+---
+
+# Tableau Dashboard Showcase
+
+```{r out.width='100%'}
+include_graphics("https://www.edhec.edu/sites/default/files/ckeditor-inlines/qiaolong_lin-.png")
+```
+
+---
+
+# Tableau Dashboard Showcase
+
+```{r out.width='100%'}
+include_graphics("https://www.edhec.edu/sites/default/files/ckeditor-inlines/filippo_pisello.png")
+```
+
+---
 class: inverse, mline, center, middle
 
-# 1. Power BI Context
+# 1. Around Tableau
 
 ---
 
-# Context
+# What is Tableau?
 
-Power BI is a suite of Data Visualisation Software/Cloud-based Service: 
+Tableau Software is an interactive data visualization software company focused on business intelligence:
 
-- Developed and licensed by Microsoft
-- Appeared in 2011
+- Created in 2003
+- Acquired by Salesforce 2019
 
-Power BI is said to be focusing on Business Intelligence but it really only is a **no-code** tool to create better visualisation than MS Excel does.
+Tableau is a set of different product which aims to create interactive data visualisation dashboard.
 
-Now part of the Microsoft **Azure** ecosystem made of cloud computing services (equivalent to AWS and Google Cloud).
+Among these product, you will find:
 
-```{r out.width = "38%"}
-include_graphics("https://media.makeameme.org/created/brace-yourself-power-597838.jpg")
+- **Tableau Prep** (dedicated to cleaning data - no use here)
+- **Tableau Desktop** (the main software - not free but can be access with a student license)
+- **Tableau Public** (exact same a Tableau Desktop but free and the only way to save your work is by publishing dashboard online)
+- **Tableau Server & Tableau Online** (alternative to Tableau Desktop without local installation)
+
+---
+
+# How to Use Tableau Public
+
+1. Go to https://public.tableau.com
+2. Sign in
+3. Enjoy full features of Tableau Desktop (except saving file, only public publication online)
+
+```{r out.width='50%'}
+include_graphics("https://images.squarespace-cdn.com/content/v1/56fd706140261df95349d4bd/1491286584380-1EJ0MIIAE8Q2OO2UK04M/image-asset.jpeg?format=1500w")
 ```
-.center.tiny[Source: makeameme.org [`r emo::ji("link")`](https://media.makeameme.org/created/brace-yourself-power-597838.jpg)]
+.center.tiny[Source: How I Came to Choose One out of Sixty Two Data Visualizations [`r emo::ji("link")`](https://www.doingdata.org/)]
 
 ---
 
-# Different Versions
-
-- Power BI Desktop 
-
-The **Windows OS** only software, primarily for designing and publishing reports to the Service.
-
-- Power BI Service
-
-The **SaaS-based** (software as a service) online service can be used from any web browser.
-
-- Power BI Premium
-
-Capacity-based offering that includes flexibility to publish reports broadly across an enterprise, without requiring recipients to be licensed individually per user. Greater scale and performance than shared capacity in the Power BI Service
-
-- Other Components
-
-Power BI Mobile Apps, Power BI Gateway, Power BI Embedded, Power BI Report Server, Power BI Visuals Marketplace
-
----
-
-# DCU Access
-
-Student subscription to Microsoft 365 comes with Power BI Service
-
-.pull-left[
-To access it:
-
-1. Go to https://powerbi.microsoft.com
-3. Click on **Have an account? Sign in**
-2. Sign in with your DCU login and password
-]
-
-.pull-right[
-```{r out.width='100%'}
-include_graphics("img/powerbi_signin.png")
-```
-]
-
-You should land on the following welcome page.
+# How to Use Tableau Public
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_welcome.png")
-```
-
----
-class: title-slide, middle
-
-## Live Demo
-
----
-
-class: inverse, mline, center, middle
-
-# 2. Power BI Basic Features
-
----
-
-# Canvas Area
-
-Because we've opened a dashboard, the canvas area displays visualization tiles. If for example, we had opened the report editor, the canvas area would display a report page.
-
-Power BI is super polite and will welcome you in your organisation.
-
-It will also offer you a button **+ Report** which is a shortcut for the **+ Create** option from the menu. Both are the starting point for new visualisations
-
-```{r out.width='100%'}
-include_graphics("img/powerbi_create_shortcut.png")
-```
-.center.tiny[Thank you for your greetings Power BI]
----
-
-# Recommended and Recent
-
-You will also have a quick access to your previous work and to default official tutorials in case you are discovering the tool.
-
-These tutorials are strongly recommended if you want to progress with Power BI.
-
-```{r out.width='100%'}
-include_graphics("img/powerbi_recommended.png")
-```
-
-The recent tab box allows you to have another quick access to your previous work.
-
-```{r out.width='100%'}
-include_graphics("img/powerbi_recent.png")
+include_graphics("img/tableau_public_home.png")
 ```
 
 ---
 
-# Naviagation Pane
-
-Always on the left side, it can be minimised with the hamburger menu button
-
-.left-column[
-```{r out.width='110%'}
-include_graphics("img/powerbi_menu.png")
-```
-]
-
-<br>
-
---
-
-- Will bring you back to the welcome page
---
-
-- The main access to create visualisations and dashboards
---
-
-- List of visualisations and dashboards you previously used or created
---
-
-- List of data you previously used
---
-
-- Create and access "scorecards" (mini dashboards to track data)
---
-
-- Connection to your organisation database and web services 
---
-
-- Shortcut to the [Microsoft learning platform for Power BI tutorials](https://docs.microsoft.com/en-us/learn/powerplatform/power-bi)
-
----
-
-# Vocabulary
-
-- **Workspaces** are distinct servers (personal or shared) hosting dashboards, reports, workbooks, datasets, and dataflows.
-
-- **Dataflows** represent data prepared and staged for use by datasets to facilitate reporting
-
-- **Datasets** are collection of data that you import or connect to. Each listed dataset is a source of data available for one or more reports, and the dataset may contain data that comes from one or more sources. 
-
-- **Reports** are one or more pages of visualizations such as line charts, maps, and treemaps. All of the visualizations in a report come from a single dataset. By default, the report opens in Reading view. Just select Edit report to open it in Editing view (if you have the necessary permissions).
-
-- **Dashboards** are single canvas (i.e., screens)  that contains zero or more tiles and widgets. Each tile pinned from a report displays a single visualization that was created from a dataset. Entire report pages can also be pinned to a dashboard as a single tile. 
-
-- **Workbooks** are a special type of dataset when you use Get data. However, You can't edit your workbook in Power BI, you need to do it with MS Excel.
-
----
-
-# Vocabulary
+# How to Use Tableau Public
 
 ```{r out.width='80%'}
-include_graphics("https://cdn-aldpb.nitrocdn.com/MmRYricBGnwFelNvIykEOHWwZuUwjnwj/assets/images/optimized/rev-a60081a/wp-content/uploads/2019/11/powerbi-diagram.png")
+include_graphics("img/tableau_public_login.png")
 ```
-.center.tiny[Source: How to Create Your First Power BI Dashboard (Step-by-Step) [`r emo::ji("link")`](https://spreadsheeto.com/power-bi-dashboard/)]
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='50%'}
+include_graphics("img/tableau_public_verify.png")
+```
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='100%'}
+include_graphics("img/tableau_public_account.png")
+```
+
+---
+
+# How to Use Tableau Public
+
+```{r out.width='100%'}
+include_graphics("img/tableau_public_createaviz.png")
+```
+
+---
+class: inverse, mline, center, middle
+
+# 2. Tableau Overview
+
+---
+
+# Tableau in a Nutshell
+
+Tableau is very similar to Power BI but it actually simpler in its structure (but the visualisation capabilities are more complex):
+
+There are 4 types of areas:
+
+- **Data Source** is where you check the type of variables and where you can do basic transformations
+- **Worksheet** is where you build each individual visualisation (1 worksheet per visualisation)
+- **Dashboard** is where you combine all the visualisations in 1 interactive page
+- **Story** is where you create interactive presentation with multiple slides (no use here)
+
+---
+
+# Tableau Data Source
+
+```{r out.width='100%'}
+include_graphics("img/tableau_data_1.png")
+```
+
+---
+
+# Tableau Data Source
+
+```{r out.width='100%'}
+include_graphics("img/tableau_data_2.png")
+```
+
+---
+
+# Tableau Worksheet
+
+```{r out.width='100%'}
+include_graphics("img/tableau_worksheet.png")
+```
+
+---
+
+# Tableau Dashboard
+
+```{r out.width='100%'}
+include_graphics("img/tableau_dashboard.png")
+```
+
+---
+
+# Tableau Story 
+
+```{r out.width='100%'}
+include_graphics("img/tableau_story.png")
+```
+
+---
+
+# Principles
+
+Tableau is only about:
+- Dragging & dropping from variable list to plot (no-code software) 
+- Selecting the right data summary
+- Creating independent figures and organising them on a page
+
+```{r out.width='40%'}
+include_graphics("https://i.redd.it/31zkb6zzn8f21.jpg")
+```
+
+---
+class: inverse, mline, center, middle
+
+# 3. Connect Data in Tableau
+
+---
+
+# Files or Connectors?
+
+Without being too complicated, there is two major ways to connect data in Tableau:
+- From a File which won't be modified
+- From a database through a connector (i.e., interface) to obtained data stored on a remote server (e.g., [Covid Dashboards](https://public.tableau.com/en-us/s/covid-19-viz-gallery))
+
+**Files** can be of format .csv, .xls, .xlsx, .json, ...
+
+**Databases** cloud hosted on google drive or with OData protocol (url access to the data)
+
+--
+
+.pull-left[
+`r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` More details about Tableau data connection possibilities with the following contents among others found online:
+
+- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/guides/everybody-install/en-us/everybody_admin_data.htm)
+- [Tableau Data Connections to Databases and Multiple Sources9](https://www.guru99.com/tableau-data-connections.html)
+- [Types of Tableau Data Sources with Connection Establishment Process](https://data-flair.training/blogs/tableau-data-sources/)
+]
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/bobross_connection.jpg")
+```
+
+.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
+]
+
+---
+
+# Connect to Multiple Data
+
+It is possible to add more than one file but it can be done with or without joining the data.
+
+- If you join the two or more data source, you will be able to use variables from different files in the same visualisation. However, a relationship between the data has to be established.
+- If you don't join the data, the variables from each data will have to be used separately in different visualisations.
+
+---
+
+# Joining Multiple Data
+
+.pull-left[
+Connect your first data file/database
+In the Data Source window, beside Connections, click on the plus sign to "Connect to Data"
+] 
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/tableau_connect_join_1.png")
+```
+]
+
+.pull-left[
+Drag and drop the second file next to the box representing the first file
+] 
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/tableau_connect_join_2.png")
+```
+]
+
+---
+
+# Joining Multiple Data
+
+Set the variables to join and if the link between the data files is correct then the link will be green
+
+```{r out.width='100%'}
+include_graphics("img/tableau_connect_join_3.png")
+```
+
+---
+
+# Add Different Data
+
+.pull-left[
+Instead of clicking on the plus sign beside Connections, you can add data by clicking on the database symbol.
+] 
+
+.pull-right[
+```{r out.width='100%'}
+include_graphics("img/tableau_add_data_1.png")
+```
+]
+
+However you won't be able to use variable from both source for the same visualisation:
+
+```{r out.width='30%'}
+include_graphics("img/tableau_add_data_2.png")
+```
 
 ---
 class: title-slide, middle
 
-## Live Demo
-
-### Go to: Learn (Nav. Pane) -> Sample Report -> Open "Store Sales"
+## Live Examples
 
 ---
+class: title-slide, middle
 
+## Exercise
+
+From the loop page, on the tile "Lecture Data", use the files **organisation alpha details**, **organisation alpha salary 2017**, **organisation alpha salary 2018**, and **organisation alpha salary 2019** and join them in Tableau Public.
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
 class: inverse, mline, center, middle
 
-# 3. Create New Visualisations
+# 4. Understand the Worksheet
 
 ---
 
-# Step 1: Manually Import Data
+# Variable List Tab
 
 .pull-left[
-In the module's Loop page:
+```{r out.width='30%'}
+include_graphics("img/tableau_variables.png")
+```
+]
 
-- Go to the **Lecture Data** tile and open the **organisation_alpha** file with MS Excel
-- Select the first table and copy it (Ctrl+C or Cmd+C)
+.pull-right[
+**Dimensions = Categorical Variables**
+
+- Made of character string (most of the time)
+- Can be numeric if refers to an ID
+
+**Measures = Continuous Variables**
+
+- Made of numbers
+- Special cases of **Measure Names**, and **Measure Values**
+]
+
+---
+
+# Analytics Tab
+
+.pull-left[
+```{r out.width='50%'}
+include_graphics("img/tableau_analytics.png")
+```
+]
+
+.pull-right[
+Special features behind the Data Tab:
+
+- Box Plot
+- Median and Quartiles
+- Average
+- Regression Line (Trend Line)
+]
+
+---
+
+# Plot Configuration
+
+.pull-left[
+```{r out.width='100%'}
+include_graphics("img/tableau_configuration.png")
+```
+]
+
+.pull-right[
+Equivalent to Excel Pivot Table but for visualisations
+
+- **Columns** = X axis
+- **Rows** = Y axis
+- **Pages** = 1 plot per values (categories)
+- **Filters** = Keep specific values
+- **Marks** = Design of representation
+  - Colors
+  - Size
+  - Texts
+  - ...
+]
+
+---
+
+# Show Me: Additional Design
+
+.pull-left[
+```{r out.width='50%'}
+include_graphics("img/tableau_showme.png")
+```
+]
+
+.pull-right[
+- Tables
+- Maps
+- Histograms
+- Pie charts
+- Line charts
+- Bar charts
+- Scatterplots
+- Box plots
+- ...
+]
+
+---
+
+# Aggregation Method
+
+When selected as Rows or Columns, double click/click left on a Measure variable (green variable)
+
+.pull-left[
+Choose between:
+  - Dimensions (raw data, equivalent of "Don't summarize" in PowerBI)
+  - Measure (COUNT, AVERAGE, STD, ...)
 ]
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/powerbi_excel_data.png")
-```
-]
-
-.pull-left[
-In Power BI Service:
-
-- Click **Create** and **Paste or manually enter data**
-- Click in the empty table (except in the Cell 1 Column 1) and paste the table (Ctrl+V or Cmd+V)
-- Click on **Use first row as headers** only once
-]
-
-.pull-right[
-```{r out.width='100%'}
-include_graphics("img/powerbi_enter_data.png")
+include_graphics("img/tableau_aggregation.png")
 ```
 ]
 
 ---
+class: inverse, mline, center, middle
 
-# Step 1: Manually Import Data
-
-```{r out.width='100%'}
-include_graphics("img/powerbi_data_input.gif")
-```
-
-Then choose between:
-
-- Auto create report
-- Create a blank report
-- Create a dataset only
-
----
-
-# Step 2: Create a Report
-
-```{r out.width='100%'}
-include_graphics("img/powerbi_create.png")
-```
-
-In Power BI canvas: 
-
-1. Choose the visualisation (i.e., composition, distribution, comparison, relationship)
-
-2. Choose the variable(s) by unfolding the list ( $\Sigma$ indicates continuous variables)
-
-3. Drag and drop the variables in the relevant fields and customise the features
+# 5. Master the Key Figures
 
 ---
 
 # Variable Type and Visualisations
 
-```{r out.width='20%'}
-include_graphics("img/powerbi_visualisations.png")
+.left-column[
+```{r out.width='100%'}
+include_graphics("https://help.tableau.com/current/pro/desktop/en-us/Img/showme3.png")
 ```
+]
 
+.right-column[
 Remember, there is a type of visualisation for each type of variables:
 
-- **Composition** (i.e. bar/column and pie charts) for **1 categorical variable**
+- **Composition** (i.e. bar/column and pie charts) for **1 Dimension** (i.e., categorical variable)
 
-- **Distribution** (i.e. histogram, density, box plot and dynamite charts) for **1 continuous variable**
+- **Distribution** (i.e. histogram, density, box plot and dynamite charts) for **1 Measure** (i.e., continuous variable)
 
-- **Comparison** for **2 categorical variables** or for **1 categorical variable and 1 continuous variable**
+- **Comparison** for **2 Dimensions** or for **1 Dimension** and **1 Measure**
 
-- **Relationship** (i.e. scatterplot with regression line) for **2 continuous variables**
+- **Relationship** (i.e. scatterplot with regression line) for **2 Measures**
+]
+
 
 ---
 class: title-slide, middle
@@ -328,7 +486,16 @@ class: title-slide, middle
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_composition_1.png")
+include_graphics("img/tableau_composition_1.png")
+```
+
+---
+
+# Composition Figures
+
+```{r out.width='50%'}
+include_graphics("img/tableau_composition_2_1.png")
+include_graphics("img/tableau_composition_2_2.png")
 ```
 
 ---
@@ -336,7 +503,7 @@ include_graphics("img/powerbi_composition_1.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_composition_2.png")
+include_graphics("img/tableau_composition_2.png")
 ```
 
 ---
@@ -344,45 +511,147 @@ include_graphics("img/powerbi_composition_2.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_composition_3.png")
+include_graphics("img/tableau_simple_bar.gif")
+```
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_composition_3.png")
+```
+
+---
+
+# Composition Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_pie_chart.gif")
+``` 
+
+---
+class: title-slide, middle
+
+## Distribution Figures
+
+---
+
+# Distribution Figures
+
+Like for Power BI, Tableau is lacking some distribution figures:
+
+- Histograms are fully implemented by default
+- Density plots are not possible
+- Box plots are fully implemented by default
+- Dynamite plots can be done with average bar chart but without error bars
+
+```{r out.width='100%'}
+include_graphics("https://preview.redd.it/0esbxbu1tpg61.jpg?width=640&crop=smart&auto=webp&s=9340f0f2c8d9a8a6286bceaa88314b6ae5bbebb4")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_distribution_1.png")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_histogram.gif")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_distribution_2.png")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_box_plot.gif")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_distribution_3.png")
+```
+
+---
+
+# Distribution Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_average_bar.gif")
 ```
 
 ---
 class: title-slide, middle
 
-## Distribution and Comparison Figures
+## Comparison Figures
 
 ---
 
-# Distribution and Comparison Figures
+# Comparison Figures
 
-Distribution visualisation are based on specific calculations to aggregate the data in order to obtain:
+Comparison Figures can be easily done by adding "Dimension" as colour, column or row variable to any of the previous figures:
 
+- Bar/Pie charts using CNT aggregation
 - Histograms
-- Density plots
 - Box plots
-- Dynamite plots
-
-Unfortunately, Power BI is extremely limited for those.
-
-- Density plots are unavailable
-- Histograms and box plots are available only with add-on visuals (most of them are free)
-- Dynamite plots are partly available (average bar without SD whiskers)
+- Bar charts with AVG aggregation
 
 ---
 
-# Distribution and Comparison Figures
+# Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_distribution_1.png")
+include_graphics("img/tableau_comparison_1.png")
 ```
 
 ---
 
-# Distribution and Comparison Figures
+# Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_distribution_2.png")
+include_graphics("img/tableau_multiple_bar.gif")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_2.png")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_3.png")
+```
+
+---
+
+# Comparison Figures
+
+```{r out.width='100%'}
+include_graphics("img/tableau_comparison_4.png")
 ```
 
 ---
@@ -394,9 +663,9 @@ class: title-slide, middle
 
 # Relationship Figures
 
-The scatterplot is the best way to display the relationship between 2 continuous variables ( $\Sigma$  variables in the list of fields)
+The scatterplot is the best way to display the relationship between 2 **Measure** variables
 
-However, it is essential to use **Don't summarize** for both axes instead of the default Sum for aggregation
+However, it is essential to use the **Dimension** option from both axes menu instead of the default Sum for aggregation
 
 A trend line can be added from the **Analytics** option.
 
@@ -404,81 +673,48 @@ A trend line can be added from the **Analytics** option.
 
 # Relationship Figures
 
-```{r out.width='100%'}
-include_graphics("img/powerbi_relationship.png")
+```{r out.width='50%'}
+include_graphics("img/tableau_relationship_1.png")
+include_graphics("img/tableau_relationship_2.png")
 ```
 
 ---
-class: title-slide, middle
 
-## Additional Visualisations: Timeseries and Maps
-
----
-# Timeseries and Maps Figures
-
-While Categorical and Continuous are the two most common types of variable, they are not the only ones.
-
-Timeseries and Maps require each a new type of variable:
-
-- Dates for timeseries
-- Geographic information for maps (locations or longitude/latitude)
-
-Multiple additional types of visualisation are available in Power BI. Their added value can vary but the if you are able to explain them then don't hesitate to use them.
-
-```{r out.width='60%'}
-include_graphics("https://powerbicdn.azureedge.net/cvt-9394a7615e76e3565238e1688022efbee201671e2cbb78c8d1b1df694b985908/pictures/pages/index/blade2/powerbi-001.jpg")
-```
-.center.tiny[Source: Microsoft Corp. [`r emo::ji("link")`](https://powerbi.microsoft.com)]
-
----
-# Timeseries and Maps Figures
+# Relationship Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_map.png")
+include_graphics("img/tableau_scatterplot.gif")
 ```
 
 ---
 
 class: inverse, mline, center, middle
 
-# 4. Dashboards with Power BI
+# 6. Tableau Dashboard
 
 ---
 
-# Dashboards with Power BI
+# Tableau Dashboard
 
-Dashboards are obtained by **Pinning specific visualisations from one or multiple reports**
+Like in Power BI, a dashboard is obtained by dropping several "Sheets"/Vizualisations on a page, by organising their position, and by adding additional elements (i.e., text, image, ...).
+
+Design features can be modified in order to give the dashboard a professional feel.
+
+Interactive customisations can be added from the Dashboard for all the "Sheets"/Visualisations to move simultaneously (next lecture).
+
+---
+
+# Tableau Dashboard
 
 ```{r out.width='100%'}
-include_graphics("https://zebrabi.com/wp-content/uploads/2020/04/2020-04-22_13-53-06.jpg.webp")
+include_graphics("img/tableau_dashboard.gif")
 ```
-.center.tiny[Source: The Most Effective Power BI Dashboard Tips and Tricks [`r emo::ji("link")`](https://zebrabi.com/top-power-bi-dashboard-tips-and-tricks/)]
 
 ---
 
 class: inverse, mline, center, middle
 
-# 5. Power BI Practice
-
----
-
----
-
-class: inverse, mline, center, middle
-
-# 0. Practice Data and Topic
-
----
-
-# Practice Data
-
-In order to show you how to use Power BI, we are going to exercise with the dataset called **titanic**.
-
-The most interesting outcome variable is the survive variable which says if the passenger has survived (coded 1) or not (coded 0)
-
-```{r}
-include_graphics("https://miro.medium.com/v2/resize:fit:1400/format:webp/1*JtEf9FVlJqxRDhhu0ec3fw.png")
-```
+# 7. Tableau Practice
 
 ---
 
@@ -499,27 +735,14 @@ Variables:
 - embarked - Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)
 
 ---
-
-# Dashboard Topic
-
-Usually when you process data you have a motivation or interest in processing the Data
-
-Here this practice data is dummy but we can still try to make it interesting by solving the following question:
-
-- #### Titanic: “women and children first” or “every man for himself”?
-
-By using **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure** we will try to answer this question from the data obtained.
-
-```{r out.width='30%'}
-include_graphics("https://rss.onlinelibrary.wiley.com/cms/asset/70b0be43-c955-49b3-bf12-ec04f17c1240/sign1229-gra-0002-m.jpg")
-```
-
----
 class: title-slide, middle
 
-## Use **titanic.csv** to create a report in Power BI
+## From the loop page, use **titanic.csv** to create a Tableau Dashboard
 
-Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
+Create: 
+- **1 Pie Chart using Survival**
+- **1 Bar Chart Proportion using Survival, Sex and Embarked**
+- **1 Scatterplot using Fare, Age and Survival**
 
 Remember to **use titles**, to **customise them** and to **add a text** to convey your narrative
 

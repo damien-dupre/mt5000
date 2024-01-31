@@ -8,8 +8,8 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
-    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
-    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
     <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
   </head>
   <body>
@@ -20,7 +20,7 @@ class: center, middle, inverse, title-slide
 # MT5000 - Data Analytics and Story Telling
 ]
 .subtitle[
-## Lecture 7: Advanced Features in Tableau
+## Lecture 6: Visualisation &amp; Dashboard Design
 ]
 .author[
 ### Damien Dupré - Dublin City University
@@ -31,23 +31,289 @@ class: center, middle, inverse, title-slide
 
 
 
-# Previoulsy ...
+class: title-slide, middle
 
-We have seen how to create clear and efficient figures:
+## Visualisation Design
 
-- Pie Chart
-- Bar Plot
-- Density Plot
-- Histogram Plot
-- Dynamite Plot
-- Scatterplot
+---
 
-Based on basic statistical calculations:
-- Count
-- Proportion
-- Median/Quartiles
-- Mean/Standard Deviation
-- Correlation
+# Programme
+
+## Part 1: Joining Tables
+
+## Part 2: Map Visualisations
+
+## Part 3: Time Series Visualisations
+
+## Part 4: Scatter plots
+
+---
+
+# "Gapminder" Dataset
+
+In February 2006, a Swedish physician and data advocate named Hans Rosling gave a TED talk titled **“The best stats you’ve ever seen”** where he presented global economic, health, and development data from the website www.gapminder.org. For this tutorial, are going to use a dataset from this website.
+
+For each row, we have 6 columns:
+- **country**: Name of country.
+- **year**: Year of the observation (between 1952 and 2007).
+- **pop**: Number of people living in the country.
+- **continent**: Which of the five continents the country is part of. 
+- **lifeExp**: Life expectancy in years.
+- **gdpPercap**: Gross domestic product (in US dollars).
+
+
+|country     |continent | year| lifeExp|      pop| gdpPercap|
+|:-----------|:---------|----:|-------:|--------:|---------:|
+|Afghanistan |Asia      | 1952|  28.801|  8425333|  779.4453|
+|Afghanistan |Asia      | 1957|  30.332|  9240934|  820.8530|
+|Afghanistan |Asia      | 1962|  31.997| 10267083|  853.1007|
+|Afghanistan |Asia      | 1967|  34.020| 11537966|  836.1971|
+|Afghanistan |Asia      | 1972|  36.088| 13079460|  739.9811|
+|Afghanistan |Asia      | 1977|  38.438| 14880372|  786.1134|
+
+---
+
+class: inverse, mline, center, middle
+
+# Part 1: Joining Tables
+
+---
+
+# Joining Tables Exercises
+
+## On the module loop page, download the following files and have a look at them:
+- ## data_left.csv
+- ## data_right_1.csv
+- ## data_right_2.csv
+- ## data_right_3.csv
+
+---
+
+# Joining Tables Exercises
+
+## In tableau public...
+- ## join data_left.csv with data_right_1.csv
+
+<div class="countdown" id="timer_e59a364c" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+.pull-left[
+## data_left.csv
+
+|country     | year|      pop|
+|:-----------|----:|--------:|
+|Afghanistan | 1952|  8425333|
+|Afghanistan | 1957|  9240934|
+|Afghanistan | 1962| 10267083|
+|Afghanistan | 1967| 11537966|
+|Afghanistan | 1972| 13079460|
+|Afghanistan | 1977| 14880372|
+]
+
+.pull-right[
+## data_right_1.csv
+
+|country     | year| lifeExp|
+|:-----------|----:|-------:|
+|Afghanistan | 1952|  28.801|
+|Afghanistan | 1957|  30.332|
+|Afghanistan | 1962|  31.997|
+|Afghanistan | 1967|  34.020|
+|Afghanistan | 1972|  36.088|
+|Afghanistan | 1977|  38.438|
+]
+
+---
+
+# Joining Tables Exercises
+
+## In tableau public...
+- ## join data_left.csv with data_right_2.csv
+
+<div class="countdown" id="timer_01fcec95" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+.pull-left[
+## data_left.csv
+
+|country     | year|      pop|
+|:-----------|----:|--------:|
+|Afghanistan | 1952|  8425333|
+|Afghanistan | 1957|  9240934|
+|Afghanistan | 1962| 10267083|
+|Afghanistan | 1967| 11537966|
+|Afghanistan | 1972| 13079460|
+|Afghanistan | 1977| 14880372|
+]
+
+.pull-right[
+## data_right_2.csv
+
+|location    | date| gdpPercap|
+|:-----------|----:|---------:|
+|Afghanistan | 1952|  779.4453|
+|Afghanistan | 1957|  820.8530|
+|Afghanistan | 1962|  853.1007|
+|Afghanistan | 1967|  836.1971|
+|Afghanistan | 1972|  739.9811|
+|Afghanistan | 1977|  786.1134|
+]
+
+---
+
+# Joining Tables Exercises
+
+## In tableau public...
+- ## join data_left.csv with data_right_3.csv
+
+<div class="countdown" id="timer_65abe1d7" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+.pull-left[
+## data_left.csv
+
+|country     | year|      pop|
+|:-----------|----:|--------:|
+|Afghanistan | 1952|  8425333|
+|Afghanistan | 1957|  9240934|
+|Afghanistan | 1962| 10267083|
+|Afghanistan | 1967| 11537966|
+|Afghanistan | 1972| 13079460|
+|Afghanistan | 1977| 14880372|
+]
+
+.pull-right[
+## data_right_3.csv
+
+|country     |continent |
+|:-----------|:---------|
+|Afghanistan |Asia      |
+|Albania     |Europe    |
+|Algeria     |Africa    |
+|Angola      |Africa    |
+|Argentina   |Americas  |
+|Australia   |Oceania   |
+]
+
+---
+
+class: inverse, mline, center, middle
+
+# Part 2: Map Visualisations
+
+---
+
+# Map Visualisations Exercises
+
+## In tableau public...
+- ## Design a world map showing countries' life expectancy
+
+<div class="countdown" id="timer_d685dece" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+- ## Design a world map showing countries' life expectancy in 1952
+
+<div class="countdown" id="timer_7707137b" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+- ## Design a world map showing countries' population in 1952
+
+<div class="countdown" id="timer_7d553091" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, mline, center, middle
+
+# Part 3: Time Series Visualisations
+
+---
+
+# Time Series Visualisations Exercises
+
+## In tableau public...
+- ## Design a time series visualisation showing the evolution of countries' life expectancy
+
+<div class="countdown" id="timer_e6cdd570" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+- ## Design a time series visualisation showing the evolution of countries' population and add a filter by country
+
+<div class="countdown" id="timer_1bbd5df3" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, mline, center, middle
+
+# Part 4: Scatterplots
+
+---
+
+# Scatterplots Exercises
+
+## In tableau public...
+- ## Design a Scatterplot with countries' life expectancy and gdpPercap
+
+<div class="countdown" id="timer_208a8f2f" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+--
+
+- ## Customise this scatterplot
+
+<div class="countdown" id="timer_8b28b483" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: title-slide, middle
+
+## Visualisation Design
+
+---
+
+# Programme
+
+## How to use screenspace?
+
+## How to structure information?
+
+## How to layout?
+
+## How to apply interactivity?
 
 ---
 
@@ -73,579 +339,188 @@ Go back to the dashboard and customise it: Background, colours, fonts, layout an
 
 ---
 
-# Going Forward
+# Overall Design Guidelines
 
-In general, through the lecture we have seen variables:
-
-- Made of character strings (usually interpreted as categorical but not always)
-- Made of numbers (usually interpreted as continuous but not always)
-
-But variables can be made of many more values. In Business Analytics are particularly important: Locations and Dates. **How to manipulate Location and Date type variables in Tableau?**
-
---
-
-Tableau is particularly interesting because it creates interactive dashboards, **how to create smart Tableau dashboards by customising their interactivity?**
-
---
-
-Tableau is not limited to data visualisations, some data transformations can also be done, let's see **why doing your transformations in Tableau and how?**
-
---
-
-Finally, the export or publication of Tableau dashboard can be tricky, we will see **how to share your dashboard for the assignment and in general?**
+1. Don’t overwhelm viewers
+2. Avoid visual clutter
+3. Avoid poor visual design
+4. Don’t add too much data
+5. Provide for consistency
+6. Provide for interaction affordances
+7. Manage complexity
+9. Organize charts
+10. Increase information
+11. Avoid redundancy of information
+12. Design is an iterative process
+13. Context is very important
+14. Use color carefully
 
 ---
 
 class: inverse, mline, center, middle
 
-# 1. Location and Date Types in Tableau
+# 1. How to use screenspace?
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Quotes --&gt;
+
+&lt;!-- &gt; “A visual display of the most important information needed to achieve one or more objectives; consolidated and arranged on a single screen so the information can be monitored at a glance.” --&gt;
+
+&lt;!-- Few, S., 2006. Information dashboard design: The effective visual communication of data (Vol. 2). Sebastopol, CA: O'reilly. --&gt;
+
+&lt;!-- &gt; “A dashboard seeks to add as a translator, not simply a mirror, setting the forms and parameters for how data are communicated.” --&gt;
+
+&lt;!-- Kitchin, R., Lauriault, T.P. and McArdle, G., 2015. Knowing and governing cities through urban indicators, city benchmarking and real-time dashboards. Regional Studies, Regional Science, 2(1), pp.6-28. --&gt;
 
 ---
 
-# Space and Time Variables
+# Dashboard Types
 
-For the moment we were only interested in two variable types:
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_types.png" width="100%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Source: Dashboard Design Patterns [🔗](https://dashboarddesignpatterns.github.io/)]
 
-- Categorical (made of characters) also called "Dimension" in Tableau
-- Continuous (made of numbers) also called "Measures" in Tableau
+- [See Dashboard Design Patterns Workshop for more details](https://dashboarddesignpatterns.github.io/docs/assets/Dashboard%20Design%20Workshop.pdf)
 
-However, we have seen that sometimes...
+---
 
-- A Categorical variable needs to be converted to Continuous (e.g., Opinion scales)
-- A Continuous variable needs to be converted to Categorical (e.g., Survived 0/1 in titanic)
+# Key Elements
 
-&gt; In Tableau change the type of a variable by drag-drop in the list of variables "Dimensions" or "Measures"
+Every Dashboard should include the following key element to fill their screenspace:
 
---
+- A title
+- A written story including Introduction, Analysis, and Conclusion
+- Multiple visualisations
+
+Optional elements can be added such as images, buttons, or menus
+
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key.png" width="70%" style="display: block; margin: auto;" /&gt;
+.center.tiny[Example of a dashboard structure. Not to necessary follow, for illustration only.]
+
+---
+
+# Key Elements: Title
+
+Let's have a look at examples from real dashboards [here](https://www.tableau.com/blog/tableau-public-viz-wrap-interesting-data-visualizations-2022)
 
 .pull-left[
-In addition to Categorical and Continuous variables, Tableau has special features to handle **Location** type and **Date** type variable.
-]
-.pull-right[
-&lt;img src="https://yodalearning.com/wp-content/uploads/Tableau-Data-types.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
 
----
+- A title should pinpoint the problem
 
-# Location Type Variables
+["Healthcare Crisis in Rural America"](https://public.tableau.com/app/profile/dennis.kao/viz/HealthcareCrisisinRuralAmericaProjectHealthViz/Dashboard1)
 
-Is a list of geographical localisation by:
-- Continents (Europe, Asia, Africa, Oceania, North America, South America)
-- Country (Ireland, France, Spain, Germany, ...)
-- States, Regions, Counties, Cities ... 
+- Affirmation or question
 
-By default, location variables should be properly encoded. A blue globe icon should appear before the variable.
+["#CollegeGameday: Can My Family Out-Pick the Pundits?"](https://public.tableau.com/app/profile/sam.epley/viz/CollegeGamedayCanMyFamilyOut-PickthePundits/PickbyWeek)
 
-But if Locations are encoded as a Categorical (if made of characters) or Continuous variable (if made of numbers), you need to give this variable a **Geographic Role**
+- Should be catchy
 
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/maps_getstarted6.gif" width="40%" style="display: block; margin: auto;" /&gt;
+["NBA Lords of the Rings"](https://public.tableau.com/app/profile/jeff.plattner4532/viz/NBALordsoftheRings/LordsoftheRings)
 
----
-
-# Mapping with Tableau
-
-To create a data visualisation map:
-
-1. Drag and drop the **location variable in the row/column** of the main worksheet
-2. Use **Show Me** and select one of the Map type figure (Longitude/Latitude variables are automatically generated)
-  - Symbol map (data reduced to a point - good for cities)
-  - Maps (data fill the full shape of the location)
-3. Drag and drop in the **Color box of Marks** another variable to display changes in values according to location for this variable
-
-&lt;img src="https://i0.wp.com/datadent.org/wp-content/uploads/2020/03/Map-change-colors.gif" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Mapping with Tableau
-
-More details about Tableau and maps with the following contents among others found online:
-
-- [Get Started Mapping with Tableau by Tableau](https://help.tableau.com/current/pro/desktop/en-us/buildexamples_maps.htm)
-- [Build a Simple Map by Tableau](https://help.tableau.com/current/pro/desktop/en-us/maps_howto_simple.htm)
-- [Tableau Map by Vizual Intelligence](https://vizualintelligenceconsulting.com/blog-tableau-maps/)
-- [Maps in Tableau by Tutorial Gateway](https://www.tutorialgateway.org/maps-in-tableau/)
-- [Create A Map with Multiple Layers in Tableau by Anthony B. Smoak](https://www.youtube.com/watch?v=bwUj2NZHTC4)
-
-&lt;img src="https://www.edureka.co/community/?qa=blob&amp;qa_blobid=15134316276860426432" width="50%" /&gt;&lt;img src="https://static.packt-cdn.com/products/9781786465634/graphics/B05527_05_01.jpg" width="50%" /&gt;
-
----
-
-# Date Type Variables
-
-Is a variable referring to a specific time, it can be any combination and format including year, month, day, minute, second, ...
-
-For example, "March 23, 1984", "03/23/84", "23/03/1984", "1984-03-23" have **different formats but refer to the date**.
-
-In data science we use the ISO 8601 international standard format (%Y-%m-%d) which corresponds to "1984-03-23" (format allow to sort date easily)
-
-By default, date variables should be properly encoded. A **blue calendar icon** should appear before the variable.
-
-But if Dates are encoded as a Categorical (if made of characters) or Continuous variable (if made of numbers), you need to convert this variable as **Date** or as **Date &amp; Time**
-
----
-
-# Line and Area Charts
-
-Date variables are usually used as **X axis** (Column Field in Tableau) to display the evolution of another variable according the time.
-
-The resolution of the chart can be adjusted by clicking on the **+ symbol** before the Date variable
-
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/datefunctions3.png" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Line and Area Charts
-
-While the Date variable is in one field, drag and drop the other variable in the other field.
-
-It uses a **statistical aggregation** for this second variable. By default it is the Sum (see SUM) but it can be changed to Count, Proportion, Median, Mean, ...
-
-To add a **second line in the same plot** using the original Date variable:
-
-1. Drag and drop this second variable in the row or column field next to the first one
-2. Then, select `Dual Axis` to merge them
-
-&lt;img src="img/tableau_dual_axis.gif" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Line and Area Charts
-
-More details about Tableau and timeseries figures with the following contents among others found online:
-
-.pull-left[
-- [Tableau Date Functions and How to Use Them for Your Analysis by Data Crunch Corp](https://datacrunchcorp.com/tableau-date-functions/)
-- [Date Functions by Tableau](https://help.tableau.com/current/pro/desktop/en-us/functions_functions_date.htm)
-- [Building Line Charts by Tableau](https://help.tableau.com/current/pro/desktop/en-us/buildexamples_line.htm)
-- [Tableau Playbook - Line Chart by Pluralsight](https://www.pluralsight.com/guides/tableau-playbook-line-chart)
 ]
 
 .pull-right[
-&lt;img src="img/tableau_linecharts.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key_title.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 class: title-slide, middle
 
-## Live Example: Covid-19 Data Sample
+## Exercise
+
+Find a title for your Gapminder dashboard
+
+<div class="countdown" id="timer_e88671cd" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
-class: inverse, mline, center, middle
+# Key Elements: Story
 
-# 2. Interactive Customisations in Tableau
+.pull-left[
+
+The story (narrative conveying the information) is structure around 3 parts: Introduction, Analysis, and Conclusion.
+
+### Introdcution
+
+Presents the context regarding the issue investigated
+
+]
+
+.pull-right[
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key_story.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+### Analysis
+
+Uses each visualisation and extract the relevant information from them. Each information should be linked is some ways (e.g. temporal, complexity, geographical, logical, discursive, ...).
+
+### Conclusion
+
+Summarises the information and provides future recommendations/suggestions to the reader.
+
+&lt;!-- --- --&gt;
+&lt;!-- class: title-slide, middle --&gt;
+
+&lt;!-- ## Exercise --&gt;
+
+&lt;!-- Access the following dashboard [here](https://public.tableau.com/app/profile/parthagarwal/viz/ParthAgarwal-Final/Dash) and identify the recommendations/suggestions resulting from the information shared. --&gt;
+
+&lt;!-- ```{r out.width='100%'} --&gt;
+&lt;!-- include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_story_ex.png") --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- ```{r} --&gt;
+&lt;!-- countdown(minutes = 5, warn_when = 60) --&gt;
+&lt;!-- ``` --&gt;
 
 ---
 class: title-slide, middle
 
-## Variable Alias
+## Exercise
+
+Using Chat GPT, write a story for your Gapminder dashboard
+
+<div class="countdown" id="timer_607d86a4" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
-# Variable Alias
-
-Aliasing a Variable is not an interactive feature per se but it is a simple tip that can be very useful.
-
-Creating an Alias means renaming the categories displayed by a variable (but the original names are kept for the calculations).
-
-&lt;img src="img/tableau_alias_1.png" width="90%" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="img/tableau_alias_2.png" width="90%" style="display: block; margin: auto;" /&gt;
-
-.center[Figure without Alias (Top) versus figure with Alias (Bottom)]
-
----
-class: title-slide, middle
-
-## hover Tooltip
-
----
-
-# Marks Card
-
-The design of the **default visualisation is created automatically** according to what Tableau consider as the most relevant, but this choice **can be modified**:
+# Key Elements: Visualisations
 
 .pull-left[
-1. By manually selecting the type of Mark displayed
-2. By manually selecting the design of Mark displayed (i.e., Color, Size, Label, Detail, and Tooltip)
-  
-<span>&lt;i class="fas  fa-arrow-circle-right faa-horizontal animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> Note: Each can be customised globally but they can also be customised according to the values of variables (already used or additional)
+
+1. Place your visualisations in a relevant order 
+2. Make sure they are customised
+3. Add a caption
+4. Add global interactive features
+
 ]
 
 .pull-right[
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/build_manual_shelves_marks1.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Tooltip Principle
-
-.pull-left[
-The tooltip is a series of information (numeric or graphic) that are displayed in a temporary box when the user's cursor goes over or clicks on a visualisation element.
-]
-
-.pull-right[
-&lt;img src="https://interworks.com/wp-content/uploads/sites/default/files/wp-content/uploads/2010/08/TTDefault.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
-It is used to precise actual numbers behind the figures and to tell a short story about what is currently seen.
-
-.pull-left[
-&lt;img src="https://interworks.com/wp-content/uploads/sites/default/files/wp-content/uploads/2010/08/CondFormatMore.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-&lt;img src="https://cdns.tblsft.com/sites/default/files/blog/vit-gif-for-blog_leave-for-work.gif" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Tooltip Principle
-
-By default, the tooltip display all the **variables included in Rows and Columns** of the figure.
-
-By clicking on the tooltip option from the marks cards, it is possible to **modify how the information is displayed**.
-
-**Variables between `&lt;&gt;` symbols** are changing values according to the cursor position.
-
-.pull-left[
-For example:
-```
-Sex:                  &lt;Sex&gt;
-Survived:             &lt;Survived&gt;
-Count of titanic.csv: &lt;CNT(titanic.csv)&gt;
-```
-]
-
-.pull-right[
-Will show:
-```
-Sex:                  female
-Survived:             survived
-Count of titanic.csv: 734
-```
-]
-
-However,  we can reorganise how the information is displayed, which helps to tell a story.
-
-For example:
-```
-After the catastrophe, &lt;CNT(titanic.csv)&gt; &lt;Sex&gt; passengers &lt;Survived&gt;!
-```
-
-Will show:
-```
-After the catastrophe, 734 female passengers survived!
-```
-
----
-
-# Tooltip Advanced
-
-It is possible to **add more variables** in the tooltip with drag-and-drop to the marks card.
-
-However, instead of adding another value, you can also **add a full visualisation** in the tooltip. When configuring the tooltip, click `Insert` and select `Sheets` with the name of the visualisation to add.
-
-&lt;img src="img/tableau_sheet_tooltip.gif" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-class: title-slide, middle
-
-## Filters and Highlighters
-
----
-
-# Filters
-
-You can display **only specific data** by using the "Filters Card" and selecting how to filter the data that are displayed (i.e., which categories for categorical variables and which values for continuous variables).
-
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/filtering-drag.gif" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Filters
-
-Filters also refers to addition of a **filtering menu** for the users to perform their own selection.
-
-.pull-left[
-To add a Filter menu to a visualisation:
-
-1. Click `Analysis` from the top toolbar and click `Filters`
-2. Select the variable that the user can choose values from
-3. From the drop down arrow of the new filter menu, customise its design
-
-<span>&lt;i class="fas  fa-arrow-circle-right faa-horizontal animated faa-slow " style=" color:blue;"&gt;&lt;/i&gt;</span> Note: The same result can be achieved with the `Filters` card by selecting `Show Filter`.
-]
-
-.pull-right[
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/show_filter2.gif" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Highlighters
-
-Highlighters also add a **highlighters menu** for the users to focus the visualisations on some categories of data.
-
-When added to a dashboard, the highlighters menu will apply to all visualisations involving the variable highlighted.
-
-.pull-left[
-To add a Filter menu to a visualisation:
-
-1. Click `Analysis` from the top toolbar and click `Highlighters`
-2. Select the variable that the user can highlight values from
-3. From the drop down arrow of the new highlighter menu, customise its design but it is much more limited that the customisation of the filter menu
-]
-
-.pull-right[
-&lt;img src="https://cdnl.tblsft.com/sites/default/files/blog/third_highlighter.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key_viz.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 class: title-slide, middle
 
-## Time Animation Player
-
----
-
-# Time Animation Player
-
-To visualise change according to time in a figure, a time variable can be added to the "Page Card".
-
-The possibility to play the changes will be offered to the user from additional controls.
-
-&lt;img src="https://miro.medium.com/max/1400/1*9wAYT7RHcaZOCNs0suDcmg.gif" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-class: title-slide, middle
-
-## Actions
-
----
-
-# Basic Actions
-
-While Filters and Highlighters are set-up at each figure level, Actions are **set-up at the dashboard** level and affects all figures included in the dashboard.
-
-.pull-left[
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/Actions_dialog.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-Click `Dashboard` from the top toolbar and click `Actions`. Then you have to choose:
-
-1. How to trigger the action (when the cursor moves on a figure, when it clicks on a figure, from an added menu)
-2. From which figure it comes from
-3. Which figures it impacts
-]
-
-**Filter and Highlight actions are the easiest** to implement as they are behaving like Filters and Highlighters but for the full dashboard.
-
-Some other actions can be trick to implement but could be essential when adding buttons for instance.
-
----
-
-# Filter and Highlight Actions
-
-If all the set-up fields are left as with default values, all the figure will be modified if a user hovers, clicks, or select a variable from a menu
-
-.pull-left[
-- Adding Highlight Actions to a dashboard is **the easiest way to make it smart**. By choosing "hover" as interaction mode, the figures will react to the users simultaneously.
-
-- Filter Actions are interesting too but they can be **confusing when hover or click are chosen** to trigger. Prefer triggering Filter Actions from menus instead.
-]
-
-.pull-right[
-&lt;img src="https://interworks.com/wp-content/uploads/2019/02/GIF1.gif" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-class: inverse, mline, center, middle
-
-# 3. Data Transformation in Tableau
-
----
-
-# Data Transformation in Tableau
-
-If your data is a Stand Alone File, prefer transformations with MS Excel...
-
-... Except for **pivoting your table** (long vs wide table) or **joining two or more tables**
-
-If your data is an Auto Update document (type cloud hosted spreadsheet or database) then transforming in Tableau is required
-
-Tableau has created a specific tool for data transformation called **Tableau Prep** but a lot can already be done with **Tableau Desktop**
-
-&lt;img src="https://memegenerator.net/img/instances/65548459/what-if-i-told-you-you-could-prep-your-data-for-tableau-in-minutes-not-hours.jpg" width="35%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Pivot in Tableau
-
-Pivot is the action to transform a table from wide (multiple variables) to long (one variable contains names and the second the values)
-
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/qs_pivot_example.png" width="80%" style="display: block; margin: auto;" /&gt;
-
-.pull-left[
-In Data Source page:
-
-1. Select the variables to pivot
-2. Click left/double and use "Pivot"
-]
-
-.pull-right[
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-us/Img/qs_pivot_command.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Relationships vs Joins
-
-The default method in Tableau is to use relationships. Relationships preserve the original tables’ level of detail when combining information. Relationships are the recommended method of combining data in most instances.
-
-However, there may be times when you want to directly establish a join, either for control or for desired aspects of a join compared to a relationship, such as deliberate filtering or duplication.
-
-.pull-left[
-Join is the action of **merging two tables** based on a common key variable
-
-1. Open a second table in Tableau's home page
-2. In Data Source page, drag and drop this second table next to the first table 
-]
-
-.pull-right[
-&lt;img src="https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin2.gif" width="90%" style="display: block; margin: auto;" /&gt;&lt;img src="https://help.tableau.com/current/pro/desktop/en-gb/Img/data_model_single_tablewjoin3.gif" width="90%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-# Link to Data Transformation in Tableau
-
-.pull-left[
-### Pivot Tutorials
-
-- [Pivot Data from Columns to Rows by Tableau](https://help.tableau.com/current/pro/desktop/en-us/pivot.htm)
-- [How to Create Tableau Pivot by Data Flair](https://data-flair.training/blogs/pivot-in-tableau/)
-- [Pivot in Tableau by EDUCBA](https://www.educba.com/pivot-in-tableau/)
-
-### Join Tutorials
-
-- [Join Your Data - Part 1 by Tableau](https://help.tableau.com/current/pro/desktop/en-gb/joining_tables.htm)
-- [Join Your Data - Part 2 by Tableau](https://help.tableau.com/current/pro/desktop/en-us/joining_tables.htm)
-- [Learn the rules to join tables in Tableau by Data Flair](https://data-flair.training/blogs/tableau-joins/)
-- [Tableau - Data Joining by Tutorialspoint](https://www.tutorialspoint.com/tableau/tableau_data_joining.htm)
-]
-
-.pull-right[
-&lt;img src="http://www.quickmeme.com/img/c7/c702826a3aa55ac8a6f8cf52763a6205eec186242077b184bf162a1ccf3b30ce.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-class: title-slide, middle
-
-## Live Examples
-
----
-class: inverse, mline, center, middle
-
-# 4. Publish your Tableau Dashboard
-
----
-
-# Publish 
-
-#### Publishing is the process of saving a dashboard online. It can then be accessed by everyone.
-
-<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Warning: For your assignment, publish your dashboard online and submit the dashboard URL on loop.
-
-&lt;img src="img/tableau_published.png" width="70%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Export vs. Share with Desktop
-
-More details about how to save and share Tableau Desktop with the following contents among others found online:
-
-- [A Quick Guide to Tableau File Types](https://vizartpandey.com/a-quick-guide-to-tableau-file-types/)
-- [Learn all kinds of file extensions used in Tableau](https://data-flair.training/blogs/tableau-file-types/)
-- [TWB vs TWBX in Tableau](https://analyticscanvas.com/twb-vs-twbx-in-tableau/)
-- [Understanding Tableau File Extensions](https://interworks.com/blog/rcurtis/2016/04/14/alphabet-soup-understanding-tableau-file-extensions/)
-
-&lt;img src="https://interworks.com/wp-content/uploads/sites/default/files/blog-content/TableauFileExtensions.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-.center[Different types of Tableau export files. TWBX has to be used for the assignment because it includes the dashboard and the data (contrary to TWB files which only include dashboards)]
-
----
-class: title-slide, middle
-
-## Live Examples
-
----
-class: inverse, mline, center, middle
-
-# 5. Assignment 1 Brief
-
----
-
-# Assignment Instructions
-
-### Context
-
-You are Data Analyst for the UNICEF organisation, an you have been asked to design a Tableau Dashboard to raise awareness of the public on a specific world issue.
-
-### Task
-
-Two data files will be emailed to you, focus your dashboard on the files called **unicef_indicator_1.csv** and **unicef_indicator_2.csv**. Use the file **unicef_metadata.csv** to help developing your story if you need to.
-
-**Tell a "story" (i.e., narrative) behind the data in ONE Tableau Dashboard.**
-
-.pull-left[
-### Assessment Criteria
-
-- Creativity (25%)
-- Analytical Depth (25%)
-- Beauty/Design (25%)
-- Overall Story (25%)
-]
-
-.pull-right[
-### Assessment Submission
-
-Submit the URL of your dashboard on the Assignment Upload module of the MT5000 Loop page
-
-**Deadline March 30th, 1pm**
-]
-
----
-
-# Tableau Challenge
-
-<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Warning: This is not mandatory for your assignment, only submitting the URL of your dashboard before March 30th on Loop is.
-
-Tableau is much more than basic visualisations, very professional output can be obtained easily, see some examples online: https://public.tableau.com/gallery/
-
-- Use these existing dashboards as inspirations for your own dashboards. Don't reinvent the wheel, reproducing with your own data is challenging enough. 
-- Follow the steps of Mehmet, student of MT5000 in 2020 and Domitille in 2022, selected among the top 10 of [EDHEC DataViz Challenge](https://www.edhec.edu/en/edhec-dataviz-challenge)
-
-### EDHEC DataViz Challenge (2023)
-
-- Step 1: Publish your dashboard entry to your Tableau Public Profile with the tag **#StudentdataViz2023**.
-- Setp 2: From March 7, submit your dasboard URL [here](https://docs.google.com/forms/d/e/1FAIpQLSfKDVRlQzM5GK5wLNTtdxxHkk3uyYnjW7_BjycxwC31qDMd_w/viewform).
-
-### The Challenge is open for entries until April 11th, 2023. 
-
----
-
-# Tableau Challenge
-
-Past challenges are an excellent way to have an idea of outstanding dashboards:
-- [Google Data Viz Challenge (2012)]( https://public.tableau.com/en-us/s/big-data-viz-challenge-entries)
-- [Big Data Viz Challenge (2016)]( https://public.tableau.com/en-us/s/big-data-viz-challenge)
-- [Do Good Data Viz Challenge (2016)](https://www.tableau.com/tableau-foundation-challenge)
-- [Women in Analytics Data Viz Competition (2020)](https://womeninanalytics.com/data-viz-competition/)
-- [DataConnect Data Viz Competition (2022)](https://www.dataconnectconf.com/dataviz-competition)
-
-&lt;img src="https://media.makeameme.org/created/use-tableau-you.jpg" width="30%" style="display: block; margin: auto;" /&gt;
+## Exercise
+
+1. Insert some of your Gapminder visualisations (max 5) on a dashboard
+2. Add your story and title
+3. Configure global Filter and Highlight actions from the tab **Dashboard** and option **"Actions..."**
+4. Modify the hover tooltip
+
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/tableau/tableau_public_actions.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+<div class="countdown" id="timer_345b3bdb" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 class: inverse, mline, left, middle
