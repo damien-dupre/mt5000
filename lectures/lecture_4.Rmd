@@ -172,32 +172,42 @@ include_graphics("img/powerbi_recent.png")
 Always on the left side, it can be minimised with the hamburger menu button
 
 .left-column[
-```{r out.width='110%'}
+```{r out.width='30%'}
 include_graphics("img/powerbi_menu.png")
 ```
 ]
 
-<br>
-
 --
 
-- Will bring you back to the welcome page
+- Home will bring you back to the welcome page
 --
 
-- The main access to create visualisations and dashboards
+<br><br>
+
+- Create is the main access to create visualisations and dashboards
 --
 
-- List of visualisations and dashboards you previously used or created
+<br><br>
+
+- Browse lists visualisations and dashboards you previously used
 --
 
-- List of data you previously used
+<br><br>
+
+- The data hub lists the data you previously used
 --
 
-- Create and access "scorecards" (mini dashboards to track data)
---
+<br><br>
 
 - Connection to your organisation database and web services 
 --
+
+<br><br>
+
+- Metrics and Monitoring hub creates and access your "scorecards" 
+--
+
+<br><br>
 
 - Shortcut to the [Microsoft learning platform for Power BI tutorials](https://docs.microsoft.com/en-us/learn/powerplatform/power-bi)
 
@@ -222,7 +232,7 @@ include_graphics("img/powerbi_menu.png")
 # Vocabulary
 
 ```{r out.width='80%'}
-include_graphics("https://cdn-aldpb.nitrocdn.com/MmRYricBGnwFelNvIykEOHWwZuUwjnwj/assets/images/optimized/rev-a60081a/wp-content/uploads/2019/11/powerbi-diagram.png")
+include_graphics("https://cdn-aldpb.nitrocdn.com/MmRYricBGnwFelNvIykEOHWwZuUwjnwj/assets/images/optimized/rev-418456f/spreadsheeto.com/wp-content/uploads/2019/11/powerbi-diagram.png")
 ```
 .center.tiny[Source: How to Create Your First Power BI Dashboard (Step-by-Step) [`r emo::ji("link")`](https://spreadsheeto.com/power-bi-dashboard/)]
 
@@ -231,7 +241,7 @@ class: title-slide, middle
 
 ## Live Demo
 
-### Go to: Learn (Nav. Pane) -> Sample Report -> Open "Store Sales"
+### Go to: **Learn (Nav. Pane)** `r emo::ji("right arrow")` Sample Report `r emo::ji("right arrow")` Open "Store Sales"
 
 ---
 
@@ -288,7 +298,7 @@ Then choose between:
 
 # Step 2: Create a Report
 
-```{r out.width='100%'}
+```{r out.width='90%'}
 include_graphics("img/powerbi_create.png")
 ```
 
@@ -462,14 +472,6 @@ class: inverse, mline, center, middle
 
 ---
 
----
-
-class: inverse, mline, center, middle
-
-# 0. Practice Data and Topic
-
----
-
 # Practice Data
 
 In order to show you how to use Power BI, we are going to exercise with the dataset called **titanic**.
@@ -515,17 +517,33 @@ include_graphics("https://rss.onlinelibrary.wiley.com/cms/asset/70b0be43-c955-49
 ```
 
 ---
+
 class: title-slide, middle
 
-## Use **titanic.csv** to create a report in Power BI
+## Use **titanic.csv** to create a Power BI Report
 
-Use **1 Composition Figure**, **1 Comparison Figure** and **1 Relationship Figure**
+Design: 
+- **1 Pie Chart using Survival variable**
+- **1 Bar Chart Proportion using Survival, Sex and Embarked variables**
+- **1 Scatterplot using Fare, Age and Survival variables**
 
-Remember to **use titles**, to **customise them** and to **add a text** to convey your narrative
+Then, **pin these 3 visualisation on a Power BI dashboard** and to **add the text** from the document `text_dashboard.txt` to convey your narrative.
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` The Survival variable will be recognised as continuous and not as categorical, you have to change its type.
 
 ```{r}
 countdown(minutes = 20, warn_when = 60)
 ```
+
+---
+
+# Optional Free Trainings
+
+Visualisations with Power BI:
+- [Explore Power BI World!](https://www.udemy.com/course/explore-power-bi/)
+- [Power BI - The Ultimate Orientation](https://www.udemy.com/course/power-bi-the-ultimate-orientation/)
+- [Power BI Tutorial From Beginner to Pro ⚡ Desktop to Dashboard in 60 Minutes ⏰](https://www.youtube.com/watch?v=AGrl-H87pRU)
+- [How to use Microsoft Power BI - Tutorial for Beginners](https://www.youtube.com/watch?v=TmhQCQr_DCA)
 
 ---
 class: inverse, mline, left, middle
