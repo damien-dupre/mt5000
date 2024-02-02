@@ -22,6 +22,12 @@ library(knitr)
 # options ----------------------------------------------------------------------
 options(scipen = 999)
 opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE, fig.retina = 3, fig.align = "center")
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 # Previoulsy ...
@@ -210,7 +216,7 @@ To add a **second line in the same plot** using the original Date variable:
 2. Then, select `Dual Axis` to merge them
 
 ```{r out.width='60%'}
-include_graphics("img/tableau_dual_axis.gif")
+include_img("tableau_dual_axis.gif")
 ```
 
 ---
@@ -228,7 +234,7 @@ More details about Tableau and timeseries figures with the following contents am
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/tableau_linecharts.png")
+include_img("tableau_linecharts.png")
 ```
 ]
 
@@ -257,11 +263,11 @@ Aliasing a Variable is not an interactive feature per se but it is a simple tip 
 Creating an Alias means renaming the categories displayed by a variable (but the original names are kept for the calculations).
 
 ```{r out.width='90%'}
-include_graphics("img/tableau_alias_1.png")
+include_img("tableau_alias_1.png")
 ```
 
 ```{r out.width='90%'}
-include_graphics("img/tableau_alias_2.png")
+include_img("tableau_alias_2.png")
 ```
 
 .center[Figure without Alias (Top) versus figure with Alias (Bottom)]
@@ -367,7 +373,7 @@ It is possible to **add more variables** in the tooltip with drag-and-drop to th
 However, instead of adding another value, you can also **add a full visualisation** in the tooltip. When configuring the tooltip, click `Insert` and select `Sheets` with the name of the visualisation to add.
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_sheet_tooltip.gif")
+include_img("tableau_sheet_tooltip.gif")
 ```
 
 ---
@@ -604,7 +610,7 @@ class: inverse, mline, center, middle
 `r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: For your assignment, publish your dashboard online and submit the dashboard URL on loop.
 
 ```{r out.width='70%'}
-include_graphics("img/tableau_published.png")
+include_img("tableau_published.png")
 ```
 
 ---

@@ -40,6 +40,11 @@ opts_chunk$set(
   fig.retina = 3
   )
 
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 # Previously ...
@@ -112,14 +117,14 @@ To access it:
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/powerbi_signin.png")
+include_img("powerbi_signin.png")
 ```
 ]
 
 You should land on the following welcome page.
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_welcome.png")
+include_img("powerbi_welcome.png")
 ```
 
 ---
@@ -144,7 +149,7 @@ Power BI is super polite and will welcome you in your organisation.
 It will also offer you a button **+ Report** which is a shortcut for the **+ Create** option from the menu. Both are the starting point for new visualisations
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_create_shortcut.png")
+include_img("powerbi_create_shortcut.png")
 ```
 .center.tiny[Thank you for your greetings Power BI]
 ---
@@ -156,13 +161,13 @@ You will also have a quick access to your previous work and to default official 
 These tutorials are strongly recommended if you want to progress with Power BI.
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_recommended.png")
+include_img("powerbi_recommended.png")
 ```
 
 The recent tab box allows you to have another quick access to your previous work.
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_recent.png")
+include_img("powerbi_recent.png")
 ```
 
 ---
@@ -173,7 +178,7 @@ Always on the left side, it can be minimised with the hamburger menu button
 
 .left-column[
 ```{r out.width='30%'}
-include_graphics("img/powerbi_menu.png")
+include_img("powerbi_menu.png")
 ```
 ]
 
@@ -262,7 +267,7 @@ In the module's Loop page:
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/powerbi_excel_data.png")
+include_img("powerbi_excel_data.png")
 ```
 ]
 
@@ -276,7 +281,7 @@ In Power BI Service:
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/powerbi_enter_data.png")
+include_img("powerbi_enter_data.png")
 ```
 ]
 
@@ -285,7 +290,7 @@ include_graphics("img/powerbi_enter_data.png")
 # Step 1: Manually Import Data
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_data_input.gif")
+include_img("powerbi_data_input.gif")
 ```
 
 Then choose between:
@@ -299,7 +304,7 @@ Then choose between:
 # Step 2: Create a Report
 
 ```{r out.width='90%'}
-include_graphics("img/powerbi_create.png")
+include_img("powerbi_create.png")
 ```
 
 In Power BI canvas: 
@@ -315,7 +320,7 @@ In Power BI canvas:
 # Variable Type and Visualisations
 
 ```{r out.width='20%'}
-include_graphics("img/powerbi_visualisations.png")
+include_img("powerbi_visualisations.png")
 ```
 
 Remember, there is a type of visualisation for each type of variables:
@@ -338,7 +343,7 @@ class: title-slide, middle
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_composition_1.png")
+include_img("powerbi_composition_1.png")
 ```
 
 ---
@@ -346,7 +351,7 @@ include_graphics("img/powerbi_composition_1.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_composition_2.png")
+include_img("powerbi_composition_2.png")
 ```
 
 ---
@@ -354,7 +359,7 @@ include_graphics("img/powerbi_composition_2.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_composition_3.png")
+include_img("powerbi_composition_3.png")
 ```
 
 ---
@@ -384,7 +389,7 @@ Unfortunately, Power BI is extremely limited for those.
 # Distribution and Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_distribution_1.png")
+include_img("powerbi_distribution_1.png")
 ```
 
 ---
@@ -392,7 +397,7 @@ include_graphics("img/powerbi_distribution_1.png")
 # Distribution and Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_distribution_2.png")
+include_img("powerbi_distribution_2.png")
 ```
 
 ---
@@ -415,7 +420,7 @@ A trend line can be added from the **Analytics** option.
 # Relationship Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_relationship.png")
+include_img("powerbi_relationship.png")
 ```
 
 ---
@@ -444,7 +449,7 @@ include_graphics("https://powerbicdn.azureedge.net/cvt-9394a7615e76e3565238e1688
 # Timeseries and Maps Figures
 
 ```{r out.width='100%'}
-include_graphics("img/powerbi_map.png")
+include_img("powerbi_map.png")
 ```
 
 ---

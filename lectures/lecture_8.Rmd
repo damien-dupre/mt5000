@@ -30,6 +30,12 @@ colorize <- function(x, color) {sprintf("<span style='color: %s;'>%s</span>", co
 # options ----------------------------------------------------------------------
 options(scipen = 999, htmltools.preserve.raw = FALSE)
 opts_chunk$set(echo = FALSE, fig.align = "center", fig.retina = 3)
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 ```{r xaringan-extra-styles, echo=FALSE}
@@ -88,14 +94,14 @@ R is usually used via RStudio and First time users often confuse the two. At its
 .pull-left[
 .center[R: The engine]
 ```{r out.width='100%'}
-include_graphics("img/car_motor.jpeg")
+include_img("car_motor.jpeg")
 ```
 ]
 
 .pull-right[
 .center[RStudio: The dashboard]
 ```{r out.width='100%'}
-include_graphics("img/car_dashboard.jpeg")
+include_img("car_dashboard.jpeg")
 ```
 ]
 
@@ -107,7 +113,7 @@ class: clear
 --
 
 ```{r out.width='150%'}
-include_graphics("img/the_matrix.gif")
+include_img("the_matrix.gif")
 ```
 
 ---
@@ -153,7 +159,7 @@ When you create a new project, you will lauch Rstudio see the following 3 window
 * **Files, Plots, Package, Help and Viewer**: where data science materials are
 
 ```{r out.width='60%'}
-include_graphics("img/rstudio_panes.png")
+include_img("rstudio_panes.png")
 ```
 
 The last window **Code Editor** opens when creating a new R Script
@@ -174,7 +180,7 @@ The Status of R is indicated by the symbol in the console prompt:
 
 .pull-right[
 ```{r out.width = '100%'}
-include_graphics("img/r_console.png")
+include_img("r_console.png")
 ```
 ]
 
@@ -290,7 +296,7 @@ In a Quarto file:
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/rstudio_run.gif")
+include_img("rstudio_run.gif")
 ```
 ]
 
@@ -305,14 +311,14 @@ A good analogy for **R packages are like apps you can download onto a mobile pho
 .pull-left[
 .center[R: A new phone]
 ```{r out.width='100%'}
-include_graphics("img/phone_design.jpeg")
+include_img("phone_design.jpeg")
 ```
 ]
 
 .pull-right[
 .center[R Packages: Apps you can download]
 ```{r out.width='100%'}
-include_graphics("img/phone_apps.jpeg")
+include_img("phone_apps.jpeg")
 ```
 ]
 
@@ -512,7 +518,7 @@ include_graphics("https://community-cdn.rstudio.com/uploads/default/original/2X/
 .pull-right[
 .center[Step 2: Import your Data]
 ```{r out.width='100%'}
-include_graphics("img/rstudio_import.png")
+include_img("rstudio_import.png")
 ```
 ]
 

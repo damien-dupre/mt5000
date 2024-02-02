@@ -52,6 +52,11 @@ integer_breaks <- function(n = 5, ...) {
   return(fxn)
 }
 
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  include_graphics()
+}
+
 # data -------------------------------------------------------------------------
 organisation_alpha <- readxl::read_xlsx(here("data/organisation_alpha.xlsx"))
 ```
@@ -155,7 +160,7 @@ countdown(minutes = 3)
 # Guess Variable Type - Exercise (2)
 
 ```{r out.width='100%'}
-include_graphics("img/viz_exercise_1.png")
+include_img("viz_exercise_1.png")
 ```
 
 ```{r}
@@ -183,7 +188,7 @@ countdown(minutes = 2)
 # Guess Variable Type - Solution (2)
 
 ```{r out.width='100%'}
-include_graphics("img/viz_exercise_1.png")
+include_img("viz_exercise_1.png")
 ```
 
 ```{r}
@@ -228,7 +233,7 @@ include_graphics("https://i0.wp.com/flowingdata.com/wp-content/uploads/2017/09/F
 # Master the Key Figures
 
 ```{r out.width='100%'}
-include_graphics("img/viz_key_figures_1.jpeg")
+include_img("viz_key_figures_1.jpeg")
 ```
 
 ---
@@ -301,7 +306,7 @@ This **aggregation**, is done with basic statistical calculations:
 # Zoom on Median/Quartiles
 
 ```{r out.width='100%'}
-include_graphics("img/viz_med_quartiles_1.png")
+include_img("viz_med_quartiles_1.png")
 ```
 
 ---
@@ -309,11 +314,11 @@ include_graphics("img/viz_med_quartiles_1.png")
 # Zoom on Median/Quartiles
 
 ```{r out.width='50%'}
-include_graphics("img/viz_med_quartiles_2.png")
+include_img("viz_med_quartiles_2.png")
 ```
 
 ```{r out.width='50%'}
-include_graphics("img/viz_med_quartiles_3.png")
+include_img("viz_med_quartiles_3.png")
 ```
 
 ---
@@ -338,7 +343,7 @@ $$Y = b0 + b1\,X + e$$
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/viz_correlation_1.png")
+include_img("viz_correlation_1.png")
 ```
 ]
 .pull-right[
@@ -362,7 +367,7 @@ Correlation is a value **from -1 to +1** which indicate the strength and directi
 Examples:
 
 ```{r out.width='70%'}
-include_graphics("img/viz_correlation_2.png")
+include_img("viz_correlation_2.png")
 ```
 
 ---
@@ -449,13 +454,13 @@ ggplot(organisation_alpha, aes(x = location, fill = location)) +
 Use pie charts when the variable has only to categories:
 
 ```{r out.width='50%'}
-include_graphics("img/viz_piechart_1.jpeg")
+include_img("viz_piechart_1.jpeg")
 ```
 
 If your variable has more than 2 categories then use bar chart:
 
 ```{r out.width='50%'}
-include_graphics("img/viz_piechart_2.jpeg")
+include_img("viz_piechart_2.jpeg")
 ```
 
 See: https://depictdatastudio.com/when-pie-charts-are-okay-seriously-guidelines-for-using-pie-and-donut-charts/
@@ -713,7 +718,7 @@ class: inverse, mline, center, middle
 # Master the Key Figures
 
 ```{r out.width='70%'}
-include_graphics("img/viz_key_figures_2.jpeg")
+include_img("viz_key_figures_2.jpeg")
 ```
 
 ---
@@ -732,7 +737,7 @@ include_graphics("img/viz_key_figures_2.jpeg")
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/viz_custom.png")
+include_img("viz_custom.png")
 ```
 ]
 
@@ -769,7 +774,7 @@ class: title-slide, middle
 # What’s Wrong Here?
 
 ```{r out.width='70%'}
-include_graphics("img/dataviz_exercise_1.png")
+include_img("dataviz_exercise_1.png")
 ```
 .center.tiny[Source: Official Twitter Account of The White House [`r emo::ji("link")`](https://twitter.com/WhiteHouse/status/1486709480351952901)]
 
@@ -778,7 +783,7 @@ include_graphics("img/dataviz_exercise_1.png")
 # What’s Wrong Here?
 
 ```{r out.width='80%'}
-include_graphics("img/dataviz_exercise_2.png")
+include_img("dataviz_exercise_2.png")
 ```
 .center.tiny[Source: Misleading Graphs in Real Life: Overview [`r emo::ji("link")`](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/misleading-graphs/)]
 
@@ -787,7 +792,7 @@ include_graphics("img/dataviz_exercise_2.png")
 # What’s Wrong Here?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_exercise_3.jpeg")
+include_img("dataviz_exercise_3.jpeg")
 ```
 .center.tiny[Source: The statisticians at Fox News use classic and novel graphical techniques to lead with data [`r emo::ji("link")`](https://simplystatistics.org/posts/2012-11-26-the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/)]
 
@@ -796,7 +801,7 @@ include_graphics("img/dataviz_exercise_3.jpeg")
 # What’s Wrong Here?
 
 ```{r out.width='80%'}
-include_graphics("img/dataviz_exercise_4.png")
+include_img("dataviz_exercise_4.png")
 ```
 .center.tiny[Source: The statisticians at Fox News use classic and novel graphical techniques to lead with data [`r emo::ji("link")`](https://simplystatistics.org/posts/2012-11-26-the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/)]
 
@@ -805,7 +810,7 @@ include_graphics("img/dataviz_exercise_4.png")
 # What’s Wrong Here?
 
 ```{r out.width='80%'}
-include_graphics("img/dataviz_exercise_12.jpg")
+include_img("dataviz_exercise_12.jpg")
 ```
 .center.tiny[Source: KCRA graph on the 7pm news - r/Sacramento [`r emo::ji("link")`](https://www.reddit.com/r/Sacramento/comments/tysyxz/kcra_graph_on_the_7pm_news/)]
 
@@ -814,7 +819,7 @@ include_graphics("img/dataviz_exercise_12.jpg")
 # What’s Wrong Here?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_exercise_5.jpeg")
+include_img("dataviz_exercise_5.jpeg")
 ```
 .center.tiny[Source: 5 Ways Writers Use Misleading Graphs To Manipulate You [`r emo::ji("link")`](https://venngage.com/blog/misleading-graphs/)]
 
@@ -823,7 +828,7 @@ include_graphics("img/dataviz_exercise_5.jpeg")
 # What’s Wrong Here?
 
 ```{r out.width='80%'}
-include_graphics("img/dataviz_exercise_6.jpeg")
+include_img("dataviz_exercise_6.jpeg")
 ```
 .center.tiny[Source: The Worst Covid-19 Misleading Graphs [`r emo::ji("link")`](https://www.datasciencecentral.com/the-worst-covid-19-misleading-graphs/)]
 
@@ -832,7 +837,7 @@ include_graphics("img/dataviz_exercise_6.jpeg")
 # What’s Wrong Here?
 
 ```{r out.width='60%'}
-include_graphics("img/dataviz_exercise_7.png")
+include_img("dataviz_exercise_7.png")
 ```
 .center.tiny[Source: Misleading Graphs in Real Life: Overview [`r emo::ji("link")`](https://www.statisticshowto.com/probability-and-statistics/descriptive-statistics/misleading-graphs/)]
 
@@ -841,7 +846,7 @@ include_graphics("img/dataviz_exercise_7.png")
 # What’s Wrong Here?
 
 ```{r out.width='80%'}
-include_graphics("img/dataviz_exercise_8.jpeg")
+include_img("dataviz_exercise_8.jpeg")
 ```
 .center.tiny[Source: Health Care in Crisis: 14,000 Losing Coverage Each Day [`r emo::ji("link")`](https://www.americanprogressaction.org/issues/healthcare/reports/2009/02/19/5635/health-care-in-crisis-14000-losing-coverage-each-day/)]
 
@@ -850,7 +855,7 @@ include_graphics("img/dataviz_exercise_8.jpeg")
 # What’s Wrong Here?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_exercise_9.jpeg")
+include_img("dataviz_exercise_9.jpeg")
 ```
 .center.tiny[Source: Nick Cage Movies Vs. Drownings, and More Strange (but Spurious) Correlations [`r emo::ji("link")`](https://www.nationalgeographic.com/science/article/nick-cage-movies-vs-drownings-and-more-strange-but-spurious-correlations)]
 
@@ -859,7 +864,7 @@ include_graphics("img/dataviz_exercise_9.jpeg")
 # What’s Wrong Here?
 
 ```{r out.width='70%'}
-include_graphics("img/dataviz_exercise_10.jpeg")
+include_img("dataviz_exercise_10.jpeg")
 ```
 .center.tiny[Source: Fact checking Trump's 'Impeach this' map [`r emo::ji("link")`](https://edition.cnn.com/2019/10/01/politics/trump-impeach-this-map-fact-check/index.html)]
 
@@ -868,7 +873,7 @@ include_graphics("img/dataviz_exercise_10.jpeg")
 # Land Doesn’t Vote, People Do
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_exercise_11.gif")
+include_img("dataviz_exercise_11.gif")
 ```
 .center.tiny[Source: Land Doesn’t Vote, People Do: This Electoral Map Tells the Real Story [`r emo::ji("link")`](https://demcastusa.com/2019/11/11/land-doesnt-vote-people-do-this-electoral-map-tells-the-real-story/)]
 
@@ -907,7 +912,7 @@ Provides basic principles for data visualisation
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/dataviz_principle_1.png")
+include_img("dataviz_principle_1.png")
 ```
 ]
 
@@ -919,13 +924,13 @@ include_graphics("img/dataviz_principle_1.png")
 
 .center[
 ```{r out.width='45%', fig.align='default'}
-include_graphics("img/dataviz_principle_2.png")
-include_graphics("img/dataviz_principle_3.png")
+include_img("dataviz_principle_2.png")
+include_img("dataviz_principle_3.png")
 ```
 
 ```{r out.width='45%', fig.align='default'}
-include_graphics("img/dataviz_principle_4.png")
-include_graphics("img/dataviz_principle_5.png")
+include_img("dataviz_principle_4.png")
+include_img("dataviz_principle_5.png")
 ```
 ]
 
@@ -937,8 +942,8 @@ include_graphics("img/dataviz_principle_5.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/dataviz_principle_6.png")
-include_graphics("img/dataviz_principle_7.png")
+include_img("dataviz_principle_6.png")
+include_img("dataviz_principle_7.png")
 ```
 ]
 
@@ -950,8 +955,8 @@ include_graphics("img/dataviz_principle_7.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/dataviz_principle_8.png")
-include_graphics("img/dataviz_principle_9.png")
+include_img("dataviz_principle_8.png")
+include_img("dataviz_principle_9.png")
 ```
 ]
 
@@ -963,8 +968,8 @@ include_graphics("img/dataviz_principle_9.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/dataviz_principle_10.png")
-include_graphics("img/dataviz_principle_11.png")
+include_img("dataviz_principle_10.png")
+include_img("dataviz_principle_11.png")
 ```
 ]
 
@@ -976,8 +981,8 @@ include_graphics("img/dataviz_principle_11.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/dataviz_principle_12.png")
-include_graphics("img/dataviz_principle_13.png")
+include_img("dataviz_principle_12.png")
+include_img("dataviz_principle_13.png")
 ```
 ]
 
@@ -989,12 +994,12 @@ include_graphics("img/dataviz_principle_13.png")
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/dataviz_principle_14.png")
+include_img("dataviz_principle_14.png")
 ```
 ]
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/dataviz_principle_15.png")
+include_img("dataviz_principle_15.png")
 ```
 ]
 
@@ -1006,8 +1011,8 @@ include_graphics("img/dataviz_principle_15.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/dataviz_principle_16.png")
-include_graphics("img/dataviz_principle_17.png")
+include_img("dataviz_principle_16.png")
+include_img("dataviz_principle_17.png")
 ```
 ]
 
@@ -1019,8 +1024,8 @@ include_graphics("img/dataviz_principle_17.png")
 
 .center[
 ```{r out.width='50%', fig.align='default'}
-include_graphics("img/dataviz_principle_18.png")
-include_graphics("img/dataviz_principle_19.png")
+include_img("dataviz_principle_18.png")
+include_img("dataviz_principle_19.png")
 ```
 ]
 
@@ -1032,7 +1037,7 @@ include_graphics("img/dataviz_principle_19.png")
 ### .center[Be precise and use captions, axes, and titles to do it]
 
 ```{r out.width='70%'}
-include_graphics("img/dataviz_principle_20.png")
+include_img("dataviz_principle_20.png")
 ```
 
 ---
@@ -1047,7 +1052,7 @@ class: inverse, mline, center, middle
 Pie chart for Categorical variable
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_1.gif")
+include_img("dataviz_excel_1.gif")
 ```
 
 ---
@@ -1057,7 +1062,7 @@ include_graphics("img/dataviz_excel_1.gif")
 Bar chart for Categorical variable
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_2.gif")
+include_img("dataviz_excel_2.gif")
 ```
 
 ---
@@ -1067,7 +1072,7 @@ include_graphics("img/dataviz_excel_2.gif")
 Histogram for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_3.gif")
+include_img("dataviz_excel_3.gif")
 ```
 
 ---
@@ -1077,7 +1082,7 @@ include_graphics("img/dataviz_excel_3.gif")
 Density plot for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_4.gif")
+include_img("dataviz_excel_4.gif")
 ```
 
 ---
@@ -1087,7 +1092,7 @@ include_graphics("img/dataviz_excel_4.gif")
 Box plot for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_5.gif")
+include_img("dataviz_excel_5.gif")
 ```
 
 ---
@@ -1097,7 +1102,7 @@ include_graphics("img/dataviz_excel_5.gif")
 Dynamite plot for Continuous variable
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_6.gif")
+include_img("dataviz_excel_6.gif")
 ```
 
 ---
@@ -1107,7 +1112,7 @@ include_graphics("img/dataviz_excel_6.gif")
 Multiple histograms?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_7.gif")
+include_img("dataviz_excel_7.gif")
 ```
 
 ---
@@ -1117,7 +1122,7 @@ include_graphics("img/dataviz_excel_7.gif")
 Multiple box plot?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_8.gif")
+include_img("dataviz_excel_8.gif")
 ```
 
 ---
@@ -1127,7 +1132,7 @@ include_graphics("img/dataviz_excel_8.gif")
 Multiple dynamite plot?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_9.gif")
+include_img("dataviz_excel_9.gif")
 ```
 
 ---
@@ -1137,7 +1142,7 @@ include_graphics("img/dataviz_excel_9.gif")
 Linear regression?
 
 ```{r out.width='100%'}
-include_graphics("img/dataviz_excel_10.gif")
+include_img("dataviz_excel_10.gif")
 ```
 
 ---

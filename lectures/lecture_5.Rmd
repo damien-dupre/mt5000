@@ -38,6 +38,12 @@ opts_chunk$set(
   fig.align = "center", 
   fig.retina = 3
   )
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 # Previoulsy ...
@@ -117,7 +123,7 @@ include_graphics("https://images.squarespace-cdn.com/content/v1/56fd706140261df9
 # How to Use Tableau Public
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_public_home.png")
+include_img("tableau_public_home.png")
 ```
 
 ---
@@ -125,7 +131,7 @@ include_graphics("img/tableau_public_home.png")
 # How to Use Tableau Public
 
 ```{r out.width='80%'}
-include_graphics("img/tableau_public_login.png")
+include_img("tableau_public_login.png")
 ```
 
 ---
@@ -133,7 +139,7 @@ include_graphics("img/tableau_public_login.png")
 # How to Use Tableau Public
 
 ```{r out.width='50%'}
-include_graphics("img/tableau_public_verify.png")
+include_img("tableau_public_verify.png")
 ```
 
 ---
@@ -141,7 +147,7 @@ include_graphics("img/tableau_public_verify.png")
 # How to Use Tableau Public
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_public_account.png")
+include_img("tableau_public_account.png")
 ```
 
 ---
@@ -149,7 +155,7 @@ include_graphics("img/tableau_public_account.png")
 # How to Use Tableau Public
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_public_createaviz.png")
+include_img("tableau_public_createaviz.png")
 ```
 
 ---
@@ -175,7 +181,7 @@ There are 4 types of areas:
 # Tableau Data Source
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_data_1.png")
+include_img("tableau_data_1.png")
 ```
 
 ---
@@ -183,7 +189,7 @@ include_graphics("img/tableau_data_1.png")
 # Tableau Data Source
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_data_2.png")
+include_img("tableau_data_2.png")
 ```
 
 ---
@@ -191,7 +197,7 @@ include_graphics("img/tableau_data_2.png")
 # Tableau Worksheet
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_worksheet.png")
+include_img("tableau_worksheet.png")
 ```
 
 ---
@@ -199,7 +205,7 @@ include_graphics("img/tableau_worksheet.png")
 # Tableau Dashboard
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_dashboard.png")
+include_img("tableau_dashboard.png")
 ```
 
 ---
@@ -207,7 +213,7 @@ include_graphics("img/tableau_dashboard.png")
 # Tableau Story 
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_story.png")
+include_img("tableau_story.png")
 ```
 
 ---
@@ -252,7 +258,7 @@ Without being too complicated, there is two major ways to connect data in Tablea
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/bobross_connection.jpg")
+include_img("bobross_connection.jpg")
 ```
 
 .center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
@@ -278,7 +284,7 @@ In the Data Source window, beside Connections, click on the plus sign to "Connec
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/tableau_connect_join_1.png")
+include_img("tableau_connect_join_1.png")
 ```
 ]
 
@@ -288,7 +294,7 @@ Drag and drop the second file next to the box representing the first file
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/tableau_connect_join_2.png")
+include_img("tableau_connect_join_2.png")
 ```
 ]
 
@@ -299,7 +305,7 @@ include_graphics("img/tableau_connect_join_2.png")
 Set the variables to join and if the link between the data files is correct then the link will be green
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_connect_join_3.png")
+include_img("tableau_connect_join_3.png")
 ```
 
 ---
@@ -312,14 +318,14 @@ Instead of clicking on the plus sign beside Connections, you can add data by cli
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/tableau_add_data_1.png")
+include_img("tableau_add_data_1.png")
 ```
 ]
 
 However you won't be able to use variable from both source for the same visualisation:
 
 ```{r out.width='30%'}
-include_graphics("img/tableau_add_data_2.png")
+include_img("tableau_add_data_2.png")
 ```
 
 ---
@@ -349,7 +355,7 @@ class: inverse, mline, center, middle
 
 .pull-left[
 ```{r out.width='30%'}
-include_graphics("img/tableau_variables.png")
+include_img("tableau_variables.png")
 ```
 ]
 
@@ -371,7 +377,7 @@ include_graphics("img/tableau_variables.png")
 
 .pull-left[
 ```{r out.width='50%'}
-include_graphics("img/tableau_analytics.png")
+include_img("tableau_analytics.png")
 ```
 ]
 
@@ -390,7 +396,7 @@ Special features behind the Data Tab:
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/tableau_configuration.png")
+include_img("tableau_configuration.png")
 ```
 ]
 
@@ -414,7 +420,7 @@ Equivalent to Excel Pivot Table but for visualisations
 
 .pull-left[
 ```{r out.width='50%'}
-include_graphics("img/tableau_showme.png")
+include_img("tableau_showme.png")
 ```
 ]
 
@@ -444,7 +450,7 @@ Choose between:
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/tableau_aggregation.png")
+include_img("tableau_aggregation.png")
 ```
 ]
 
@@ -486,7 +492,7 @@ class: title-slide, middle
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_composition_1.png")
+include_img("tableau_composition_1.png")
 ```
 
 ---
@@ -494,8 +500,8 @@ include_graphics("img/tableau_composition_1.png")
 # Composition Figures
 
 ```{r out.width='50%'}
-include_graphics("img/tableau_composition_2_1.png")
-include_graphics("img/tableau_composition_2_2.png")
+include_img("tableau_composition_2_1.png")
+include_img("tableau_composition_2_2.png")
 ```
 
 ---
@@ -503,7 +509,7 @@ include_graphics("img/tableau_composition_2_2.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_composition_2.png")
+include_img("tableau_composition_2.png")
 ```
 
 ---
@@ -511,7 +517,7 @@ include_graphics("img/tableau_composition_2.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_simple_bar.gif")
+include_img("tableau_simple_bar.gif")
 ```
 
 ---
@@ -519,7 +525,7 @@ include_graphics("img/tableau_simple_bar.gif")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_composition_3.png")
+include_img("tableau_composition_3.png")
 ```
 
 ---
@@ -527,7 +533,7 @@ include_graphics("img/tableau_composition_3.png")
 # Composition Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_pie_chart.gif")
+include_img("tableau_pie_chart.gif")
 ``` 
 
 ---
@@ -555,7 +561,7 @@ include_graphics("https://preview.redd.it/0esbxbu1tpg61.jpg?width=640&crop=smart
 # Distribution Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_distribution_1.png")
+include_img("tableau_distribution_1.png")
 ```
 
 ---
@@ -563,7 +569,7 @@ include_graphics("img/tableau_distribution_1.png")
 # Distribution Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_histogram.gif")
+include_img("tableau_histogram.gif")
 ```
 
 ---
@@ -571,7 +577,7 @@ include_graphics("img/tableau_histogram.gif")
 # Distribution Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_distribution_2.png")
+include_img("tableau_distribution_2.png")
 ```
 
 ---
@@ -579,7 +585,7 @@ include_graphics("img/tableau_distribution_2.png")
 # Distribution Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_box_plot.gif")
+include_img("tableau_box_plot.gif")
 ```
 
 ---
@@ -587,7 +593,7 @@ include_graphics("img/tableau_box_plot.gif")
 # Distribution Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_distribution_3.png")
+include_img("tableau_distribution_3.png")
 ```
 
 ---
@@ -595,7 +601,7 @@ include_graphics("img/tableau_distribution_3.png")
 # Distribution Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_average_bar.gif")
+include_img("tableau_average_bar.gif")
 ```
 
 ---
@@ -619,7 +625,7 @@ Comparison Figures can be easily done by adding "Dimension" as colour, column or
 # Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_comparison_1.png")
+include_img("tableau_comparison_1.png")
 ```
 
 ---
@@ -627,7 +633,7 @@ include_graphics("img/tableau_comparison_1.png")
 # Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_multiple_bar.gif")
+include_img("tableau_multiple_bar.gif")
 ```
 
 ---
@@ -635,7 +641,7 @@ include_graphics("img/tableau_multiple_bar.gif")
 # Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_comparison_2.png")
+include_img("tableau_comparison_2.png")
 ```
 
 ---
@@ -643,7 +649,7 @@ include_graphics("img/tableau_comparison_2.png")
 # Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_comparison_3.png")
+include_img("tableau_comparison_3.png")
 ```
 
 ---
@@ -651,7 +657,7 @@ include_graphics("img/tableau_comparison_3.png")
 # Comparison Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_comparison_4.png")
+include_img("tableau_comparison_4.png")
 ```
 
 ---
@@ -674,8 +680,8 @@ A trend line can be added from the **Analytics** option.
 # Relationship Figures
 
 ```{r out.width='50%'}
-include_graphics("img/tableau_relationship_1.png")
-include_graphics("img/tableau_relationship_2.png")
+include_img("tableau_relationship_1.png")
+include_img("tableau_relationship_2.png")
 ```
 
 ---
@@ -683,7 +689,7 @@ include_graphics("img/tableau_relationship_2.png")
 # Relationship Figures
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_scatterplot.gif")
+include_img("tableau_scatterplot.gif")
 ```
 
 ---
@@ -707,7 +713,7 @@ Interactive customisations can be added from the Dashboard for all the "Sheets"/
 # Tableau Dashboard
 
 ```{r out.width='100%'}
-include_graphics("img/tableau_dashboard.gif")
+include_img("tableau_dashboard.gif")
 ```
 
 ---

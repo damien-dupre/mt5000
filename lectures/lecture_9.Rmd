@@ -29,6 +29,12 @@ colorize <- function(x, color) {sprintf("<span style='color: %s;'>%s</span>", co
 # options ----------------------------------------------------------------------
 options(scipen = 999, htmltools.preserve.raw = FALSE)
 opts_chunk$set(echo = FALSE, fig.align = "center", fig.retina = 3)
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 ```{r xaringan-extra-styles, echo=FALSE}

@@ -48,6 +48,12 @@ opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE, fig.retina = 3, f
 #   select(country, continent) |>
 #   distinct() |>
 #   write_csv(here("data/tutorial/data_right_3.csv"))
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 class: title-slide, middle
@@ -378,7 +384,7 @@ Every Dashboard should include the following key element to fill their screenspa
 Optional elements can be added such as images, buttons, or menus
 
 ```{r out.width='70%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key.png")
+include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboard_key.png")
 ```
 .center.tiny[Example of a dashboard structure. Not to necessary follow, for illustration only.]
 

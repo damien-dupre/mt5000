@@ -24,6 +24,12 @@ library(tidyverse)
 
 # chunk options ----------------------------------------------------------------
 opts_chunk$set(echo = FALSE)
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 ```{r xaringan-extra-styles, echo=FALSE}
@@ -115,7 +121,7 @@ In your Posit Cloud:
 4/ If a warning appears, click `Install` on the message to install the {rmarkdown} package
 
 ```{r}
-include_graphics("img/rmarkdown_warning.png")
+include_img("rmarkdown_warning.png")
 ```
 
 5/ Click the blue arrow `Render` and save the document
@@ -175,7 +181,7 @@ code (only output is displayed).
 
 .pull-right[
 ```{r}
-include_graphics("img/quarto_create.png")
+include_img("quarto_create.png")
 ```
 ]
 
@@ -202,7 +208,7 @@ Inserted in the Quarto inside "chunks", the code is processed when creating the 
 # The "YAML"
 
 ```{r out.width='80%'}
-include_graphics("img/quarto_default_yaml.png")
+include_img("quarto_default_yaml.png")
 ```
 
 ---
@@ -210,7 +216,7 @@ include_graphics("img/quarto_default_yaml.png")
 # The Markdown Text
 
 ```{r out.width='80%'}
-include_graphics("img/quarto_default_markdown.png")
+include_img("quarto_default_markdown.png")
 ```
 
 ---
@@ -218,7 +224,7 @@ include_graphics("img/quarto_default_markdown.png")
 # The R Code
 
 ```{r out.width='80%'}
-include_graphics("img/quarto_default_code.png")
+include_img("quarto_default_code.png")
 ```
 
 ---
@@ -241,7 +247,7 @@ include_graphics("https://quarto.org/docs/get-started/hello/images/rstudio-rende
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/quarto_create.png")
+include_img("quarto_create.png")
 ```
 ]
 
@@ -251,13 +257,13 @@ include_graphics("img/quarto_create.png")
 
 .pull-left[
 ```{r out.width='100%'}
-include_graphics("img/quarto_default.png")
+include_img("quarto_default.png")
 ```
 ]
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("img/quarto_create.png")
+include_img("quarto_create.png")
 ```
 ]
 
@@ -761,7 +767,7 @@ class: inverse, mline, center, middle
 # Professional Websites
 
 ```{r, echo=FALSE, out.width='70%'}
-include_graphics("img/example_professional_site.png")
+include_img("example_professional_site.png")
 ```
 
 ---
@@ -769,7 +775,7 @@ include_graphics("img/example_professional_site.png")
 # Books
 
 ```{r, echo=FALSE, out.width='100%'}
-include_graphics("img/example_book.png")
+include_img("example_book.png")
 ```
 
 ---
@@ -777,7 +783,7 @@ include_graphics("img/example_book.png")
 # Academic Papers
 
 ```{r, echo=FALSE, out.width='60%'}
-include_graphics("img/example_papers.png")
+include_img("example_papers.png")
 ```
 
 ---

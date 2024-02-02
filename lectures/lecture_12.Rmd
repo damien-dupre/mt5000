@@ -25,6 +25,12 @@ library(tidyverse)
 
 # chunk options ----------------------------------------------------------------
 opts_chunk$set(echo = FALSE)
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
 ```
 
 # Objectives
@@ -98,7 +104,7 @@ class: inverse, mline, center, middle
 The core principle of GitHub is a remote desktop (or profile) with a folder called **Repository** for each project you are working on or you worked on (also called "Repo" if you want to use the slang).
 
 ```{r}
-include_graphics("img/github_dd_profile.png")
+include_img("github_dd_profile.png")
 ```
 
 ---
@@ -256,7 +262,7 @@ class: title-slide, middle
 0/ (Only if you are using Rstudio in Posit cloud) **Export your Rstudio project folder from Posit cloud to your computer** and **unzip this folder on your computer**
 
 ```{r}
-include_graphics("img/posit_cloud_export_project.gif")
+include_img("posit_cloud_export_project.gif")
 ```
 
 ---
@@ -268,7 +274,7 @@ include_graphics("img/posit_cloud_export_project.gif")
 2/ **Drop your entire unzipped folder** in the main box and **commit your changes**
 
 ```{r}
-include_graphics("img/upload_project_github.gif")
+include_img("upload_project_github.gif")
 ```
 
 ---
