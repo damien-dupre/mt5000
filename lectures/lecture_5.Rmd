@@ -46,8 +46,8 @@ We have seen how to use Power BI for basic Reports and Dashboards
 
 Now is the time to learn a much **more powerful** and much **more complicated** tool... 
 
-```{r out.width='40%'}
-include_graphics("https://unilytics.com/wp-content/uploads/2017/02/challenge-accepted.png")
+```{r out.width='30%'}
+include_graphics("https://i.pinimg.com/originals/6d/a9/d3/6da9d3785e45e3dc5a0e0ea6a731a603.png")
 ```
 
 ...Welcome to **Tableau**!
