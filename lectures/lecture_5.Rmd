@@ -38,12 +38,6 @@ opts_chunk$set(
   fig.align = "center", 
   fig.retina = 3
   )
-
-# functions --------------------------------------------------------------------
-include_img <- function(img_name) {
-  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
-  knitr::include_graphics()
-}
 ```
 
 # Previoulsy ...
@@ -251,7 +245,7 @@ Without being too complicated, there is two major ways to connect data in Tablea
 .pull-left[
 `r faa("arrow-circle-right", animate="horizontal", speed="slow", color="blue")` More details about Tableau data connection possibilities with the following contents among others found online:
 
-- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/guides/everybody-install/en-us/everybody_admin_data.htm)
+- [Connecting to Data Sources by Tableau](https://help.tableau.com/current/pro/desktop/en-us/data.htm)
 - [Tableau Data Connections to Databases and Multiple Sources9](https://www.guru99.com/tableau-data-connections.html)
 - [Types of Tableau Data Sources with Connection Establishment Process](https://data-flair.training/blogs/tableau-data-sources/)
 ]
@@ -261,7 +255,7 @@ Without being too complicated, there is two major ways to connect data in Tablea
 include_img("bobross_connection.jpg")
 ```
 
-.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/profile/vizpainter#!/vizhome/TheJoyofVizPainting/TheJoyofVizPainting)]
+.center[[Click here for more Bob Ross Tableau](https://public.tableau.com/app/profile/vizpainter/viz/TheJoyofVizPainting/TheJoyofVizPainting)]
 ]
 
 ---
@@ -338,7 +332,7 @@ class: title-slide, middle
 
 ## Exercise
 
-From the loop page, on the tile "Lecture Data", use the files **organisation alpha details**, **organisation alpha salary 2017**, **organisation alpha salary 2018**, and **organisation alpha salary 2019** and join them in Tableau Public.
+From the loop page, on the tile "Lecture Data", use the files **organisation alpha details**, **organisation alpha salary 2020**, **organisation alpha salary 2021**, and **organisation alpha salary 2022** and join them in Tableau Public.
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -743,18 +737,48 @@ Variables:
 ---
 class: title-slide, middle
 
-## From the loop page, use **titanic.csv** to create a Tableau Dashboard
+## Use **titanic.csv** to create a Tableau Dashbord
 
-Create: 
-- **1 Pie Chart using Survival**
-- **1 Bar Chart Proportion using Survival, Sex and Embarked**
-- **1 Scatterplot using Fare, Age and Survival**
+Design: 
+- **1 Pie Chart using Survival variable**
+- **1 Bar Chart Proportion using Survival, Sex and Embarked variables**
+- **1 Scatterplot using Fare, Age and Survival variables**
 
-Remember to **use titles**, to **customise them** and to **add a text** to convey your narrative
+Remember to **use titles**, to **customise the visualisations** and to **add the text** from the document `text_dashboard.txt` to convey your narrative.
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` The Survival variable will be recognised as continuous and not as categorical, you have to change its type.
 
 ```{r}
 countdown(minutes = 20, warn_when = 60)
 ```
+
+---
+
+# Kubicle Mandatory Trainings
+
+Tableau Essentials
+- [Introducing Tableau](https://app.kubicle.com/courses/tableau-2020-2-introducing-tableau) (120 min)
+- [Creating Visualizations in Tableau](https://app.kubicle.com/courses/tableau-2020-2-creating-visualizations-in-tableau) (150 min)
+- [Dashboard Design](https://app.kubicle.com/courses/dashboard-design) (150 min)
+
+Advancing in Tableau
+- [Optimizing for Performance](https://app.kubicle.com/courses/tableau-2020-2-optimizing-for-performance) (90 min)
+- [Advanced Visualizations in Tableau](https://app.kubicle.com/courses/tableau-2020-2-advanced-visualizations-in-tableau) (90 min)
+]
+
+---
+
+# Optional Free Trainings
+
+Visualisations with Tableau:
+- [Tableau desktop: 10 core skills for business users](https://www.udemy.com/course/tableau-desktop-10-core-skills-for-business-users/)
+- [Tableau: Get Started](https://help.tableau.com/current/pro/desktop/en-us/getstarted_buildmanual_ex1basic.htm)
+- [Introduction to Dimensions and Measures](https://www.tableau.com/drive/dimensions-and-measures-intro)
+- [Datafields, Types, and Roles](https://help.tableau.com/current/pro/desktop/en-us/datafields_typesandroles_datatypes.htm)
+- [Filters on Dimensions](https://www.tutorialgateway.org/tableau-filters-on-dimensions/)
+- [Tableau in Two Minutes - Tableau Basics for Beginners](https://www.youtube.com/watch?v=jEgVto5QME8)
+- [Tableau for Data Science and Data Visualization - Crash Course Tutorial](https://www.youtube.com/watch?v=TPMlZxRRaBQ)
+
 
 ---
 class: inverse, mline, left, middle
