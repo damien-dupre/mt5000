@@ -1,6 +1,6 @@
 ---
 title: "MT5000 - Data Analytics and Story Telling"
-subtitle: "Lecture 6: Visualisation & Dashboard Design"
+subtitle: "Lecture 7: Visualisation & Dashboard Design"
 author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
