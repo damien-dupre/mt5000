@@ -145,7 +145,7 @@ head(gapminder) |>
 - ## join data_left.csv with data_right_2.csv
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 2, warn_when = 60)
 ```
 
 --
@@ -176,7 +176,7 @@ head(gapminder) |>
 - ## join data_left.csv with data_right_3.csv
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+countdown(minutes = 2, warn_when = 60)
 ```
 
 --
@@ -213,14 +213,6 @@ class: inverse, mline, center, middle
 
 ## In tableau public...
 - ## Design a world map showing countries' life expectancy
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
---
-
-- ## Design a world map showing countries' life expectancy in 1952
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -270,15 +262,7 @@ class: inverse, mline, center, middle
 # Scatterplots Exercises
 
 ## In tableau public...
-- ## Design a Scatterplot with countries' life expectancy and gdpPercap
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
---
-
-- ## Customise this scatterplot
+- ## Design a Scatterplot with countries' life expectancy and gdpPercap and customise this scatterplot
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -365,7 +349,7 @@ class: inverse, mline, center, middle
 # Dashboard Types
 
 ```{r out.width='100%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_types.png")
+include_img("dashboard_types.png")
 ```
 .center.tiny[Source: Dashboard Design Patterns [`r ji("link")`](https://dashboarddesignpatterns.github.io/)]
 
@@ -384,7 +368,7 @@ Every Dashboard should include the following key element to fill their screenspa
 Optional elements can be added such as images, buttons, or menus
 
 ```{r out.width='70%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboard_key.png")
+include_img("dashboard_key.png")
 ```
 .center.tiny[Example of a dashboard structure. Not to necessary follow, for illustration only.]
 
@@ -412,7 +396,7 @@ Let's have a look at examples from real dashboards [here](https://www.tableau.co
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key_title.png")
+include_img("dashboard_key_title.png")
 ```
 ]
 
@@ -443,7 +427,7 @@ Presents the context regarding the issue investigated
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key_story.png")
+include_img("dashboard_key_story.png")
 ```
 ]
 
@@ -463,7 +447,7 @@ Summarises the information and provides future recommendations/suggestions to th
 <!-- Access the following dashboard [here](https://public.tableau.com/app/profile/parthagarwal/viz/ParthAgarwal-Final/Dash) and identify the recommendations/suggestions resulting from the information shared. -->
 
 <!-- ```{r out.width='100%'} -->
-<!-- include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_story_ex.png") -->
+<!-- include_img("dashboards/dashboard_story_ex.png") -->
 <!-- ``` -->
 
 <!-- ```{r} -->
@@ -496,7 +480,7 @@ countdown(minutes = 5, warn_when = 60)
 
 .pull-right[
 ```{r out.width='100%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/dashboards/dashboard_key_viz.png")
+include_img("dashboard_key_viz.png")
 ```
 ]
 
@@ -511,7 +495,7 @@ class: title-slide, middle
 4. Modify the hover tooltip
 
 ```{r out.width='60%'}
-include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/tableau/tableau_public_actions.png")
+include_img("tableau_public_actions.png")
 ```
 
 ```{r}
