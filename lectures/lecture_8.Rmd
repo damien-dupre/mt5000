@@ -21,7 +21,6 @@ library(fontawesome)
 library(gapminder)
 library(knitr)
 library(tidyverse)
-library(tweetrmd)
 
 # functions --------------------------------------------------------------------
 # https://bookdown.org/yihui/rmarkdown-cookbook/font-color.html#using-an-r-function-to-write-raw-html-or-latex-code
@@ -30,19 +29,13 @@ colorize <- function(x, color) {sprintf("<span style='color: %s;'>%s</span>", co
 # options ----------------------------------------------------------------------
 options(scipen = 999, htmltools.preserve.raw = FALSE)
 opts_chunk$set(echo = FALSE, fig.align = "center", fig.retina = 3)
-
-# functions --------------------------------------------------------------------
-include_img <- function(img_name) {
-  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
-  knitr::include_graphics()
-}
 ```
 
 ```{r xaringan-extra-styles, echo=FALSE}
-xaringanExtra::use_extra_styles(
-  hover_code_line = TRUE, 
-  mute_unhighlighted_code = TRUE
-)
+# xaringanExtra::use_extra_styles(
+#   hover_code_line = TRUE, 
+#   mute_unhighlighted_code = TRUE
+# )
 ```
 
 # Brief Introduction
@@ -54,25 +47,12 @@ Modern data science uses free and open-source computer languages:
 
 While Python is the most used language by computer engineers for web and app development, R has some advantages:
 
-.pull-left[
 1. **Easy to write**, to read and to use
 2. Focused on **reports and journal papers** with reproducibility
 3. Advanced **statistical packages**
 4. **Friendly and open** community
 
 ### So let's useR!
-]
-
-.pull-right[
-```{r out.width='100%'}
-tweet_screenshot(
-  tweet_url("Pop_Watson", "1280351422953840640"),
-  maxwidth = 300,
-  hide_media = TRUE,
-  theme = "dark"
-  )
-```
-]
 
 ---
 
@@ -128,6 +108,19 @@ In your webrowser (Chrome, Firefox, ...), go to: https://posit.cloud/
 include_graphics("https://miro.medium.com/max/1400/1*JBHNRwGr3ZiyBzYWpvH6zg.png")
 ```
 
+
+---
+
+# Posit Cloud
+
+Warning: Time resources in the free plan are limited to 25h of use per month.
+
+If you go beyond, consider installing R and RStudio on your laptop (free option)
+
+```{r out.width='100%'}
+include_graphics("https://raw.githubusercontent.com/damien-dupre/img/main/rstudio/posit_cloud_plan.png")
+```
+
 ---
 
 # Code in Rstudio
@@ -136,8 +129,8 @@ Most of the R code displayed in this lecture is included in these slides. Rather
 
 Two ways to access these slides:
 
-  - From Loop: Lectures Slides > Lecture 8
-  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_8
+  - From Loop: Lectures Slides > Lecture 7
+  - Or from the URL: https://damien-dupre.github.io/ac584_ac579/lectures/lecture_8
 
 ```{r out.width='50%'}
 include_graphics("https://c.tenor.com/0heitU7-tg4AAAAC/copy-paste-paste.gif")
