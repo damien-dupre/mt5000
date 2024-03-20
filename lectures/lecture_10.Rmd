@@ -44,20 +44,14 @@ theme_update(
 
 colorize <- function(x, color) {
   sprintf("<span style='color: %s;'>%s</span>", color, x)
-}
-
-# functions --------------------------------------------------------------------
-include_img <- function(img_name) {
-  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
-  knitr::include_graphics()
-}
+  }
 ```
 
 ```{r xaringan-extra-styles, echo=FALSE}
-xaringanExtra::use_extra_styles(
-  hover_code_line = TRUE, 
-  mute_unhighlighted_code = TRUE
-)
+# xaringanExtra::use_extra_styles(
+#   hover_code_line = TRUE, 
+#   mute_unhighlighted_code = TRUE
+# )
 ```
 
 # R so far
@@ -106,8 +100,8 @@ And your visualisations will not use the scientific number format anymore
 In your webrowser (Chrome, Firefox, ...):
 
 1. Open these same slides on a tab to copy-paste the examples
-  - From Loop: Lectures > Lecture 10
-  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_10
+  - From Loop: Lectures > Lecture 9
+  - Or from the URL: https://damien-dupre.github.io/ac584_ac579/lectures/lecture_9
 
 2. In another tab, go to: https://posit.cloud/
   - Sign in or Sign up (if not already done)
@@ -163,10 +157,10 @@ library(tidyverse)
 
 **“the grammar of graphics”** (the “gg” in ggplot) defines a set of rules for constructing statistical graphics by combining different types of layers. 
 
-From the first (bottom) to the last (top), the mandatory layers are :
+From the first (top) to the last (bottom), the mandatory layers are :
 
-```{r echo=FALSE, out.width='50%'}
-include_graphics("https://englelab.gatech.edu/useRguide/images/dataviz/ge_geom.png")
+```{r echo=FALSE, out.width='100%'}
+include_graphics("https://miro.medium.com/v2/resize:fit:1400/1*hd6-LkI_sy4b4nu720eV_A.png")
 ```
 
 ---
