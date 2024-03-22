@@ -100,8 +100,8 @@ And your visualisations will not use the scientific number format anymore
 In your webrowser (Chrome, Firefox, ...):
 
 1. Open these same slides on a tab to copy-paste the examples
-  - From Loop: Lectures > Lecture 9
-  - Or from the URL: https://damien-dupre.github.io/ac584_ac579/lectures/lecture_9
+  - From Loop: Lectures > Lecture 10
+  - Or from the URL: https://damien-dupre.github.io/mt5000/lectures/lecture_10
 
 2. In another tab, go to: https://posit.cloud/
   - Sign in or Sign up (if not already done)
