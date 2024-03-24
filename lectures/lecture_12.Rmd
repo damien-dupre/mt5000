@@ -11,6 +11,10 @@ output:
       highlightStyle: zenburn
       highlightLines: true
       countIncrementalSlides: false
+      
+params:
+  module_code: "MT5000"
+  assignment_2_deadline: "April 27th, 1pm"
 ---
 
 ```{r child = '/Users/damienhome/Library/CloudStorage/OneDrive-Personal/Projects/lectures/rstats/github.Rmd'}

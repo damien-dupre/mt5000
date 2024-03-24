@@ -15,7 +15,7 @@ output:
       
 params:
   module_code: "MT5000"
-  lecture_number: "8"
+  lecture_number: "10"
 ---
 
 ```{r child = '/Users/damienhome/Library/CloudStorage/OneDrive-Personal/Projects/lectures/rstats/ggplot.Rmd'}

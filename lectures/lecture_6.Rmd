@@ -11,6 +11,10 @@ output:
       highlightStyle: zenburn
       highlightLines: true
       countIncrementalSlides: false
+      
+params:
+  module_code: "MT5000"
+  assignment_1_deadline: "23/03/2024"
 ---
 
 ```{r child = '/Users/damienhome/Library/CloudStorage/OneDrive-Personal/Projects/lectures/tableau/advanced_features.Rmd'}
