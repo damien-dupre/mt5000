@@ -54,7 +54,9 @@ The last tool for data analytics and visualisations displayed in this lectures i
 
 GitHub has a lot of different functions. For now, we will only see how to use it to **published the html document output from our Quarto file**.
 
+.center[
 ![](http://www.quickmeme.com/img/75/7509f68823389e4af3777ca6d3744c632cc32ab3547bc56e319126aa29ab149a.jpg)&lt;!-- --&gt;
+]
 
 ---
 
@@ -89,7 +91,7 @@ And even more that I am not aware of!
 ---
 class: title-slide, middle
 
-## Exercise: Sign up to GitHub
+## Your Turn! Sign up to GitHub
 
 1/ Go to https://github.com and click **sign up**
 
@@ -119,7 +121,7 @@ The core principle of GitHub is a remote desktop (or profile) with a folder call
 ---
 class: title-slide, middle
 
-## Exercise
+## Your Turn!
 
 Follow the steps here after to **create your first repository**.
 
@@ -147,27 +149,25 @@ Follow the steps here after to **create your first repository**.
 
 ![](https://docs.github.com/assets/cb-25139/mw-1000/images/help/repository/create-repository-name.webp)&lt;!-- --&gt;
 
-.pull-left[
-3/ **Optionally**, add a description of your repository. For example, "My first repository on GitHub." 
-]
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Warning: Do NOT use white space between words, snake case convention highly recommended.
 
-.pull-right[
-![](https://docs.github.com/assets/cb-26377/mw-1000/images/help/repository/create-repository-desc.webp)&lt;!-- --&gt;
-]
+3/ **Optionally**, add a description of your repository. For example, "My first repository on GitHub." 
 
 ---
 
 # GitHub Repositories
 
-4/ **Choose a repository visibility**. For more information, see "About repositories." 
-
-![](https://docs.github.com/assets/cb-20877/mw-1000/images/help/repository/create-repository-public-private.webp)&lt;!-- --&gt;
+4/ **Choose a PUBLIC repository visibility**. For more information, see "About repositories." 
 
 5/ Tick **Add a README file**.
 
 6/ Click **Create repository**.
 
-Congratulations! You've successfully created your first repository, and initialized it with a README file.
+### Congratulations! You've successfully created your first repository, and initialized it with a README file.
+
+.center[
+&lt;img src="https://external-preview.redd.it/H3X9ghkU1diDoEaB2j6OLakfRVvtelkI-VVCAMvpHFw.jpg?auto=webp&amp;s=812777b2de31ed351475ecfb9cfe91a74931201b" width="50%" /&gt;
+]
 
 ---
 class: inverse, mline, center, middle
@@ -178,13 +178,11 @@ class: inverse, mline, center, middle
 
 # Always Commit Changes
 
-In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. **Once you're ready to save those changes, you create a commit**.
+In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. 
 
 **A commit contains a snapshot of the changes** you've made to one or more files, along with a message that describes the changes. This **message should be descriptive and clear**, so that other developers can understand what changes you've made and why.
 
-Committing your changes to GitHub is an important part of collaborating with others on a project, as it allows other developers to **see what changes you've made** and merge them into the main project. Commits also make it easy to revert changes if necessary, since you can always go back to a previous commit in the project's history.
-
-&gt; Everytime you want to take into account a change in your repository, you need to commit these changes
+### Everytime you want to take into account a change in your repository, you need to commit these changes
 
 ---
 class: title-slide, middle
@@ -242,7 +240,7 @@ When you created your new repository, you initialized it with a README file. REA
 ---
 class: title-slide, middle
 
-## Exercise
+## Your Turn!
 
 **Fill you Repository up with the files** created when Rendering Quarto to html by following the steps described here after
 
@@ -288,7 +286,7 @@ To create a GitHub Pages website, you need to have a GitHub account and a r**epo
 ---
 class: title-slide, middle
 
-## Exercise
+## Your Turn!
 
 Turn on GitHub Pages for your project repository:
 
@@ -297,6 +295,60 @@ Turn on GitHub Pages for your project repository:
 2/ In **Branch**, instead of None select **Main** and click **Save**
 
 3/ Click on **Actions** and wait that "pages build and deployment" finishes. When it's done, go to **https://username.github.io/repository/**
+
+---
+
+# GitHub Pages URL
+
+By default, your html report will be published at:
+
+**https://username.github.io/repository/project_folder/report**
+
+For example, if:
+
+- Your GitHub username is **damien-dupre**
+- Your Repository name is **data-analytics**
+- Your Project folder name is **project**
+- Your html file name is **report.html**
+
+Then, you report will be published at:
+
+**https://damien-dupre.github.io/data-analytics/project/report**
+
+---
+
+# GitHub Pages URL
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Warning: Do NOT use white space between words, snake case convention highly recommended.
+
+If you use a white space in any of the Repository name, Project folder name, or html file name then this white space will be replaced by the symbol **%20**
+
+For example, a Repository name called **data analytics** will have the following URL:
+
+**https://damien-dupre.github.io/data%20analytics/project/report**
+
+---
+
+# GitHub Pages URL
+
+There are two special cases to consider with URLs:
+
+1/ If your html file name is **index.html**, then your file URL will be:
+
+**https://damien-dupre.github.io/data-analytics/project**
+
+2/ If your Repository name is **username.github.io** (e.g., damien-dupre.github.io), then your file URL will be:
+
+**https://damien-dupre.github.io/project/report**
+
+Both shortcut could be used to display a document at:
+
+**https://username.github.io/project_folder**
+
+Here, in this example:
+
+**https://damien-dupre.github.io/project**
+
 
 ---
 class: inverse, mline, center, middle
