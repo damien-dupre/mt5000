@@ -11,6 +11,9 @@ output:
       highlightStyle: zenburn
       highlightLines: true
       countIncrementalSlides: false
+      
+# https://statistik-dresden.de/scrollytelling-storytelling-mit-r-und-quarto/
+# https://nrennie.rbind.io/talks/lms-research-talks/slides.html#/title-slide
 ---
 
 ```{r child = '/Users/damienhome/Library/CloudStorage/OneDrive-Personal/Projects/lectures/tableau/dashboard_design.Rmd'}

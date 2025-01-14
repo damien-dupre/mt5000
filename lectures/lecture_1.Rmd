@@ -1,5 +1,5 @@
 ---
-title: "MT5000 - Data Analytics and Story Telling"
+title: "BAA1030 - Data Analytics and Story Telling"
 subtitle: "Lecture 1: Introduction"
 author: "Damien Dupré - Dublin City University"
 output:
@@ -13,11 +13,11 @@ output:
       countIncrementalSlides: false
       
 params:
-  module_code: "MT5000"
-  lecture_schedule: "Wednesday between 12pm and 3pm (Irish Time)"
-  assignment_1_deadline: "23/03/2024"
-  assignment_2_deadline: "13/04/2024 (Only 3 weeks after Assignment 1)"
-  assignment_3_deadline: "01/05/2024"
+  module_code: "BAA1030"
+  lecture_schedule: "Wednesday between 11am and 1pm"
+  assignment_1_deadline: "23/03/2025"
+  assignment_2_deadline: "13/04/2025 (Only 3 weeks after Assignment 1)"
+  assignment_3_deadline: "01/05/2025"
 ---
 
 ```{r child = '/Users/damienhome/Library/CloudStorage/OneDrive-Personal/Projects/lectures/data_analytics/introduction.Rmd'}
