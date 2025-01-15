@@ -14,7 +14,7 @@ output:
       
 params:
   module_code: "BAA1030"
-  lecture_schedule: "Wednesday between 11am and 1pm"
+  lecture_schedule: "Wednesday, between 11am and 1pm"
   assignment_1_deadline: "23/03/2025"
   assignment_2_deadline: "13/04/2025 (Only 3 weeks after Assignment 1)"
   assignment_3_deadline: "01/05/2025"
