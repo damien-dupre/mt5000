@@ -1,6 +1,6 @@
 ---
 title: "BAA1030 - Data Analytics and Story Telling"
-subtitle: "Lecture 1 : Introduction"
+subtitle: "Lecture 1: Introduction"
 author: "Damien Dupré - Dublin City University"
 output:
   xaringan::moon_reader:
